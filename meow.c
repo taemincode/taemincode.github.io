@@ -2,10 +2,13 @@
 
 int main(void)
 {
-    int i = 3;
-    while (i > 0)
+    for (int i = 0; i < 3; i++)
     {
-    printf("meow\n");
-    i--;
+        meow();
     }
+}
+
+void meow(void)
+{
+    printf("meow\n");
 }
