@@ -14,7 +14,7 @@ int main(void)
     {
         printf("x is greater than than y\n");
     }
-    else if (x == y)
+    else
     {
         printf("x is equal to y\n");
     }
