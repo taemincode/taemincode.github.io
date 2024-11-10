@@ -5,11 +5,10 @@ void print_row(int legnth);
 int main(void)
 {
     int height = get_int("Height: ");
-    int i = 0;
-    while(i < height)
+
+    for (int i = 0; i < height; i++)
     {
         print_row(i + 1);
-        i++;
     }
 }
 
