@@ -3,7 +3,8 @@
 
 int main(void)
 {
-    int input = get_int("Number: ");
-    int number = 5
-    int output = 5 / input % 10
+    float input = get_float("Number: ");
+    float number = 5.0;
+    int output = number / input % 1.0;
+    printf("%i\n", output);
 }
