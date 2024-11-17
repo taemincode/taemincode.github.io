@@ -1,5 +1,5 @@
-#include <ctype.h>
 #include <cs50.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -7,9 +7,11 @@ int points(string player);
 
 int main(void)
 {
+    // Gets the words from the user
     string player1 = get_string("Player 1: ");
     string player2 = get_string("Player 2: ");
 
+    // Compares the points
     if (points(player1) > points(player2))
     {
         printf("Player 1 wins!\n");
@@ -24,13 +26,16 @@ int main(void)
     }
 }
 
+// Function to calculate points
 int points(string player)
 {
     int points = 0;
-    for(int i = 0, l = strlen(player); i < l; i++)
+    for (int i = 0, l = strlen(player); i < l; i++)
     {
         player[i] = toupper(player[i]);
-        if (player[i] == 'A' || player[i] == 'E' || player[i] == 'I' || player[i] == 'L' || player[i] == 'N' || player[i] == 'O' || player[i] == 'R' || player[i] == 'S' || player[i] == 'T' || player[i] == 'U')
+        if (player[i] == 'A' || player[i] == 'E' || player[i] == 'I' || player[i] == 'L' ||
+            player[i] == 'N' || player[i] == 'O' || player[i] == 'R' || player[i] == 'S' ||
+            player[i] == 'T' || player[i] == 'U')
         {
             points++;
         }
@@ -42,7 +47,8 @@ int points(string player)
         {
             points += 3;
         }
-        else if (player[i] == 'F' || player[i] == 'H' || player[i] == 'V' || player[i] == 'W' || player[i] == 'Y')
+        else if (player[i] == 'F' || player[i] == 'H' || player[i] == 'V' || player[i] == 'W' ||
+                 player[i] == 'Y')
         {
             points += 4;
         }
