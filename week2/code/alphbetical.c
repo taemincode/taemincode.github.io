@@ -8,7 +8,12 @@ int main(void)
     int length = strlen(phrase);
     for (int i = 0; i < length; i++)
     {
-        printf("%i ", phrase[i]);
+        // Check if characters are NOT alphabetical
+        if (phrase[i] > phrase[i + 1])
+        {
+            printf("Not in alphabetical order.\n");
+            return 0;
+        }
     }
     printf("\n");
 }
