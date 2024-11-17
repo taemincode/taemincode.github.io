@@ -1,12 +1,14 @@
 #include <cs50.h>
 #include <stdio.h>
-#include <strlen.h>
+#include <string.h>
 
 int main(void)
 {
     string phrase = get_string("Enter a phrase: ");
-    for (int i = 0, lenght = strlen(phrase); i < length; i++)
+    int length = strlen(phrase);
+    for (int i = 0; i < length; i++)
     {
-        
+        printf("%c", phrase[i]);
     }
+    printf("\n");
 }
