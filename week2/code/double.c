@@ -5,9 +5,10 @@ int main(void)
 {
     int sequence[5];
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0,  n = 1; i < 5; i++)
     {
-        sequence[i] = sequence[i - 1] * 2;
+        sequence[i] = n;
         printf("%i\n", sequence[i]);
+        n *= 2;
     }
 }
