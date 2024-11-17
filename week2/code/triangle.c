@@ -21,22 +21,14 @@ int main(void)
 bool valid_triangle(float a[])
 {
     //Checks if all three sides are  positive
-    if (side1 < 0 || side2 < 0 || side3 < 0)
+    if (a[0] < 0 || a[1] < 0 || a[2] < 0)
     {
         return false;
     }
 
-    //Finds out the largest side
-    float largest_side = 0;
     for (int i = 0; i < 3; i++)
     {
-        if (a[i] > largest_side)
-        {
-            largest_side = a[i];
-        }
+        
     }
-
-    //Finds out if it's a valid triangle
-    if (largest_side < )
 
 }
