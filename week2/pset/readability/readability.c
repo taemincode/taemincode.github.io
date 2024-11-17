@@ -30,6 +30,10 @@ int main(void)
     }
 
     // Compute the Coleman-Liau index
+    int l = letters / words * 100
+    int s = sentences / words * 100
+
+    int index = 0.0588 * l - 0.296 * s - 15.8
 
     // Print the grade level
 }
