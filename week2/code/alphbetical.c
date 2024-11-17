@@ -6,7 +6,7 @@ int main(void)
 {
     string phrase = get_string("Enter a phrase: ");
     int length = strlen(phrase);
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length - 1; i++)
     {
         // Check if characters are NOT alphabetical
         if (phrase[i] > phrase[i + 1])
@@ -15,4 +15,6 @@ int main(void)
             return 0;
         }
     }
+    printf("Alphabetical order!\n");
+    return 0;
 }
