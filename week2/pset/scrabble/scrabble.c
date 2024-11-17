@@ -16,9 +16,9 @@ int points(string player)
     player = toupper(player);
     for(int i = 0, l = strlen(player); i < l; i++)
     {
-        if ('A' <= player[i] <= 'Z')
+        if (player[i] = 'A' || player[i] = 'E' ||)
         {
-            
+
         }
     }
 }
