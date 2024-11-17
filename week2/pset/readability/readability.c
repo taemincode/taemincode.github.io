@@ -15,7 +15,7 @@ int main(void)
     int sentences = 0;
     for (int i = 0, n = strlen(text); i < n; i++)
     {
-        if ('A' <= text[i] <= 'Z' || 'a' <= text[i] <= 'z')
+        if (('A' <= text[i] && text[i] <= 'Z') || ('a' <= text[i] && text[i] <= 'z'))
         {
             letters++;
         }
@@ -30,13 +30,13 @@ int main(void)
     }
 
     // Compute the Coleman-Liau index
-    int l = letters / words * 100;
-    int s = sentences / words * 100;
+    float l = (float) letters / words * 100;
+    float s = (float) sentences / words * 100;
 
     float index = 0.0588 * l - 0.296 * s - 15.8;
 
     // Print the grade level
-    if (1 < index < 16)
+    if (index >= 1 && index < 16)
     {
         printf("Grade %i\n", (int) round(index));
     }
