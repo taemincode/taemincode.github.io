@@ -11,12 +11,16 @@ int main(void)
     string player1 = get_string("Player 1: ");
     string player2 = get_string("Player 2: ");
 
+    // Finds out the points
+    int point1 = points(player1);
+    int point2 = points(player2);
+
     // Compares the points
-    if (points(player1) > points(player2))
+    if (point2 > point2)
     {
         printf("Player 1 wins!\n");
     }
-    else if (points(player1) < points(player2))
+    else if (point1 < point2)
     {
         printf("Player 2 wins!\n");
     }
