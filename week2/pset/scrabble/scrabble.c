@@ -26,11 +26,10 @@ int main(void)
 
 int points(string player)
 {
-    player = toupper(player);
-
     int points = 0;
     for(int i = 0, l = strlen(player); i < l; i++)
     {
+        player[i] = toupper(player[i]);
         if (player[i] == 'A' || player[i] == 'E' || player[i] == 'I' || player[i] == 'L' || player[i] == 'N' || player[i] == 'O' || player[i] == 'R' || player[i] == 'S' || player[i] == 'T' || player[i] == 'U')
         {
             points++;
