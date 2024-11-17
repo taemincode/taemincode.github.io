@@ -16,7 +16,7 @@ int main(void)
     int point2 = points(player2);
 
     // Compares the points
-    if (point2 > point2)
+    if (point1 > point2)
     {
         printf("Player 1 wins!\n");
     }
