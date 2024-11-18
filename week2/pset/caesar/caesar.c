@@ -26,15 +26,17 @@ int main(int argc, string argv[])
     // Defines key
     int key = atoi(argv[1]);
 
-    // Computes the Ciphertext
+    // Computes Ciphertext
     int length = strlen(plaintext);
     string ciphertext[length]
     for (int i = 0, l = length; i < l; i++)
     {
         if (isalpha(plaintext[i]) == true)
         {
-            ciphertext[i] = (plaintext[i] + key)
-        }
+            if (isupper(plaintext[i]) == true)
+            {
+                plaintext[i]
+            }
     }
 
 
