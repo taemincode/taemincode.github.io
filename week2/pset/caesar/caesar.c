@@ -35,12 +35,12 @@ int main(int argc, string argv[])
     for (int i = 0, l = length; i < l; i++)
     {
         // If plaintext[i] is alphabetical
-        if (isalpha(plaintext[i]) == true)
+        if (isalpha(plaintext[i]))
         {
             char index_plain;
             char index_cipher;
 
-            if (isupper(plaintext[i]) == true)
+            if (isupper(plaintext[i]))
             {
                 index_plain = plaintext[i] - 'A';
                 index_cipher = (index_plain + key) % 26;
