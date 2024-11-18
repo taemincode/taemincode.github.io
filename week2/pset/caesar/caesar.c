@@ -17,8 +17,10 @@ int main(int argc, string argv[])
     for (int i = 0, l = strlen(argv[1]); i < l; i++)
     {
         if (isdigit(argv[1][i]) == false)
-        printf("Useage: ./caesar key\n");
-        return 2;
+        {
+            printf("Useage: ./caesar key\n");
+            return 2;
+        }
     }
 
     // Gets plaintext from the user
@@ -37,7 +39,7 @@ int main(int argc, string argv[])
         {
             char index_plain;
             char index_cipher;
-            
+
             if (isupper(plaintext[i]) == true)
             {
                 index_plain = plaintext[i] - 'A';
