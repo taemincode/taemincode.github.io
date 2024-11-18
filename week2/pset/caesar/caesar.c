@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, string argv[])
 {
@@ -15,7 +16,7 @@ int main(int argc, string argv[])
     // Checks if the key is a digit
     for (int i = 0, l = strlen(argv[1]); i < l; i++)
     {
-        if (isdigit(argv[1][i]) == false);
+        if (isdigit(argv[1][i]) == false)
         printf("Useage: ./caesar key\n");
         return 2;
     }
@@ -28,11 +29,15 @@ int main(int argc, string argv[])
 
     // Computes Ciphertext
     int length = strlen(plaintext);
-    string ciphertext[length]
+    string ciphertext[length];
     for (int i = 0, l = length; i < l; i++)
     {
+        // If plaintext[i] is alphabetical
         if (isalpha(plaintext[i]) == true)
         {
+            char index_plain;
+            char index_cipher;
+            
             if (isupper(plaintext[i]) == true)
             {
                 index_plain = plaintext[i] - 'A';
@@ -45,11 +50,14 @@ int main(int argc, string argv[])
                 index_cipher = (index_plain + key) % 26;
                 ciphertext[i] = index_cipher + 'a';
             }
+        }
+        // Else plaintext[i] is not alphabetical
         else
         {
             ciphertext[i] = plaintext[i];
         }
     }
 
-
+    // Prints ciphertext
+    printf("ciphertext: %s\n", ciphertext);
 }
