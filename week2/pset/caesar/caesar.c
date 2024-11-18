@@ -31,7 +31,7 @@ int main(int argc, string argv[])
 
     // Computes Ciphertext
     int length = strlen(plaintext);
-    string ciphertext[length];
+    char ciphertext[length] = '\0';
     for (int i = 0, l = length; i < l; i++)
     {
         // If plaintext[i] is alphabetical
