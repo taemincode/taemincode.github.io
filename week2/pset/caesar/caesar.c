@@ -35,8 +35,20 @@ int main(int argc, string argv[])
         {
             if (isupper(plaintext[i]) == true)
             {
-                plaintext[i]
+                index_plain = plaintext[i] - 'A';
+                index_cipher = (index_plain + key) % 26;
+                ciphertext[i] = index_cipher + 'A';
             }
+            else
+            {
+                index_plain = plaintext[i] - 'a';
+                index_cipher = (index_plain + key) % 26;
+                ciphertext[i] = index_cipher + 'a';
+            }
+        else
+        {
+            ciphertext[i] = plaintext[i];
+        }
     }
 
 
