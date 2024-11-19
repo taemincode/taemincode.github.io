@@ -9,7 +9,7 @@ int main(int argc, string argv[])
     // Checks if the key is valid
     if (argc != 2)
     {
-        printf("Useage: ./caesar key\n");
+        printf("Usage: ./caesar key\n");
         return 1;
     }
 
@@ -18,7 +18,7 @@ int main(int argc, string argv[])
     {
         if (isdigit(argv[1][i]) == false)
         {
-            printf("Useage: ./caesar key\n");
+            printf("Usage: ./caesar key\n");
             return 1;
         }
     }
