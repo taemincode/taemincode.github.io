@@ -23,6 +23,9 @@ int main(int argc, string argv[])
 
     // Prints ciphertext
     printf("ciphertext: %s\n", ciphertext);
+
+    // Free the allocated memory
+    free(ciphertext);
 }
 
 void valid(int length, string key)
