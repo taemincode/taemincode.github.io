@@ -48,7 +48,11 @@ void valid(int length, string key)
     }
 
     // If the key has same alphabets
-    string upper_key = toupper(key);
+    char upper_key[26];
+    for (int i = 0; i < 26; i++)
+    {
+        upper_key[i] = toupper(key[i]);
+    }
     for (int i = 0; i < 26; i++)
     {
         int counter = 0;
