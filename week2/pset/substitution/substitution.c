@@ -64,8 +64,21 @@ void valid(int length, string key)
 string cipher(string key, string text)
 {
     upper_key = toupper(key);
-    for (int i = 0, j = 65; i < 26; i++, j++)
+    l = strlen(text);
+    char cipher[l + 1];
+    for (int i = 0; i < l; i++)
     {
-        
+        if (isalhpa(text[i]))
+        {
+            if (isupper(text[i]))
+            {
+                
+            }
+            else
+            {
+
+            }
+        }
+
     }
 }
