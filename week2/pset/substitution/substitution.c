@@ -95,7 +95,7 @@ string cipher(string key, string text)
         // Else the character is not an alphabet
         else
         {
-            cihper[i] = text[i];
+            cipher[i] = text[i];
         }
     }
     // Null terminating
