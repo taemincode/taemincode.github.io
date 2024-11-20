@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+const int alphabet_length = 26;
+
 void valid(int length, string key);
 
 string cipher(string key, string text);
@@ -33,14 +35,14 @@ void valid(int length, string key)
     }
 
     // If the lenghth of the key is invalid
-    if (strlen(key) != 26)
+    if (strlen(key) != alphabet_length)
     {
         printf("Key must contain 26 characters.\n");
         exit(1);
     }
 
     // If the key is not alphabetic
-    for (int i = 0; i < 26; i++)
+    for (int i = 0; i < alphabet_length; i++)
     {
         if (!isalpha(key[i]))
         {
@@ -50,15 +52,15 @@ void valid(int length, string key)
     }
 
     // If the key has same alphabets
-    char upper_key[26];
-    for (int i = 0; i < 26; i++)
+    char upper_key[alphabet_length];
+    for (int i = 0; i < alphabet_length; i++)
     {
         upper_key[i] = toupper(key[i]);
     }
-    for (int i = 0; i < 26; i++)
+    for (int i = 0; i < alphabet_length; i++)
     {
         int counter = 0;
-        for (int j = 0; j < 26; j++)
+        for (int j = 0; j < alphabet_length; j++)
         {
             if (key[i] == key[j])
             {
@@ -75,8 +77,8 @@ void valid(int length, string key)
 
 string cipher(string key, string text)
 {
-    char upper_key[26];
-    for (int i = 0; i < 26; i++)
+    char upper_key[alphabet_length];
+    for (int i = 0; i < alphabet_length; i++)
     {
         upper_key[i] = toupper(key[i]);
     }
@@ -94,12 +96,12 @@ string cipher(string key, string text)
             // If the character is uppercase
             if (isupper(text[i]))
             {
-                cipher[i] = upper_key[text[i] - 65];
+                cipher[i] = upper_key[text[i] - 'A'];
             }
             // Else the character is lowercase
             else
             {
-                cipher[i] = tolower(upper_key[text[i] - 97]);
+                cipher[i] = tolower(upper_key[text[i] - 'a']);
             }
         }
         // Else the character is not an alphabet
