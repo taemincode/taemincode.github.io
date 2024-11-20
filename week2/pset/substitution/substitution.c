@@ -7,9 +7,18 @@
 
 void valid(int length, string key);
 
+string cipher(string key, string text);
+
 int main(int argc, string argv[])
 {
+    // Checks if the input is valid
     valid(argc, argv[1]);
+
+    // Gets plaintext
+    string plain = get_string("plaintext:  ");
+
+    // Computes ciphertext
+    string cipher = cipher(argv[1], plain)
 }
 
 void valid(int length, string key)
@@ -50,4 +59,13 @@ void valid(int length, string key)
         }
     }
 
+}
+
+string cipher(string key, string text)
+{
+    upper_key = toupper(key);
+    for (int i = 0, j = 65; i < 26; i++)
+    {
+
+    }
 }
