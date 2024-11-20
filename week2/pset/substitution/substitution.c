@@ -64,8 +64,8 @@ void valid(int length, string key)
 string cipher(string key, string text)
 {
     upper_key = toupper(key);
-    for (int i = 0, j = 65; i < 26; i++)
+    for (int i = 0, j = 65; i < 26; i++, j++)
     {
-
+        
     }
 }
