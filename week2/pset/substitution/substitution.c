@@ -56,7 +56,7 @@ void valid(int length, string key)
     for (int i = 0; i < 26; i++)
     {
         int counter = 0;
-        for (int j = 0; j < l; j++)
+        for (int j = 0; j < 26; j++)
         {
             if (key[i] == key[j])
             {
