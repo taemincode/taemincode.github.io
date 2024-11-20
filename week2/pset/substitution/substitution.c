@@ -29,12 +29,14 @@ void valid(int length, string key)
     // If the format is invalid
     if (length != 2)
     {
+        printf("Usage: ./substitution key\n");
         exit(1);
     }
 
     // If the lenghth of the key is invalid
     if (strlen(key) != 26)
     {
+        printf("Key must contain 26 characters.\n");
         exit(1);
     }
 
@@ -43,6 +45,7 @@ void valid(int length, string key)
     {
         if (!isalpha(key[i]))
         {
+            printf("Usage: ./substitution key\n");
             exit(1);
         }
     }
@@ -65,6 +68,7 @@ void valid(int length, string key)
         }
         if (counter != 1)
         {
+            printf("Usage: ./substitution key\n");
             exit(1);
         }
     }
