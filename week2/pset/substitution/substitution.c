@@ -101,7 +101,7 @@ string cipher(string key, string text)
             // Else the character is lowercase
             else
             {
-                cipher[i] = tolower(upper_key[text[i] - 65]);
+                cipher[i] = upper_key[text[i] - 65];
             }
         }
         // Else the character is not an alphabet
