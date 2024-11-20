@@ -73,13 +73,21 @@ void valid(int length, string key)
 
 string cipher(string key, string text)
 {
-    upper_key = toupper(key);
-    l = strlen(text);
-    char cipher[l + 1];
+    char upper_key[26];
+    for (int i = 0; i < 26; i++)
+    {
+        upper_key[i] = toupper(key[i]);
+    }
+    int l = strlen(text);
+    char *cipher = malloc(l + 1);
+    if (cipher == NULL)
+    {
+        exit(1);
+    }
     for (int i = 0; i < l; i++)
     {
         // If the 'i'th character of the plaintext is an alphbet
-        if (isalhpa(text[i]))
+        if (isalpha(text[i]))
         {
             // If the character is uppercase
             if (isupper(text[i]))
