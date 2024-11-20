@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <ctype.h>
 #include <stdio.h>
-#include <stdilib.h>
+#include <stdlib.h>
 #include <string.h>
 
 
@@ -15,10 +15,13 @@ int main(int argc, string argv[])
     valid(argc, argv[1]);
 
     // Gets plaintext
-    string plain = get_string("plaintext:  ");
+    string plaintext = get_string("plaintext:  ");
 
     // Computes ciphertext
-    string cipher = cipher(argv[1], plain)
+    string ciphertext = cipher(argv[1], plaintext);
+
+    // Prints ciphertext
+    printf("ciphertext: %s\n", ciphertext);
 }
 
 void valid(int length, string key)
@@ -68,17 +71,29 @@ string cipher(string key, string text)
     char cipher[l + 1];
     for (int i = 0; i < l; i++)
     {
+        // If the 'i'th character of the plaintext is an alphbet
         if (isalhpa(text[i]))
         {
+            // If the character is uppercase
             if (isupper(text[i]))
             {
-                
+                cipher[i] = upper_key[text[i] - 65];
             }
+            // Else the character is lowercase
             else
             {
-
+                cipher[i] = tolower(upper_key[text[i] - 65]);
             }
         }
-
+        // Else the character is not an alphabet
+        else
+        {
+            cihper[i] = text[i];
+        }
     }
+    // Null terminating
+    cipher[l] = \0;
+
+    // Returns ciphertext
+    return cipher;
 }
