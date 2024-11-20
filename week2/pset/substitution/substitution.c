@@ -107,7 +107,7 @@ string cipher(string key, string text)
         }
     }
     // Null terminating
-    cipher[l] = \0;
+    cipher[l] = '\0';
 
     // Returns ciphertext
     return cipher;
