@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 void valid(int length, string key);
 
 string cipher(string key, string text);
@@ -72,7 +71,6 @@ void valid(int length, string key)
             exit(1);
         }
     }
-
 }
 
 string cipher(string key, string text)
@@ -101,7 +99,7 @@ string cipher(string key, string text)
             // Else the character is lowercase
             else
             {
-                cipher[i] = upper_key[text[i] - 65];
+                cipher[i] = tolower(upper_key[text[i] - 97]);
             }
         }
         // Else the character is not an alphabet
