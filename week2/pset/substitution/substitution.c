@@ -39,9 +39,12 @@ void valid(int length, string key)
     }
 
     // If the key is not alphabetic
-    if (isalpha(key) == false)
+    for (int i = 0; i < 26; i++)
     {
-        exit(1);
+        if (!isalpha(key[i]))
+        {
+            exit(1);
+        }
     }
 
     // If the key has same alphabets
