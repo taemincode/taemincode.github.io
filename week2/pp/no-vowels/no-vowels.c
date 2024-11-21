@@ -29,7 +29,7 @@ string replace(string string)
     {
         swich (string[i])
         {
-            case
+            case 
         }
     }
 }
