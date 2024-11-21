@@ -7,12 +7,12 @@
 #include <stdio.h>
 #include <string.h>
 
+string replace(string word);
+
 int main(int argc, string argv[])
 {
-    '''
-    If the program is executed without any command-line
-    arguments or with more than one command-line argument
-    '''
+    //If the program is executed without any command-line
+    //arguments or with more than one command-line argument
     if (argc != 2)
     {
         printf("Usage: ./no-vowels word\n");
@@ -20,15 +20,15 @@ int main(int argc, string argv[])
     }
 
     // Prints out the replaced word
-    printf("%s\n", replace(argv[1]))
+    printf("%s\n", replace(argv[1]));
 
 }
 
 string replace(string word)
 {
-    for (i = 0, l = strlen(word); i < l; i++)
+    for (int i = 0, l = strlen(word); i < l; i++)
     {
-        swich (word[i])
+        switch (word[i])
         {
             case 'A' || 'a':
                 word[i] = '6';
