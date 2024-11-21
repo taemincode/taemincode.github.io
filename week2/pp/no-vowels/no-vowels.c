@@ -19,17 +19,33 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    // Replaces the word
+    // Prints out the replaced word
+    printf("%s\n", replace(argv[1]))
 
 }
 
-string replace(string string)
+string replace(string word)
 {
-    for (i = 0, l = strlen(string); i < l; i++)
+    for (i = 0, l = strlen(word); i < l; i++)
     {
-        swich (string[i])
+        swich (word[i])
         {
-            case 
+            case 'A' || 'a':
+                word[i] = '6';
+                break;
+
+            case 'E' || 'e':
+                word[i] = '3';
+                break;
+
+            case 'I' || 'i':
+                word[i] = '1';
+                break;
+
+            case 'O' || 'o':
+                word[i] = '0'
+                break;
         }
     }
+    return word;
 }
