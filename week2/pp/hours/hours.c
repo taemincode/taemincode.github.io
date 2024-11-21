@@ -28,7 +28,7 @@ int main(void)
 float calc_hours(int hours[], int weeks, char output)
 {
     // Adding up the hours saved in the array
-    int sum = 0;
+    float sum = 0.0;
     for (int i = 0; i < weeks; i++)
     {
         sum += hours[i];
