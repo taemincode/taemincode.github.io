@@ -4,6 +4,7 @@
 // Get practice with switch
 
 #include <cs50.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -11,8 +12,8 @@ string replace(string word);
 
 int main(int argc, string argv[])
 {
-    //If the program is executed without any command-line
-    //arguments or with more than one command-line argument
+    // If the program is executed without any command-line
+    // arguments or with more than one command-line argument
     if (argc != 2)
     {
         printf("Usage: ./no-vowels word\n");
@@ -21,31 +22,35 @@ int main(int argc, string argv[])
 
     // Prints out the replaced word
     printf("%s\n", replace(argv[1]));
-
 }
 
 string replace(string word)
 {
     for (int i = 0, l = strlen(word); i < l; i++)
     {
-        switch (word[i])
+        char c = toupper(word[i]);
+        switch (c)
         {
-            case 'A' || 'a':
+            case 'A':
                 word[i] = '6';
                 break;
 
-            case 'E' || 'e':
+            case 'E':
                 word[i] = '3';
                 break;
 
-            case 'I' || 'i':
+            case 'I':
                 word[i] = '1';
                 break;
 
-            case 'O' || 'o':
-                word[i] = '0'
+            case 'O':
+                word[i] = '0';
+                break;
+
+            default:
                 break;
         }
     }
+
     return word;
 }
