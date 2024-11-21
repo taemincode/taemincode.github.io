@@ -18,7 +18,8 @@ int main(void)
     }
     else
     {
-        printf("Your password needs at least one uppercase letter, lowercase letter, number and symbol!\n");
+        printf("Your password needs at least one uppercase letter, lowercase letter, number and "
+               "symbol!\n");
     }
 }
 
