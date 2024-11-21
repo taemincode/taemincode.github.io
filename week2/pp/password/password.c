@@ -40,6 +40,9 @@ bool valid(string password)
         {
             bool lower = true;
         }
-        else if (is)
+        else if (isdigit(password[i]))
+        {
+            bool 
+        }
     }
 }
