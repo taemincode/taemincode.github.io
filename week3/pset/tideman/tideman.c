@@ -190,13 +190,14 @@ void lock_pairs(void)
 void print_winner(void)
 {
     // TODO
+    int win_count = 0;
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j; j < candidate_count; j++)
         {
             if (!locked[j][i])
             {
-                printf()
+                win_count++;
             }
         }
     }
