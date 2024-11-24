@@ -119,7 +119,7 @@ void record_preferences(int ranks[])
         for (int j = i + 1; j < candidate_count; j++)
         {
 
-                preferences[rank[i]][j]++;
+                preferences[ranks[i]][j]++;
         }
     }
     return;
@@ -171,7 +171,7 @@ void lock_pairs(void)
     {
         if (i == pair_count - 1)
             {
-                for (int j; j < candidate_count; j++)
+                for (int j = 0; j < candidate_count; j++)
                 {
                     if (locked[j][pairs[i].loser])
                     {
@@ -193,7 +193,7 @@ void print_winner(void)
     int win_count = 0;
     for (int i = 0; i < candidate_count; i++)
     {
-        for (int j; j < candidate_count; j++)
+        for (int j = 0; j < candidate_count; j++)
         {
             if (!locked[j][i])
             {
@@ -203,7 +203,7 @@ void print_winner(void)
         if (win_count == candidate_count)
         {
             printf("%s\n", candidates[i]);
-            return
+            return;
         }
     }
 }
