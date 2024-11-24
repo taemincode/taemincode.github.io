@@ -74,6 +74,7 @@ bool vote(string name)
                     return true;
                 }
         }
+
     return false;
 }
 
@@ -81,6 +82,15 @@ bool vote(string name)
 void print_winner(void)
 {
     // TODO
-    
+    string winner = -1;
+    for (int i = 0; i < candidate_count; i++)
+        {
+            if (candidates[i].votes > winner)
+            {
+                winner = candidates[i].name;
+            }
+            
+        }
+
     return;
 }
