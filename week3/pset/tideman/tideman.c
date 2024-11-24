@@ -200,5 +200,10 @@ void print_winner(void)
                 win_count++;
             }
         }
+        if (win_count == candidate_count)
+        {
+            printf("%s\n", candidates[i]);
+            return
+        }
     }
 }
