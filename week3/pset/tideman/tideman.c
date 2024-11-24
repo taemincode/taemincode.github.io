@@ -152,7 +152,7 @@ void sort_pairs(void)
     {
         for (int j = 0; j < candidates - i - 1; j++)
         {
-            if (array[j] < array[j + 1])
+            if (preferences[i][j] - preferences[j][i] < array[j + 1])
             {
                 // Swap array[j] and array[j + 1]
                 int temp = array[j];
