@@ -3,7 +3,7 @@
 
 int factorial(int n);
 
-int main(void) 
+int main(void)
 {
     // Get positive value for N
     int n;
@@ -19,12 +19,13 @@ int main(void)
 
 int factorial(int n)
 {
+    // Implement factorial function
+
     // Base case
     if (n == 1)
     {
         return 1;
     }
 
-    // Recursive case
     return n * factorial(n - 1);
 }
