@@ -136,6 +136,7 @@ void add_pairs(void)
             if (preferences[i][j] > preferences[j][i])
             {
                 pair.winner
+                pair_count++
             }
         }
     }
