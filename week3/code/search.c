@@ -22,14 +22,15 @@ int main(void)
     candidates[2].votes = 7;
 
     // Find highest number of votes
-    int hightest_votes = 0;
+    int highest_votes = 0;
     for (int i = 0; i < num_candidates; i++)
     {
         if (candidates[i].votes > highest_votes)
         {
-            hightest_voteds = candidates[i].votes;
+            highest_votes = candidates[i].votes;
         }
     }
+    printf("%i\n", highest_votes);
 
     // Print name of candidate with highest number of votes
 
