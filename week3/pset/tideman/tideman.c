@@ -21,7 +21,7 @@ typedef struct
 string candidates[MAX];
 pair pairs[MAX * (MAX - 1) / 2];
 
-int pair_count;
+int pair_count = 0;
 int candidate_count;
 
 // Function prototypes
@@ -135,8 +135,8 @@ void add_pairs(void)
         {
             if (preferences[i][j] > preferences[j][i])
             {
-                pairs[].winner = i
-                pairs[].loser = j
+                pairs[pair_count].winner = i
+                pairs[pair_count].loser = j
                 pair_count++;
             }
         }
