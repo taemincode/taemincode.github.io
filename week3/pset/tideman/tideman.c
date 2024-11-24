@@ -208,6 +208,7 @@ void print_winner(void)
     // TODO
     int win_counters[candidate_count];
     int greatest = 0;
+    int n;
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
@@ -219,10 +220,11 @@ void print_winner(void)
         }
         if (win_counters[i] > greatest)
         {
-            greatest = i;
+            greatest = win_counters[i];
+            n = i;
         }
     }
 
-    printf("%s\n", candidates[greatest]);
+    printf("%s\n", candidates[n]);
     return;
 }
