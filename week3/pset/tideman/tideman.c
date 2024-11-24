@@ -169,7 +169,7 @@ void lock_pairs(void)
     // TODO
     for (int i = 0; i < candidate_count * candidate_count; i++)
     {
-        locked[pair[lock_count].winner][pair[lock_count].loser] = true
+        locked[pair[lock_count].winner][pair[lock_count].loser] = true;
     }
     return;
 }
