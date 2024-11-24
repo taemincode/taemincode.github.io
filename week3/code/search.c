@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-typedef struct 
+typedef struct
 {
     string name;
     int votes;
@@ -22,21 +22,15 @@ int main(void)
     candidates[2].votes = 7;
 
     // Find highest number of votes
-    int highest_votes = 0;
+    int hightest_votes = 0;
     for (int i = 0; i < num_candidates; i++)
     {
         if (candidates[i].votes > highest_votes)
         {
-            highest_votes = candidates[i].votes;
+            hightest_voteds = candidates[i].votes;
         }
     }
 
     // Print name of candidate with highest number of votes
-    for (int i = 0; i < num_candidates; i++)
-    {
-        if (candidates[i].votes == highest_votes)
-        {
-            printf("%s\n", candidates[i].name);
-        }
-    }
+
 }
