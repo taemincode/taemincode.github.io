@@ -33,5 +33,12 @@ int main(void)
     printf("%i\n", highest_votes);
 
     // Print name of candidate with highest number of votes
+    for (int i = 0; i < num_candidates; i++)
 
+    {
+        if (candidates[i].votes == highest_votes)
+        {
+            printf("%s\n", candidates[i].name);
+        }
+    }
 }
