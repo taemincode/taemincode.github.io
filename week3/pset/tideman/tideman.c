@@ -206,20 +206,23 @@ void lock_pairs(void)
 void print_winner(void)
 {
     // TODO
-    int win_count = 0;
+    int win_counters[candidate_count];
+    int greatest = 0;
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
         {
             if (!locked[j][i])
             {
-                win_count++;
+                win_counters[i]++;
             }
         }
-        if (win_count == candidate_count)
+        if (win_counters[i] > greatest)
         {
-            printf("%s\n", candidates[i]);
+            greatest = i;
         }
     }
+
+    printf("%s\n", candidates[greatest]);
     return;
 }
