@@ -163,24 +163,40 @@ void sort_pairs(void)
     return;
 }
 
+// Helper function to check for cycles
+bool creates_cycle(int winner, int loser)
+{
+    // Base case: if loser points back to winner, a cycle is created
+    if (loser == winner)
+    {
+        return true;
+    }
+
+    // Recursively check if any candidate locked over the loser creates a cycle
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (locked[loser][i])
+        {
+            if (creates_cycle(winner, i))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
     // TODO
     for (int i = 0; i < pair_count; i++)
     {
-        if (i == pair_count - 1)
-            {
-                for (int j = 0; j < candidate_count; j++)
-                {
-                    if (locked[j][pairs[i].loser])
-                    {
-                        return;
-                    }
-                }
-            }
-
-        locked[pairs[i].winner][pairs[i].loser] = true;
+        if (!creates_cycle(pairs[i].winner, pairs[i].loser))
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
     }
 
     return;
@@ -203,7 +219,7 @@ void print_winner(void)
         if (win_count == candidate_count)
         {
             printf("%s\n", candidates[i]);
-            return;
         }
     }
+    return;
 }
