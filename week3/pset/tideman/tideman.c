@@ -194,9 +194,9 @@ void print_winner(void)
     {
         for (int j; j < candidate_count; j++)
         {
-            if (locked[j][pairs[i].loser])
+            if (!locked[j][i])
             {
-                return;
+                printf()
             }
         }
     }
