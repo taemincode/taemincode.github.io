@@ -190,5 +190,14 @@ void lock_pairs(void)
 void print_winner(void)
 {
     // TODO
-    return;
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j; j < candidate_count; j++)
+        {
+            if (locked[j][pairs[i].loser])
+            {
+                return;
+            }
+        }
+    }
 }
