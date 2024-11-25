@@ -215,12 +215,12 @@ void print_winner(void)
         {
             if (!locked[j][i])
             {
-                win_counters[i]++;
+                win_counters[j]++;
             }
         }
-        if (win_counters[i] > greatest)
+        if (win_counters[j] > greatest)
         {
-            greatest = win_counters[i];
+            greatest = win_counters[j];
             n = i;
         }
     }
