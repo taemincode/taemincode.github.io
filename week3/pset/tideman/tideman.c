@@ -213,18 +213,16 @@ void print_winner(void)
     {
         for (int j = 0; j < candidate_count; j++)
         {
-            if (!locked[i][j])
+            if (locked[j][i])
             {
                 win_counters[i]++;
             }
         }
-        if (win_counters[i] > greatest)
+        if (win_counters[n] < 1)
         {
-            greatest = win_counters[i];
-            n = i;
+            printf("%s\n", candidates[n]);
         }
     }
 
-    printf("%s\n", candidates[n]);
     return;
 }
