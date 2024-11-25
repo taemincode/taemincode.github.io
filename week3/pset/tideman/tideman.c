@@ -213,14 +213,14 @@ void print_winner(void)
     {
         for (int j = 0; j < candidate_count; j++)
         {
-            if (!locked[j][i])
+            if (!locked[i][j])
             {
-                win_counters[j]++;
+                win_counters[i]++;
             }
         }
-        if (win_counters[j] > greatest)
+        if (win_counters[i] > greatest)
         {
-            greatest = win_counters[j];
+            greatest = win_counters[i];
             n = i;
         }
     }
