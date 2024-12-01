@@ -4,8 +4,15 @@
 
 int main(int argc, char *argv[])
 {
-   string filename = argv[1]
+    // TODO: Check first four vytes in given file
+   string filename = argv[1];
    FILE *f = fopen(filename, "r");
-   int buffer[4];
-   
+   uint8_t buffer[4];
+   fread(buffer, 1, 4, f);
+
+   for (int i = 0; i < 4; i++)
+   {
+        printf("%i\n", buffer[i]);
+   }
+   fclose(f);
 }
