@@ -6,5 +6,6 @@ int main(int argc, char *argv[])
 {
    string filename = argv[1]
    FILE *f = fopen(filename, "r");
-   int buffer
+   int buffer[4];
+   
 }
