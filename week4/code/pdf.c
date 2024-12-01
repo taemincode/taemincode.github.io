@@ -1,9 +1,10 @@
 #include <cs50.h>
 #include <stdio.h>
-#include <stdint
+#include <stdint.h>
 
 int main(int argc, char *argv[])
 {
    string filename = argv[1]
-   fopen()
+   FILE *f = fopen(filename, "r");
+   int buffer
 }
