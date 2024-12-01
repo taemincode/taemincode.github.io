@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +12,7 @@ int main(int argc, char *argv[])
 
     FILE *f = fopen(argv[1], "r");
 
-    int *buffer = malloc(4 * sizeof(int));
+    char *buffer = malloc(4 * sizeof(char));
 
     fread(buffer, 1, 4, argv[1]);
     if (buffer[0] == 37, buffer[1] == 80, buffer[2] == 68, buffer[3] == 70)
