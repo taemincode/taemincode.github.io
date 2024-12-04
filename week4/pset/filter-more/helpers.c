@@ -21,6 +21,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+    int half
     if (width % 2 == 0)
         int half = width / 2;
     else
