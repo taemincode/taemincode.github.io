@@ -67,7 +67,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
                 else
                 {
-                    avg_value.rgbtRed += image[i - 1][j]
+                    avg_value.rgbtRed += image[i - 1][j].rgbtRed +
                 }
             }
         }
