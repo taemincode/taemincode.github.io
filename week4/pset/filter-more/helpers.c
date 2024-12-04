@@ -54,7 +54,18 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     for (int = i; i < height; i++)
     {
         for (int = j; j < width; j++)
-        
+        {
+            RGBTRIPLE avg_value;
+            bool h_edge_u = false;
+            bool h_edge_d = false;
+
+            avg_value.rgbtRed += image[i][j].rgbtRed;
+            if (i != 1)
+            {
+                if (j != 1)
+                    avg_value.rgbtRed += image[i - 1][].rgbtRed + imgae[i]
+            }
+        }
     }
 
     return;
