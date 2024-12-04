@@ -26,7 +26,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     if (width % 2 == 0)
         int half = width / 2;
     else
-        int half = width / 2 + 1
+        int half = width / 2 + 1;
 
     for (int i = 0; i < height; i++)
     {
@@ -41,9 +41,9 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtGreen = image[i][width - j].rgbtGreen;
             image[i][j].rgbtBlue = image[i][width - j].rgbtBlue;
 
-            image[i][width - j]rgbtRed = tmp.rgbtRed;
-            image[i][width - j]rgbtGreen = tmp.rgbtGreen;
-            image[i][width - j]rgbtBlue = tmp.rgbtBlue;
+            image[i][width - j].rgbtRed = tmp.rgbtRed;
+            image[i][width - j].rgbtGreen = tmp.rgbtGreen;
+            image[i][width - j].rgbtBlue = tmp.rgbtBlue;
         }
     }
     return;
