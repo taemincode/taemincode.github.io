@@ -21,9 +21,30 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+    int half;
+
+    if (width % 2 == 0)
+        int half = width / 2;
+    else
+        int half = width / 2 + 1
+
     for (int i = 0; i < height; i++)
     {
-        
+        for (int j = 0; j < half; j++)
+        {
+            RGBTRIPLE tmp;
+            tmp.rgbtRed = image[i][j].rgbtRed;
+            tmp.rgbtGreen = image[i][j].rgbtGreen;
+            tmp.rgbtBlue = image[i][j].rgbtBlue;
+
+            image[i][j].rgbtRed = image[i][width - j].rgbtRed;
+            image[i][j].rgbtGreen = image[i][width - j].rgbtGreen;
+            image[i][j].rgbtBlue = image[i][width - j].rgbtBlue;
+
+            image[i][width - j]rgbtRed = tmp.rgbtRed;
+            image[i][width - j]rgbtGreen = tmp.rgbtGreen;
+            image[i][width - j]rgbtBlue = tmp.rgbtBlue;
+        }
     }
     return;
 }
