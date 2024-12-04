@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 
     // TODO: Copy header from input file to output file
     void* buff = malloc(HEADER_SIZE);
-    if (tmp == 0)
+    if (buff == 0)
         return 1;
 
     fread(buff, 1, HEADER_SIZE, input);
@@ -44,7 +44,11 @@ int main(int argc, char *argv[])
     // TODO: Read samples from input file and write updated data to output file
     sample sample;
 
-    while((fread(sample, sizeof(sample), 1, input)) != EOF)
+    while (fread(&sample, sizeof(sample), 1, input))
+    {
+        sample *= factor;
+        fwrite(&sample, sizeof(sample), 1, output);
+    }
     // Close files
     fclose(input);
     fclose(output);
