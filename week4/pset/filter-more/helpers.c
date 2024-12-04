@@ -1,6 +1,8 @@
 #include "helpers.h"
 #include <math.h>
 
+int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color);
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -61,62 +63,33 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             avg_value.rgbtRed += image[i][j].rgbtRed;
             avg_value.rgbtRed += image[i][j].rgbtRed;
 
-            if (i == 1)
-            {
-                if (j == 1)
-                {
 
-                }
-                else if (j == width)
-                {
-
-                }
-                else
-                {
-
-                }
-            }
-            else if (i == height - 1)
-            {
-                if (j == 1)
-                {
-
-                }
-                else if (j == width)
-                {
-
-                }
-                else
-                {
-
-                }
-            }
-            else
-            {
-                if (j == 1)
-                {
-                    avg_value.rgbtRed += image[i - 1][j].rgbtRed
-                     + imgae[i][j - 1].rgbtRed + imgae[i - 1][j - 1].rgbtRed;
-                }
-                if (j == width - 1)
-                {
-
-                }
-                else
-                {
-                    avg_value.rgbtRed +=
-                    image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed +
-                    image[i + 1][j + 1].rgbtRed + image[i][j - 1].rgbtRed +
-                    image[i][j + 1].rgbtRed + image[i - 1][j - 1].rgbtRed +
-                    image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
-
-                    
-                }
-            }
         }
     }
 
     return;
+}
+
+int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color)
+{
+    int sum = 0;
+    // Add boundary checks and sum the surrounding pixels based on the color channel
+    if (color == 'R')
+    {
+        sum += image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed + image[i + 1][j + 1].rgbtRed;
+        // Add other surrounding pixels with boundary checks
+    }
+    else if (color == 'G')
+    {
+        sum += image[i + 1][j - 1].rgbtGreen + image[i + 1][j].rgbtGreen + image[i + 1][j + 1].rgbtGreen;
+        // Add other surrounding pixels with boundary checks
+    }
+    else if (color == 'B')
+    {
+        sum += image[i + 1][j - 1].rgbtBlue + image[i + 1][j].rgbtBlue + image[i + 1][j + 1].rgbtBlue;
+        // Add other surrounding pixels with boundary checks
+    }
+    return sum;
 }
 
 // Detect edges
