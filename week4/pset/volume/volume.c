@@ -6,6 +6,7 @@
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
+typedef uint_16 
 
 int main(int argc, char *argv[])
 {
@@ -41,8 +42,10 @@ int main(int argc, char *argv[])
     fread(buff, 1, HEADER_SIZE, input);
     fwrite(buff, 1, HEADER_SIZE, output);
     // TODO: Read samples from input file and write updated data to output file
-    
+    int tmp[]
     // Close files
     fclose(input);
     fclose(output);
+
+    free(buff);
 }
