@@ -104,10 +104,10 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
                 else
                 {
-                    avg_value.rgbtRed += image[i - 1][j].rgbtRed +
-                    image[i - 1][j].rgbtRed + image[i - 1][j].rgbtRed +
-                    image[i - 1][j].rgbtRed + image[i - 1][j].rgbtRed +
-                    image[i - 1][j].rgbtRed + image[i - 1][j].rgbtRed +
+                    avg_value.rgbtRed +=
+                    image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed +
+                    image[i + 1][j + 1].rgbtRed + image[i][j - 1].rgbtRed +
+                    image[i][j + 1].rgbtRed + image[i - 1][j].rgbtRed +
                     image[i - 1][j].rgbtRed
                 }
             }
