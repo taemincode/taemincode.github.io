@@ -23,9 +23,9 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
     int half;
     if (width % 2 == 0)
-        int half = width / 2;
+        half = width / 2;
     else
-        int half = width / 2 + 1;
+        half = width / 2 + 1;
 
     for (int i = 0; i < height; i++)
     {
@@ -51,6 +51,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    
     return;
 }
 
