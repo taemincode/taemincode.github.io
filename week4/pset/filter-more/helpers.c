@@ -67,6 +67,17 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
+int get_color_value(RGBTRIPLE pixel, char color)
+{
+    if (color == 'R')      // Red
+        return pixel.rgbtRed;
+    else if (color == 'G') // Green
+        return pixel.rgbtGreen;
+    else if (color == 'B') // Blue
+        return pixel.rgbtBlue;
+    return 0; // Default case, shouldn't occur
+}
+
 int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color)
 {
     int sum = 0;
@@ -76,22 +87,96 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
     {
         if (j == 1)
         {
-            sum += get_color_value(image[i][j], color) + get_color_value(image[i][j + 1], color) + get_color_value(image[i - 1][j], color) + get_color_value(image[i - 1][j + 1], color);
+            sum += get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j + 1], color) +
+                   get_color_value(image[i - 1][j], color) +
+                   get_color_value(image[i - 1][j + 1], color);
             num = 4;
         }
         else if (j == width - 1)
         {
-            sum += get_color_value(image[i][j], color) + get_color_value(image[i][j - 1], color) + get_color_value(image[i - 1][j - 1], color) + get_color_value(image[i - 1][j], color);
+            sum += get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j - 1], color) +
+                   get_color_value(image[i - 1][j - 1], color) +
+                   get_color_value(image[i - 1][j], color);
             num = 4;
         }
         else
         {
-            sum += get_color_value(image[i][j], color) + get_color_value(image[i][j - 1], color) + get_color_value(image[i][j + 1], color) + get_color_value(image[i - 1][j - 1], color) + get_color_value(image[i - 1][j], color) + get_color_value(image[i - 1][j + 1], color);
+            sum += get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j - 1], color) +
+                   get_color_value(image[i][j + 1], color) +
+                   get_color_value(image[i - 1][j - 1], color) +
+                   get_color_value(image[i - 1][j], color) +
+                   get_color_value(image[i - 1][j + 1], color);
             num = 6;
         }
     }
-    // Continue with the rest of the conditions similarly
-    // ...
+    else if (i == height - 1)
+    {
+        if (j == 1)
+        {
+            sum += get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j + 1], color) +
+                   get_color_value(image[i + 1][j], color) +
+                   get_color_value(image[i + 1][j + 1], color);
+            num = 4;
+        }
+        else if (j == width - 1)
+        {
+            sum += get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j - 1], color) +
+                   get_color_value(image[i + 1][j - 1], color) +
+                   get_color_value(image[i + 1][j], color);
+            num = 4;
+        }
+        else
+        {
+            sum += get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j - 1], color) +
+                   get_color_value(image[i][j + 1], color) +
+                   get_color_value(image[i + 1][j - 1], color) +
+                   get_color_value(image[i + 1][j], color) +
+                   get_color_value(image[i + 1][j + 1], color);
+            num = 6;
+        }
+    }
+    else
+    {
+        if (j == 1)
+        {
+            sum += get_color_value(image[i + 1][j], color) +
+                   get_color_value(image[i + 1][j + 1], color) +
+                   get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j + 1], color) +
+                   get_color_value(image[i - 1][j], color) +
+                   get_color_value(image[i - 1][j + 1], color);
+            num = 6;
+        }
+        else if (j == width - 1)
+        {
+            sum += get_color_value(image[i + 1][j - 1], color) +
+                   get_color_value(image[i + 1][j], color) +
+                   get_color_value(image[i][j - 1], color) +
+                   get_color_value(image[i][j], color) +
+                   get_color_value(image[i - 1][j - 1], color) +
+                   get_color_value(image[i - 1][j], color);
+            num = 6;
+        }
+        else
+        {
+            sum += get_color_value(image[i + 1][j - 1], color) +
+                   get_color_value(image[i + 1][j], color) +
+                   get_color_value(image[i + 1][j + 1], color) +
+                   get_color_value(image[i][j - 1], color) +
+                   get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j + 1], color) +
+                   get_color_value(image[i - 1][j - 1], color) +
+                   get_color_value(image[i - 1][j], color) +
+                   get_color_value(image[i - 1][j + 1], color);
+            num = 9;
+        }
+    }
 
     return sum / num;
 }
