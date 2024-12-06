@@ -66,14 +66,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
-int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color)
+int sum_color(int height, int width, int value_for_color, int i, int j)
 {
     int sum = 0;
     int num = 0;
-    // Add boundary checks and sum the surrounding pixels based on the color channel
-    if (color == 'R')
-    {
-        if (i == 1)
+
+    if (i == 1)
         {
             if (j == 1)
             {
@@ -126,19 +124,8 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                 sum += image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed + image[i + 1][j + 1].rgbtRed + image[i][j - 1].rgbtRed + image[i][j].rgbtRed + image[i][j + 1].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
                 num = 9;
             }
-        }
-        // Add other surrounding pixels with boundary checks
     }
-    else if (color == 'G')
-    {
-        sum += image[i + 1][j - 1].rgbtGreen + image[i + 1][j].rgbtGreen + image[i + 1][j + 1].rgbtGreen;
-        // Add other surrounding pixels with boundary checks
-    }
-    else if (color == 'B')
-    {
-        sum += image[i + 1][j - 1].rgbtBlue + image[i + 1][j].rgbtBlue + image[i + 1][j + 1].rgbtBlue;
-        // Add other surrounding pixels with boundary checks
-    }
+
     return sum / num;
 }
 
