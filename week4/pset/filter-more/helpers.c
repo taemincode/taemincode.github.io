@@ -57,7 +57,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int = j; j < width; j++)
         {
-            image[height][width].rgbtRed = sum_color(height, width, image[height][width].rgbtRed, i, j);
+            image[height][width].rgbtRed = sum_color(height, width, image[height][width].rgbtRed, i, j, R);
             image[height][width].rgbtGreen = sum_color(height, width, image[height][width].rgbtGreen, i, j);
             image[height][width].rgbtBlue = sum_color(height, width, image[height][width].rgbtBlue, i, j);
         }
