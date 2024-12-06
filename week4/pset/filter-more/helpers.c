@@ -2,6 +2,7 @@
 #include <math.h>
 
 int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color);
+int get_color_value(RGBTRIPLE pixel, char color);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -127,6 +128,16 @@ int sum_color(int height, int width, int value_for_color, int i, int j)
     }
 
     return sum / num;
+}
+
+int get_color_value(RGBTRIPLE pixel, char color)
+{
+    if (color == 'R')
+        return pixel.rgbtRed;
+    else if (color == 'G')
+        return pixel.rgbtGreen;
+    else
+        return pixel.rgbtBlue;
 }
 
 // Detect edges
