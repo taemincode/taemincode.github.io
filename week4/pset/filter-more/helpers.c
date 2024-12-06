@@ -57,13 +57,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int = j; j < width; j++)
         {
-            RGBTRIPLE avg_value;
-
-            avg_value.rgbtRed += image[i][j].rgbtRed;
-            avg_value.rgbtRed += image[i][j].rgbtRed;
-            avg_value.rgbtRed += image[i][j].rgbtRed;
-
-
+            image[height][width].rgbtRed = sum_color(height, width, image[height][width], i, j, R);
+            image[height][width].rgbtGreen = sum_color(height, width, image[height][width], i, j, G);
+            image[height][width].rgbtBlue = sum_color(height, width, image[height][width], i, j, B);
         }
     }
 
@@ -73,6 +69,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color)
 {
     int sum = 0;
+    int num = 0;
     // Add boundary checks and sum the surrounding pixels based on the color channel
     if (color == 'R')
     {
@@ -81,14 +78,17 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
             if (j == 1)
             {
                 sum += image[i][j].rgbtRed + image[i][j + 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
+                num = 4;
             }
             else if (j == width - 1)
             {
                 sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed;
+                num = 4;
             }
             else
             {
                 sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i][j + 1].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
+                num = 6;
             }
         }
         else if (i == height - 1)
@@ -96,29 +96,35 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
             if (j == 1)
             {
                 sum += image[i][j].rgbtRed + image[i][j + 1].rgbtRed + image[i + 1][j].rgbtRed + image[i + 1][j + 1].rgbtRed;
+                num = 4;
             }
             else if (j == width - 1)
             {
                 sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed;
+                num = 4;
             }
             else
             {
                 sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i][j + 1].rgbtRed + image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed + image[i +1][j + 1].rgbtRed;
+                num = 6;
             }
         }
         else
         {
             if (j == 1)
             {
-                sum += image[i][j].rgbtRed + image[i][j + 1].rgbtRed + image[i][j + 1].rgbtRed + image[i + 1][j].rgbtRed + image[i + 1][j + 1].rgbtRed;
+                sum += image[i + 1][j].rgbtRed + image[i + 1][j + 1].rgbtRed + image[i][j].rgbtRed + image[i][j + 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
+                num = 6;
             }
             else if (j == width - 1)
             {
-                sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed;
+                sum += image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed + image[i][j - 1].rgbtRed + image[i][j].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed;
+                num = 6;
             }
             else
             {
-                sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i][j + 1].rgbtRed + image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed + image[i +1][j + 1].rgbtRed;
+                sum += image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed + image[i + 1][j + 1].rgbtRed + image[i][j - 1].rgbtRed + image[i][j].rgbtRed + image[i][j + 1].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
+                num = 9;
             }
         }
         // Add other surrounding pixels with boundary checks
@@ -133,7 +139,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
         sum += image[i + 1][j - 1].rgbtBlue + image[i + 1][j].rgbtBlue + image[i + 1][j + 1].rgbtBlue;
         // Add other surrounding pixels with boundary checks
     }
-    return sum;
+    return sum / num;
 }
 
 // Detect edges
