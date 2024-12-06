@@ -72,9 +72,9 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
     int sum = 0;
     int num = 0;
 
-    if (i == 1)
+    if (i == 0)
     {
-        if (j == 1)
+        if (j == 0)
         {
             sum += get_color_value(image[i][j], color) +
                    get_color_value(image[i][j + 1], color) +
@@ -103,7 +103,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
     }
     else if (i == height - 1)
     {
-        if (j == 1)
+        if (j == 0)
         {
             sum += get_color_value(image[i][j], color) +
                    get_color_value(image[i][j + 1], color) +
@@ -132,7 +132,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
     }
     else
     {
-        if (j == 1)
+        if (j == 0)
         {
             sum += get_color_value(image[i + 1][j], color) +
                    get_color_value(image[i + 1][j + 1], color) +
