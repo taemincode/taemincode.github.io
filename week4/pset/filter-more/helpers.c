@@ -76,7 +76,36 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
     // Add boundary checks and sum the surrounding pixels based on the color channel
     if (color == 'R')
     {
-        sum += image[i + 1][j - 1].rgbtRed + image[i + 1][j].rgbtRed + image[i + 1][j + 1].rgbtRed;
+        if (i == 1)
+        {
+            if (j == 1)
+            {
+                sum += image[i][j].rgbtRed + image[i][j + 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
+            }
+            else if (j == width - 1)
+            {
+                sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed;
+            }
+            else
+            {
+                sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i][j + 1].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
+            }
+        }
+        else if (i == height - 1)
+        {
+            if (j == 1)
+            {
+                sum += image[i][j].rgbtRed + image[i][j + 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
+            }
+            else if (j == width - 1)
+            {
+                sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed;
+            }
+            else
+            {
+                sum += image[i][j].rgbtRed + image[i][j - 1].rgbtRed + image[i][j + 1].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed;
+            }
+        }
         // Add other surrounding pixels with boundary checks
     }
     else if (color == 'G')
