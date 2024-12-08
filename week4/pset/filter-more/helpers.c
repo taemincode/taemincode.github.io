@@ -315,11 +315,14 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
     return round((double)sum / (double)num);
 }
 
-int gx(int top_left, int top, int top_right,
+int gx(RGBTRIPLE image[height][width], char color, int i, int j,
+        int top_left, int top, int top_right,
         int left, int middle, int right, int bottom_right,
         int bottom, int bottom_left)
 {
-    int gx = top_left * (-1) + top * 0 + top_right * (1) left * (-2) + middle * 0 + right * 2 + bottom_right * (-1) + bottom * 0 + bottom_left * 1;
+    int gx = get_color_value(image[i - 1][j - 1], color) * top_left * (-1) + get_color_value(image[i - 1][j], color) * top right get_color_value(image[i - 1][j + 1], color),
+            get_color_value(image[i][j - 1], color), get_color_value(image[i][j], color), get_color_value(image[i][j + 1], color),
+            get_color_value(image[i + 1][j - 1], color), get_color_value(image[i + 1][j], color), get_color_value(image[i + 1][j + 1], color)
 
     if (gx > 255)
     {
