@@ -234,36 +234,36 @@ int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, ch
     {
         if (j == 0)
         {
-            gx = g('X', image, color, i, j,
+            gx = g('X', height, width, image, color, i, j,
                     0, 0, 0,
                     0, 1, 1,
                     0, 1, 1);
 
-            gy = g('Y', image, color, i, j,
+            gy = g('Y', height, width, image, color, i, j,
                     0, 0, 0,
                     0, 1, 1,
                     0, 1, 1);
         }
         else if (j == width - 1)
         {
-            gx = g('X', image, color, i, j,
+            gx = g('X', height, width, image, color, i, j,
                     0, 0, 0,
                     1, 1, 0,
                     1, 1, 0);
 
-            gy = g('Y', image, color, i, j,
+            gy = g('Y', height, width, image, color, i, j,
                     0, 0, 0,
                     1, 1, 0,
                     1, 1, 0);
         }
         else
         {
-            gx = g('X', image, color, i, j,
+            gx = g('X', height, width, image, color, i, j,
                     0, 0, 0,
                     1, 1, 1,
                     1, 1, 1);
 
-            gy = g('Y', image, color, i, j,
+            gy = g('Y', height, width, image, color, i, j,
                     0, 0, 0,
                     1, 1, 1,
                     1, 1, 1);
@@ -273,36 +273,36 @@ int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, ch
     {
         if (j == 0)
         {
-            gx = g('X', image, color, i, j,
+            gx = g('X', height, width, image, color, i, j,
                     0, 1, 1,
                     0, 1, 1,
                     0, 0, 0);
 
-            gy = g('Y', image, color, i, j,
+            gy = g('Y', height, width, image, color, i, j,
                     0, 1, 1,
                     0, 1, 1,
                     0, 0, 0);
         }
         else if (j == width - 1)
         {
-            gx = g('X', image, color, i, j,
+            gx = g('X', height, width, image, color, i, j,
                     1, 1, 0,
                     1, 1, 0,
                     0, 0, 0);
 
-            gy = g('Y', image, color, i, j,
+            gy = g('Y', height, width, image, color, i, j,
                     1, 1, 0,
                     1, 1, 0,
                     0, 0, 0);
         }
         else
         {
-            gx = g('X', image, color, i, j,
+            gx = g('X', height, width, image, color, i, j,
                     1, 1, 1,
                     1, 1, 1,
                     0, 0, 0);
 
-            gx = g('Y', image, color, i, j,
+            gx = g('Y', height, width, image, color, i, j,
                     1, 1, 1,
                     1, 1, 1,
                     0, 0, 0);
@@ -312,36 +312,36 @@ int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, ch
     {
         if (j == 0)
         {
-            gx = g('X', image, color, i, j,
+            gx = g('X', height, width, image, color, i, j,
                     0, 1, 1,
                     0, 1, 1,
                     0, 1, 1);
 
-            gy = g('Y', image, color, i, j,
+            gy = g('Y', height, width, image, color, i, j,
                     0, 1, 1,
                     0, 1, 1,
                     0, 1, 1);
         }
         else if (j == width - 1)
         {
-            gx = g('X', image, color, i, j,
+            gx = g('X', height, width, image, color, i, j,
                     1, 1, 0,
                     1, 1, 0,
                     1, 1, 0);
 
-            gy = g('Y', image, color, i, j,
+            gy = g('Y', height, width, image, color, i, j,
                     1, 1, 0,
                     1, 1, 0,
                     1, 1, 0);
         }
         else
         {
-            gx = g('X', image, color, i, j,
+            gx = g('X', height, width, image, color, i, j,
                     1, 1, 1,
                     1, 1, 1,
                     1, 1, 1);
 
-            gy = g('X', image, color, i, j,
+            gy = g('X', height, width, image, color, i, j,
                     1, 1, 1,
                     1, 1, 1,
                     1, 1, 1);
@@ -351,7 +351,7 @@ int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, ch
     return round(sqrt((double)gx * (double)gx + (double)gy * (double)gy));
 }
 
-int g(char g, RGBTRIPLE image[height][width], char color, int i, int j,
+int g(char g, int height, int width, RGBTRIPLE image[height][width], char color, int i, int j,
         int top_left, int top, int top_right,
         int left, int middle, int right, int bottom_right,
         int bottom, int bottom_left)
