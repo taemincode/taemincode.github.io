@@ -4,6 +4,7 @@
 
 int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color);
 int get_color_value(RGBTRIPLE pixel, char color);
+int gx(int top_left, int top, int top_right, int left, int middle, int right, int bottom_right, int bottom, int bottom_left);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -230,11 +231,9 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
     {
         if (j == 0)
         {
-            gx = get_color_value(image[i][j], color) * 0 +
-                   get_color_value(image[i][j + 1], color) * 2 +
-                   get_color_value(image[i + 1][j], color) * 0+
-                   get_color_value(image[i + 1][j + 1], color) * ;
-            num = 4;
+            gx = gx(get_color_value(image[i - 1][j - 1], color), get_color_value(image[i - 1][j], color), get_color_value(image[i - 1][j + 1], color),
+                    get_color_value(image[i][j - 1], color), get_color_value(image[i][j], color), get_color_value(image[i][j + 1], color),
+                    get_color_value(image[i + 1][j - 1], color), get_color_value(image[i + 1][j], color), get_color_value(image[i + 1][j + 1], color))
         }
         else if (j == width - 1)
         {
@@ -242,7 +241,6 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j - 1], color) +
                    get_color_value(image[i + 1][j - 1], color) +
                    get_color_value(image[i + 1][j], color);
-            num = 4;
         }
         else
         {
@@ -252,7 +250,6 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i + 1][j - 1], color) +
                    get_color_value(image[i + 1][j], color) +
                    get_color_value(image[i + 1][j + 1], color);
-            num = 6;
         }
     }
     else if (i == height - 1)
@@ -263,7 +260,6 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
-            num = 4;
         }
         else if (j == width - 1)
         {
@@ -271,7 +267,6 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j - 1], color) +
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color);
-            num = 4;
         }
         else
         {
@@ -281,7 +276,6 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
-            num = 6;
         }
     }
     else
@@ -294,7 +288,6 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
-            num = 6;
         }
         else if (j == width - 1)
         {
@@ -304,7 +297,6 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j], color) +
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color);
-            num = 6;
         }
         else
         {
@@ -317,24 +309,15 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
-            num = 9;
         }
     }
 
     return round((double)sum / (double)num);
 }
 
-int get_color_value(RGBTRIPLE pixel, char color)
-{
-    if (color == 'R')
-        return pixel.rgbtRed;
-    else if (color == 'G')
-        return pixel.rgbtGreen;
-    else
-        return pixel.rgbtBlue;
-}
-
-int gx(int top_left, int top, int top_right, int left, int middle, int right, int bottom_right, int bottom, int bottom_left)
+int gx(int top_left, int top, int top_right,
+        int left, int middle, int right, int bottom_right,
+        int bottom, int bottom_left)
 {
     int gx = top_left * (-1) + top * 0 + top_right * (1) left * (-2) + middle * 0 + right * 2 + bottom_right * (-1) + bottom * 0 + bottom_left * 1;
 
@@ -343,5 +326,5 @@ int gx(int top_left, int top, int top_right, int left, int middle, int right, in
         gx = 255;
     }
 
-    return 255;
+    return gx;
 }
