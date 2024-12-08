@@ -71,7 +71,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color)
 {
     int sum = 0;
-    int num = 0;
+    int num = 0.0;
 
     if (i == 0)
     {
@@ -81,7 +81,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i + 1][j], color) +
                    get_color_value(image[i + 1][j + 1], color);
-            num = 4;
+            num = 4.0;
         }
         else if (j == width - 1)
         {
@@ -89,7 +89,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j - 1], color) +
                    get_color_value(image[i + 1][j - 1], color) +
                    get_color_value(image[i + 1][j], color);
-            num = 4;
+            num = 4.0;
         }
         else
         {
@@ -99,7 +99,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i + 1][j - 1], color) +
                    get_color_value(image[i + 1][j], color) +
                    get_color_value(image[i + 1][j + 1], color);
-            num = 6;
+            num = 6.0;
         }
     }
     else if (i == height - 1)
@@ -110,7 +110,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
-            num = 4;
+            num = 4.0;
         }
         else if (j == width - 1)
         {
@@ -118,7 +118,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j - 1], color) +
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color);
-            num = 4;
+            num = 4.0;
         }
         else
         {
@@ -128,7 +128,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
-            num = 6;
+            num = 6.0;
         }
     }
     else
@@ -141,7 +141,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
-            num = 6;
+            num = 6.0;
         }
         else if (j == width - 1)
         {
@@ -151,7 +151,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i][j], color) +
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color);
-            num = 6;
+            num = 6.0;
         }
         else
         {
@@ -164,11 +164,11 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
-            num = 9;
+            num = 9.0;
         }
     }
 
-    return round(sum / (float)num);
+    return round(sum / num);
 }
 
 int get_color_value(RGBTRIPLE pixel, char color)
