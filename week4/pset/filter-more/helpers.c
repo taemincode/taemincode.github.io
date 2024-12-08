@@ -342,14 +342,20 @@ int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, ch
                     1, 1, 1,
                     1, 1, 1);
 
-            gy = g('X', height, width, image, color, i, j,
+            gy = g('Y', height, width, image, color, i, j,
                     1, 1, 1,
                     1, 1, 1,
                     1, 1, 1);
         }
     }
 
-    return round(sqrt((double)gx * (double)gx + (double)gy * (double)gy));
+    int edge_value = round(sqrt((double)gx * gx + (double)gy * gy));
+    if (edge_value > 255)
+    {
+        edge_value = 255;
+    }
+
+    return edge_value;
 }
 
 int g(char g, int height, int width, RGBTRIPLE image[height][width], char color, int i, int j,
@@ -398,12 +404,7 @@ int g(char g, int height, int width, RGBTRIPLE image[height][width], char color,
     {
         int gx = top_left * (-1) + top * 0 + top_right * 1 +
                 left * (-2) + middle * 0 + right * 2 +
-                bottom_left * (-1) + bottom * 0 + bottom * 1;
-        if (gx > 255)
-        {
-            gx = 255;
-        }
-
+                bottom_left * (-1) + bottom * 0 + bottom_right * 1;
         return gx;
     }
 
@@ -411,12 +412,7 @@ int g(char g, int height, int width, RGBTRIPLE image[height][width], char color,
     {
         int gy = top_left * (-1) + top * (-2) + top_right * (-1) +
                 left * 0 + middle * 0 + right * 0 +
-                bottom_left * 1 + bottom * 2 + bottom * 1;
-        if (gy > 255)
-        {
-            gy = 255;
-        }
-
+                bottom_left * 1 + bottom * 2 + bottom_right * 1;
         return gy;
     }
 
