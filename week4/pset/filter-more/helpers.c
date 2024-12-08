@@ -168,20 +168,6 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
         }
     }
 
-    if (i == 1 && j == 0 && color == 'B')
-    {
-        printf("sum: %i, num: %i\n", sum, num);
-        printf("Center: Red: %i, Green: %i, Blue: %i\n", image[i][j].rgbtRed, image[i][j].rgbtGreen, image[i][j].rgbtBlue);
-        printf("Top: Red: %i, Green: %i, Blue: %i\n", image[i-1][j].rgbtRed, image[i-1][j].rgbtGreen, image[i-1][j].rgbtBlue);
-        printf("Bottom: Red: %i, Green: %i, Blue: %i\n", image[i+1][j].rgbtRed, image[i+1][j].rgbtGreen, image[i+1][j].rgbtBlue);
-        printf("Left: Red: %i, Green: %i, Blue: %i\n", image[i][j-1].rgbtRed, image[i][j-1].rgbtGreen, image[i][j-1].rgbtBlue);
-        printf("Right: Red: %i, Green: %i, Blue: %i\n", image[i][j+1].rgbtRed, image[i][j+1].rgbtGreen, image[i][j+1].rgbtBlue);
-        printf("Top-Left: Red: %i, Green: %i, Blue: %i\n", image[i-1][j-1].rgbtRed, image[i-1][j-1].rgbtGreen, image[i-1][j-1].rgbtBlue);
-        printf("Top-Right: Red: %i, Green: %i, Blue: %i\n", image[i-1][j+1].rgbtRed, image[i-1][j+1].rgbtGreen, image[i-1][j+1].rgbtBlue);
-        printf("Bottom-Left: Red: %i, Green: %i, Blue: %i\n", image[i+1][j-1].rgbtRed, image[i+1][j-1].rgbtGreen, image[i+1][j-1].rgbtBlue);
-        printf("Bottom-Right: Red: %i, Green: %i, Blue: %i\n", image[i+1][j+1].rgbtRed, image[i+1][j+1].rgbtGreen, image[i+1][j+1].rgbtBlue);
-    }
-
     return round(sum / (float)num);
 }
 
