@@ -168,7 +168,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
         }
     }
 
-    if (i == 1 && j == 1 && color == 'B')
+    if (i == 1 && j == 0 && color == 'B')
     {
         printf("sum: %i, num: %i\n", sum, num);
         printf("Center: Red: %i, Green: %i, Blue: %i\n", image[i][j].rgbtRed, image[i][j].rgbtGreen, image[i][j].rgbtBlue);
