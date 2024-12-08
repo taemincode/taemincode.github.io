@@ -167,6 +167,11 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
         }
     }
 
+    if (i == 1 && j == 1)
+    {
+    printf("sum: %i, num: %i\n, image", sum, num);
+    }
+
     return sum / num;
 }
 
