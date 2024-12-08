@@ -182,7 +182,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
         printf("Bottom-Right: Red: %i, Green: %i, Blue: %i\n", image[i+1][j+1].rgbtRed, image[i+1][j+1].rgbtGreen, image[i+1][j+1].rgbtBlue);
     }
 
-    return sum / num;
+    return average(sum / num);
 }
 
 int get_color_value(RGBTRIPLE pixel, char color)
