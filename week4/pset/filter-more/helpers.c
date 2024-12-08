@@ -168,7 +168,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
         }
     }
 
-    return round(sum / num);
+    return round((double)sum / num);
 }
 
 int get_color_value(RGBTRIPLE pixel, char color)
