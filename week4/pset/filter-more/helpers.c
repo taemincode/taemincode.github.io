@@ -320,7 +320,7 @@ int gx(RGBTRIPLE image[height][width], char color, int i, int j,
         int left, int middle, int right, int bottom_right,
         int bottom, int bottom_left)
 {
-    int gx = get_color_value(image[i - 1][j - 1], color) * top_left * (-1) + get_color_value(image[i - 1][j], color) * top right get_color_value(image[i - 1][j + 1], color),
+    int gx = get_color_value(image[i - 1][j - 1], color) * top_left * (-1) + get_color_value(image[i - 1][j], color) * top get_color_value(image[i - 1][j + 1], color),
             get_color_value(image[i][j - 1], color), get_color_value(image[i][j], color), get_color_value(image[i][j + 1], color),
             get_color_value(image[i + 1][j - 1], color), get_color_value(image[i + 1][j], color), get_color_value(image[i + 1][j + 1], color)
 
