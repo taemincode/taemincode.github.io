@@ -320,10 +320,46 @@ int gx(RGBTRIPLE image[height][width], char color, int i, int j,
         int left, int middle, int right, int bottom_right,
         int bottom, int bottom_left)
 {
-    int gx = get_color_value(image[i - 1][j - 1], color) * top_left * (-1) + get_color_value(image[i - 1][j], color) * top get_color_value(image[i - 1][j + 1], color),
-            get_color_value(image[i][j - 1], color), get_color_value(image[i][j], color), get_color_value(image[i][j + 1], color),
-            get_color_value(image[i + 1][j - 1], color), get_color_value(image[i + 1][j], color), get_color_value(image[i + 1][j + 1], color)
+    if (top_left == 1)
+    {
+        top_left = get_color_value(image[i - 1][j - 1], color);
+    }
+    if (top == 1)
+    {
+        top = get_color_value(image[i - 1][j], color);
+    }
+    if (top_right == 1)
+    {
+        top_right = get_color_value(image[i - 1][j + 1], color);
+    }
+    if (left == 1)
+    {
+        left = get_color_value(image[i][j - 1], color);
+    }
+    if (middle == 1)
+    {
+        middle = get_color_value(image[i][j], color);
+    }
+    if (right == 1)
+    {
+        right = get_color_value(image[i][j + 1], color);
+    }
+    if (bottom_left == 1)
+    {
+        bottom_left = get_color_value(image[i + 1][j - 1], color);
+    }
+    if (bottom == 1)
+    {
+        bottom = get_color_value(image[i + 1][j], color);
+    }
+    if (bottom_right == 1)
+    {
+        bottom_right = get_color_value(image[i + 1][j + 1], color);
+    }
 
+    int gx = top_left * (-1) + top * 0 + top_right * 1 +
+            left * (-2) + middle * 0 + right * 2 +
+            bottom_left * (-1) + bottom * 0 + bottom * 1;
     if (gx > 255)
     {
         gx = 255;
