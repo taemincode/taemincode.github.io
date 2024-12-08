@@ -4,7 +4,8 @@
 
 int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color);
 int get_color_value(RGBTRIPLE pixel, char color);
-int g(char g, RGBTRIPLE image[height][width], char color, int i, int j,
+int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color);
+int g(char g, int height, int width, RGBTRIPLE image[height][width], char color, int i, int j,
         int top_left, int top, int top_right,
         int left, int middle, int right, int bottom_right,
         int bottom, int bottom_left);
@@ -418,4 +419,6 @@ int g(char g, int height, int width, RGBTRIPLE image[height][width], char color,
 
         return gy;
     }
+
+    return 0;
 }
