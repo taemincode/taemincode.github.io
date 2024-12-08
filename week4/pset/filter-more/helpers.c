@@ -1,4 +1,5 @@
 #include "helpers.h"
+#include <stdio.h>
 #include <math.h>
 
 int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color);
