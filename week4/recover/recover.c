@@ -27,18 +27,23 @@ int main(int argc, char *argv[])
         {
             if (file_count == 0)
             {
-                sprintf(filename, "%03i.jpg", file_count)
+                sprintf(filename, "%03i.jpg", file_count);
             }
             else
             {
-                fclose(filename)
-                sprintf(filename, "%03i.jpg", file_count)
+                fclose(filename);
+                sprintf(filename, "%03i.jpg", file_count);
             }
-            fwrite(buffer, 512, 1, filename)
+            FILE *img = fopen(filename, "w");
+            fwrite(buffer, 512, 1, img);
+
+            file_count++;
         }
         else if (file count > 0)
         {
-            fwrite(buffer, 512, 1, filename)
+            fwrite(buffer, 512, 1, img);
+
+            file_count++;
         }
     }
 }
