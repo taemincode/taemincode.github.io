@@ -22,8 +22,10 @@ int main(int argc, char *argv[])
             else
             {
                 fclose(filename)
+                sprintf(filename, "%03i.jpg", file_count)
             }
-            fwrite()
+            fwrite(buffer, 512, 1, filename)
         }
+        else
     }
 }
