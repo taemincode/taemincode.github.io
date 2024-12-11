@@ -36,9 +36,9 @@ int main(int argc, char *argv[])
             }
             fwrite(buffer, 512, 1, filename)
         }
-        else
+        else if (file count > 0)
         {
-
+            fwrite(buffer, 512, 1, filename)
         }
     }
 }
