@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
-typedef uint8_t BYTE
+typedef uint8_t BYTE;
 
 int main(int argc, char *argv[])
 {
@@ -17,7 +18,7 @@ int main(int argc, char *argv[])
 
     int file_count == 0;
     FILE *filename = fopen("filename.jpg", "a");
-    
+
     while (fread(buff, 512, 1, card) == 512)
     {
         fread(buff, 512, 1, card);
