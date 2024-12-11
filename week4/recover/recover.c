@@ -5,12 +5,19 @@ typedef uint8_t BYTE
 
 int main(int argc, char *argv[])
 {
-    FILE *f = fopen(card, "r");
+    if (argc != 2)
+    {
+        printf("Usage: ./recover FILE\n");
+        return 1;
+    }
+
+    FILE *card = fopen(argv[1], "r");
+
     BYTE buff[512];
 
-    while (fread(buff, 512, 1, f) != 512)
+    while (fread(buff, 512, 1, card) == 512)
     {
-        fread(buff, 512, 1, f)
+        fread(buff, 512, 1, card);
         int file_count == 0;
 
         if (buff[0] == 0xff && buff[1] == 0xd8 && buff[2] == 0xff && (buff[3] & 0xf0) == 0xe0)
@@ -28,7 +35,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            
+
         }
     }
 }
