@@ -15,11 +15,12 @@ int main(int argc, char *argv[])
 
     BYTE buff[512];
 
+    int file_count == 0;
+    FILE *filename = fopen("filename.jpg", "a");
+    
     while (fread(buff, 512, 1, card) == 512)
     {
         fread(buff, 512, 1, card);
-        int file_count == 0;
-        FILE *filename = fopen("filename.jpg", "a");
 
         if (buff[0] == 0xff && buff[1] == 0xd8 && buff[2] == 0xff && (buff[3] & 0xf0) == 0xe0)
         {
