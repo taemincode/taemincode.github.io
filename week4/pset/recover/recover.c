@@ -18,11 +18,10 @@ int main(int argc, char *argv[])
 
     int file_count = 0;
     char filename[8];
+    FILE *img = fopen(filename, "w");
 
     while (fread(buff, 512, 1, card) == 512)
     {
-        fread(buff, 512, 1, card);
-
         if (buff[0] == 0xff && buff[1] == 0xd8 && buff[2] == 0xff && (buff[3] & 0xf0) == 0xe0)
         {
             if (file_count == 0)
@@ -34,14 +33,14 @@ int main(int argc, char *argv[])
                 fclose(img);
                 sprintf(filename, "%03i.jpg", file_count);
             }
-            FILE *img = fopen(filename, "w");
-            fwrite(buffer, 512, 1, img);
+
+            fwrite(buff, 512, 1, img);
 
             file_count++;
         }
-        else if (file count > 0)
+        else if (file_count > 0)
         {
-            fwrite(buffer, 512, 1, img);
+            fwrite(buff, 512, 1, img);
 
             file_count++;
         }
