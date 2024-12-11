@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
         {
             if (file_count == 0)
             {
-                sprintf(filename, "%03i.jpg", file_count)
+                sprintf(buff, "%03i.jpg", file_count)
             }
             else
             {
