@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     BYTE buff[512];
 
     int file_count == 0;
-    FILE *filename = fopen("filename.jpg", "a");
+    chhar
 
     while (fread(buff, 512, 1, card) == 512)
     {
