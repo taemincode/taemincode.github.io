@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     int file_count = 0;
     char filename[8];
-    FILE *img = fopen(filename, "w");
+    FILE *img;
 
     while (fread(buff, 512, 1, card) == 512)
     {
@@ -27,11 +27,13 @@ int main(int argc, char *argv[])
             if (file_count == 0)
             {
                 sprintf(filename, "%03i.jpg", file_count);
+                img = fopen(filename, "a");
             }
             else
             {
                 fclose(img);
                 sprintf(filename, "%03i.jpg", file_count);
+                img = fopen(filename, "a");
             }
 
             fwrite(buff, 512, 1, img);
