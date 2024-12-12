@@ -48,7 +48,6 @@ int main(int argc, char *argv[])
         {
             fwrite(buff, 512, 1, img);
         }
-        fread(buff, 512, 1, card);
     }
     if (img != NULL)
     {
