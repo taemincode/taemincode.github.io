@@ -57,6 +57,9 @@ int main(int argc, char *argv[])
             fwrite(buff, 512, 1, img);
         }
     }
-    fclose(img);
+    if (img != NULL)
+    {
+        fclose(img);
+    }
     fclose(card);
 }
