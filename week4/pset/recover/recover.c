@@ -13,12 +13,16 @@ int main(int argc, char *argv[])
     }
 
     FILE *card = fopen(argv[1], "r");
+    if (card == NULL)
+    {
+        return 2;
+    }
 
     BYTE buff[512];
 
     int file_count = 0;
     char filename[8];
-    FILE *img;
+    FILE *img = NULL;
 
     while (fread(buff, 512, 1, card) == 512)
     {
@@ -28,12 +32,20 @@ int main(int argc, char *argv[])
             {
                 sprintf(filename, "%03i.jpg", file_count);
                 img = fopen(filename, "a");
+                if (img == NULL)
+                {
+                    return 1;
+                }
             }
             else
             {
                 fclose(img);
                 sprintf(filename, "%03i.jpg", file_count);
                 img = fopen(filename, "a");
+                if (img == NULL)
+                {
+                    return 1;
+                }
             }
 
             fwrite(buff, 512, 1, img);
@@ -46,4 +58,5 @@ int main(int argc, char *argv[])
         }
     }
     fclose(img);
+    fclose(card);
 }
