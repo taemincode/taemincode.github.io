@@ -303,7 +303,7 @@ int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, ch
                     1, 1, 1,
                     0, 0, 0);
 
-            gx = g('Y', height, width, image, color, i, j,
+            gy = g('Y', height, width, image, color, i, j,
                     1, 1, 1,
                     1, 1, 1,
                     0, 0, 0);
