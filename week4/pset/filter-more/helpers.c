@@ -1,14 +1,13 @@
 #include "helpers.h"
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color);
 int get_color_value(RGBTRIPLE pixel, char color);
 int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, char color);
 int g(char g, int height, int width, RGBTRIPLE image[height][width], char color, int i, int j,
-        int top_left, int top, int top_right,
-        int left, int middle, int right, int bottom_right,
-        int bottom, int bottom_left);
+      int top_left, int top, int top_right, int left, int middle, int right, int bottom_right,
+      int bottom, int bottom_left);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -17,8 +16,8 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            int avg_value = round((image[i][j].rgbtRed + image[i][j].rgbtGreen
-             + image[i][j].rgbtBlue) / 3.0);
+            int avg_value =
+                round((image[i][j].rgbtRed + image[i][j].rgbtGreen + image[i][j].rgbtBlue) / 3.0);
             image[i][j].rgbtRed = avg_value;
             image[i][j].rgbtGreen = avg_value;
             image[i][j].rgbtBlue = avg_value;
@@ -45,7 +44,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             tmp.rgbtGreen = image[i][j].rgbtGreen;
             tmp.rgbtBlue = image[i][j].rgbtBlue;
 
-            image[i][j].rgbtRed = image[i][width - 1- j].rgbtRed;
+            image[i][j].rgbtRed = image[i][width - 1 - j].rgbtRed;
             image[i][j].rgbtGreen = image[i][width - 1 - j].rgbtGreen;
             image[i][j].rgbtBlue = image[i][width - 1 - j].rgbtBlue;
 
@@ -94,24 +93,21 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
     {
         if (j == 0)
         {
-            sum += get_color_value(image[i][j], color) +
-                   get_color_value(image[i][j + 1], color) +
+            sum += get_color_value(image[i][j], color) + get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i + 1][j], color) +
                    get_color_value(image[i + 1][j + 1], color);
             num = 4;
         }
         else if (j == width - 1)
         {
-            sum += get_color_value(image[i][j], color) +
-                   get_color_value(image[i][j - 1], color) +
+            sum += get_color_value(image[i][j], color) + get_color_value(image[i][j - 1], color) +
                    get_color_value(image[i + 1][j - 1], color) +
                    get_color_value(image[i + 1][j], color);
             num = 4;
         }
         else
         {
-            sum += get_color_value(image[i][j], color) +
-                   get_color_value(image[i][j - 1], color) +
+            sum += get_color_value(image[i][j], color) + get_color_value(image[i][j - 1], color) +
                    get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i + 1][j - 1], color) +
                    get_color_value(image[i + 1][j], color) +
@@ -123,24 +119,21 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
     {
         if (j == 0)
         {
-            sum += get_color_value(image[i][j], color) +
-                   get_color_value(image[i][j + 1], color) +
+            sum += get_color_value(image[i][j], color) + get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
             num = 4;
         }
         else if (j == width - 1)
         {
-            sum += get_color_value(image[i][j], color) +
-                   get_color_value(image[i][j - 1], color) +
+            sum += get_color_value(image[i][j], color) + get_color_value(image[i][j - 1], color) +
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color);
             num = 4;
         }
         else
         {
-            sum += get_color_value(image[i][j], color) +
-                   get_color_value(image[i][j - 1], color) +
+            sum += get_color_value(image[i][j], color) + get_color_value(image[i][j - 1], color) +
                    get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color) +
@@ -154,8 +147,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
         {
             sum += get_color_value(image[i + 1][j], color) +
                    get_color_value(image[i + 1][j + 1], color) +
-                   get_color_value(image[i][j], color) +
-                   get_color_value(image[i][j + 1], color) +
+                   get_color_value(image[i][j], color) + get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i - 1][j], color) +
                    get_color_value(image[i - 1][j + 1], color);
             num = 6;
@@ -164,8 +156,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
         {
             sum += get_color_value(image[i + 1][j - 1], color) +
                    get_color_value(image[i + 1][j], color) +
-                   get_color_value(image[i][j - 1], color) +
-                   get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j - 1], color) + get_color_value(image[i][j], color) +
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color);
             num = 6;
@@ -175,8 +166,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
             sum += get_color_value(image[i + 1][j - 1], color) +
                    get_color_value(image[i + 1][j], color) +
                    get_color_value(image[i + 1][j + 1], color) +
-                   get_color_value(image[i][j - 1], color) +
-                   get_color_value(image[i][j], color) +
+                   get_color_value(image[i][j - 1], color) + get_color_value(image[i][j], color) +
                    get_color_value(image[i][j + 1], color) +
                    get_color_value(image[i - 1][j - 1], color) +
                    get_color_value(image[i - 1][j], color) +
@@ -185,7 +175,7 @@ int sum_color(int height, int width, RGBTRIPLE image[height][width], int i, int 
         }
     }
 
-    return round((double)sum / (double)num);
+    return round((double) sum / (double) num);
 }
 
 int get_color_value(RGBTRIPLE pixel, char color)
@@ -235,121 +225,67 @@ int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, ch
     {
         if (j == 0)
         {
-            gx = g('X', height, width, image, color, i, j,
-                    0, 0, 0,
-                    0, 1, 1,
-                    0, 1, 1);
+            gx = g('X', height, width, image, color, i, j, 0, 0, 0, 0, 1, 1, 0, 1, 1);
 
-            gy = g('Y', height, width, image, color, i, j,
-                    0, 0, 0,
-                    0, 1, 1,
-                    0, 1, 1);
+            gy = g('Y', height, width, image, color, i, j, 0, 0, 0, 0, 1, 1, 0, 1, 1);
         }
         else if (j == width - 1)
         {
-            gx = g('X', height, width, image, color, i, j,
-                    0, 0, 0,
-                    1, 1, 0,
-                    1, 1, 0);
+            gx = g('X', height, width, image, color, i, j, 0, 0, 0, 1, 1, 0, 1, 1, 0);
 
-            gy = g('Y', height, width, image, color, i, j,
-                    0, 0, 0,
-                    1, 1, 0,
-                    1, 1, 0);
+            gy = g('Y', height, width, image, color, i, j, 0, 0, 0, 1, 1, 0, 1, 1, 0);
         }
         else
         {
-            gx = g('X', height, width, image, color, i, j,
-                    0, 0, 0,
-                    1, 1, 1,
-                    1, 1, 1);
+            gx = g('X', height, width, image, color, i, j, 0, 0, 0, 1, 1, 1, 1, 1, 1);
 
-            gy = g('Y', height, width, image, color, i, j,
-                    0, 0, 0,
-                    1, 1, 1,
-                    1, 1, 1);
+            gy = g('Y', height, width, image, color, i, j, 0, 0, 0, 1, 1, 1, 1, 1, 1);
         }
     }
     else if (i == height - 1)
     {
         if (j == 0)
         {
-            gx = g('X', height, width, image, color, i, j,
-                    0, 1, 1,
-                    0, 1, 1,
-                    0, 0, 0);
+            gx = g('X', height, width, image, color, i, j, 0, 1, 1, 0, 1, 1, 0, 0, 0);
 
-            gy = g('Y', height, width, image, color, i, j,
-                    0, 1, 1,
-                    0, 1, 1,
-                    0, 0, 0);
+            gy = g('Y', height, width, image, color, i, j, 0, 1, 1, 0, 1, 1, 0, 0, 0);
         }
         else if (j == width - 1)
         {
-            gx = g('X', height, width, image, color, i, j,
-                    1, 1, 0,
-                    1, 1, 0,
-                    0, 0, 0);
+            gx = g('X', height, width, image, color, i, j, 1, 1, 0, 1, 1, 0, 0, 0, 0);
 
-            gy = g('Y', height, width, image, color, i, j,
-                    1, 1, 0,
-                    1, 1, 0,
-                    0, 0, 0);
+            gy = g('Y', height, width, image, color, i, j, 1, 1, 0, 1, 1, 0, 0, 0, 0);
         }
         else
         {
-            gx = g('X', height, width, image, color, i, j,
-                    1, 1, 1,
-                    1, 1, 1,
-                    0, 0, 0);
+            gx = g('X', height, width, image, color, i, j, 1, 1, 1, 1, 1, 1, 0, 0, 0);
 
-            gy = g('Y', height, width, image, color, i, j,
-                    1, 1, 1,
-                    1, 1, 1,
-                    0, 0, 0);
+            gy = g('Y', height, width, image, color, i, j, 1, 1, 1, 1, 1, 1, 0, 0, 0);
         }
     }
     else
     {
         if (j == 0)
         {
-            gx = g('X', height, width, image, color, i, j,
-                    0, 1, 1,
-                    0, 1, 1,
-                    0, 1, 1);
+            gx = g('X', height, width, image, color, i, j, 0, 1, 1, 0, 1, 1, 0, 1, 1);
 
-            gy = g('Y', height, width, image, color, i, j,
-                    0, 1, 1,
-                    0, 1, 1,
-                    0, 1, 1);
+            gy = g('Y', height, width, image, color, i, j, 0, 1, 1, 0, 1, 1, 0, 1, 1);
         }
         else if (j == width - 1)
         {
-            gx = g('X', height, width, image, color, i, j,
-                    1, 1, 0,
-                    1, 1, 0,
-                    1, 1, 0);
+            gx = g('X', height, width, image, color, i, j, 1, 1, 0, 1, 1, 0, 1, 1, 0);
 
-            gy = g('Y', height, width, image, color, i, j,
-                    1, 1, 0,
-                    1, 1, 0,
-                    1, 1, 0);
+            gy = g('Y', height, width, image, color, i, j, 1, 1, 0, 1, 1, 0, 1, 1, 0);
         }
         else
         {
-            gx = g('X', height, width, image, color, i, j,
-                    1, 1, 1,
-                    1, 1, 1,
-                    1, 1, 1);
+            gx = g('X', height, width, image, color, i, j, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
-            gy = g('Y', height, width, image, color, i, j,
-                    1, 1, 1,
-                    1, 1, 1,
-                    1, 1, 1);
+            gy = g('Y', height, width, image, color, i, j, 1, 1, 1, 1, 1, 1, 1, 1, 1);
         }
     }
 
-    int edge_value = round(sqrt((double)gx * gx + (double)gy * gy));
+    int edge_value = round(sqrt((double) gx * gx + (double) gy * gy));
     if (edge_value > 255)
     {
         edge_value = 255;
@@ -359,9 +295,8 @@ int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, ch
 }
 
 int g(char g, int height, int width, RGBTRIPLE image[height][width], char color, int i, int j,
-        int top_left, int top, int top_right,
-        int left, int middle, int right,
-        int bottom_left, int bottom, int bottom_right)
+      int top_left, int top, int top_right, int left, int middle, int right, int bottom_left,
+      int bottom, int bottom_right)
 {
     if (top_left == 1)
     {
@@ -402,17 +337,15 @@ int g(char g, int height, int width, RGBTRIPLE image[height][width], char color,
 
     if (g == 'X')
     {
-        int gx = top_left * (-1) + top * 0 + top_right * 1 +
-                left * (-2) + middle * 0 + right * 2 +
-                bottom_left * (-1) + bottom * 0 + bottom_right * 1;
+        int gx = top_left * (-1) + top * 0 + top_right * 1 + left * (-2) + middle * 0 + right * 2 +
+                 bottom_left * (-1) + bottom * 0 + bottom_right * 1;
         return gx;
     }
 
     if (g == 'Y')
     {
-        int gy = top_left * (-1) + top * (-2) + top_right * (-1) +
-                left * 0 + middle * 0 + right * 0 +
-                bottom_left * 1 + bottom * 2 + bottom_right * 1;
+        int gy = top_left * (-1) + top * (-2) + top_right * (-1) + left * 0 + middle * 0 +
+                 right * 0 + bottom_left * 1 + bottom * 2 + bottom_right * 1;
         return gy;
     }
 
