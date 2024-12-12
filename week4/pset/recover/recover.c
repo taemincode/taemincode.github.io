@@ -24,6 +24,8 @@ int main(int argc, char *argv[])
     char filename[8];
     FILE *img = NULL;
 
+    fread(buff, 512, 1, card);
+
     while (fread(buff, 512, 1, card) == 512)
     {
         if (buff[0] == 0xff && buff[1] == 0xd8 && buff[2] == 0xff && (buff[3] & 0xf0) == 0xe0)
