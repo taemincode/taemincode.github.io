@@ -43,8 +43,6 @@ int main(int argc, char *argv[])
         else if (file_count > 0)
         {
             fwrite(buff, 512, 1, img);
-
-            file_count++;
         }
     }
     fclose(img);
