@@ -360,8 +360,8 @@ int edge(int height, int width, RGBTRIPLE image[height][width], int i, int j, ch
 
 int g(char g, int height, int width, RGBTRIPLE image[height][width], char color, int i, int j,
         int top_left, int top, int top_right,
-        int left, int middle, int right, int bottom_right,
-        int bottom, int bottom_left)
+        int left, int middle, int right,
+        int bottom_left, int bottom, int bottom_right)
 {
     if (top_left == 1)
     {
