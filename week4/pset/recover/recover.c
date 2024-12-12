@@ -28,24 +28,16 @@ int main(int argc, char *argv[])
     {
         if (buff[0] == 0xff && buff[1] == 0xd8 && buff[2] == 0xff && (buff[3] & 0xf0) == 0xe0)
         {
-            if (file_count == 0)
-            {
-                sprintf(filename, "%03i.jpg", file_count);
-                img = fopen(filename, "a");
-                if (img == NULL)
-                {
-                    return 1;
-                }
-            }
-            else
+            if (file_count > 0)
             {
                 fclose(img);
-                sprintf(filename, "%03i.jpg", file_count);
-                img = fopen(filename, "a");
-                if (img == NULL)
-                {
-                    return 1;
-                }
+            }
+            sprintf(filename, "%03i.jpg", file_count);
+
+            img = fopen(filename, "a");
+            if (img == NULL)
+            {
+                return 1;
             }
 
             fwrite(buff, 512, 1, img);
