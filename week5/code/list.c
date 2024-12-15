@@ -27,7 +27,7 @@ int main(void)
         // TODO: add phrase to new node in list
         n = malloc(sizeof(node));
         n->phrase = phrase;
-        n->next = list
+        n->next = list;
         list = n;
 
         // Visualize list after adding a node.
@@ -51,6 +51,10 @@ bool unload(node *list)
     for (int i = 0; i < LIST_SIZE; node *ptr = list)
     {
         free(list);
+        if (ptr = NULL)
+        {
+            return true;
+        }
     }
 
     return false;
