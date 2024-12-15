@@ -29,7 +29,7 @@ int main(void)
         n->phrase = phrase;
         n->next = list
         list = n;
-        
+
         // Visualize list after adding a node.
         visualizer(list);
     }
@@ -48,6 +48,9 @@ int main(void)
 bool unload(node *list)
 {
     // TODO: Free all allocated nodes
+    node *ptr = list->next
+    
+
     return false;
 }
 
