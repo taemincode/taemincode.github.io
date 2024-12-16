@@ -54,7 +54,9 @@ bool load(const char *dictionary)
 
         strcpy(n->word, word);
         n->next = NULL;
-        unsigned int hash = hash(word);
+        int hash = hash(word);
+
+        while (table[hash]->next == NULL)
     }
 }
 
