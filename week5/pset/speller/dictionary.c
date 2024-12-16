@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <strings.h>
 
 #include "dictionary.h"
@@ -50,7 +51,7 @@ bool load(const char *dictionary)
         return false;
     }
 
-    char *word;
+    char *word = NULL;
     unsigned int first = first_hash(word);
     unsigned int second = second_hash(word);
     unsigned int third = third_hash(word);
@@ -71,6 +72,8 @@ bool load(const char *dictionary)
 
         COUNT++;
     }
+
+    return true;
 }
 
 // Returns true if word is in dictionary, else false
