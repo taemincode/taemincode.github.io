@@ -17,7 +17,7 @@ typedef struct node
 } node;
 
 // Counter for the size function
-unsigned int COUNT;
+unsigned int COUNT = 0;
 
 // TODO: Choose number of buckets in hash table
 const unsigned int N = 26;
@@ -80,7 +80,7 @@ bool load(const char *dictionary)
 
         COUNT++;
     }
-
+    fclose(file);
     return true;
 }
 
