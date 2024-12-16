@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <strings.h>
 
 #include "dictionary.h"
 
@@ -44,7 +44,7 @@ unsigned int third_hash(const char *word)
 bool load(const char *dictionary)
 {
     // TODO
-    FILE *dictionary = fopen(dictionary, "r");
+    FILE *file = fopen(dictionary, "r");
     if (dictionary == NULL)
     {
         return false;
@@ -53,9 +53,9 @@ bool load(const char *dictionary)
     char *word;
     unsigned int first = first_hash(word);
     unsigned int second = second_hash(word);
-    unsigned int third = thrid_hash(word);
+    unsigned int third = third_hash(word);
 
-    while (fscanf(dictionary, "%s", word) != EOF)
+    while (fscanf(file, "%s", word) != EOF)
     {
         node *new_node = malloc(sizeof(node));
         if (new_node == NULL)
