@@ -82,7 +82,7 @@ person *create_family(int generations)
 void free_family(person *p)
 {
     // TODO: Handle base case
-    if (p->parents[0] == NULL)
+    if (p->parents[0] == NULL && p->parents[0] == NULL)
     {
         free(p);
         return;
