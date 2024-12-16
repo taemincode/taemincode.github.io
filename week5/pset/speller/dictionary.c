@@ -26,7 +26,19 @@ node *table[N][N][N];
 bool check(const char *word)
 {
     // TODO
-    
+    node *ptr = table[first_hash(word)][second_hash(word)][third_hash(word)];
+
+    while (ptr != NULL)
+    {
+        if (strcasecmp(word, ptr->word) == 0)
+        {
+            return true;
+        }
+        else
+        {
+            ptr = ptr->next;
+        }
+    }
 
     return false;
 }
