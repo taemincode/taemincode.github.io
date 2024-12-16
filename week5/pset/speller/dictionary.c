@@ -13,6 +13,7 @@ typedef struct node
     struct node *next;
 } node;
 
+// Counter for the size function
 unsigned int COUNT;
 
 // TODO: Choose number of buckets in hash table
@@ -25,6 +26,8 @@ node *table[N][N][N];
 bool check(const char *word)
 {
     // TODO
+    
+
     return false;
 }
 
