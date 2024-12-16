@@ -46,12 +46,12 @@ bool load(const char *dictionary)
 {
     // TODO
     FILE *file = fopen(dictionary, "r");
-    if (dictionary == NULL)
+    if (file == NULL)
     {
         return false;
     }
 
-    char *word = NULL;
+    char word[LENGTH + 1];
     unsigned int first = first_hash(word);
     unsigned int second = second_hash(word);
     unsigned int third = third_hash(word);
