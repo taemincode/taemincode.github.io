@@ -56,10 +56,12 @@ bool load(const char *dictionary)
         n->next = NULL;
         int hash = hash(word);
 
-        while (table[hash]->next == NULL)
+        node *ptr = table[hash];
+        while (ptr->next == NULL)
         {
-            
+            ptr = ptr->next;
         }
+        ptr->next = n;
     }
 }
 
