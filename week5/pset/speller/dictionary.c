@@ -45,6 +45,18 @@ unsigned int third_hash(const char *word)
 bool load(const char *dictionary)
 {
     // TODO
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            for (int k = 0; k < N; k++)
+            {
+                table[i][j][k]->word = NULL;
+                table[i][j][k]->next = NULL;
+            }
+        }
+    }
+
     FILE *file = fopen(dictionary, "r");
     if (file == NULL)
     {
