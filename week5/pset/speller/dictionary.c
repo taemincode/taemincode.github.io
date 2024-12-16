@@ -28,6 +28,10 @@ node *table[N];
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
+    if (strlen(word) == 0 || !isalpha(word[0]))
+    {
+        return 0; // Default to bucket 0 for invalid input
+    }
     return toupper(word[0]) - 'A';
 }
 
@@ -71,39 +75,15 @@ bool load(const char *dictionary)
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    // TODO
     node *ptr = table[hash(word)];
-    if (strlen(word) < 3)
+
+    while (ptr != NULL)
     {
-        while (ptr != NULL)
+        if (strcasecmp(word, ptr->word) == 0)
         {
-            if (strlen(word) == 2)
-            {
-                if (toupper(word[0]) == toupper(ptr->word[0]) && toupper(word[1]) == toupper(ptr->word[1]))
-                {
-                    return true;
-                }
-            }
-            else if (strlen(word) == 1)
-            {
-                if (toupper(word[0]) == toupper(ptr->word[0]))
-                {
-                    return true;
-                }
-            }
-            ptr = ptr->next;
+            return true;
         }
-    }
-    else
-    {
-        while (ptr != NULL)
-        {
-            if (strcasecmp(word, ptr->word) == 0)
-            {
-                return true;
-            }
-            ptr = ptr->next;
-        }
+        ptr = ptr->next;
     }
 
     return false;
