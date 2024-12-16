@@ -13,6 +13,8 @@ typedef struct node
     struct node *next;
 } node;
 
+unsigned int COUNT;
+
 // TODO: Choose number of buckets in hash table
 const unsigned int N = 26;
 
@@ -70,6 +72,8 @@ bool load(const char *dictionary)
 
         new_node->next = table[first][second][third];
         table[first][second][third] = new_node;
+
+        COUNT++;
     }
 }
 
@@ -77,7 +81,7 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
-    return 0;
+    return COUNT;
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
