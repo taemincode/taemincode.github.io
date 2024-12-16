@@ -103,6 +103,22 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
-    for (int i = 0; i < )
-    return false;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            for (int k = 0; k < N; k++)
+            {
+                node *ptr = table[i][j][k];
+
+                while (ptr != NULL)
+                {
+                    node *tmp = ptr;
+                    ptr = ptr->next;
+                    free(tmp);
+                }
+            }
+        }
+    }
+    return true;
 }
