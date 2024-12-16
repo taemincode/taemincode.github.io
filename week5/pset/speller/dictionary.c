@@ -51,8 +51,10 @@ bool load(const char *dictionary)
         {
             return false;
         }
+
         strcpy(n->word, word);
         n->next = NULL;
+        unsigned int hash = hash(word);
     }
 }
 
