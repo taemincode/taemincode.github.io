@@ -23,7 +23,7 @@ unsigned int COUNT = 0;
 const unsigned int N = 26;
 
 // Hash table
-node *table[N][N][N];
+node *table[N];
 
 // Hashes word to a number
 unsigned int hash(const char *word)
@@ -59,7 +59,7 @@ bool load(const char *dictionary)
         strcpy(new_node->word, word);
         new_node->next = NULL;
 
-        new_node->next = table[hash(word)]
+        new_node->next = table[hash(word)];
         table[hash(word)] = new_node;
 
         COUNT++;
@@ -72,7 +72,7 @@ bool load(const char *dictionary)
 bool check(const char *word)
 {
     // TODO
-    node *ptr = tabletable[hash(word)];
+    node *ptr = table[hash(word)];
     if (strlen(word) < 3)
     {
         while (ptr != NULL)
