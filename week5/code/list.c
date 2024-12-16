@@ -25,6 +25,11 @@ int main(void)
 
         // TODO: add phrase to new node in list
         node *n = malloc(sizeof(node));
+        if (n == NULL)
+        {
+            return 1;
+        }
+
         n->phrase = phrase;
         n->next = list;
         list = n;
