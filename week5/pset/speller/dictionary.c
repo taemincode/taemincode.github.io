@@ -89,10 +89,9 @@ bool check(const char *word)
 {
     // TODO
     node *ptr = table[first_hash(word)][second_hash(word)][third_hash(word)];
-
     if (strlen(word) < 3)
     {
-        if (ptr != NULL)
+        while (ptr != NULL)
         {
             if (strlen(word) == 2)
             {
@@ -101,25 +100,31 @@ bool check(const char *word)
                     return true;
                 }
             }
-            else
+            else if
             {
                 if (word[0] == ptr->word[0])
                 {
                     return true;
                 }
             }
+            else
+            {
+                ptr = ptr->next;
+            }
         }
     }
-
-    while (ptr != NULL)
+    else
     {
-        if (strcasecmp(word, ptr->word) == 0)
+        while (ptr != NULL)
         {
-            return true;
-        }
-        else
-        {
-            ptr = ptr->next;
+            if (strcasecmp(word, ptr->word) == 0)
+            {
+                return true;
+            }
+            else
+            {
+                ptr = ptr->next;
+            }
         }
     }
 
