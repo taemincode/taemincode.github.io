@@ -30,8 +30,8 @@ int main(void)
 }
 
 // TODO: return the correct bucket for a given phrase
-int hash(string phrase)
+int hash(const string phrase)
 {
-    phrase = toupper(phrase);
-    return atoi(phrase - 'A');
+    char c = toupper(phrase[0]);
+    return c - 'A';
 }
