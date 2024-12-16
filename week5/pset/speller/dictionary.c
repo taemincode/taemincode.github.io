@@ -24,27 +24,6 @@ const unsigned int N = 26;
 // Hash table
 node *table[N][N][N];
 
-// Returns true if word is in dictionary, else false
-bool check(const char *word)
-{
-    // TODO
-    node *ptr = table[first_hash(word)][second_hash(word)][third_hash(word)];
-
-    while (ptr != NULL)
-    {
-        if (strcasecmp(word, ptr->word) == 0)
-        {
-            return true;
-        }
-        else
-        {
-            ptr = ptr->next;
-        }
-    }
-
-    return false;
-}
-
 // Hashes word to a number
 unsigned int first_hash(const char *word)
 {
@@ -92,6 +71,27 @@ bool load(const char *dictionary)
 
         COUNT++;
     }
+}
+
+// Returns true if word is in dictionary, else false
+bool check(const char *word)
+{
+    // TODO
+    node *ptr = table[first_hash(word)][second_hash(word)][third_hash(word)];
+
+    while (ptr != NULL)
+    {
+        if (strcasecmp(word, ptr->word) == 0)
+        {
+            return true;
+        }
+        else
+        {
+            ptr = ptr->next;
+        }
+    }
+
+    return false;
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
