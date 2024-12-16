@@ -46,22 +46,18 @@ bool load(const char *dictionary)
     char *word;
     while (fscanf(dictionary, "%s", word) != EOF)
     {
-        node *n = malloc(sizeof(node));
-        if (n == NULL)
+        node *new_node = malloc(sizeof(node));
+        if (new_node == NULL)
         {
             return false;
         }
 
-        strcpy(n->word, word);
-        n->next = NULL;
-        int hash = hash(word);
+        strcpy(new_node->word, word);
+        new_node->next = NULL;
 
-        node *ptr = table[hash];
-        while (ptr->next == NULL)
-        {
-            ptr = ptr->next;
-        }
-        ptr->next = n;
+        int hash = hash(word);
+        new_node->next = table[hash];
+        table[hash] = new_node;
     }
 }
 
