@@ -92,6 +92,23 @@ bool check(const char *word)
 
     while (ptr != NULL)
     {
+        if (strlen(word) < 3)
+        {
+            if (strlen(word) == 2)
+            {
+                if (*word[0] == ptr->word[0] && *word[1] == ptr->word[1])
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (*word[0] == ptr->word[0])
+                {
+                    return true;
+                }
+            }
+        }
         if (strcasecmp(word, ptr->word) == 0)
         {
             return true;
