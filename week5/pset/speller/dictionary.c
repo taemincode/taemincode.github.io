@@ -43,7 +43,15 @@ bool load(const char *dictionary)
         return false;
     }
 
-    
+    while (fscanf(dictionary, "%s", word) != EOF)
+    {
+        node *n = malloc(sizeof(node));
+        if (n == NULL)
+        {
+            return false;
+        }
+        strcpy()
+    }
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
