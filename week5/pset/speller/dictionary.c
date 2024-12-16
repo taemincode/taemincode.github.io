@@ -51,7 +51,6 @@ bool load(const char *dictionary)
         {
             for (int k = 0; k < N; k++)
             {
-                table[i][j][k]->word = NULL;
                 table[i][j][k]->next = NULL;
             }
         }
