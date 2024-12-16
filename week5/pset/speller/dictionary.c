@@ -57,6 +57,9 @@ bool load(const char *dictionary)
         int hash = hash(word);
 
         while (table[hash]->next == NULL)
+        {
+            
+        }
     }
 }
 
