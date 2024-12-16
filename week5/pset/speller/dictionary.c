@@ -27,14 +27,19 @@ bool check(const char *word)
 }
 
 // Hashes word to a number
-char *hash(const char *word)
+unsigned int first_hash(const char *word)
 {
-    // TODO: Improve this hash function
-    char first = toupper(word[0]) - 'A';
-    char second = toupper(word[1]) - 'A';
-    char second = toupper(word[2]) - 'A';
+    return toupper(word[0]) - 'A';
+}
 
-    char *value = "
+unsigned int second_hash(const char *word)
+{
+    return toupper(word[1]) - 'A';
+}
+
+unsigned int third_hash(const char *word)
+{
+    return toupper(word[2]) - 'A';
 }
 
 // Loads dictionary into memory, returning true if successful, else false
@@ -48,6 +53,10 @@ bool load(const char *dictionary)
     }
 
     char *word;
+    unsigned int first = first_hash(word);
+    unsigned int second = second_hash(word);
+    unsigned int third = thrid_hash(word);
+
     while (fscanf(dictionary, "%s", word) != EOF)
     {
         node *new_node = malloc(sizeof(node));
@@ -59,9 +68,8 @@ bool load(const char *dictionary)
         strcpy(new_node->word, word);
         new_node->next = NULL;
 
-        unsigned int hash = hash(word);
-        new_node->next = table[hash];
-        table[hash] = new_node;
+        new_node->next = table[first][second][third];
+        table[first][second][third] = new_node;
     }
 }
 
