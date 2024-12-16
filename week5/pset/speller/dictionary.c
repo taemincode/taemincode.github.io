@@ -52,9 +52,6 @@ bool load(const char *dictionary)
     }
 
     char word[LENGTH + 1];
-    unsigned int first = first_hash(word);
-    unsigned int second = second_hash(word);
-    unsigned int third = third_hash(word);
 
     while (fscanf(file, "%s", word) != EOF)
     {
@@ -67,8 +64,8 @@ bool load(const char *dictionary)
         strcpy(new_node->word, word);
         new_node->next = NULL;
 
-        new_node->next = table[first][second][third];
-        table[first][second][third] = new_node;
+        new_node->next = table[first_hash(word)][second_hash(word)][third_hash(word)];
+        table[first_hash(word)][second_hash(word)][third_hash(word)] = new_node;
 
         COUNT++;
     }
