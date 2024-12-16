@@ -95,14 +95,14 @@ bool check(const char *word)
         {
             if (strlen(word) == 2)
             {
-                if (word[0] == ptr->word[0] && word[1] == ptr->word[1])
+                if (toupper(word[0]) == toupper(ptr->word[0]) && toupper(word[1]) == toupper(ptr->word[1]))
                 {
                     return true;
                 }
             }
-            else if
+            else if (strlen(word) == 1)
             {
-                if (word[0] == ptr->word[0])
+                if (toupper(word[0]) == toupper(ptr->word[0]))
                 {
                     return true;
                 }
