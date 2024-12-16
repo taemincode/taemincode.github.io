@@ -26,19 +26,9 @@ const unsigned int N = 26;
 node *table[N][N][N];
 
 // Hashes word to a number
-unsigned int first_hash(const char *word)
+unsigned int hash(const char *word)
 {
     return toupper(word[0]) - 'A';
-}
-
-unsigned int second_hash(const char *word)
-{
-    return toupper(word[1]) - 'A';
-}
-
-unsigned int third_hash(const char *word)
-{
-    return toupper(word[2]) - 'A';
 }
 
 // Loads dictionary into memory, returning true if successful, else false
@@ -47,13 +37,7 @@ bool load(const char *dictionary)
     // TODO
     for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < N; j++)
-        {
-            for (int k = 0; k < N; k++)
-            {
-                table[i][j][k] = NULL;
-            }
-        }
+        table[i] = NULL;
     }
 
     FILE *file = fopen(dictionary, "r");
@@ -75,8 +59,8 @@ bool load(const char *dictionary)
         strcpy(new_node->word, word);
         new_node->next = NULL;
 
-        new_node->next = table[first_hash(word)][second_hash(word)][third_hash(word)];
-        table[first_hash(word)][second_hash(word)][third_hash(word)] = new_node;
+        new_node->next = table[hash(word)]
+        table[hash(word)] = new_node;
 
         COUNT++;
     }
@@ -88,7 +72,7 @@ bool load(const char *dictionary)
 bool check(const char *word)
 {
     // TODO
-    node *ptr = table[first_hash(word)][second_hash(word)][third_hash(word)];
+    node *ptr = tabletable[hash(word)];
     if (strlen(word) < 3)
     {
         while (ptr != NULL)
@@ -138,19 +122,13 @@ bool unload(void)
     // TODO
     for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < N; j++)
-        {
-            for (int k = 0; k < N; k++)
-            {
-                node *ptr = table[i][j][k];
+        node *ptr = table[i];
 
-                while (ptr != NULL)
-                {
-                    node *tmp = ptr;
-                    ptr = ptr->next;
-                    free(tmp);
-                }
-            }
+        while (ptr != NULL)
+        {
+            node *tmp = ptr;
+            ptr = ptr->next;
+            free(tmp);
         }
     }
     return true;
