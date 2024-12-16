@@ -118,10 +118,7 @@ bool check(const char *word)
             {
                 return true;
             }
-            else
-            {
-                ptr = ptr->next;
-            }
+            ptr = ptr->next;
         }
     }
 
