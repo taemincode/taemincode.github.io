@@ -11,4 +11,8 @@ def main():
 
 
 def luhn(number):
-    if len(str(number)) ==
+    # If Amex
+    if
+
+
+def 
