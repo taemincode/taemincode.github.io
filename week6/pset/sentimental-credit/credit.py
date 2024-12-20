@@ -26,7 +26,7 @@ def luhn(number):
 
     # Add the sum to the sum of the digits that weren’t multiplied by 2
     tmp_2 = number
-    while tmp_2 >= 10:
+    while tmp_2 > 0:
         sum += tmp_2 % 10
         tmp_2 = (tmp_2 - tmp_2 % 100) / 100
 
