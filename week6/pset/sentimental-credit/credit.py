@@ -6,4 +6,4 @@ def main:
         number = get_int("Number: ")
         if number > 0:
             break
-    while 
+    while
