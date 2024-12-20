@@ -1,6 +1,4 @@
-s = input("Do you agree? ")
-
-s = s.lower()
+s = input("Do you agree? ").lower()
 
 if s in ["y", "yes"]:
     print("Agreed")
