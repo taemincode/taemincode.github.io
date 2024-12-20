@@ -1,11 +1,7 @@
-from cs50 import get_int
+s = input("s: ")
+t = input("t: ")
 
-x = get_int("What's x? ")
-y = get_int("What's y? ")
-
-if x < y:
-    print("x is less than y")
-elif x > y:
-    print("x is greater than y")
+if s == t:
+    print("Same")
 else:
-    print("X is equal to y")
+    print("Different")
