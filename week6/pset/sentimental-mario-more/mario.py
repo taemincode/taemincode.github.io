@@ -8,7 +8,7 @@ def main():
             break
     for i in range(height):
         row(height - (i + 1), i + 1)
-        print(" ")
+        print("")
 
 
 def row(space, brick):
