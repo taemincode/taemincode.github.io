@@ -27,5 +27,5 @@ def square(base, exponent):
         return square(base, exponent - 1) * base
 
 
-def starting(number, digit):
-    return number - number % square(10, digit)
+def starting(number, len, digit):
+    return (number - number % square(10, digit - len)) / square(10, digit - len)
