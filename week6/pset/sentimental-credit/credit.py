@@ -30,6 +30,7 @@ def luhn(number):
         sum += tmp_2 % 10
         tmp_2 = (tmp_2 - tmp_2 % 100) / 100
 
+    # If the total’s last digit is 0 (or, put more formally, if the total modulo 10 is congruent to 0), the number is valid
     if sum % 10 == 0:
         return True
     else:
