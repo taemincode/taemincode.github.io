@@ -14,16 +14,16 @@ def main():
 
 
 def luhn(number):
-    sum = 0
+    sum_second = 0
     tmp = number
     while tmp >= 10:
         i = (tmp % 100 - tmp % 10) / 10 * 2
         if i >= 10:
             i = (i - i % 10) / 10 + i % 10
-        sum += i
+        sum_second += i
         tmp = (tmp - tmp % 100) / 100
-    
 
+    sum_first = 0
 
 
 def card(number):
