@@ -14,16 +14,26 @@ def main():
 
 
 def luhn(number):
-    sum_second = 0
+    # Multiply every other digit by 2, starting with the number’s second-to-last digit, and then add those products’ digits together
+    sum = 0
     tmp = number
     while tmp >= 10:
         i = (tmp % 100 - tmp % 10) / 10 * 2
         if i >= 10:
             i = (i - i % 10) / 10 + i % 10
-        sum_second += i
+        sum += i
         tmp = (tmp - tmp % 100) / 100
 
-    sum_first = 0
+    # Add the sum to the sum of the digits that weren’t multiplied by 2
+    tmp_2 = number
+    while tmp_2 >= 10:
+        sum += tmp_2 % 10
+        tmp_2 = (tmp_2 - tmp_2 % 100) / 100
+
+    if sum % 10 == 0:
+        return True
+    else:
+        return False
 
 
 def card(number):
@@ -44,7 +54,7 @@ def card(number):
         return "Invalid"
 
 
-def digit(number)
+def digit(number):
     return len(str(number))
 
 
@@ -57,3 +67,6 @@ def square(base, exponent):
 
 def starting(number, len, digit):
     return (number - number % square(10, digit - len)) / square(10, digit - len)
+
+
+main()
