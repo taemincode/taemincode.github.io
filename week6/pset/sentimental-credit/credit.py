@@ -7,13 +7,41 @@ def main():
         if number > 0:
             break
 
-    print(luhn(number))
+    if luhn(number):
+        print(card(number))
+    else:
+        print("Invalid")
 
 
 def luhn(number):
+    sum = 0
+    tmp = number
+    while tmp >= 10:
+        i = (tmp % 100 - tmp % 10) / 10 * 2
+        if i >= 10:
+            i = (i - i % 10) / 10 + i % 10
+        sum += i
+        tmp = (tmp - tmp % 100) / 100
+    
+
+
+
+def card(number):
     # If Amex
     if digit(number) == 15:
-        if starting(number, 2, digit(number)) == 34 or starting(number, 2, digit(number)) == 34
+        if starting(number, 2, digit(number)) == 34 or starting(number, 2, digit(number)) == 37:
+            return "AMEX"
+    # If Mastercard
+    elif digit(number) == 16:
+        if starting(number, 2, digit(number)) >= 51 and starting(number, 2, digit(number)) <= 55:
+            return "MASTERCARD"
+    # If Visa
+    elif digit(number) == 13 or digit(number) == 16:
+        if starting(number, 1, digit(number)) == 4:
+            return "VISA"
+    # Invalid
+    else:
+        return "Invalid"
 
 
 def digit(number)
