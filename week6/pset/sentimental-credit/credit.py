@@ -12,8 +12,8 @@ def main():
 
 def luhn(number):
     # If Amex
-    if digit == 15:
-        if
+    if digit(number) == 15:
+        if starting(number, 2, digit(number)) == 34 or starting(number, 2, digit(number)) == 34
 
 
 def digit(number)
