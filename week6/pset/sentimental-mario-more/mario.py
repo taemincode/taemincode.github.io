@@ -1,5 +1,5 @@
-from cs50 i
+from cs50 import get_int
+
 
 def main():
-    while True:
-        height =
+    height = get_int("Height: ")
