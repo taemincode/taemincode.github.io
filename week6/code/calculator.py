@@ -1,6 +1,16 @@
-import cs50
+def get_int(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            pass
 
-x = cs50.get_int("x: ")
-y = cs50.get_int("y: ")
 
-print(x + y)
+def main():
+    x = get_int("x: ")
+    y = get_int("y: ")
+
+    print(x + y)
+
+
+main()
