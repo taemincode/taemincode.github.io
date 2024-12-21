@@ -28,7 +28,7 @@ def main():
             dict[reader.fieldnames[i + 1]]  = longest_match(sequence, reader.fieldnames[i + 1])
 
     # TODO: Check database for matching profiles
-
+    
     return
 
 
@@ -39,7 +39,6 @@ def longest_match(sequence, subsequence):
     longest_run = 0
     subsequence_length = len(subsequence)
     sequence_length = len(sequence)
-    match = False
 
     # Check each character in sequence for most consecutive runs of subsequence
     for i in range(sequence_length):
@@ -48,12 +47,7 @@ def longest_match(sequence, subsequence):
         count = 0
 
         # Check for a subsequence match in a "substring" (a subset of characters) within sequence
-        if sequence[i : i + subsequence_length] == subsequence:
-            match == True
-
         # If a match, move substring to next potential match in sequence
-        if match == True
-
         # Continue moving substring and checking for matches until out of consecutive matches
         while True:
 
