@@ -5,17 +5,17 @@ import sys
 def main():
 
     # TODO: Check for command-line usage
-    if len(sys.argv[]) == 2:
-        print("Usage = dna.py filename")
+    if len(sys.argv[]) != 3:
+        print("Usage: dna.py databases sequences")
         return
 
     # TODO: Read database file into a variable
     rows = []
-    with open("foo.csv") as file:
+    with open(argv[2]) as file:
         reader = csv.DictReader(file)
         for row in reader:
             rows.append(row)
-            
+
     # TODO: Read DNA sequence file into a variable
 
     # TODO: Find longest match of each STR in DNA sequence
