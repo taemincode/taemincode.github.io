@@ -24,13 +24,7 @@ def main():
     dict = {}
     print(rows[0])
 
-    for i in range(len(rows[0]) - 1):
-        dict[rows[0][i + 1]] = longest_match(sequence, rows[0][i + 1])
-
-    # TODO: Check database for matching profiles
-    for i in range(len(rows) - 1):
-        if rows[i + 1][1] == dict[rows[0][1]] and rows[i + 1][2] == dict[rows[0][2]] and rows[i + 1][1] == dict[rows[0][1]]:
-            print(rows[i + 1][0])
+    
 
     return
 
