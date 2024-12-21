@@ -17,7 +17,7 @@ def main():
             rows.append(row)
 
     # TODO: Read DNA sequence file into a variable
-
+    sequence = 
     # TODO: Find longest match of each STR in DNA sequence
 
     # TODO: Check database for matching profiles
