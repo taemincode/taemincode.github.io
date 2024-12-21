@@ -17,11 +17,13 @@ def main():
             rows.append(row)
 
     # TODO: Read DNA sequence file into a variable
-    f = open(argv[3], 'r')
-    sequence = f.readline()
+    file = open(argv[3], 'r')
+    sequence = file.readline()
 
     # TODO: Find longest match of each STR in DNA sequence
-    for i in range(len(rows[1]))
+    with open(argv[2]) as file:
+    reader = csv.DictReader(file)
+    print(reader.fieldnames)
 
     # TODO: Check database for matching profiles
 
