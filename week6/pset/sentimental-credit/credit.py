@@ -1,4 +1,5 @@
 from cs50 import get_int
+from math import floor
 
 
 def main():
@@ -70,7 +71,7 @@ def square(base, exponent):
 
 
 def starting(number, len, digit):
-    return int((number - number % square(10, digit - len)) / square(10, digit - len))
+    return floor(number / square(10, digit - len))
 
 
 main()
