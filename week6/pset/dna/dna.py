@@ -21,13 +21,14 @@ def main():
     sequence = file.readline()
 
     # TODO: Find longest match of each STR in DNA sequence
+    dict = {}
     with open(argv[2]) as file:
         reader = csv.DictReader(file)
-        for _ in range(len(reader.fieldnames) - 1):
-            
+        for i in range(len(reader.fieldnames) - 1):
+            dict[reader.fieldnames[i + 1]]  = longest_match(sequence, reader.fieldnames[i + 1])
 
     # TODO: Check database for matching profiles
-
+    
     return
 
 
