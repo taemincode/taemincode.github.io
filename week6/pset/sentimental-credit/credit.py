@@ -38,6 +38,9 @@ def luhn(number):
 
 
 def card(number):
+    print(f"digit: {digit(number)}")
+    print(f"digit: {starting(number, 2, digit(number))}")
+
     # If Amex
     if digit(number) == 15:
         if starting(number, 2, digit(number)) == 34 or starting(number, 2, digit(number)) == 37:
