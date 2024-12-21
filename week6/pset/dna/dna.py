@@ -5,7 +5,7 @@ import sys
 def main():
 
     # TODO: Check for command-line usage
-    if len(sys.argv[]) != 3:
+    if len(sys.argv) != 3:
         print("Usage: dna.py databases sequences")
         return
 
@@ -17,7 +17,7 @@ def main():
             rows.append(row)
 
     # TODO: Read DNA sequence file into a variable
-    with file = open(argv[3], 'r'):
+    witfile = open(argv[3], 'r'):
         sequence = file.readline()
 
     # TODO: Find longest match of each STR in DNA sequence
