@@ -71,7 +71,7 @@ def square(base, exponent):
 
 
 def starting(number, len, digit):
-    print(square(10, digit - len))
+    print(number / square(10, digit - len))
     return floor(number / square(10, digit - len))
 
 
