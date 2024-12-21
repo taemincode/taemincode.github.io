@@ -52,7 +52,7 @@ def card(number):
             return "MASTERCARD"
     # If Visa
     elif digit(number) == 13 or digit(number) == 16:
-        if starting(number, 2, digit(number)) == 4:
+        if starting(number, 1, digit(number)) == 4:
             return "VISA"
     # Invalid
     else:
