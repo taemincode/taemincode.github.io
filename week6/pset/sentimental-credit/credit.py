@@ -40,35 +40,24 @@ def luhn(number):
 
 def card(number):
     # If Amex
-    if digit(number) == 15:
-        if starting(number, 2, digit(number)) in {34, 37}:
-            return "AMEX"
+    if card_length == 15 and starting(number, 2, card_length) in {34, 37}:
+        return "AMEX"
     # If Mastercard
-    elif digit(number) == 16:
-        if 51 <= starting(number, 2, digit(number)) <= 55:
-            return "MASTERCARD"
+    elif card_length == 16 and 51 <= starting(number, 2, card_length) <= 55:
+        return "MASTERCARD"
     # If Visa
-    elif digit(number) in {13, 16}:
-        if starting(number, 1, digit(number)) == 4:
-            return "VISA"
+    elif card_length in {13, 16} and starting(number, 1, card_length) == 4:
+        return "VISA"
     # Invalid
-    else:
-        return "Invalid"
+    return "Invalid"
 
 
 def digit(number):
     return len(str(number))
 
 
-def square(base, exponent):
-    if exponent == 1:
-        return base
-    else:
-        return square(base, exponent - 1) * base
-
-
 def starting(number, len, digit):
-    return floor(number / square(10, digit - len))
+    return floor(number / pow(10, digit - len))
 
 
 main()
