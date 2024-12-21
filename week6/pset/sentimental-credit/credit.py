@@ -41,14 +41,14 @@ def luhn(number):
 def card(number):
     # If Amex
     if digit(number) == 15:
-        if starting(number, 2, digit(number)) == 34 or starting(number, 2, digit(number)) == 37:
+        if starting(number, 2, digit(number)) in {34, 37}:
             return "AMEX"
     # If Mastercard
     elif digit(number) == 16:
-        if starting(number, 2, digit(number)) >= 51 and starting(number, 2, digit(number)) <= 55:
+        if 51 <= starting(number, 2, digit(number)) <= 55:
             return "MASTERCARD"
     # If Visa
-    elif digit(number) == 13 or digit(number) == 16:
+    elif digit(number) in {13, 16}:
         if starting(number, 1, digit(number)) == 4:
             return "VISA"
     # Invalid
