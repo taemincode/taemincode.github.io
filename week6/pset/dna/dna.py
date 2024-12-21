@@ -28,7 +28,9 @@ def main():
             dict[reader.fieldnames[i + 1]]  = longest_match(sequence, reader.fieldnames[i + 1])
 
     # TODO: Check database for matching profiles
-    
+    for i in range(len(rows[1]) - 1):
+        
+
     return
 
 
