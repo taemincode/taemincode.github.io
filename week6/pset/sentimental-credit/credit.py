@@ -70,7 +70,7 @@ def square(base, exponent):
 
 
 def starting(number, len, digit):
-    return (number - number % square(10, digit - len)) / square(10, digit - len)
+    return int((number - number % square(10, digit - len)) / square(10, digit - len))
 
 
 main()
