@@ -5,7 +5,7 @@ import sys
 def main():
 
     # TODO: Check for command-line usage
-    
+    if len(sys.argv)
     # TODO: Read database file into a variable
 
     # TODO: Read DNA sequence file into a variable
