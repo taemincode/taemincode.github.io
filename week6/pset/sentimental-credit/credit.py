@@ -40,7 +40,7 @@ def luhn(number):
 
 def card(number):
     card_length = digit(number)
-    
+
     # If Amex
     if card_length == 15 and starting(number, 2, card_length) in {34, 37}:
         return "AMEX"
@@ -51,7 +51,7 @@ def card(number):
     elif card_length in {13, 16} and starting(number, 1, card_length) == 4:
         return "VISA"
     # Invalid
-    return "Invalid"
+    return "INVALID"
 
 
 def digit(number):
