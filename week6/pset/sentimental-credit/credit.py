@@ -11,7 +11,7 @@ def main():
     if luhn(number):
         print(card(number))
     else:
-        print("Invalid")
+        print("INVALID")
 
 
 def luhn(number):
