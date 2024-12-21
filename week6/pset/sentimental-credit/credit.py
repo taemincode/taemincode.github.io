@@ -39,6 +39,8 @@ def luhn(number):
 
 
 def card(number):
+    card_length = digit(number)
+    
     # If Amex
     if card_length == 15 and starting(number, 2, card_length) in {34, 37}:
         return "AMEX"
