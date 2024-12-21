@@ -48,11 +48,8 @@ def longest_match(sequence, subsequence):
         count = 0
 
         # Check for a subsequence match in a "substring" (a subset of characters) within sequence
-        for j in range(subsequence_length):
-            if sequence[i + j] != subsequence[j]:
-                break
-            if j == subsequence_length:
-                match = True
+        if sequence[i : i + subsequence_length] == subsequence:
+            match == True
 
         # If a match, move substring to next potential match in sequence
         if match == True
