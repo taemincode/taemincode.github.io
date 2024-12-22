@@ -1,28 +1,28 @@
 import csv
-import sys
+from sys import argv
 
 
 def main():
 
     # TODO: Check for command-line usage
-    if len(sys.argv) != 3:
+    if len(argv) != 3:
         print("Usage: dna.py databases sequences")
         return
 
     # TODO: Read database file into a variable
     rows = []
-    with open(sys.argv[1]) as file:
+    with open(argv[1]) as file:
         reader = csv.DictReader(file)
         for row in reader:
             rows.append(row)
 
     # TODO: Read DNA sequence file into a variable
-    with open(sys.argv[2], 'r') as file:
+    with open(argv[2], 'r') as file:
         sequence = file.readline()
 
     # TODO: Find longest match of each STR in DNA sequence
     dict = {}
-    with open(sys.argv[1]) as file:
+    with open(argv[1]) as file:
         reader = csv.DictReader(file)
         subsequences = reader.fieldnames
 
