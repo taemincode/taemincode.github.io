@@ -30,12 +30,13 @@ def main():
         dict[subsequences[i + 1]] = longest_match(sequence, subsequences[i + 1])
 
     # TODO: Check database for matching profiles
-
     for i in range(len(rows)):
+        print(f"Checking row {i}: {rows[i]}")
         for j in range(len(subsequences) - 1):
-            if rows[i][subsequences[j + 1]] != dict[subsequences[j + 1]]:
+            print(f"Checking subsequence {subsequences[j + 1]}: {rows[i][subsequences[j + 1]]} vs {dict[subsequences[j + 1]]}")
+            if rows[i][subsequences[j + 1]] != str(dict[subsequences[j + 1]]):
                 break
-            if j == len(subsequences) - 1:
+            if j == len(subsequences) - 2:
                 print(rows[i]['name'])
                 return
 
