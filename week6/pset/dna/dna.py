@@ -33,7 +33,11 @@ def main():
 
     for i in range(len(row)):
         for j in range(len(subsequences) - 1):
-            if
+            if row[i][subsequences[j + 1]] != dict[subsequences[j + 1]]:
+                break
+            if j == len(subsequences):
+                print(row[i][name])
+                return
 
     return
 
