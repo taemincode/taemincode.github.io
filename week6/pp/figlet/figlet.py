@@ -8,7 +8,7 @@ def main():
     figlet.getFonts()
 
     if len(sys.argv) == 2:
-        if argv[1] not in ['-f', '--font']:
+        if sys.argv[1] not in ['-f', '--font']:
             print("Invailid usage")
             sys.exit
 
