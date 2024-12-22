@@ -1,2 +1,1 @@
-text = input("String: ").capitalize()
-print(text)
+print(input("String: ").upper())
