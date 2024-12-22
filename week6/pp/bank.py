@@ -2,7 +2,7 @@ from cs50 import get_string
 
 
 def main():
-    greeting = get_string("Greeting: ").lower
+    greeting = get_string("Greeting: ").lower()
 
     if 'hello' in greeting:
         print("$0")
