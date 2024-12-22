@@ -22,18 +22,24 @@ def main():
 
     # TODO: Find longest match of each STR in DNA sequence
     dict = {}
-    print(rows[0])
+    with open("foo.csv") as file:
+        reader = csv.DictReader(file)
+        print(reader.fieldnames)
 
-    for i in range(len(rows[0]) - 1):
-        dict[rows[0][i + 1]] = longest_match(sequence, rows[0][i + 1])
-
+    print(reader.fieldnames)
+    print(reader.fieldnames[0])
+    for i in range(len(reader.fieldnames) - 1):
+        dict[reader.fieldnames[i + 1]] = longest_match(sequence, reader.fieldnames[i + 1])
+        print(reader.fieldnames[i + 1])
+    '''
     # TODO: Check database for matching profiles
-    for i in range(len(rows) - 1):
-        if rows[i + 1][1] == dict[rows[0][1]] and rows[i + 1][2] == dict[rows[0][2]] and rows[i + 1][1] == dict[rows[0][1]]:
-            print(rows[i + 1][0])
+    match = False
+
+    for i in range(len(row)):
+        for i in range
 
     return
-
+    '''
 
 def longest_match(sequence, subsequence):
     """Returns length of longest run of subsequence in sequence."""
