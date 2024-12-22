@@ -12,7 +12,7 @@ def main()
             print("Invailid usage")
             sys.exit
 
-        figlet.setFont(font=argv[3])
+        figlet.setFont(font=sys.argv[3])
     }
     elif len(sys.argv) == 0
     {
