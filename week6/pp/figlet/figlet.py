@@ -1,8 +1,9 @@
+from cs50 import get_string
 from pyfiglet import Figlet
 import sys
 
 
-def main()
+def main():
     figlet = Figlet()
     figlet.getFonts()
 
@@ -13,11 +14,13 @@ def main()
 
         figlet.setFont(font=sys.argv[3])
     elif len(sys.argv) == 0:
-        figlet.setFont(font)
+        figlet.setFont(font=slant)
     else:
         print("Invalid usage")
+        sys.exit
 
-    figlet.setFont(font=f)
-
-    input = input("Input: ")
+    input = get_string("Input: ")
     print(f"Output:\n{figlet.renderText(input)}")
+
+
+main()
