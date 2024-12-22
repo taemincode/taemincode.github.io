@@ -36,7 +36,7 @@ def main():
             if rows[i][subsequences[j + 1]] != dict[subsequences[j + 1]]:
                 break
             if j == len(subsequences) - 1:
-                print(rows[i][name])
+                print(rows[i]['name'])
                 return
 
     return
