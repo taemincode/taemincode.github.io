@@ -21,18 +21,18 @@ def main():
         sequence = file.readline()
 
     # TODO: Find longest match of each STR in DNA sequence
-    dict = {}
+    matches = dict()
     with open(argv[1]) as file:
         reader = csv.DictReader(file)
         subsequences = reader.fieldnames
 
     for i in range(len(subsequences) - 1):
-        dict[subsequences[i + 1]] = longest_match(sequence, subsequences[i + 1])
+        matches[subsequences[i + 1]] = longest_match(sequence, subsequences[i + 1])
 
     # TODO: Check database for matching profiles
     for i in range(len(rows)):
         for j in range(len(subsequences) - 1):
-            if rows[i][subsequences[j + 1]] != str(dict[subsequences[j + 1]]):
+            if rows[i][subsequences[j + 1]] != str(matches[subsequences[j + 1]]):
                 break
             if j == len(subsequences) - 2:
                 print(rows[i]['name'])
