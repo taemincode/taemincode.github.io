@@ -12,8 +12,8 @@ def main():
             print("Invailid usage")
             sys.exit
 
-        figlet.setFont(font=sys.argv[3])
-    elif len(sys.argv) == 0:
+        figlet.setFont(font=sys.argv[2])
+    elif len(sys.argv) == 1:
         figlet.setFont(font=slant)
     else:
         print("Invalid usage")
