@@ -31,12 +31,12 @@ def main():
 
     # TODO: Check database for matching profiles
 
-    for i in range(len(row)):
+    for i in range(len(rows)):
         for j in range(len(subsequences) - 1):
-            if row[i][subsequences[j + 1]] != dict[subsequences[j + 1]]:
+            if rows[i][subsequences[j + 1]] != dict[subsequences[j + 1]]:
                 break
-            if j == len(subsequences):
-                print(row[i][name])
+            if j == len(subsequences) - 1:
+                print(rows[i][name])
                 return
 
     return
