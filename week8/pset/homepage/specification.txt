@@ -1,0 +1,24 @@
+HTML tages:
+1. <div>
+2. <ul>
+3. <li>
+4. <h1>
+5. <script>
+6. <br>
+7. <a>
+8.
+9.
+10.
+and more.
+
+CSS properites:
+1. margin
+2. padding
+3. width
+4. height
+5. background-image
+and more.
+
+Javascript: To change the color of the navigation bar form transparent to white when scrolled.
+
+Bootstrap: Used the primary and secondary colors of Bootstrap.

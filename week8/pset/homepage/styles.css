@@ -1,0 +1,147 @@
+.container_my {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 650px;
+    background-image: url('main.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+#navbar {
+    top: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+
+#navbar ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#navbar li {
+    padding: 15px;
+    margin: 15px 20px;
+    font-size: 20px;
+    color: black;
+    font-weight: 450;
+}
+
+.a{
+    text-decoration: none;
+    color: black;
+    width: max-content;
+    position: relative;
+    cursor: pointer;
+}
+
+.a:hover {
+    color: black;
+}
+
+.a::after {
+    content: '';
+    background: var(--bs-primary);
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 300ms;
+}
+
+.a:hover::after{
+    width: 0%;
+}
+
+#current {
+    text-decoration: none;
+    color: inherit;
+    width: max-content;
+    position: relative;
+    cursor: default;
+}
+
+#current::after {
+    content: '';
+    background: var(--bs-secondary);
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 200ms;
+}
+
+.heading_my {
+    position: relative;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 6vw;
+    width: max-content;
+    cursor: default;
+}
+
+.heading_my::after {
+    content: '';
+    background: var(--bs-primary);
+    height: 7px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 300ms;
+}
+
+.heading_a {
+    position: relative;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: black;
+    font-size: 4vw;
+    width: max-content;
+    cursor: default;
+}
+
+.heading_a::after {
+    content: '';
+    background: var(--bs-primary);
+    height: 7px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 300ms;
+}
+
+
+.heading_my:hover::after {
+    width: 0%;
+}
+
+#toast_my {
+    position: fixed;
+    right: 15px;
+    bottom: 20px;
+}
+
+#toast_img_my {
+    width: 20px;
+    height: 20px;
+}
+
+.cont_about {
+    width: 100%;
+    height: 350px;
+}
