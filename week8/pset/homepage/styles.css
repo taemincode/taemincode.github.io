@@ -12,9 +12,10 @@
 
 #navbar {
     top: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     position: fixed;
     width: 100%;
+    height: 10.2vh;
     z-index: 10;
 }
 
@@ -29,20 +30,36 @@
     padding: 15px;
     margin: 15px 20px;
     font-size: 20px;
-    color: black;
-    font-weight: 450;
+    font-weight: 500;
+    color: inherit;
+}
+
+.a_nav {
+    color: inherit;
+}
+
+#navbar.scrolled {
+    background-color: white;
 }
 
 .a{
     text-decoration: none;
-    color: black;
     width: max-content;
     position: relative;
     cursor: pointer;
+    color: inherit;
+}
+
+.black_my {
+    color: black;
+}
+
+.white_my {
+    color: white;
 }
 
 .a:hover {
-    color: black;
+    color: inherit;
 }
 
 .a::after {
@@ -58,25 +75,6 @@
 
 .a:hover::after{
     width: 0%;
-}
-
-#current {
-    text-decoration: none;
-    color: inherit;
-    width: max-content;
-    position: relative;
-    cursor: default;
-}
-
-#current::after {
-    content: '';
-    background: var(--bs-secondary);
-    height: 3px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    transition: 200ms;
 }
 
 .heading_my {
@@ -104,7 +102,7 @@
 
 .heading_a {
     position: relative;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -125,8 +123,11 @@
     transition: 300ms;
 }
 
-
 .heading_my:hover::after {
+    width: 0%;
+}
+
+.heading_a:hover::after {
     width: 0%;
 }
 
@@ -143,5 +144,58 @@
 
 .cont_about {
     width: 100%;
-    height: 350px;
+    height: 250px;
+}
+
+#about_my {
+    padding: 0 150px;
+    border: 0px;
+    margin: 0px;
+}
+
+.player {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    bottom: 0;
+}
+
+.playlist_heading {
+    position: absolute;
+    top: 26%;
+    left: 43.3%;
+    cursor: default;
+}
+
+.playlist_heading:after {
+    content: '';
+    background: var(--bs-primary);
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 300ms;
+}
+
+.playlist_heading:hover::after {
+    width: 0%;
+}
+
+.cs_a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.cs_a:hover {
+    color: inherit;
+}
+
+#code_img {
+    width: 80vw;
+}
+
+.h2, h2 {
+    line-height: 45px;
 }

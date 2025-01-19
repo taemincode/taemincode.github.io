@@ -5,25 +5,38 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <link href="styles.css" rel="stylesheet">
-        <title>Taemin Park</title>
+        <title>About - Taemin Park</title>
     </head>
     <body>
-            <div id="navbar" class="navbar_white">
-                <ul>
-                  <li><a class="a" class="black" href="index.html">Home</a></li>
-                  <li><a id="current" class="black">About</a></li>
-                  <li><a class="a" class="black" href="https://cs50.harvard.edu/x/2025/">CS50</a></li>
-                </ul>
-            </div>
-            <div class="cont_about">
-                <h1 class="heading_a">About Taemin Park</h1>
-            </div>
+        <div id="navbar" class="navbar_white">
+            <ul>
+                <li><a class="a a_nav black_my" href="index.html">Back to Home</a></li>
+            </ul>
+        </div>
+        <div class="cont_about">
+            <h1 class="heading_a">About Me</h1>
+        </div>
+        <div id="about_my">
+            <h2>
+                    My name is Taemin Park, and I started taking CS50 since November 2024. I was born in 2011 (which would make me 14 years old in 2025) in Seoul (South Korea), and when I was 5, our family immigrated to Milan (Italy), due to my dad’s job. We lived there for four years before returning to Korea, where we stayed until we finally moved to Poland when I was 13 years old.
+                    <br><br>
+                    My hobbies include chess, and both playing and watching football. I started both hobbies when I was young. Although I haven’t always been the best player, I think I’m not too bad at them either.
+                    <br><br>
+                    I don’t watch movies often, but if I had to pick one I think is the best, I’d choose Spider-Man: No Way Home. I was amazed by the fact that all the Spider-Men from different movies met together.
+                    <br><br>
+                    My favorite author is Bernard Werber. He’s French but also very popular in Korea. I especially enjoyed reading his latest book, The Diagonal of the Queen, where the main topic is about chess.
+                    <br><br>
+                    My favorite video game is Brawl Stars. I started playing it even when it wasn’t very popular, and by playing consistently, I’ve become one of the best players among my friends.
+                    <br><br>
+                    My favorite school subjects are Math and of course PE. I like math because it feels great to solve really hard problems, and I also like that there’s always one correct answer. While in other subjects, there might be several ways to solve things. And honestly, who doesn't like PE?
+            </h2>
+        </div>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
+            document.addEventListener("DOMContentLoaded", function() {
                 let navbar = document.getElementById("navbar");
 
-                window.onscroll = function () {
-                    if (window.scrollY > 100) {
+                window.onscroll = function() {
+                    if (window.scrollY > 10) {
                         navbar.classList.add("scrolled");
                     } else {
                         navbar.classList.remove("scrolled");

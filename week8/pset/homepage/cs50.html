@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>CS50 - Taemin Park</title>
+    </head>
+    <body>
+        <div id="navbar" class="navbar_white">
+            <ul>
+                <li><a class="a a_nav black_my" href="index.html">Back to Home</a></li>
+            </ul>
+        </div>
+        <div class="cont_about">
+            <h1 class="heading_a"><a class="cs_a" href="https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science">CS50</a></h1>
+        </div>
+        <div id="about_my">
+            <h2>
+                I wanted to learn how to code. So, I started taking <a href="https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science">CS50</a> since November 2024.
+                <br>
+                My favorite problem is Python "Hello World":
+                <br>
+            </h2>
+            <img id="code_img" src="hello_python.png" alt="python code">
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let navbar = document.getElementById("navbar");
+
+                window.onscroll = function() {
+                    if (window.scrollY > 10) {
+                        navbar.classList.add("scrolled");
+                    } else {
+                        navbar.classList.remove("scrolled");
+                    }
+                };
+            });
+        </script>
+    </body>
+</html>

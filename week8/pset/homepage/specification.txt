@@ -6,9 +6,9 @@ HTML tages:
 5. <script>
 6. <br>
 7. <a>
-8.
-9.
-10.
+8. <iframe>
+9. <h2>
+10. <p>
 and more.
 
 CSS properites:
@@ -21,4 +21,11 @@ and more.
 
 Javascript: To change the color of the navigation bar form transparent to white when scrolled.
 
-Bootstrap: Used the primary and secondary colors of Bootstrap.
+Bootstrap: Added a toast message. Used the primary color of Bootstrap.
+
+
+<h2 class="playlist_heading">Taemin's Playlist</h2>
+
+<div class="cont_about">
+            <h1 class="heading_a">About Me</h1>
+        </div>
