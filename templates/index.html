@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Taemin Park{% endblock %}
+{% block description %}Welcome to Taemin Park's homepage - Software Developer{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Taemin Park</h1>
+        <p class="hero-subtitle">Software Developer</p>
+    </div>
+</section>
+
+<!-- Welcome Toast -->
+<div id="welcomeToast" class="toast position-fixed" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <div class="toast-icon me-2"></div>
+        <strong class="me-auto">Welcome!</strong>
+        <small class="text-muted">Just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        Hello! Welcome to my homepage. Feel free to look around and explore my work!
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Show welcome toast
+        const toastElement = document.getElementById('welcomeToast');
+        const toast = new bootstrap.Toast(toastElement, {
+            delay: 5000
+        });
+        
+        // Show toast after a short delay
+        setTimeout(() => {
+            toast.show();
+        }, 1000);
+    });
+</script>
+{% endblock %}
