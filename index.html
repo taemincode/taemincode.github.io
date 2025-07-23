@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% block description %}Taemin Park's personal homepage{% endblock %}">
-    <title>{% block title %}Taemin's Homepage{% endblock %}</title>
+    <meta name="description" content="Welcome to Taemin Park's homepage - Software Developer">
+    <title>Home - Taemin Park</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -20,13 +20,13 @@
             <ul class="navbar-nav d-flex flex-row">
                 <li class="nav-name">Taemin Park</li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('index') }}" aria-label="Go to home page">Home</a>
+                    <a class="nav-link" href="index.html" aria-label="Go to home page">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('about') }}" aria-label="Go to about page">About</a>
+                    <a class="nav-link" href="about.html" aria-label="Go to about page">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('playlist') }}" aria-label="Go to playlist page">Playlist</a>
+                    <a class="nav-link" href="playlist.html" aria-label="Go to playlist page">Playlist</a>
                 </li>
             </ul>
         </div>
@@ -34,7 +34,26 @@
 
     <!-- Main Content -->
     <main role="main">
-        {% block content %}{% endblock %}
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Taemin Park</h1>
+                <p class="hero-subtitle">Software Developer</p>
+            </div>
+        </section>
+
+        <!-- Welcome Toast -->
+        <div id="welcomeToast" class="toast position-fixed" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <div class="toast-icon me-2"></div>
+                <strong class="me-auto">Welcome!</strong>
+                <small class="text-muted">Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Hello! Welcome to my homepage. Feel free to look around and explore my work!
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -74,6 +93,17 @@
             
             // Initial check
             handleScroll();
+            
+            // Show welcome toast
+            const toastElement = document.getElementById('welcomeToast');
+            const toast = new bootstrap.Toast(toastElement, {
+                delay: 5000
+            });
+            
+            // Show toast after a short delay
+            setTimeout(() => {
+                toast.show();
+            }, 1000);
         });
     </script>
 </body>

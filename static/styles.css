@@ -97,7 +97,7 @@ main {
 .hero-section {
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                      url('/static/main.png');
+                      url('main.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
