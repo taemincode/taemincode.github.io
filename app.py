@@ -10,10 +10,6 @@ def index():
 def about():
     return render_template("about.html")
 
-@app.route("/cs50")
-def cs50():
-    return render_template("cs50.html")
-
 @app.route("/playlist")
 def playlist():
     return render_template("playlist.html")

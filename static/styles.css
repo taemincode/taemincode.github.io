@@ -328,25 +328,6 @@ main {
     border: none;
 }
 
-/* ===== CS50 PAGE STYLES ===== */
-.cs50-link {
-    text-decoration: none;
-    color: inherit;
-    transition: color var(--transition-speed) ease;
-}
-
-.cs50-link:hover {
-    color: var(--primary-color);
-}
-
-.code-image {
-    max-width: 100%;
-    height: auto;
-    width: min(80vw, 1200px);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
 /* ===== FOOTER STYLES ===== */
 .site-footer {
     background-color: var(--light-color);
