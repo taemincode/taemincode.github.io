@@ -32,7 +32,7 @@ body {
     backdrop-filter: blur(10px);
     transition: all var(--transition-speed) ease;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    height: var(--navbar-height);
+    height: 100px;
     z-index: 1030;
 }
 
@@ -176,26 +176,45 @@ body {
     background-color: var(--primary-color) !important;
 }
 
+/* ===== BOOTSTRAP OVERRIDES ===== */
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+
 /* ===== ABOUT PAGE STYLES ===== */
 .about-container {
     width: 100%;
     min-height: 50px;
-    padding: 2rem 0 0 0;
+    padding: 3rem 0 1vw 0;
     margin-top: var(--navbar-height);
 }
 
 .about-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
 }
 
 .about-heading {
     text-align: center;
-    font-size: clamp(2rem, 5vw, 4rem);
-    color: var(--dark-color);
+    font-size: clamp(3rem, 6vw, 4rem);
+    color: black;
     margin-bottom: 2rem;
     position: relative;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .about-heading::after {
@@ -203,8 +222,9 @@ body {
     position: absolute;
     bottom: -10px;
     left: 50%;
-    width: 100%;
-    height: 4px;
+    width: 80%;
+    height: 6px;
+    padding-top: 0;
     background-color: var(--primary-color);
     transform: translateX(-50%);
     transition: width var(--transition-speed) ease;
@@ -214,10 +234,20 @@ body {
     width: 0;
 }
 
+.about-image {
+    width: 40%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    flex-shrink: 0;
+}
+
 .about-text {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--dark-color);
+    text-align: left;
+    flex: 1;
 }
 
 .about-text p {
@@ -340,7 +370,14 @@ body {
     }
     
     .about-content {
-        padding: 1rem;
+        flex-direction: column-reverse;
+        gap: 2rem;
+        max-width: 90vw;
+    }
+    
+    .about-image {
+        width: 100%;
+        align-self: center;
     }
     
     .about-text {
