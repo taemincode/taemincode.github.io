@@ -29,6 +29,10 @@ body {
     min-height: 100vh;
 }
 
+main {
+    flex: 1;
+}
+
 /* ===== NAVIGATION STYLES ===== */
 #navbar {
     background-color: rgba(255, 255, 255, 0.95);
@@ -347,7 +351,7 @@ body {
 .site-footer {
     background-color: var(--light-color);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 1rem 0;
+    padding: 2rem 0;
     margin-top: auto;
 }
 
@@ -447,6 +451,22 @@ body {
     
     .player {
         max-height: 50vh;
+    }
+    
+    .footer-content {
+        padding: 0 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .footer-name {
+        font-size: 0.8rem;
+    }
+    
+    .social-icon {
+        width: 18px;
+        height: 18px;
     }
 }
 
