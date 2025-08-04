@@ -1,111 +1,152 @@
 ---
 layout: default
+title: About Me
+description: Learn more about Taemin Park - his background, hobbies, and interests
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn more about Taemin Park - his background, hobbies, and interests">
-    <title>About - Taemin Park</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
-          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="static/styles.css">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav id="navbar" class="navbar fixed-top" role="navigation" aria-label="Main navigation">
-        <div class="container-fluid justify-content-center">
-            <ul class="navbar-nav d-flex flex-row">
-                <li class="nav-name">Taemin Park</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html" aria-label="Go to home page">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html" aria-label="Go to about page">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="playlist.html" aria-label="Go to playlist page">Playlist</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <!-- Main Content -->
-    <main role="main">
-        <!-- About Hero Section -->
-        <section class="about-container">
-            <h1 class="about-heading">About Me</h1>
+    <main role="main" class="container-fluid p-0">
+        <!-- Hero Section -->
+        <section class="hero" data-aos="fade-up">
+            <div class="hero-content">
+                <div class="hero-photo">
+                    <img src="static/about-photo.jpg" alt="Taemin Park" class="hero-image">
+                </div>
+                <h1 class="hero-title">Taemin Park</h1>
+                <div class="hero-subtitle">
+                    <span id="typed-text"></span>
+                </div>
+            </div>
         </section>
 
-        <!-- About Content -->
-        <section class="about-content">
-            <div class="about-text">
-                <p class="lead mb-4">
-                    Hi! I'm Taemin Park. I'm currently a student at <a href="https://www.wis.fem.org.pl/">Wroclaw International School</a>. I was born in 2011 in Seoul (South Korea), and when I was 5, our family immigrated to Milan (Italy). We lived there for four years before returning to Korea, where we stayed until we finally moved to Poland when I was 13 years old.
-                </p>
-                
-                <p class="lead mb-4">
-                    My programming journey began in 2024 when I took the first course of <a href="https://cs50.harvard.edu/x/2025/">CS50x</a>, which I successfully completed in 2025. Since then, I've been deepening my understanding of computer science and building a strong foundation in Machine Learning through <a href="https://www.coursera.org/specializations/machine-learning-introduction">Andrew Ng's Machine Learning Specialization</a>. I'm also experimenting with small coding projects and participating in hackathons.
-                </p>
-                
-                <p class="lead mb-4">
-                    Outside of programming, I enjoy a mix of strategy and sports. I love playing chess-both online and in school competitions—and I'm passionate about football, whether I'm playing with friends or watching matches. My favorite movie is <a href="https://www.imdb.com/title/tt16311594/?ref_=ext_shr_lnk">F1: The Movie</a>, and I enjoyed the thrill and strategy behind Formula 1 racing. One of my favorite books is <a href="https://en.wikipedia.org/wiki/The_Hunger_Games">The_Hunger_Games</a>, which I admire for its exciting plot and strong characters. I also follow <a href="https://www.youtube.com/@ryan">Ryan Trahan</a> on YouTube—his 50 States series is one of the most entertaining things I've ever watched!
-                </p>
-                <p class="lead mb-4">
-                   As an ESTJ, I'm someone who enjoys structure, planning, and leading projects with a clear purpose. My favorite subject is math, and I love solving problems and learning new concepts that help me better understand the world around me. I'm always looking for ways to grow and challenge myself—whether that's by studying, competing, or simply trying something new.
-                </p>
+        <!-- About Snapshot -->
+        <section class="about-snapshot" data-aos="fade-up" data-aos-delay="100">
+            <div class="snapshot-container">
+                <div class="snapshot-card">
+                    <div class="snapshot-grid">
+                        <!-- Left Column: Profile Info -->
+                        <div class="profile-column">
+                            <div class="profile-info">
+                                <div class="info-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Wroclaw, Poland</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>14 years old</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-school"></i>
+                                    <span>Wroclaw International School</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-globe"></i>
+                                    <span>English, Korean</span>
+                                </div>
+                            </div>
+                            <div class="tech-stack">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" title="Flask">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" title="C">
+                            </div>
+                            <div class="social-links">
+                                <a href="https://github.com/taemincode" target="_blank" rel="noopener noreferrer" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=taemin.chess@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@TaeminP" target="_blank" rel="noopener noreferrer" title="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Now Section -->
+                        <div class="now-column">
+                            <div class="now-items">
+                                <div class="now-item">
+                                    <i class="fas fa-robot"></i>
+                                    <div class="now-content">
+                                        <h4>Learning</h4>
+                                        <p>Machine Learning</p>
+                                    </div>
+                                </div>
+                                <div class="now-item">
+                                    <i class="fas fa-book-open"></i>
+                                    <div class="now-content">
+                                        <h4>Reading</h4>
+                                        <p>The Great Gatsby</p>
+                                    </div>
+                                </div>
+                                <div class="now-item">
+                                    <i class="fas fa-wrench"></i>
+                                    <div class="now-content">
+                                        <h4>Working on</h4>
+                                        <p>Hackathon AI project (Kokoro)</p>
+                                    </div>
+                                </div>
+                                <div class="now-item">
+                                    <i class="fas fa-bullseye"></i>
+                                    <div class="now-content">
+                                        <h4>Goal</h4>
+                                        <p>Complete ML specialization</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <img src="static/about-photo.jpg" 
-                 alt="Taemin Park - About Me Photo" 
-                 class="about-image"
-                 loading="lazy">
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section" data-aos="fade-up" data-aos-delay="300">
+            <h2 class="section-title">My Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>August 2025</h3>
+                        <p>First Hackathon</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>May 2025</h3>
+                        <p>Started ML Specialization</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>November 2024</h3>
+                        <p>Started CS50x</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Story Section -->
+        <section class="story-section" data-aos="fade-up" data-aos-delay="400">
+            <h2 class="section-title">About Me</h2>
+            <div class="story-content">
+                <div class="story-text">
+                    <p class="lead mb-4">
+                        Hi! I'm Taemin Park. I'm currently a student at <a href="https://www.wis.fem.org.pl/">Wroclaw International School</a>. I was born in 2011 in Seoul (South Korea), and when I was 5, our family immigrated to Milan (Italy). We lived there for four years before returning to Korea, where we stayed until we finally moved to Poland when I was 13 years old.
+                    </p>
+                    
+                    <p class="lead mb-4">
+                        My programming journey began in 2024 when I took the first course of <a href="https://cs50.harvard.edu/x/2025/">CS50x</a>, which I successfully completed in 2025. Since then, I've been deepening my understanding of computer science and building a strong foundation in Machine Learning through <a href="https://www.coursera.org/specializations/machine-learning-introduction">Andrew Ng's Machine Learning Specialization</a>. I'm also experimenting with small coding projects and participating in hackathons.
+                    </p>
+                    
+                    <p class="lead mb-4">
+                        Outside of programming, I enjoy a mix of strategy and sports. I love playing chess-both online and in school competitions—and I'm passionate about football, whether I'm playing with friends or watching matches. My favorite movie is <a href="https://www.imdb.com/title/tt16311594/?ref_=ext_shr_lnk">F1: The Movie</a>, and I enjoyed the thrill and strategy behind Formula 1 racing. One of my favorite books is <a href="https://en.wikipedia.org/wiki/The_Hunger_Games">The_Hunger_Games</a>, which I admire for its exciting plot and strong characters. I also follow <a href="https://www.youtube.com/@ryan">Ryan Trahan</a> on YouTube—his 50 States series is one of the most entertaining things I've ever watched!
+                    </p>
+                    <p class="lead mb-4">
+                       As an ESTJ, I'm someone who enjoys structure, planning, and leading projects with a clear purpose. My favorite subject is math, and I love solving problems and learning new concepts that help me better understand the world around me. I'm always looking for ways to grow and challenge myself—whether that's by studying, competing, or simply trying something new.
+                    </p>
+                </div>
+            </div>
         </section>
     </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-name">
-                <span>© 2025 Taemin Park</span>
-            </div>
-            <div class="footer-social">
-                <a href="https://github.com/taemincode" target="_blank" rel="noopener noreferrer" aria-label="Visit Taemin's GitHub profile">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    
-    <!-- Custom JavaScript -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const navbar = document.getElementById("navbar");
-            
-            function handleScroll() {
-                if (window.scrollY > 50) {
-                    navbar.classList.add("scrolled");
-                } else {
-                    navbar.classList.remove("scrolled");
-                }
-            }
-            
-            window.addEventListener("scroll", handleScroll);
-            
-            // Initial check
-            handleScroll();
-        });
-    </script>
-</body>
-</html>

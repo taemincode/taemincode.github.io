@@ -1,13 +1,65 @@
 ---
 layout: default
-title: "My Blog Posts"
+title: Blog Posts
+description: Taemin Park's blog posts about programming, technology, and personal experiences
 ---
 
-<h1>Blog Posts</h1>
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a> <small>({{ post.date | date: "%Y-%m-%d" }})</small>
-    </li>
-  {% endfor %}
-</ul>
+<!-- Main Content -->
+    <main role="main">
+        <!-- Blog Hero Section -->
+        <section class="blog-hero">
+            <div class="blog-hero-content">
+                <div class="blog-emoji">📝</div>
+                <h1 class="blog-hero-title">Taemin's Blog</h1>
+                <p class="blog-hero-subtitle">Thoughts, experiments, and projects I'm working on.</p>
+            </div>
+        </section>
+
+        <!-- Blog Posts Section -->
+        <section class="blog-posts">
+            <div class="blog-grid">
+                <!-- Featured Post -->
+                {% assign featured_post = site.posts.first %}
+                {% if featured_post %}
+                <article class="blog-card featured-post">
+                    <div class="blog-card-content">
+                        <time class="blog-date">{{ featured_post.date | date: "%B %d, %Y" }}</time>
+                        <h2 class="blog-title">{{ featured_post.title }}</h2>
+                        {% if featured_post.tags %}
+                        <div class="blog-tags">
+                            {% for tag in featured_post.tags %}
+                            <span class="blog-tag">#{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if featured_post.excerpt %}
+                        <p class="blog-excerpt">{{ featured_post.excerpt | strip_html | truncatewords: 50 }}</p>
+                        {% endif %}
+                        <a href="{{ featured_post.url }}" class="blog-read-more">Read More →</a>
+                    </div>
+                </article>
+                {% endif %}
+
+                <!-- Regular Posts -->
+                {% for post in site.posts offset:1 %}
+                <article class="blog-card">
+                    <div class="blog-card-content">
+                        <time class="blog-date">{{ post.date | date: "%B %d, %Y" }}</time>
+                        <h2 class="blog-title">{{ post.title }}</h2>
+                        {% if post.tags %}
+                        <div class="blog-tags">
+                            {% for tag in post.tags %}
+                            <span class="blog-tag">#{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if post.excerpt %}
+                        <p class="blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+                        {% endif %}
+                        <a href="{{ post.url }}" class="blog-read-more">Read More →</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
