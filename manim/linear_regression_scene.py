@@ -1,40 +1,34 @@
 from manim import *
 
-class LinearRegressionNoLaTeX(Scene):
+class LinearRegressionExample(Scene):
     def construct(self):
-        # Title using plain text
-        title = Text("Linear Regression", font_size=36).to_edge(UP)
+        # Title
+        title = Text("Linear Regression", font_size=42)
+        title.to_edge(UP)
 
-        # Plain coordinate grid using NumberPlane (no labels)
-        grid = NumberPlane(
+        # Axes
+        axes = Axes(
             x_range=[0, 7, 1],
             y_range=[0, 8, 1],
             x_length=7,
-            y_length=4,
-            background_line_style={"stroke_opacity": 0.4}
+            y_length=5,
+            axis_config={"include_numbers": True},
         ).to_edge(DOWN)
 
-        # Manually add axis labels using Text (not MathTex)
-        x_label = Text("x", font_size=24).next_to(grid.x_axis, RIGHT)
-        y_label = Text("y", font_size=24).next_to(grid.y_axis, UP)
+        # Labels
+        x_label = axes.get_x_axis_label(MathTex("x"), edge=RIGHT, direction=RIGHT)
+        y_label = axes.get_y_axis_label(MathTex("y"), edge=UP, direction=UP)
 
-        # Data points
-        points = [
-            (1, 1.5),
-            (2, 2),
-            (3, 2.5),
-            (4, 4),
-            (5, 4.5),
-            (6, 5.5)
-        ]
-        dots = [Dot(grid.c2p(x, y), color=YELLOW) for x, y in points]
+        # Sample data points
+        data = [(1, 1.5), (2, 2.1), (3, 2.8), (4, 4.2), (5, 4.9), (6, 5.7)]
+        dots = [Dot(axes.c2p(x, y), color=WHITE) for x, y in data]
 
         # Regression line: y = 0.8x + 0.5
-        line = Line(
-            start=grid.c2p(0, 0.5),
-            end=grid.c2p(7, 6.1),
-            color=BLUE
-        )
+        regression_line = axes.plot(lambda x: 0.8 * x + 0.5, color=BLUE)
 
-        # Add all to scene
-        self.add(title, grid, x_label, y_label, *dots, line)
+        # Equation label
+        equation = MathTex("y = 0.8x + 0.5", font_size=36)
+        equation.next_to(axes.c2p(4.5, 4.1), RIGHT)
+
+        # Add to scene
+        self.add(title, axes, x_label, y_label, regression_line, equation, *dots)

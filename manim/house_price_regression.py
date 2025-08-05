@@ -29,7 +29,7 @@ class HousePriceRegression(Scene):
             (220, 600_000),
             (250, 660_000)
         ]
-        dots = [Dot(axes.c2p(x, y), color=YELLOW) for x, y in house_data]
+        dots = [Dot(axes.c2p(x, y), color=WHITE) for x, y in house_data]
 
         # Regression line: y = 2300x + 100000
         regression_line = axes.plot(lambda x: 2300 * x + 100_000, color=BLUE)
