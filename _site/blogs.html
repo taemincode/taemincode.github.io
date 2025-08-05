@@ -20,6 +20,18 @@
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/about.css">
     <link rel="stylesheet" href="/static/post.css">
+
+    <!-- MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -55,6 +67,25 @@
                 
                 <article class="blog-card featured-post">
                     <div class="blog-card-content">
+                        <time class="blog-date">August 05, 2025</time>
+                        <h2 class="blog-title">Linear Regression</h2>
+                        
+                        <div class="blog-tags">
+                            
+                        </div>
+                        
+                        
+                        <p class="blog-excerpt">📌 Introduction Linear regression is the process of finding a line in a graph that best fits the data. Due to it’s basicness (I don’t know if this is even a word - it is), linear regression is one of the first things that people learn when starting their machine...</p>
+                        
+                        <a href="/ml/2025/08/05/linear-regression.html" class="blog-read-more">Read More →</a>
+                    </div>
+                </article>
+                
+
+                <!-- Regular Posts -->
+                
+                <article class="blog-card">
+                    <div class="blog-card-content">
                         <time class="blog-date">August 04, 2025</time>
                         <h2 class="blog-title">Welcome to My Blog</h2>
                         
@@ -69,9 +100,6 @@
                         <a href="/general/2025/08/04/welcome-to-my-blog.html" class="blog-read-more">Read More →</a>
                     </div>
                 </article>
-                
-
-                <!-- Regular Posts -->
                 
             </div>
         </section>

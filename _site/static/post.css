@@ -17,6 +17,30 @@
     line-height: 1.2;
 }
 
+/* Alert Styles */
+.markdown-alert {
+    padding: 1rem;
+    margin: 16px;
+    border-left: .25em solid;
+    border-radius: 4px;
+}
+
+.markdown-alert-note {
+    background-color: #f6f8fa;
+    border-left-color: #0969da;
+}
+
+.markdown-alert-title {
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.markdown-alert-title::before {
+    content: "ℹ️";
+    margin-right: 8px;
+}
+
 .post-metadata {
     display: flex;
     align-items: center;
@@ -112,7 +136,8 @@
 }
 
 .markdown blockquote {
-    margin: 2rem 0;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
     padding: 1rem 1.5rem;
     border-left: 4px solid var(--primary-color);
     background-color: rgba(0, 123, 255, 0.05);
@@ -147,7 +172,7 @@
     max-width: 100%;
     height: auto;
     border-radius: 0.5rem;
-    margin: 1.5rem 0;
+    margin: 0.5rem 0;
 }
 
 /* Post Navigation */

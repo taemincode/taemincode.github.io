@@ -20,6 +20,18 @@
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/about.css">
     <link rel="stylesheet" href="/static/post.css">
+
+    <!-- MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -76,6 +88,11 @@
     <div class="post-footer">
         <div class="post-nav">
             
+            
+            <a class="post-nav-link next" href="/ml/2025/08/05/linear-regression.html">
+                <span class="post-nav-label">Next Post</span>
+                <span class="post-nav-title">Linear Regression</span>
+            </a>
             
         </div>
     </div>
