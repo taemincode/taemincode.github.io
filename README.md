@@ -1,168 +1,164 @@
-# Taemin Park's Homepage
+# Taemin Park's Personal Website
 
-A personal homepage built with HTML, CSS, and JavaScript, optimized for GitHub Pages deployment.
+This repository contains the source code for my personal website and blog, hosted at [taemincode.github.io](https://taemincode.github.io).
 
-## 🚀 Live Site
+## 🚀 Features
 
-Visit the live site at: `https://taemincode.github.io/homepage/`
+- Personal portfolio and blog
+- Responsive design
+- Math equation support using MathJax
+- Blog posts with categories
+- GitHub-style alert boxes
+- Image support
+- Code syntax highlighting
+- Mathematical animations using Manim
+- Dynamic visualization of machine learning concepts
+
+## 💻 Technology Stack
+
+- **Static Site Generator**: Jekyll
+- **Styling**: Custom CSS
+- **Mathematics**: MathJax
+- **Animations**: Manim (Mathematical Animation Engine)
+- **Hosting**: GitHub Pages
+
+## 🎬 Manim Animations
+
+This blog uses Manim (Mathematical Animation Engine) to create beautiful animations for explaining mathematical and machine learning concepts. The animations are pre-rendered and included in the blog posts.
+
+### Available Animations
+
+- `linear_regression_scene.py`: Visualizes basic linear regression concepts
+- `gradient_descent_cost_surface.py`: Demonstrates gradient descent optimization
+- `house_price_regression.py`: Shows house price prediction using linear regression
+- `learning_rate_comparison.py`: Compares different learning rates in optimization
+
+### Running Animations Locally
+
+1. Install Manim dependencies:
+   ```bash
+   brew install cairo pkg-config pango ffmpeg
+   pip install manim
+   ```
+
+2. Generate an animation:
+   ```bash
+   manim manim/linear_regression_scene.py LinearRegressionScene
+   ```
+
+The generated animations will be saved in the `media/` directory.
+
+## 💻 Technology Stack
+
+- **Static Site Generator**: Jekyll
+- **Styling**: Custom CSS
+- **Mathematics**: MathJax
+- **Hosting**: GitHub Pages
 
 ## 📁 Project Structure
 
 ```
-/
-├── index.html          # Homepage
-├── about.html          # About page
-├── playlist.html       # Music playlist page
-├── static/            
-│   ├── styles.css      # Custom styles
-│   ├── main.png        # Hero background image
-│   └── about-photo.jpg # About page photo
-├── app.py             # Original Flask app (for local development)
-├── templates/         # Original Flask templates (for reference)
-└── README.md          # This file
+taemincode.github.io/
+├── _config.yml          # Jekyll configuration
+├── _layouts/            # HTML layouts
+│   ├── default.html     # Base layout
+│   └── post.html        # Blog post layout
+├── _posts/             # Blog posts
+│   ├── 2025-08-04-welcome-to-my-blog.md
+│   └── 2025-08-05-linear-regression.md
+├── _site/              # Generated site files
+├── assets/             # Static assets
+│   └── images/
+│       └── posts/      # Blog post images
+├── blogs.html          # Blog listing page
+├── manim/              # Manim animation scripts
+│   ├── gradient_descent_cost_surface.py
+│   ├── house_price_regression.py
+│   ├── learning_rate_comparison.py
+│   └── linear_regression_scene.py
+├── media/              # Generated media files
+│   ├── images/         # Generated images from Manim
+│   ├── Tex/           # Generated LaTeX files
+│   └── videos/         # Generated animation videos
+├── static/             # CSS and other static files
+│   ├── about.css       # About page styles
+│   ├── main.png        # Main header image
+│   ├── post.css        # Blog post styles
+│   └── styles.css      # Main stylesheet
+├── Gemfile            # Ruby dependencies
+├── Gemfile.lock       # Ruby dependencies lock file
+└── index.html         # Homepage
 ```
 
-## 🛠️ GitHub Pages Setup
+## 🛠 Local Development
 
-This project is configured for GitHub Pages deployment. The static HTML files are in the root directory for direct serving.
-
-### Deployment Steps:
-
-1. **Push to GitHub:**
+1. Install Ruby and Bundler if you haven't already:
    ```bash
-   git add .
-   git commit -m "Setup for GitHub Pages"
-   git push origin main
+   brew install ruby
+   gem install bundler
    ```
 
-2. **Enable GitHub Pages:**
-   - Go to your repository settings
-   - Scroll to "Pages" section
-   - Source: Deploy from a branch
-   - Branch: `main`
-   - Folder: `/ (root)`
-   - Click "Save"
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/taemincode/taemincode.github.io.git
+   cd taemincode.github.io
+   ```
 
-3. **Access your site:**
-   - Your site will be available at: `https://[username].github.io/[repository-name]/`
-   - For example: `https://taemincode.github.io/homepage/`
+3. Install dependencies:
+   ```bash
+   bundle install
+   ```
 
-## 🔧 Local Development & Testing
+4. Run the development server:
+   ```bash
+   bundle exec jekyll serve
+   ```
 
-### Option 1: Simple File Opening (Quick Test)
-For quick testing, simply double-click `index.html` or open it in your browser:
-```bash
-# On macOS
-open index.html
+5. Open your browser and visit `http://127.0.0.1:4000`
 
-# On Windows
-start index.html
+## 📝 Creating New Posts
 
-# On Linux
-xdg-open index.html
+1. Create a new markdown file in `_posts/` with the format:
+   ```
+   YYYY-MM-DD-title.md
+   ```
+
+2. Add the front matter:
+   ```yaml
+   ---
+   layout: post
+   title: "Your Title"
+   date: YYYY-MM-DD
+   categories: [category1, category2]
+   ---
+   ```
+
+3. Write your content using Markdown
+
+### Special Features
+
+#### Math Equations
+Use single `$` for inline math and double `$$` for display math:
+```markdown
+Inline: $y = mx + b$
+Display: $$y = mx + b$$
 ```
 
-### Option 2: Local HTTP Server (Recommended)
-Use a local server to properly test all features (recommended for accurate testing):
+#### Alert Boxes
+Use GitHub-style alerts:
+```markdown
+> [!NOTE]
+> This is a note
 
-```bash
-# Using Python (most common)
-python3 -m http.server 8000
-# Then visit: http://localhost:8000
-
-# Using Python 2 (if needed)
-python -m SimpleHTTPServer 8000
-
-# Using Node.js
-npx serve .
-# Then visit: http://localhost:3000
-
-# Using PHP
-php -S localhost:8000
+> [!TIP]
+> This is a tip
 ```
 
-### Option 3: Live Server Extension (Best for Development)
-**VS Code Live Server** - Automatic browser refresh when you save files:
-
-#### Installation:
-1. Open VS Code
-2. Go to Extensions (Ctrl+Shift+X / Cmd+Shift+X)
-3. Search for "Live Server" by Ritwick Dey
-4. Click "Install"
-
-#### Usage:
-**Method 1 - Right-click:**
-1. Right-click on `index.html` in VS Code
-2. Select "Open with Live Server"
-3. Your browser will automatically open to `http://127.0.0.1:5500`
-
-**Method 2 - Status Bar:**
-1. Open any HTML file in VS Code
-2. Click "Go Live" in the bottom status bar
-3. Browser opens automatically
-
-**Method 3 - Command Palette:**
-1. Press `Ctrl+Shift+P` (Cmd+Shift+P on Mac)
-2. Type "Live Server: Open with Live Server"
-3. Press Enter
-
-#### Benefits:
-- ✅ **Auto-refresh:** Browser updates instantly when you save changes
-- ✅ **Easy setup:** One-click to start
-- ✅ **Multiple devices:** Access from phone/tablet using your local IP
-- ✅ **Port management:** Automatically finds available ports
-
-#### To Stop Live Server:
-- Click "Port: 5500" in the status bar, or
-- Right-click in editor → "Stop Live Server"
-
-### ❌ No More Flask Commands
-Since this is now a static site, you **don't need** these anymore:
-```bash
-# ❌ Don't use these commands anymore:
-flask run
-python app.py
-```
-
-## 📱 Features
-
-- **Responsive Design:** Works on desktop, tablet, and mobile
-- **Modern UI:** Clean, professional design with hover effects
-- **Interactive Elements:** Navigation underlines, toast notifications
-- **Social Integration:** GitHub profile link in footer
-- **Performance Optimized:** Lazy loading images, efficient CSS
-
-## 🎨 Customization
-
-### Updating Content:
-- **Homepage:** Edit `index.html`
-- **About Page:** Edit `about.html` 
-- **Playlist:** Edit `playlist.html`
-- **Styles:** Edit `static/styles.css`
-
-### Adding New Pages:
-1. Create new HTML file in root directory
-2. Follow the same structure as existing pages
-3. Update navigation links in all pages
-4. Add any new styles to `static/styles.css`
-
-## 🌟 Technologies Used
-
-- **HTML5:** Semantic markup
-- **CSS3:** Custom properties, Flexbox, Grid
-- **JavaScript:** Vanilla JS for interactions
-- **Bootstrap 5.3.0:** UI components and responsive grid
-- **GitHub Pages:** Static site hosting
-
-## 📄 License
+## 📜 License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 📞 Contact
+## 👤 Author
 
-- **GitHub:** [@taemincode](https://github.com/taemincode)
-- **Website:** [taemincode.github.io/homepage](https://taemincode.github.io/homepage/)
-
----
-
-*Built with ❤️ by Taemin Park*
+- **Taemin Park**
+- GitHub: [@taemincode](https://github.com/taemincode)
