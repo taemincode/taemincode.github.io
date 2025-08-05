@@ -11,22 +11,21 @@ This repository contains the source code for my personal website and blog, hoste
 - GitHub-style alert boxes
 - Image support
 - Code syntax highlighting
-- Mathematical animations using Manim
-- Dynamic visualization of machine learning concepts
+- Dynamic visualization of machine learning concepts using Manim
 
 ## 💻 Technology Stack
 
 - **Static Site Generator**: Jekyll
 - **Styling**: Custom CSS
 - **Mathematics**: MathJax
-- **Animations**: Manim (Mathematical Animation Engine)
+- **Visualizations**: Manim (Mathematical Animation Engine)
 - **Hosting**: GitHub Pages
 
 ## 🎬 Manim Animations
 
 The blog uses Manim (Mathematical Animation Engine) to create beautiful images for explaining mathematical and machine learning concepts. The images are pre-rendered and included in the blog posts.
 
-### Running Animations Locally
+### Running Manim Locally
 
 1. Install Manim dependencies:
    ```bash
