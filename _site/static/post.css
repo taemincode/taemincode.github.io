@@ -77,7 +77,7 @@
     background-color: var(--white);
     border-radius: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
+    padding: 0.1px 2rem 2rem;
 }
 
 /* Markdown Content Styles */
@@ -101,12 +101,11 @@
 
 .markdown h3 {
     font-size: 1.5rem;
-    margin: 1.5rem 0 1rem;
+    margin: 3rem 0 0.5rem;
     color: var(--dark-color);
 }
 
 .markdown p {
-    margin-bottom: 1.5rem;
     color: #444;
 }
 
