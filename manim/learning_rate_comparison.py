@@ -8,7 +8,7 @@ class LearningRateComparison(Scene):
 
         # Axes
         small_axes = Axes(x_range=[-3, 3], y_range=[0, 10], x_length=5, y_length=4).shift(LEFT * 3)
-        large_axes = Axes(x_range=[-3, 3], y_range=[0, 25], x_length=5, y_length=4).shift(RIGHT * 3)
+        large_axes = Axes(x_range=[-3, 3], y_range=[0, 10], x_length=5, y_length=4).shift(RIGHT * 3)
 
         # Loss function
         loss_func = lambda x: x**2 + 1
