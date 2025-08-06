@@ -11,29 +11,21 @@ This repository contains the source code for my personal website and blog, hoste
 - GitHub-style alert boxes
 - Image support
 - Code syntax highlighting
-- Mathematical animations using Manim
-- Dynamic visualization of machine learning concepts
+- Dynamic visualization of machine learning concepts using Manim
 
 ## 💻 Technology Stack
 
 - **Static Site Generator**: Jekyll
 - **Styling**: Custom CSS
 - **Mathematics**: MathJax
-- **Animations**: Manim (Mathematical Animation Engine)
+- **Visualizations**: Manim (Mathematical Animation Engine)
 - **Hosting**: GitHub Pages
 
 ## 🎬 Manim Animations
 
-This blog uses Manim (Mathematical Animation Engine) to create beautiful animations for explaining mathematical and machine learning concepts. The animations are pre-rendered and included in the blog posts.
+The blog uses Manim (Mathematical Animation Engine) to create beautiful images for explaining mathematical and machine learning concepts. The images are pre-rendered and included in the blog posts.
 
-### Available Animations
-
-- `linear_regression_scene.py`: Visualizes basic linear regression concepts
-- `gradient_descent_cost_surface.py`: Demonstrates gradient descent optimization
-- `house_price_regression.py`: Shows house price prediction using linear regression
-- `learning_rate_comparison.py`: Compares different learning rates in optimization
-
-### Running Animations Locally
+### Running Manim Locally
 
 1. Install Manim dependencies:
    ```bash
@@ -43,7 +35,7 @@ This blog uses Manim (Mathematical Animation Engine) to create beautiful animati
 
 2. Generate an animation:
    ```bash
-   manim manim/linear_regression_scene.py LinearRegressionScene
+   manim -pqh manim/linear_regression_scene.py LinearRegressionExample --format=png
    ```
 
 The generated animations will be saved in the `media/` directory.
@@ -71,11 +63,7 @@ taemincode.github.io/
 │   └── images/
 │       └── posts/      # Blog post images
 ├── blogs.html          # Blog listing page
-├── manim/              # Manim animation scripts
-│   ├── gradient_descent_cost_surface.py
-│   ├── house_price_regression.py
-│   ├── learning_rate_comparison.py
-│   └── linear_regression_scene.py
+├── manim/              # Manim scripts
 ├── media/              # Generated media files
 │   ├── images/         # Generated images from Manim
 │   ├── Tex/           # Generated LaTeX files
