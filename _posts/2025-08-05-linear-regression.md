@@ -17,7 +17,7 @@ In this equation, $w$ is the slope (how steep the line is), and $b$ is the inter
 ### 📊 What does It Actually Do?
 By fitting a line which is close to all data, we would be able to predict the $y$ values of any input $x$. Let's use house prices as an example 🏠 (it's one of the most common examples).
 ![House price prediction](/assets/images/posts/2025/linear-regression/house_price_prediction.png)
-In this graph, the yellow dots represent the data (e.g., a 180 m² house costing 500k), and by linear regression, we can find the blue line that best fits the data. Since we have this line, we can now predict house prices by finding the corresponding values of the line. For example, let's say that we want to predict the price of a 200 m² house. Because the equation of the line is:<br>
+In this graph, the white dots represent the data (e.g., a 180 m² house costing 500k), and by linear regression, we can find the blue line that best fits the data. Since we have this line, we can now predict house prices by finding the corresponding values of the line. For example, let's say that we want to predict the price of a 200 m² house. Because the equation of the line is:<br>
 $\hat{y} = 2300x + 100,000$<br>
 
 > ℹ️ Note:
