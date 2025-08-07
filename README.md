@@ -1,117 +1,79 @@
 # Taemin Park's Personal Website
 
-This repository contains the source code for my personal website and blog, hosted at [taemincode.github.io](https://taemincode.github.io).
+Source code for my personal website and blog, hosted at [taemincode.github.io](https://taemincode.github.io). The site is built with [Jekyll](https://jekyllrb.com/), styled with custom CSS, and enhanced with MathJax and Manim-generated visuals for mathematical content.
 
 ## 🚀 Features
 
-- Personal portfolio and blog
-- Responsive design
-- Math equation support using MathJax
-- Blog posts with categories
-- GitHub-style alert boxes
-- Image support
-- Code syntax highlighting
-- Dynamic visualization of machine learning concepts using Manim
+- Personal portfolio and blog posts
+- Responsive design with Bootstrap and custom styles
+- Math equation rendering via MathJax
+- GitHub-style alert boxes and syntax highlighting
+- Dynamic visualizations of machine learning concepts using Manim
+- SEO metadata and RSS feed support
 
-## 💻 Technology Stack
+## 🛠 Tech Stack
 
-- **Static Site Generator**: Jekyll
-- **Styling**: Custom CSS
-- **Mathematics**: MathJax
-- **Visualizations**: Manim (Mathematical Animation Engine)
-- **Hosting**: GitHub Pages
-
-## 🎬 Manim Animations
-
-The blog uses Manim (Mathematical Animation Engine) to create beautiful images for explaining mathematical and machine learning concepts. The images are pre-rendered and included in the blog posts.
-
-### Running Manim Locally
-
-1. Install Manim dependencies:
-   ```bash
-   brew install cairo pkg-config pango ffmpeg
-   pip install manim
-   ```
-
-2. Generate an animation:
-   ```bash
-   manim -pqh manim/linear_regression_scene.py LinearRegressionExample --format=png
-   ```
-
-The generated animations will be saved in the `media/` directory.
-
-## 💻 Technology Stack
-
-- **Static Site Generator**: Jekyll
-- **Styling**: Custom CSS
-- **Mathematics**: MathJax
-- **Hosting**: GitHub Pages
+- **Static Site Generator:** Jekyll
+- **Styling:** Custom CSS, Bootstrap, AOS, Font Awesome
+- **Mathematics:** MathJax
+- **Visualizations:** Manim (Mathematical Animation Engine)
+- **Hosting:** GitHub Pages
 
 ## 📁 Project Structure
 
 ```
 taemincode.github.io/
-├── _config.yml          # Jekyll configuration
+├── _config.yml          # Site configuration
 ├── _layouts/            # HTML layouts
 │   ├── default.html     # Base layout
 │   └── post.html        # Blog post layout
-├── _posts/             # Blog posts
-│   ├── 2025-08-04-welcome-to-my-blog.md
-│   └── 2025-08-05-linear-regression.md
-├── _site/              # Generated site files
-├── assets/             # Static assets
-│   └── images/
-│       └── posts/      # Blog post images
-├── blogs.html          # Blog listing page
-├── manim/              # Manim scripts
-├── media/              # Generated media files
-│   ├── images/         # Generated images from Manim
-│   ├── Tex/           # Generated LaTeX files
-│   └── videos/         # Generated animation videos
-├── static/             # CSS and other static files
-│   ├── about.css       # About page styles
-│   ├── main.png        # Main header image
-│   ├── post.css        # Blog post styles
-│   └── styles.css      # Main stylesheet
-├── Gemfile            # Ruby dependencies
-├── Gemfile.lock       # Ruby dependencies lock file
-└── index.html         # Homepage
+├── _posts/              # Blog posts (Markdown)
+├── assets/
+│   └── images/posts     # Images used in posts
+├── blogs.html           # Blog listing page
+├── index.html           # Homepage
+├── manim/               # Manim animation scripts
+├── media/               # Generated media from Manim
+├── static/              # CSS and other static assets
+│   ├── about.css
+│   ├── post.css
+│   └── styles.css       # Main stylesheet
+├── Gemfile              # Ruby dependencies
+└── Gemfile.lock         # Dependency lock file
 ```
 
-## 🛠 Local Development
+## 🧪 Local Development
 
-1. Install Ruby and Bundler if you haven't already:
-   ```bash
-   brew install ruby
-   gem install bundler
-   ```
-
-2. Clone the repository:
-   ```bash
-   git clone https://github.com/taemincode/taemincode.github.io.git
-   cd taemincode.github.io
-   ```
-
-3. Install dependencies:
+1. Install Ruby and Bundler.
+2. Install dependencies:
    ```bash
    bundle install
    ```
-
-4. Run the development server:
+3. Run the development server:
    ```bash
    bundle exec jekyll serve
    ```
+4. Visit `http://127.0.0.1:4000` in your browser.
 
-5. Open your browser and visit `http://127.0.0.1:4000`
+## 🎬 Manim Animations
 
-## 📝 Creating New Posts
+Manim scripts in the `manim/` directory generate images and animations included in blog posts.
 
-1. Create a new markdown file in `_posts/` with the format:
+1. Install Manim and its dependencies:
+   ```bash
+   brew install cairo pkg-config pango ffmpeg
+   pip install manim
    ```
-   YYYY-MM-DD-title.md
+2. Render an animation:
+   ```bash
+   manim -pqh manim/linear_regression_scene.py LinearRegressionExample --format=png
    ```
+   Output files are saved in the `media/` directory.
 
-2. Add the front matter:
+## 📝 Writing Posts
+
+1. Add a new Markdown file in `_posts/` with the format `YYYY-MM-DD-title.md`.
+2. Include front matter:
    ```yaml
    ---
    layout: post
@@ -120,27 +82,11 @@ taemincode.github.io/
    categories: [category1, category2]
    ---
    ```
-
-3. Write your content using Markdown
-
-### Special Features
-
-#### Math Equations
-Use single `$` for inline math and double `$$` for display math:
-```markdown
-Inline: $y = mx + b$
-Display: $$y = mx + b$$
-```
-
-#### Alert Boxes
-Use GitHub-style alerts:
-```markdown
-> [!NOTE]
-> This is a note
-
-> [!TIP]
-> This is a tip
-```
+3. Write your content using Markdown. Use `$` for inline math and `$$` for display math. GitHub-style alert boxes are also supported:
+   ```markdown
+   > [!NOTE]
+   > This is a note.
+   ```
 
 ## 📜 License
 
