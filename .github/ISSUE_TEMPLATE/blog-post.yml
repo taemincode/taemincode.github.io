@@ -1,0 +1,44 @@
+name: Blog Post
+description: Plan and track a new blog post.
+title: "Post: "
+labels: ["blog"]
+assignees: []
+
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: What is the topic of this blog post?
+      placeholder: e.g. Logistic Regression
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Briefly describe what this post will cover and why it matters.
+      placeholder: A short explanation of the post’s purpose
+    validations:
+      required: true
+
+  - type: textarea
+    id: outline
+    attributes:
+      label: Outline
+      description: Copy and paste the outline for your blog post here.
+      placeholder: Include main sections and bullet points
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Steps to complete this blog post
+      options:
+        - label: Create branch from this issue
+        - label: Draft content
+        - label: Add diagrams/plots
+        - label: Proofread & edit
+        - label: Open PR with "Closes #<issue-number>"
+        - label: Merge & publish
