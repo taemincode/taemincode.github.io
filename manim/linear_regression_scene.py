@@ -32,3 +32,6 @@ class LinearRegressionExample(Scene):
 
         # Add to scene
         self.add(title, axes, x_label, y_label, regression_line, equation, *dots)
+
+        # Hold on final frame
+        self.wait()
