@@ -15,20 +15,13 @@ body:
       required: true
 
   - type: textarea
-    id: summary
-    attributes:
-      label: Summary
-      description: Briefly describe what this post will cover and why it matters.
-      placeholder: A short explanation of the post’s purpose
-    validations:
-      required: true
-
-  - type: textarea
     id: outline
     attributes:
       label: Outline
       description: Copy and paste the outline for your blog post here.
       placeholder: Include main sections and bullet points
+    validations:
+      required: true
 
   - type: checkboxes
     id: checklist
