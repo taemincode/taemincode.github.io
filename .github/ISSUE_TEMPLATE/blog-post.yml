@@ -33,5 +33,5 @@ body:
         - label: Draft content
         - label: Add diagrams/plots
         - label: Proofread & edit
-        - label: Open PR with "Closes #<issue-number>"
+        - label: Open PR
         - label: Merge & publish
