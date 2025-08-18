@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Linear Regression"
-date: 2025-08-06
+title: "Logistic Regression"
+date: 2025-08-16
 categories: ML
 ---
 
