@@ -5,7 +5,8 @@ date: 2025-08-04
 categories: general
 ---
 
-Hello world! This is first blog post. I've been thinking about writing blogs for months now, and I'm glad to finally start my blogging journey 😄
+### Hello world
+This is first blog post! I've been thinking about writing blogs for months now, and I'm glad to finally start my blogging journey 😄
 
 ### What to Expect
 
