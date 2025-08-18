@@ -80,6 +80,31 @@
     padding: 0.1px 2rem 2rem;
 }
 
+/* MathJax Responsive Handling (scoped) */
+.post-content mjx-container[jax="CHTML"] {
+    max-width: 100% !important;
+}
+
+.post-content mjx-container[jax="CHTML"][display="true"] {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+    margin: 1rem 0;
+}
+
+/* Ensure long inline expressions wrap instead of overflowing */
+.post-content mjx-container[jax="CHTML"][display="false"] mjx-math {
+    white-space: normal !important;
+}
+
+/* Prevent very large math from exceeding container on small screens */
+@media (max-width: 768px) {
+    .post-content mjx-container[jax="CHTML"][display="true"] {
+        font-size: 0.95rem;
+    }
+}
+
 /* Markdown Content Styles */
 .markdown {
     color: var(--dark-color);
