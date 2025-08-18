@@ -1,6 +1,6 @@
 from manim import *
 
-class LinearRegressionExample(Scene):
+class LinearRegression(Scene):
     def construct(self):
         # Title
         title = Text("Linear Regression", font_size=42)

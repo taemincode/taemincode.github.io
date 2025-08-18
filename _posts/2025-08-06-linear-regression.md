@@ -8,7 +8,7 @@ categories: ML
 ### 📌 Introduction
 Linear regression is the process of finding a line in a graph that best fits the data. It is a type of `supervised learning`, meaning it uses labeled data (datasets that already include the correct answers). It's one of the first things that people learn when starting their machine learning journey.
 
-### 📈 The Big Idea
+### 🧠 The Big Idea
 ![Linear regression example](/assets/images/posts/2025/linear-regression/linear_regression.png)<br>
 Just as I mentioned above, you only have to think of linear regression as fitting the best line to the data! You probably know that the equation of a line is:<br>
 $y = wx + b$<br>
@@ -118,7 +118,7 @@ plt.title("Linear Regression from Scratch")
 plt.show()
 ```
 Output:<br>
-![Gradient descent plot](/assets/images/posts/2025/linear-regression/gradient_descent_plot.png)<br>
+![Linear regression from scratch plot](/assets/images/posts/2025/linear-regression/linear_regression_from_scratch_plot.png)<br>
 🎉 We've just built a working linear regression model without using any machine learning libraries! (just math and python)🎉
 
 ### 📚 Linear vs. Other Models
