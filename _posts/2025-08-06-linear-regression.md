@@ -118,7 +118,7 @@ plt.title("Linear Regression from Scratch")
 plt.show()
 ```
 Output:<br>
-![Gradient descent plot](/assets/images/posts/2025/linear-regression/gradient_descent_plot.png)<br>
+![Linear regression from scratch plot](/assets/images/posts/2025/linear-regression/linear_regression_from_scratch_plot.png)<br>
 🎉 We've just built a working linear regression model without using any machine learning libraries! (just math and python)🎉
 
 ### 📚 Linear vs. Other Models

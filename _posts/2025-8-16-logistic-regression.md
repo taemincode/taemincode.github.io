@@ -60,3 +60,120 @@ $$
 J(w, b) = -\frac{1}{m} \sum_{i=1}^{m} \Big[ y^{(i)} \log\big(\hat{y}^{(i)}\big) + \big(1 - y^{(i)}\big) \log\big(1 - \hat{y}^{(i)}\big) \Big]
 $$<br><br>
 Since we have the cost function, we can now use gradient decsent to minimize the cost (I'm thinking about writting a blog post about explaining the details of gradient descent - like backpropagation - in the future) and find the best fitting S-shaped curve.
+
+### 🛠️ Building It From Scratch
+Let's build a logistic regression model for a simple binary task where it predicts if a student passess (1) or failes (0) a test based on hours spent studying.<br>
+We'll create data so that studying more hours will increase the probability of passing:
+```python
+import numpy as np
+
+# Reproducibility
+np.random.seed(0)
+
+# Toy data: hours studied between 0 and 10
+n = 200
+X = np.random.uniform(0, 10, size=(n, 1))
+
+# True (hidden) relationship used to generate labels
+# pass_prob = sigmoid(w_true * hours + b_true)
+w_true = 0.8
+b_true = -4.0
+
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+pass_prob = sigmoid(w_true * X + b_true)
+
+# Sample pass/fail labels from the probability
+y = (np.random.rand(n, 1) < pass_prob).astype(np.float64)
+```
+Now, let's define the model, the cost function, and computing the gradients:
+```python
+def predict_proba(X, w, b):
+    return 1 / (1 + np.exp(-(w * X + b)))
+
+def compute_loss(X, y, w, b, eps=1e-12):
+    p = predict_proba(X, w, b)
+    # Binary cross-entropy
+    return -np.mean(y * np.log(p + eps) + (1 - y) * np.log(1 - p + eps))
+
+def compute_gradients(X, y, w, b):
+    n = len(X)
+    p = predict_proba(X, w, b)
+    error = p - y
+    dw = (1 / n) * np.sum(error * X)
+    db = (1 / n) * np.sum(error)
+    return dw, db
+```
+Let's now tarin the model with gradient descent:
+```python
+# Initialize parameters
+w = 0.0
+b = 0.0
+
+learning_rate = 0.1
+epochs = 2000
+
+for epoch in range(epochs):
+    dw, db = compute_gradients(X, y, w, b)
+    w -= learning_rate * dw
+    b -= learning_rate * db
+
+    if epoch % 200 == 0:
+        loss = compute_loss(X, y, w, b)
+        print(f"Epoch {epoch}: Loss = {loss:.4f}")
+
+# Learned parameters
+print(f"Learned parameters: w = {w:.2f}, b = {b:.2f}")
+
+# Accuracy at 0.5 threshold
+probs = predict_proba(X, w, b)
+y_pred = (probs >= 0.5).astype(np.float64)
+acc = (y_pred == y).mean()
+print(f"Training accuracy: {acc*100:.1f}%")
+```
+Output:
+```bash
+Epoch 0: Loss = 0.6160
+Epoch 200: Loss = 0.4145
+Epoch 400: Loss = 0.3759
+Epoch 600: Loss = 0.3630
+Epoch 800: Loss = 0.3574
+Epoch 1000: Loss = 0.3547
+Epoch 1200: Loss = 0.3533
+Epoch 1400: Loss = 0.3525
+Epoch 1600: Loss = 0.3520
+Epoch 1800: Loss = 0.3518
+Learned parameters: w = 0.88, b = -4.30
+Training accuracy: 85.5%
+```
+Now let's plot the learned sigmoid curve:
+```python
+import matplotlib.pyplot as plt
+
+# Sort for a smooth curve
+idx = np.argsort(X[:, 0])
+X_sorted = X[idx]
+probs_sorted = predict_proba(X_sorted, w, b)
+
+# Jitter y for visualization
+jitter = (np.random.rand(len(y), 1) - 0.5) * 0.05
+
+plt.scatter(X, y + jitter, label="Data (pass=1, fail=0)", alpha=0.6)
+plt.plot(X_sorted, probs_sorted, label="Learned probability (sigmoid)")
+plt.xlabel("Hours studied")
+plt.ylabel("P(pass | hours)")
+plt.title("Logistic Regression from Scratch")
+plt.legend()
+plt.show()
+```
+Output:<br>
+![Gradient descent plot](/assets/images/posts/2025/logistic-regression/logistic_regression_from_scratch_plot.png)<br>
+There you go! We've just build logistic regression from scratch!
+
+### 📚 Logistic vs. Other Models
+I hope that now you can confidently explain the differece between logistic and linear regression (logistic regression predicts probabilities and linear regression predicts continuous values). However, like linear regression, logistic regression is the simplest form of classification models, so it could struggle with non-linear boundaries.
+![Logistic regression vs other](/assets/images/posts/2025/logistic-regression/logistic_vs_other.png)
+
+### ✅ Summary
+In this block post, we've learned that logistic regression, predicts, probabilities, and classifies based on threshold. We've also learned that logistic regression uses sigmoid functions binary cross-entropy, and gradient descent to learn. By learning this model, I believe that you now have a solid foundation for classification problems! See you in the next blog post 😊
