@@ -23,10 +23,37 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
     color: var(--dark-color);
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+/* MathJax Global Responsive Adjustments */
+mjx-container[jax="CHTML"][display="true"] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100% !important;
+}
+
+mjx-container[jax="CHTML"][display="false"] {
+    white-space: normal;
+}
+
+/* Force math content to wrap within container before causing viewport overflow */
+mjx-container[jax="CHTML"] mjx-math {
+    white-space: normal !important;
+}
+
+/* If MathJax sets a large min-width internally, constrain to container */
+mjx-container[jax="CHTML"] {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+/* Provide internal scrolling only if still wider (safety) */
+mjx-container[jax="CHTML"] mjx-assistive-mml, /* keep accessible math hidden semantics unaffected */
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+    overflow-x: visible;
 }
 
 main {
