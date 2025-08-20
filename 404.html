@@ -1,0 +1,257 @@
+---
+layout: default
+title: 404 - Page Not Found
+permalink: /404.html
+---
+<style>
+/* Scoped 404 page styles */
+.nf-wrapper { 
+  min-height: calc(100vh - 140px); /* nav + footer allowance */
+  display:flex; align-items:center; justify-content:center; 
+  padding: 7rem 1.25rem 3rem; 
+}
+.nf-card { 
+  width:100%; max-width:620px; 
+  background: var(--white, #fff); 
+  border-radius: 1.25rem; 
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07); 
+  padding: 3rem 2.5rem 3.25rem; 
+  text-align:center; 
+  font-family: inherit; 
+}
+.nf-emoji { font-size:4.1rem; line-height:1; margin-bottom:1.5rem; display:inline-block; }
+.nf-heading { 
+  font-size: clamp(1.9rem, 4.5vw, 2.6rem); 
+  font-weight:700; 
+  color: var(--dark-color, #222); 
+  letter-spacing:-0.5px; 
+  margin:0 0 1rem; 
+}
+.nf-text { 
+  font-size:1.2rem; 
+  color: rgba(0,0,0,0.45); 
+  margin:0 0 2.25rem; 
+}
+.nf-actions { display:flex; gap:0.9rem; justify-content:center; flex-wrap:wrap; }
+.nf-btn { 
+  --btn-bg: var(--light-color, #f5f7fa); 
+  --btn-fg: var(--dark-color, #222); 
+  text-decoration:none; 
+  padding:0.85rem 1.4rem; 
+  border-radius:0.75rem; 
+  font-size:0.95rem; 
+  font-weight:500; 
+  background: var(--btn-bg); 
+  color: var(--btn-fg); 
+  border:1px solid rgba(0,0,0,0.12); 
+  transition: background .2s ease, border-color .2s ease, color .2s ease; 
+}
+.nf-btn.primary { 
+  --btn-bg: var(--primary-color, #007bff); 
+  --btn-fg: #fff; 
+  border:1px solid rgba(0,123,255,0.7); 
+  background: var(--primary-color, #007bff); 
+}
+.nf-btn:hover, .nf-btn:focus { 
+  outline:none; 
+  background: #eef2f6; 
+  border-color: rgba(0,0,0,0.2); 
+}
+.nf-btn.primary:hover, .nf-btn.primary:focus { 
+  background:#0069d9; 
+  border-color:#0062cc; 
+}
+.nf-btn:focus-visible { outline:2px solid var(--primary-color, #007bff); outline-offset:2px; }
+@media (max-width:580px){ 
+  .nf-card { padding:2.4rem 1.75rem 2.6rem; } 
+  .nf-actions { flex-direction:column; } 
+  .nf-btn { width:100%; } 
+}
+@media (prefers-reduced-motion: reduce){ 
+  .nf-btn { transition:none; } 
+  .nf-btn:hover, .nf-btn:focus { transform:none; } 
+  /* No animation applied when user prefers reduced motion */
+}
+@keyframes floater { 
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference){
+  .nf-emoji{ animation:floater 2.8s ease-in-out infinite; will-change:transform; }
+}
+</style>
+
+<main role="main" class="nf-wrapper" aria-labelledby="nf-heading" aria-describedby="nf-text">
+  <div class="nf-card">
+    <div class="nf-emoji" aria-hidden="true">🚀</div>
+  <h1 id="nf-heading" class="nf-heading">404 – Page <span id="rocket-typed-anchor"></span> Not Found</h1>
+    <p id="nf-text" class="nf-text">This page drifted into space.</p>
+    <div class="nf-actions">
+      <a class="nf-btn primary" href="{{ site.baseurl }}/index.html">Home</a>
+      <a class="nf-btn" href="{{ site.baseurl }}/blogs.html">Blog</a>
+    </div>
+  </div>
+</main>
+
+<script>
+// Typed.js CDN
+!function(){
+  var s=document.createElement('script');
+  s.src='https://cdn.jsdelivr.net/npm/typed.js@2.0.12';
+  s.async=true; document.head.appendChild(s);
+}();
+
+// Interactive rocket flight on click
+(function(){
+  const rocket = document.querySelector('.nf-emoji');
+  if(!rocket) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let launched = false;
+  let typedStarted = false;
+
+  function startTypedInsertion(){
+    if(typedStarted) return; typedStarted = true;
+    const anchor = document.getElementById('rocket-typed-anchor');
+    if(!anchor) return;
+    const phrase = '(and also Rocket) ';
+    function fallback(){ anchor.textContent = phrase; }
+    // Wait for typed.js to load (poll a few times)
+    let tries = 0;
+    (function waitLib(){
+      if(window.Typed){
+        try {
+          new window.Typed('#rocket-typed-anchor', {
+            strings: [phrase],
+            typeSpeed: 45,
+            backSpeed: 0,
+            showCursor: false,
+          });
+        } catch(e){ fallback(); }
+      } else if(tries < 40){ // ~4s max
+        tries++; setTimeout(waitLib, 100);
+      } else { fallback(); }
+    })();
+  }
+  rocket.style.cursor = 'pointer';
+  rocket.setAttribute('role','button');
+  rocket.setAttribute('tabindex','0');
+  rocket.setAttribute('title','Launch the rocket');
+
+  function random(min,max){ return Math.random()*(max-min)+min; }
+
+  // No-motion variant: instant removal preserving layout for users preferring reduced motion.
+  function launchNoMotion(){
+    const rect = rocket.getBoundingClientRect();
+    const placeholder = document.createElement('div');
+    placeholder.style.height = rect.height + 'px';
+    placeholder.style.marginBottom = '1.5rem';
+    placeholder.className = 'nf-emoji-space';
+    rocket.parentNode.insertBefore(placeholder, rocket);
+    rocket.remove();
+    startTypedInsertion();
+  }
+
+  function launchFancy(){
+    const rect = rocket.getBoundingClientRect();
+    const wrapper = document.createElement('div');
+    // Placeholder keeps layout stable
+    const placeholder = document.createElement('div');
+    placeholder.style.height = rect.height + 'px';
+    placeholder.style.marginBottom = '1.5rem';
+    placeholder.className = 'nf-emoji-space';
+    rocket.parentNode.insertBefore(placeholder, rocket);
+
+    wrapper.style.position='fixed';
+    wrapper.style.left = rect.left + 'px';
+    wrapper.style.top = rect.top + 'px';
+    wrapper.style.width = rect.width + 'px';
+    wrapper.style.height = rect.height + 'px';
+    wrapper.style.zIndex = 4000;
+    wrapper.style.pointerEvents='none';
+    wrapper.style.willChange = 'transform';
+    rocket.parentNode.replaceChild(wrapper, rocket);
+    wrapper.appendChild(rocket);
+    rocket.style.animation='none';
+    rocket.style.willChange='transform';
+
+  const totalDuration = 3200; // ms for circular/spiral phase
+  const rotations = 1.6;      // number of turns
+  const maxRadius = Math.min(window.innerWidth, window.innerHeight) * 0.28; // spiral size
+  const start = performance.now();
+  let lastX = 0, lastY = 0;
+  let prevX = 0, prevY = 0; // previous frame positions
+  let lastVX = 0, lastVY = -1; // last velocity vector (default upward)
+  let currentAngleDeg = 0; // track applied rotation
+
+    function easeOutQuad(t){ return 1 - (1 - t) * (1 - t); }
+  const BASE_EMOJI_NOSE_ANGLE = 45; // default 🚀 nose points ~45° (up-right) when rotation=0
+  const INVERT = false; // set true if still tail-first
+
+  function animate(now){
+      const elapsed = now - start;
+      let p = elapsed / totalDuration;
+      if(p > 1) p = 1;
+
+      // Smooth progression
+      const prog = easeOutQuad(p);
+      const theta = prog * rotations * Math.PI * 2; // angle
+      const radius = prog * maxRadius; // spiral (grows over time)
+      const x = radius * Math.cos(theta);
+      const y = -radius * Math.sin(theta); // negative y -> upward
+      // velocity
+      if(elapsed === 0){ prevX = x; prevY = y; }
+      const vx = x - prevX;
+      const vy = y - prevY;
+      if(Math.hypot(vx, vy) > 0.01){
+        lastVX = vx; lastVY = vy;
+      }
+      prevX = x; prevY = y;
+      lastX = x; lastY = y;
+      wrapper.style.transform = `translate(${x}px, ${y}px)`;
+      // angle so that 0deg means rocket points up; add 90deg because atan2 up gives -90deg
+  const rawAngle = Math.atan2(lastVY, lastVX) * 180/Math.PI; // motion direction
+  // Adjust so emoji nose (≈45° at 0deg) aligns with motion; optionally invert if needed
+  const adjust = (INVERT ? 180 : 0) - BASE_EMOJI_NOSE_ANGLE;
+  const angleDeg = rawAngle + adjust;
+  currentAngleDeg = angleDeg;
+  rocket.style.transform = `rotate(${angleDeg}deg)`;
+
+      if(p < 1){
+        requestAnimationFrame(animate);
+      } else {
+        // Exit flight: diagonal up-right
+  // Exit along current heading direction
+  wrapper.style.transition = 'transform 2.1s cubic-bezier(.65,.05,.36,1), opacity 2.1s ease';
+  rocket.style.transition = 'transform 2.1s cubic-bezier(.65,.05,.36,1)';
+  // Compute nose direction from current rotation (rocket default pointing up)
+  // Recompute direction vector from stored angle (inverse of above mapping)
+  const travelAngleDeg = currentAngleDeg + BASE_EMOJI_NOSE_ANGLE - (INVERT ? 180 : 0);
+  const travelTheta = travelAngleDeg * Math.PI/180;
+  let dirX = Math.cos(travelTheta);
+  let dirY = Math.sin(travelTheta);
+  const mag = Math.hypot(dirX, dirY) || 1;
+  dirX /= mag; dirY /= mag;
+  // Encourage upward-ish exit if user ends pointing too downward
+  if(dirY > 0.25){ dirY = -Math.abs(dirY); }
+  const exitDist = Math.max(window.innerWidth, window.innerHeight) * 1.4;
+  const exitX = lastX + dirX * exitDist;
+  const exitY = lastY + dirY * exitDist;
+  wrapper.style.transform = `translate(${exitX}px, ${exitY}px)`;
+  rocket.style.transform = `rotate(${currentAngleDeg}deg) scale(1.22)`;
+  wrapper.style.opacity = '0';
+  setTimeout(()=> { wrapper.remove(); startTypedInsertion(); }, 2150);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  function handleLaunch(){
+    if(launched) return; launched = true;
+  if(reduce.matches) launchNoMotion(); else launchFancy();
+  }
+
+  rocket.addEventListener('click', handleLaunch);
+  rocket.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleLaunch(); } });
+})();
+</script>
