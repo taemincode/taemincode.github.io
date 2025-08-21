@@ -21,7 +21,7 @@ description: Taemin Park's blog posts about programming, technology, and persona
                 <!-- Featured Post -->
                 {% assign featured_post = site.posts.first %}
                 {% if featured_post %}
-                <article class="blog-card featured-post">
+                <article class="blog-card featured-post" data-aos="fade-up" data-aos-delay="0">
                     <div class="blog-card-content">
                         <time class="blog-date">{{ featured_post.date | date: "%B %d, %Y" }}</time>
                         <h2 class="blog-title">{{ featured_post.title }}</h2>
@@ -42,7 +42,7 @@ description: Taemin Park's blog posts about programming, technology, and persona
 
                 <!-- Regular Posts -->
                 {% for post in site.posts offset:1 %}
-                <article class="blog-card">
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
                     <div class="blog-card-content">
                         <time class="blog-date">{{ post.date | date: "%B %d, %Y" }}</time>
                         <h2 class="blog-title">{{ post.title }}</h2>

@@ -37,7 +37,7 @@ J(w, b) = -\frac{1}{m} \sum_{i=1}^{m} \Big[ y^{(i)} \log\big(\hat{y}^{(i)}\big) 
 $$
 <br><br>
 It looks very complicated, right? Let's dive in to the specific details so that you will eventually understand what's happening in this formula.<br>
-First, you have to understand the difference between a `cost` and a `loss`. The main difference is that loss is for only one example and cost is for all the examples (the sum of all the loss). The formula for binary cross entropy derives from this formula for calculating a single loss:<br>
+First, you have to understand the difference between a `cost` and a `loss`. The main difference is that loss is for only one example and cost is for all the examples (the sum of all the loss). The formula for binary cross entropy derives from this formula for calculating a single loss:<br><br>
 $$
 L\left(f_{\vec{w},b}\left(\vec{x}^{(i)}\right),\, y^{(i)}\right) =
 \begin{cases}
@@ -49,8 +49,7 @@ This is the plot for $-\log\left(f\right)$ and $-\log\left(1 - f\right)$:
 ![Log plot](/assets/images/posts/2025/logistic-regression/log_plot.png)
 As you can see, in $-\log\left(f\right)$, as the value of $f$ get's closer to 0, the loss increases. That's why we use this function if $y^{(i)} = 1$ (because we want to have high loss when our prediction is far from the actual ground truth). Similarly, we use $-\log\left(1 - f\right)$ if $y^{(i)} = 0$ because we want to have low loss when the prediction is close to 0 and have high loss when it's close to 1. The formula for calculating a single loss can be writen in a more compact form like this:<br><br>
 $$
-L\left(f_{\vec{w},b}\!\left(\vec{x}^{(i)}\right),\, y^{(i)}\right)
-= - \Big[ y^{(i)} \log\!\big(f_{\vec{w},b}(\vec{x}^{(i)})\big) + \big(1-y^{(i)}\big) \log\!\big(1 - f_{\vec{w},b}(\vec{x}^{(i)})\big) \Big]
+L\big(f_{\vec w, b}(\vec x^{(i)}), y^{(i)}\big) = - \Big[ y^{(i)} \log \hat y^{(i)} + (1 - y^{(i)}) \log \big(1 - \hat y^{(i)}\big) \Big]
 $$<br><br>
 > ℹ️ Note:
 > When $y^{(i)} = 1$, $\big(1-y^{(i)}\big) \log\big(1 - f_{\vec{w},b}(\vec{x}^{(i)})\big)$ cancels out, leaving us with $- y^{(i)} \log\big(f_{\vec{w},b}(\vec{x}^{(i)})\big)$; and similarly when $y^{(i)} = 0$.
@@ -58,7 +57,7 @@ $$<br><br>
 Finally, if we add all the individual losses to find out the cost, we get this formula (same as the one above):<br><br>
 $$
 J(w, b) = -\frac{1}{m} \sum_{i=1}^{m} \Big[ y^{(i)} \log\big(\hat{y}^{(i)}\big) + \big(1 - y^{(i)}\big) \log\big(1 - \hat{y}^{(i)}\big) \Big]
-$$<br><br>
+$$ <br><br>
 Since we have the cost function, we can now use gradient descent to minimize the cost (I'm thinking about writing a blog post about explaining the details of gradient descent - like backpropagation - in the future) and find the best fitting S-shaped curve.
 
 ### 🛠️ Building It From Scratch

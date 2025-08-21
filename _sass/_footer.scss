@@ -1,0 +1,9 @@
+/* Footer */
+.site-footer { background-color:var(--light-color); border-top:1px solid rgba(0,0,0,0.1); padding:2rem 0; margin-top:auto; }
+.footer-content { max-width:1200px; margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center; }
+.footer-name { font-size:.9rem; color:var(--secondary-color); font-weight:500; }
+.footer-social { display:flex; gap:1rem; }
+.footer-social a { color:var(--secondary-color); text-decoration:none; transition:color var(--transition-speed) ease, transform var(--transition-speed) ease; display:flex; align-items:center; justify-content:center; }
+.footer-social a:hover { color:var(--primary-color); transform:translateY(-2px); }
+.social-icon { width:20px; height:20px; fill:currentColor; }
+@media (max-width:768px){ .footer-content { padding:0 1rem; flex-direction:column; gap:.5rem; text-align:center; } .footer-name { font-size:.8rem; } .social-icon { width:18px; height:18px; } }

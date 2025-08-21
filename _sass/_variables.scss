@@ -1,0 +1,12 @@
+/* Design tokens & CSS custom properties */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --dark-color: #343a40;
+  --light-color: #f8f9fa;
+  --white: #ffffff; /* Removed unused --black, --navbar-height */
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --surface-alt: #f9f9f9; /* secondary surface */
+}

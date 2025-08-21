@@ -1,0 +1,21 @@
+/* Base / global styles */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; line-height:1.6; color:var(--dark-color); display:flex; flex-direction:column; min-height:100vh; }
+main { flex:1; }
+
+/* MathJax global responsiveness */
+mjx-container[jax="CHTML"][display="true"] { overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%!important; }
+mjx-container[jax="CHTML"][display="false"] { white-space:normal; }
+mjx-container[jax="CHTML"] mjx-math { white-space:normal!important; }
+mjx-container[jax="CHTML"] { max-width:100%!important; width:100%!important; }
+mjx-container[jax="CHTML"] mjx-assistive-mml,
+mjx-container[jax="CHTML"][display="true"] mjx-math { overflow-x:visible; }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce){ * { transition:none!important; animation:none!important; } }
+
+/* Focus */
+.nav-link:focus { outline:2px solid var(--primary-color); outline-offset:2px; }
+
+/* Print */
+@media print { #navbar { display:none; } }

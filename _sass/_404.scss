@@ -1,0 +1,75 @@
+/* 404 page styles */
+.nf-wrapper { 
+  min-height: calc(100vh - 140px); /* nav + footer allowance */
+  display:flex; align-items:center; justify-content:center; 
+  padding: 7rem 1.25rem 3rem; 
+}
+.nf-card { 
+  width:100%; max-width:620px; 
+  background: var(--white, #fff); 
+  border-radius: 1.25rem; 
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07); 
+  padding: 3rem 2.5rem 3.25rem; 
+  text-align:center; 
+  font-family: inherit; 
+}
+.nf-emoji { font-size:4.1rem; line-height:1; margin-bottom:1.5rem; display:inline-block; }
+.nf-heading { 
+  font-size: clamp(1.9rem, 4.5vw, 2.6rem); 
+  font-weight:700; 
+  color: var(--dark-color, #222); 
+  letter-spacing:-0.5px; 
+  margin:0 0 1rem; 
+}
+.nf-text { 
+  font-size:1.2rem; 
+  color: rgba(0,0,0,0.45); 
+  margin:0 0 2.25rem; 
+}
+.nf-actions { display:flex; gap:0.9rem; justify-content:center; flex-wrap:wrap; }
+.nf-btn { 
+  --btn-bg: var(--light-color, #f5f7fa); 
+  --btn-fg: var(--dark-color, #222); 
+  text-decoration:none; 
+  padding:0.85rem 1.4rem; 
+  border-radius:0.75rem; 
+  font-size:0.95rem; 
+  font-weight:500; 
+  background: var(--btn-bg); 
+  color: var(--btn-fg); 
+  border:1px solid rgba(0,0,0,0.12); 
+  transition: background .2s ease, border-color .2s ease, color .2s ease; 
+}
+.nf-btn.primary { 
+  --btn-bg: var(--primary-color, #007bff); 
+  --btn-fg: #fff; 
+  border:1px solid rgba(0,123,255,0.7); 
+  background: var(--primary-color, #007bff); 
+}
+.nf-btn:hover, .nf-btn:focus { 
+  outline:none; 
+  background: #eef2f6; 
+  border-color: rgba(0,0,0,0.2); 
+}
+.nf-btn.primary:hover, .nf-btn.primary:focus { 
+  background:#0069d9; 
+  border-color:#0062cc; 
+}
+.nf-btn:focus-visible { outline:2px solid var(--primary-color, #007bff); outline-offset:2px; }
+@media (max-width:580px){ 
+  .nf-card { padding:2.4rem 1.75rem 2.6rem; } 
+  .nf-actions { flex-direction:column; } 
+  .nf-btn { width:100%; } 
+}
+@media (prefers-reduced-motion: reduce){ 
+  .nf-btn { transition:none; } 
+  .nf-btn:hover, .nf-btn:focus { transform:none; } 
+}
+@keyframes floater { 
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference){
+  .nf-emoji{ animation:floater 2.8s ease-in-out infinite; will-change:transform; }
+}
