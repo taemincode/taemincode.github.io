@@ -21,7 +21,7 @@ description: Taemin Park's blog posts about programming, technology, and persona
                 <!-- Featured Post -->
                 {% assign featured_post = site.posts.first %}
                 {% if featured_post %}
-                <article class="blog-card featured-post" data-aos="fade-up" data-aos-delay="0">
+                <article class="blog-card featured-post" data-aos="fade-up" data-aos-delay="0" data-href="{{ featured_post.url }}" tabindex="0" role="link" aria-label="Open post: {{ featured_post.title }}">
                     <div class="blog-card-content">
                         <time class="blog-date">{{ featured_post.date | date: "%B %d, %Y" }}</time>
                         <h2 class="blog-title">{{ featured_post.title }}</h2>
@@ -42,7 +42,7 @@ description: Taemin Park's blog posts about programming, technology, and persona
 
                 <!-- Regular Posts -->
                 {% for post in site.posts offset:1 %}
-                <article class="blog-card" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}" data-href="{{ post.url }}" tabindex="0" role="link" aria-label="Open post: {{ post.title }}">
                     <div class="blog-card-content">
                         <time class="blog-date">{{ post.date | date: "%B %d, %Y" }}</time>
                         <h2 class="blog-title">{{ post.title }}</h2>
@@ -61,5 +61,26 @@ description: Taemin Park's blog posts about programming, technology, and persona
                 </article>
                 {% endfor %}
             </div>
-        </section>
-    </main>
+                </section>
+                <script>
+                    // Whole-card clickable behavior with keyboard accessibility
+                    document.addEventListener('DOMContentLoaded', function(){
+                        document.querySelectorAll('.blog-card[data-href]').forEach(card => {
+                            const url = card.getAttribute('data-href');
+                            if(!url) return;
+                            card.addEventListener('click', e => {
+                                if(e.defaultPrevented) return;
+                                if(e.target.closest('a')) return; // preserve inner link
+                                window.location.href = url;
+                            });
+                            card.addEventListener('keydown', e => {
+                                if(e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    window.location.href = url;
+                                }
+                            });
+                            card.style.cursor = 'pointer';
+                        });
+                    });
+                </script>
+        </main>

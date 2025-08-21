@@ -45,6 +45,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ site.baseurl }}/blogs.html" aria-label="Go to blog page">Blog</a>
                 </li>
+                <li class="nav-item">
+                    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+                        <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+                        <span class="theme-toggle-text">Dark</span>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -80,6 +86,14 @@
     <!-- Custom JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Theme persistence
+            try {
+                const stored = localStorage.getItem('theme');
+                if(stored === 'dark' || stored === 'light') {
+                    document.documentElement.setAttribute('data-theme', stored);
+                }
+            } catch(e) {}
+
             // Navbar scroll effect
             const navbar = document.getElementById("navbar");
             
@@ -111,6 +125,79 @@
                     loop: true
                 });
             }
+
+            // Optional: expose a toggle function (you can bind to a button later)
+            const themeBtn = document.getElementById('theme-toggle');
+            function applyThemeUI(theme){
+                if(!themeBtn) return;
+                const isDark = theme === 'dark';
+                themeBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+                const icon = themeBtn.querySelector('.theme-toggle-icon');
+                const text = themeBtn.querySelector('.theme-toggle-text');
+                if(icon) icon.textContent = isDark ? '☀️' : '🌙';
+                if(text) text.textContent = isDark ? 'Light' : 'Dark';
+                themeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+            }
+                        window.toggleTheme = function(){
+                                const root = document.documentElement;
+                                const current = root.getAttribute('data-theme');
+                                const next = current === 'dark' ? 'light' : 'dark';
+                                root.setAttribute('data-theme', next);
+                                try { localStorage.setItem('theme', next); } catch(e) {}
+                                applyThemeUI(next);
+                                // Remove persistent hover/focus styles after click
+                                if(themeBtn){
+                                    themeBtn.blur();
+                                    themeBtn.classList.remove('is-active-hover');
+                                }
+                        };
+            if(themeBtn){
+                themeBtn.addEventListener('mousedown', () => themeBtn.dataset.mouseDown = '1');
+                themeBtn.addEventListener('click', (e) => {
+                    window.toggleTheme();
+                    // If activated by mouse, blur to clear hover look; keep focus for keyboard
+                    if(themeBtn.dataset.mouseDown){
+                        themeBtn.blur();
+                        delete themeBtn.dataset.mouseDown;
+                    }
+                });
+                themeBtn.addEventListener('keyup', e => { if(e.key === 'Enter' || e.key === ' ') { window.toggleTheme(); } });
+                applyThemeUI(document.documentElement.getAttribute('data-theme'));
+            }
+
+            // Add copy buttons to code blocks
+            const codeBlocks = document.querySelectorAll('.markdown pre');
+            codeBlocks.forEach((pre, index) => {
+                if(pre.querySelector('.code-copy-btn')) return; // idempotent
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'code-copy-btn';
+                btn.setAttribute('aria-label', 'Copy code to clipboard');
+                btn.innerHTML = '<span class="copy-icon" aria-hidden="true">📋</span>';
+                pre.appendChild(btn);
+                const code = pre.querySelector('code');
+        btn.addEventListener('click', async () => {
+                    const text = code ? code.innerText : pre.innerText;
+                    try {
+                        await navigator.clipboard.writeText(text);
+                        btn.classList.add('copied');
+            btn.innerHTML = '<span class="copy-icon" aria-hidden="true">✓</span>';
+                        btn.setAttribute('aria-label','Copied!');
+            setTimeout(() => {
+                            btn.classList.remove('copied');
+                            btn.innerHTML = '<span class="copy-icon" aria-hidden="true">📋</span>';
+                            btn.setAttribute('aria-label','Copy code to clipboard');
+            }, 3000); // extended cool time
+                    } catch(err) {
+                        btn.innerHTML = '<span class="copy-icon" aria-hidden="true">⚠️</span>';
+                        btn.setAttribute('aria-label','Copy failed');
+                        setTimeout(() => {
+                            btn.innerHTML = '<span class="copy-icon" aria-hidden="true">📋</span>';
+                            btn.setAttribute('aria-label','Copy code to clipboard');
+                        }, 2000);
+                    }
+                });
+            });
         });
     </script>
 </body>
