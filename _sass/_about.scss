@@ -60,6 +60,7 @@
 .story-section { padding:4rem 2rem; }
 .story-content { max-width:800px; margin:0 auto; }
 .story-text { line-height:1.75; font-size:1.05rem; }
+.story-section, .story-content, .story-text, .story-text p { cursor:default; }
 .story-text a[href^="http"] { position:relative; display:inline-block; color:var(--primary-color); text-decoration:none; padding-right:0; transition:color .25s ease; }
 /* underline spans full text width now */
 .story-text a[href^="http"]::before { content:""; position:absolute; left:0; right:0; height:2px; bottom:.08em; background:currentColor; transform:scaleX(0); transform-origin:left center; opacity:.55; transition:transform .4s ease, opacity .3s ease; border-radius:2px; }

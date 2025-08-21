@@ -11,3 +11,28 @@
 @import "404";
 
 /* End */
+
+/* Disable hover-only decorative effects on small/mobile devices */
+@media (max-width: 768px), (hover: none) {
+	/* Remove nav/link text glow & underline animations */
+	.nav-link:hover, .nav-brand:hover { text-shadow:none!important; }
+	.nav-link::before, .nav-brand::before { transition:none!important; }
+	.nav-link:hover::before, .nav-brand:hover::before { transform:none!important; opacity:.55!important; }
+
+	/* External link arrows / underline animations */
+	a[href^="http"]:hover::after, a[href^="http"]:hover::before { transform:none!important; opacity:.55!important; }
+	a[href^="http"]::before { transition:none!important; }
+
+	/* Blog hero emoji/title glow */
+	.blog-emoji:hover, .blog-hero-title:hover { text-shadow:none!important; transform:none!important; color:var(--color-text)!important; }
+
+	/* Hero title/photo glow */
+	.hero-title:hover, .hero-photo:hover { text-shadow:none!important; filter:none!important; box-shadow:inherit; transform:none!important; color:var(--color-text)!important; }
+
+	/* Timeline & cards hover lifts */
+	.snapshot-card:hover, .timeline-content:hover, .blog-card:hover, .post-nav-link:hover, .nf-card:hover { transform:none!important; box-shadow:inherit!important; }
+	.snapshot-card:hover::before, .timeline-content:hover::after, .blog-card:hover::before, .post-nav-link:hover::before, .nf-card:hover::before { opacity:0!important; }
+
+	/* Code copy button hover lift */
+	.markdown pre .code-copy-btn:hover { transform:none!important; box-shadow:0 2px 5px -2px rgba(0,0,0,0.55)!important; }
+}
