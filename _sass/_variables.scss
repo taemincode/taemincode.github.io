@@ -1,0 +1,79 @@
+/* Design tokens & CSS custom properties */
+/* Light (default) theme */
+:root {
+  /* Core brand */
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+
+  /* Semantic colors */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8f9fa; /* sections like hero, timeline */
+  --color-surface: #ffffff; /* cards, post body */
+  --color-surface-alt: #f9f9f9; /* subtle alternate surface */
+  --color-text: #222222;
+  --color-text-soft: #444444;
+  --color-text-faint: #666666;
+  --color-border: #e0e0e0;
+  --color-code-bg: #f5f7fa;
+  --color-code-border: #e2e8f0;
+  --color-code-accent: #007bff;
+
+  /* Legacy variable aliases (kept for existing rules) */
+  --dark-color: var(--color-text);
+  --light-color: var(--color-bg-alt);
+  --white: var(--color-surface); /* Removed unused --black, --navbar-height */
+  --surface-alt: var(--color-surface-alt); /* secondary surface */
+
+  /* Motion / shape */
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme (system preference) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --primary-color: #3b82f6; /* accent */
+    --secondary-color: #888888;
+    --color-bg: #121212; /* deep background */
+    --color-bg-alt: #161616; /* slightly lifted sections */
+    --color-surface: #1e1e1e; /* cards */
+    --color-surface-alt: #202020; /* subtle contrast surface */
+    --color-text: #f5f5f5; /* headings */
+    --color-text-soft: #bbbbbb; /* body */
+    --color-text-faint: #888888; /* secondary */
+    --color-border: #2a2a2a;
+    --color-code-bg: #242424;
+  --color-code-border: #30363d;
+  --color-code-accent: #3b82f6;
+    --dark-color: var(--color-text);
+    --light-color: var(--color-bg-alt);
+    --white: var(--color-surface);
+    --surface-alt: var(--color-surface-alt);
+    --box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+  }
+}
+
+/* Explicit dark theme override (manual toggle) */
+:root[data-theme="dark"] {
+  --primary-color: #3b82f6;
+  --secondary-color: #888888;
+  --color-bg: #121212;
+  --color-bg-alt: #161616;
+  --color-surface: #1e1e1e;
+  --color-surface-alt: #202020;
+  --color-text: #f5f5f5;
+  --color-text-soft: #bbbbbb;
+  --color-text-faint: #888888;
+  --color-border: #2a2a2a;
+  --color-code-bg: #242424;
+  --color-code-border: #30363d;
+  --color-code-accent: #3b82f6;
+  --dark-color: var(--color-text);
+  --light-color: var(--color-bg-alt);
+  --white: var(--color-surface);
+  --surface-alt: var(--color-surface-alt);
+  --box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+}
+
+/* (Reserved for future high contrast adjustments) */
