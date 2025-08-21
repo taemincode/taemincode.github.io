@@ -8,7 +8,7 @@ permalink: /404.html
   <div class="nf-card">
     <div class="nf-emoji" aria-hidden="true">🚀</div>
   <h1 id="nf-heading" class="nf-heading">404 – Page <span id="rocket-typed-anchor"></span> Not Found</h1>
-    <p id="nf-text" class="nf-text">This page drifted into space.</p>
+    <p id="nf-text" class="nf-text">Don't click the rocket...</p>
     <div class="nf-actions">
       <a class="nf-btn primary" href="{{ site.baseurl }}/index.html">Home</a>
       <a class="nf-btn" href="{{ site.baseurl }}/blogs.html">Blog</a>
@@ -26,6 +26,23 @@ permalink: /404.html
 
 // Interactive rocket flight on click
 (function(){
+  // === Rocket Flight Config (edit values or use exposed helpers before launch) ===
+  const CONFIG = {
+    baseNoseAngle: 45,        // Emoji nose visual offset
+    exitMode: 'nose-offset',  // 'nose-offset' | 'fixed'
+    exitOffsetDeg: 270,         // Extra degrees added to facing when exitMode='nose-offset'
+    fixedExitAngleDeg: -90,   // Used when exitMode='fixed' (e.g. -90 = up)
+    loops: 2,                 // Full loops before exit
+    durationMs: 4800,         // Orbit duration
+    exitDurationMs: 1400,     // Exit travel duration
+    radiusScale: 0.60,        // Orbit radius vs diagonal
+    quickRadiusFraction: 0.50 // Backup radius vs min(vw,vh)
+  };
+  // Expose minimal helpers (badge removed)
+  window.ROCKET_CONFIG = CONFIG;
+  window.setRocketExitOffset = deg => { CONFIG.exitOffsetDeg = deg; console.log('exitOffsetDeg =', deg); };
+  window.setRocketExitMode = mode => { CONFIG.exitMode = mode; console.log('exitMode =', mode); };
+
   const rocket = document.querySelector('.nf-emoji');
   if(!rocket) return;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -38,31 +55,21 @@ permalink: /404.html
     if(!anchor) return;
     const phrase = '(and also Rocket) ';
     function fallback(){ anchor.textContent = phrase; }
-    // Wait for typed.js to load (poll a few times)
     let tries = 0;
     (function waitLib(){
       if(window.Typed){
         try {
-          new window.Typed('#rocket-typed-anchor', {
-            strings: [phrase],
-            typeSpeed: 45,
-            backSpeed: 0,
-            showCursor: false,
-          });
+          new window.Typed('#rocket-typed-anchor', { strings:[phrase], typeSpeed:45, backSpeed:0, showCursor:false });
         } catch(e){ fallback(); }
-      } else if(tries < 40){ // ~4s max
-        tries++; setTimeout(waitLib, 100);
-      } else { fallback(); }
+      } else if(tries < 40){ tries++; setTimeout(waitLib,100); } else { fallback(); }
     })();
   }
-  rocket.style.cursor = 'pointer';
+
+  rocket.style.cursor='pointer';
   rocket.setAttribute('role','button');
   rocket.setAttribute('tabindex','0');
   rocket.setAttribute('title','Launch the rocket');
 
-  function random(min,max){ return Math.random()*(max-min)+min; }
-
-  // No-motion variant: instant removal preserving layout for users preferring reduced motion.
   function launchNoMotion(){
     const rect = rocket.getBoundingClientRect();
     const placeholder = document.createElement('div');
@@ -76,14 +83,13 @@ permalink: /404.html
 
   function launchFancy(){
     const rect = rocket.getBoundingClientRect();
-    const wrapper = document.createElement('div');
-    // Placeholder keeps layout stable
     const placeholder = document.createElement('div');
     placeholder.style.height = rect.height + 'px';
     placeholder.style.marginBottom = '1.5rem';
     placeholder.className = 'nf-emoji-space';
     rocket.parentNode.insertBefore(placeholder, rocket);
 
+    const wrapper = document.createElement('div');
     wrapper.style.position='fixed';
     wrapper.style.left = rect.left + 'px';
     wrapper.style.top = rect.top + 'px';
@@ -91,78 +97,87 @@ permalink: /404.html
     wrapper.style.height = rect.height + 'px';
     wrapper.style.zIndex = 4000;
     wrapper.style.pointerEvents='none';
-    wrapper.style.willChange = 'transform';
+    wrapper.style.willChange='transform';
     rocket.parentNode.replaceChild(wrapper, rocket);
     wrapper.appendChild(rocket);
     rocket.style.animation='none';
     rocket.style.willChange='transform';
 
-  const totalDuration = 3200; // ms for circular/spiral phase
-  const rotations = 1.6;      // number of turns
-  const maxRadius = Math.min(window.innerWidth, window.innerHeight) * 0.28; // spiral size
-  const start = performance.now();
-  let lastX = 0, lastY = 0;
-  let prevX = 0, prevY = 0; // previous frame positions
-  let lastVX = 0, lastVY = -1; // last velocity vector (default upward)
-  let currentAngleDeg = 0; // track applied rotation
+  // Fast large circular/spiral flight around the page
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const centerX = vw / 2; const centerY = vh / 2;
+  const diag = Math.sqrt(vw*vw + vh*vh);
+  const startRect = wrapper.getBoundingClientRect();
+  const startCx = startRect.left + startRect.width/2;
+  const startCy = startRect.top + startRect.height/2;
+  const startDistance = Math.hypot(startCx - centerX, startCy - centerY);
+  // Larger target radius so path reaches near edges; clamp to avoid excessive off-screen travel
+  const targetRadius = Math.min(diag * CONFIG.radiusScale, Math.max(startDistance || 1, Math.min(vw, vh) * CONFIG.quickRadiusFraction));
+  const radiusDrift = Math.max(0, targetRadius - startDistance);
+  let startAngle = Math.atan2(startCy - centerY, startCx - centerX);
+  if(startDistance === 0){ startAngle = -Math.PI/2; }
+  const loops = CONFIG.loops; // number of loops
+  const extraArc = Math.PI * 0.35; // exit arc
+  const totalAngle = loops * Math.PI * 2 + extraArc;
+  const totalDuration = CONFIG.durationMs;
+    const startTime = performance.now();
+  const BASE_EMOJI_NOSE_ANGLE = CONFIG.baseNoseAngle; // emoji nose offset
+    let prevX = 0, prevY = 0; let frame = 0;
+    let lastVX = 0, lastVY = -1; let currentRotation = 0;
 
-    function easeOutQuad(t){ return 1 - (1 - t) * (1 - t); }
-  const BASE_EMOJI_NOSE_ANGLE = 45; // default 🚀 nose points ~45° (up-right) when rotation=0
-  const INVERT = false; // set true if still tail-first
+  function easeInOut(t){ return t<0.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2; }
+  function easeOutCubic(t){ return 1 - Math.pow(1-t,3); }
 
-  function animate(now){
-      const elapsed = now - start;
-      let p = elapsed / totalDuration;
-      if(p > 1) p = 1;
-
-      // Smooth progression
-      const prog = easeOutQuad(p);
-      const theta = prog * rotations * Math.PI * 2; // angle
-      const radius = prog * maxRadius; // spiral (grows over time)
-      const x = radius * Math.cos(theta);
-      const y = -radius * Math.sin(theta); // negative y -> upward
-      // velocity
-      if(elapsed === 0){ prevX = x; prevY = y; }
-      const vx = x - prevX;
-      const vy = y - prevY;
-      if(Math.hypot(vx, vy) > 0.01){
-        lastVX = vx; lastVY = vy;
-      }
-      prevX = x; prevY = y;
-      lastX = x; lastY = y;
+    function animate(now){
+      const elapsed = now - startTime;
+      let p = elapsed / totalDuration; if(p>1) p = 1;
+    const eased = easeInOut(p);
+  const ang = startAngle + eased * totalAngle;
+  // Bring radius to near target quickly (within first third of flight) for full-viewport coverage
+  const radialPhase = Math.min(1, p * 3);
+  const currentRadius = startDistance + radiusDrift * easeOutCubic(radialPhase);
+  const orbitX = centerX + currentRadius * Math.cos(ang);
+  const orbitY = centerY + currentRadius * Math.sin(ang);
+  const x = orbitX - startCx;
+  const y = orbitY - startCy;
+      if(frame === 0){ prevX = x; prevY = y; }
+      const vx = x - prevX; const vy = y - prevY;
+      if(vx*vx + vy*vy > 0.0001){ lastVX = vx; lastVY = vy; }
+      prevX = x; prevY = y; frame++;
       wrapper.style.transform = `translate(${x}px, ${y}px)`;
-      // angle so that 0deg means rocket points up; add 90deg because atan2 up gives -90deg
-  const rawAngle = Math.atan2(lastVY, lastVX) * 180/Math.PI; // motion direction
-  // Adjust so emoji nose (≈45° at 0deg) aligns with motion; optionally invert if needed
-  const adjust = (INVERT ? 180 : 0) - BASE_EMOJI_NOSE_ANGLE;
-  const angleDeg = rawAngle + adjust;
-  currentAngleDeg = angleDeg;
-  rocket.style.transform = `rotate(${angleDeg}deg)`;
+      // orient rocket along motion
+      const motionAngle = Math.atan2(lastVY, lastVX) * 180/Math.PI;
+      currentRotation = motionAngle - BASE_EMOJI_NOSE_ANGLE;
+      rocket.style.transform = `rotate(${currentRotation}deg)`;
 
       if(p < 1){
         requestAnimationFrame(animate);
       } else {
-        // Exit flight: diagonal up-right
-  // Exit along current heading direction
-  wrapper.style.transition = 'transform 2.1s cubic-bezier(.65,.05,.36,1), opacity 2.1s ease';
-  rocket.style.transition = 'transform 2.1s cubic-bezier(.65,.05,.36,1)';
-  // Compute nose direction from current rotation (rocket default pointing up)
-  // Recompute direction vector from stored angle (inverse of above mapping)
-  const travelAngleDeg = currentAngleDeg + BASE_EMOJI_NOSE_ANGLE - (INVERT ? 180 : 0);
-  const travelTheta = travelAngleDeg * Math.PI/180;
-  let dirX = Math.cos(travelTheta);
-  let dirY = Math.sin(travelTheta);
-  const mag = Math.hypot(dirX, dirY) || 1;
-  dirX /= mag; dirY /= mag;
-  // Encourage upward-ish exit if user ends pointing too downward
-  if(dirY > 0.25){ dirY = -Math.abs(dirY); }
-  const exitDist = Math.max(window.innerWidth, window.innerHeight) * 1.4;
-  const exitX = lastX + dirX * exitDist;
-  const exitY = lastY + dirY * exitDist;
+  // Exit: continue along current facing (tangent) direction
+  // Determine nose direction (rocket rotated by currentRotation, nose offset BASE_EMOJI_NOSE_ANGLE)
+  // Exit direction calculation (configurable)
+  let chosenAngleDeg;
+  if(CONFIG.exitMode === 'fixed'){
+    chosenAngleDeg = CONFIG.fixedExitAngleDeg;
+  } else {
+    chosenAngleDeg = currentRotation + BASE_EMOJI_NOSE_ANGLE + CONFIG.exitOffsetDeg;
+  }
+  const noseTheta = chosenAngleDeg * Math.PI / 180;
+  let dirX = Math.cos(noseTheta);
+  let dirY = Math.sin(noseTheta);
+  // Normalize (should already be unit length)
+  const mag = Math.hypot(dirX, dirY) || 1; dirX/=mag; dirY/=mag;
+  // Project far off-screen along nose heading
+  const exitDist = Math.max(diag, vh, vw) * 1.35;
+  const exitX = x + dirX * exitDist;
+  const exitY = y + dirY * exitDist;
+  wrapper.style.transition = `transform ${CONFIG.exitDurationMs}ms cubic-bezier(.65,.05,.36,1), opacity ${CONFIG.exitDurationMs}ms ease`;
+  rocket.style.transition = `transform ${CONFIG.exitDurationMs}ms cubic-bezier(.65,.05,.36,1)`;
   wrapper.style.transform = `translate(${exitX}px, ${exitY}px)`;
-  rocket.style.transform = `rotate(${currentAngleDeg}deg) scale(1.22)`;
+  // Keep current orientation (already aligned with motion) and add slight scale
+  rocket.style.transform = `rotate(${currentRotation}deg) scale(1.15)`;
   wrapper.style.opacity = '0';
-  setTimeout(()=> { wrapper.remove(); startTypedInsertion(); }, 2150);
+  setTimeout(()=>{ wrapper.remove(); startTypedInsertion(); }, CONFIG.exitDurationMs);
       }
     }
     requestAnimationFrame(animate);
@@ -170,10 +185,10 @@ permalink: /404.html
 
   function handleLaunch(){
     if(launched) return; launched = true;
-  if(reduce.matches) launchNoMotion(); else launchFancy();
+    if(reduce.matches) launchNoMotion(); else launchFancy();
   }
 
   rocket.addEventListener('click', handleLaunch);
-  rocket.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleLaunch(); } });
+  rocket.addEventListener('keydown', e => { if(e.key==='Enter' || e.key===' ') { e.preventDefault(); handleLaunch(); } });
 })();
 </script>
