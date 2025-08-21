@@ -35,7 +35,13 @@
 .social-links { display:flex; gap:1rem; position:relative; pointer-events:auto; }
 .social-links a { cursor:pointer; }
 .social-links a { color:var(--color-text-faint); font-size:1.5rem; transition:color .3s ease, transform .3s ease, text-shadow .3s ease; }
-.social-links a:hover { transform:translateY(-3px) scale(1.07); color:var(--primary-color); text-shadow:0 4px 18px rgba(59,130,246,0.5); }
+.social-links a:hover { transform:translateY(-3px) scale(1.07); }
+/* Brand-specific hover colors */
+.social-links a.social-github:hover { color:#ffffff; text-shadow:0 4px 18px rgba(255,255,255,0.45); }
+.social-links a.social-email:hover { color:#5865F2; text-shadow:0 4px 18px rgba(234,67,53,0.55); }
+.social-links a.social-youtube:hover { color:#ff0000; text-shadow:0 4px 20px rgba(255,0,0,0.55); }
+.social-links a.social-discord:hover { color:#5865F2; text-shadow:0 4px 18px rgba(88,101,242,0.55); }
+.social-links a.social-chess:hover { color:#7fa650; text-shadow:0 4px 18px rgba(127,166,80,0.55); } /* chess.com green */
 .now-column { flex:1; }
 .now-items { display:flex; flex-direction:column; gap:1.5rem; }
 .now-item { display:flex; align-items:flex-start; gap:1rem; }
