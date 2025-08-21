@@ -8,12 +8,38 @@
 :root[data-theme="dark"] #navbar { background:rgba(18,18,18,0.7); border-bottom:1px solid rgba(255,255,255,0.04); }
 :root[data-theme="dark"] #navbar.scrolled { background:rgba(30,30,30,0.85); box-shadow:0 4px 22px -6px rgba(0,0,0,0.6); }
 .navbar-nav { gap:2rem; justify-content:center!important; align-items:center!important; flex-wrap:nowrap!important; flex-direction:row!important; }
-.nav-brand { font-size:1.2rem!important; font-weight:600!important; margin-right:auto; }
-.nav-link { color:var(--color-text)!important; font-weight:500; font-size:1.05rem; letter-spacing:.25px; text-decoration:none; position:relative; padding:0.55rem 1rem!important; transition:color .25s ease, opacity .25s ease; }
+.nav-brand { font-size:1.05rem!important; font-weight:600!important; letter-spacing:.25px; margin-right:auto; padding:0.55rem 1rem!important; border-radius:1rem; position:relative; text-decoration:none; color:var(--color-text)!important; display:inline-block; }
+/* Light mode underline for brand (matches links) */
+.nav-brand::after { content:''; position:absolute; bottom:4px; left:50%; width:0; height:2px; background:linear-gradient(90deg,var(--primary-color),var(--primary-color)); transition:width .3s ease; transform:translateX(-50%); opacity:.9; border-radius:2px; }
+.nav-brand:hover::after, .nav-brand:focus::after, .nav-brand.active::after { width:70%; }
+/* Dark mode removes underline & adds text glow like other links */
+@media (prefers-color-scheme: dark){
+	:root:not([data-theme="light"]) .nav-brand::after { display:none; }
+	:root:not([data-theme="light"]) .nav-brand:hover,
+	:root:not([data-theme="light"]) .nav-brand:focus-visible,
+	:root:not([data-theme="light"]) .nav-brand.active { color:var(--primary-color)!important; text-shadow:0 0 6px rgba(59,130,246,0.7), 0 0 14px rgba(59,130,246,0.4); }
+}
+:root[data-theme="dark"] .nav-brand::after { display:none; }
+:root[data-theme="dark"] .nav-brand:hover,
+:root[data-theme="dark"] .nav-brand:focus-visible,
+:root[data-theme="dark"] .nav-brand.active { color:var(--primary-color)!important; text-shadow:0 0 6px rgba(59,130,246,0.7), 0 0 14px rgba(59,130,246,0.4); }
+.nav-link { color:var(--color-text)!important; font-weight:600; font-size:1.05rem; letter-spacing:.25px; text-decoration:none; position:relative; padding:0.55rem 1rem!important; transition:color .25s ease, opacity .25s ease, background .35s ease, box-shadow .4s ease; border-radius:1rem; }
 .nav-link:hover { color:var(--primary-color)!important; }
 .nav-link::after { content:''; position:absolute; bottom:4px; left:50%; width:0; height:2px; background:linear-gradient(90deg,var(--primary-color),var(--primary-color)); transition:width .3s ease; transform:translateX(-50%); opacity:.9; border-radius:2px; }
 .nav-link:hover::after, .nav-link:focus::after, .nav-link.active::after { width:70%; }
 .nav-link.active { color:var(--primary-color)!important; }
+
+/* Dark mode: remove underline & add text glow instead */
+@media (prefers-color-scheme: dark){
+	:root:not([data-theme="light"]) .nav-link::after { display:none; }
+	:root:not([data-theme="light"]) .nav-link:hover,
+	:root:not([data-theme="light"]) .nav-link:focus-visible,
+	:root:not([data-theme="light"]) .nav-link.active { color:var(--primary-color)!important; text-shadow:0 0 6px rgba(59,130,246,0.7), 0 0 14px rgba(59,130,246,0.4); }
+}
+:root[data-theme="dark"] .nav-link::after { display:none; }
+:root[data-theme="dark"] .nav-link:hover,
+:root[data-theme="dark"] .nav-link:focus-visible,
+:root[data-theme="dark"] .nav-link.active { color:var(--primary-color)!important; text-shadow:0 0 6px rgba(59,130,246,0.7), 0 0 14px rgba(59,130,246,0.4); }
 
 /* Theme toggle button */
 .theme-toggle { background:var(--color-surface-alt); color:var(--color-text); border:1px solid var(--color-border); padding:0.5rem 0.95rem; border-radius:2rem; font-size:0.8rem; font-weight:500; letter-spacing:.5px; display:flex; align-items:center; gap:0.4rem; cursor:pointer; line-height:1; transition: all .3s ease; box-shadow:0 2px 4px rgba(0,0,0,0.06); }
