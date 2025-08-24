@@ -66,7 +66,7 @@ Visit http://127.0.0.1:4000
 ---
 layout: post
 title: "Your Title"
-date: {{ "now" | date: "%Y-%m-%d" }}
+date: 2025-03-16
 categories: [ml]
 description: Optional SEO summary
 ---
