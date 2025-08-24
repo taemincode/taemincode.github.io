@@ -7,7 +7,7 @@
 .post-categories { display:flex; gap:.5rem; }
 .post-category { background-color:rgba(0,123,255,0.1); color:var(--primary-color); padding:.25rem 1rem; border-radius:1rem; font-size:.9rem; }
 .post-container { max-width:1000px; margin:0 auto; padding:2rem 2rem; }
-.post-content { background-color:var(--color-surface); border-radius:1rem; box-shadow:0 4px 18px -6px rgba(0,0,0,0.5); padding:.1px 2rem 2rem; backdrop-filter:saturate(140%) brightness(1.02); transition: background .35s ease, box-shadow .35s ease, transform .35s ease; }
+.post-content { background-color:var(--color-surface); border-radius:1rem; box-shadow:0 4px 18px -6px rgba(0,0,0,0.5); padding:.1px 2rem 2rem; backdrop-filter:saturate(140%) brightness(1.02); transition: background .35s ease, box-shadow .35s ease, transform .35s ease; overflow-x:hidden; }
 .post-content mjx-container[jax="CHTML"] { max-width:100%!important; }
 .post-content mjx-container[jax="CHTML"][display="true"] { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:.5rem; margin:1rem 0; }
 .post-content mjx-container[jax="CHTML"][display="false"] mjx-math { white-space:normal!important; }
@@ -36,7 +36,7 @@
 .markdown ul li::marker { color:var(--primary-color); }
 .markdown blockquote { margin-bottom:1.25rem; margin-top:0; padding:1rem 1.25rem 1rem 1.25rem; border-left:4px solid var(--primary-color); background:linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05)); font-style:italic; color:var(--color-text-soft); border-radius:0 .75rem .75rem 0; }
 .markdown code { background:var(--color-code-bg); padding:.22rem .45rem; border-radius:6px; font-size:.85em; color:var(--color-text); box-shadow:0 0 0 1px var(--color-code-border), 0 2px 4px -2px rgba(0,0,0,0.4); font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; }
-.markdown pre { background:var(--color-code-bg); padding:3rem 1.2rem 1.25rem; border-radius:0.95rem; overflow-x:visible; margin:2rem 0; position:relative; box-shadow:0 6px 24px -10px rgba(0,0,0,0.65); border:1px solid var(--color-code-border); font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; }
+.markdown pre { background:var(--color-code-bg); padding:3rem 1.2rem 1.25rem; border-radius:0.95rem; overflow-x:auto; -webkit-overflow-scrolling:touch; margin:2rem 0; position:relative; box-shadow:0 6px 24px -10px rgba(0,0,0,0.65); border:1px solid var(--color-code-border); font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; max-width:100%; box-sizing:border-box; }
 /* copy button */
 .markdown pre > .code-copy-btn { position:absolute !important; top:4px !important; right:6px !important; background:rgba(0,0,0,0.42); color:#fff; border:none; width:30px; height:26px; padding:0; font-size:.8rem; border-radius:6px; cursor:pointer; display:grid; place-items:center; line-height:1; backdrop-filter:blur(5px) saturate(140%); box-shadow:0 2px 5px -2px rgba(0,0,0,0.55); transition:background .25s ease, transform .25s ease, box-shadow .25s ease; z-index:20; }
 .markdown pre > .code-copy-btn .copy-icon { display:block; line-height:1; position:relative; top:0; font-size:1.2rem; }
