@@ -81,4 +81,14 @@
 .story-text a[href^="http"]:hover::after,
 .story-text a[href^="http"]:focus-visible::after { transform:translate(55%,0) scale(1) rotate(0); opacity:1; }
 .story-text a[href^="http"]:focus-visible { outline:2px solid var(--primary-color); outline-offset:2px; }
+
+/* timeline links: reuse the same underline + arrow effect as story links */
+.timeline .timeline-content a { position:relative; display:inline-block; color:var(--primary-color); text-decoration:none; padding-right:0; transition:color .25s ease; }
+.timeline .timeline-content a::before { content:""; position:absolute; left:0; right:0; height:2px; bottom:.08em; background:currentColor; transform:scaleX(0); transform-origin:left center; opacity:.55; transition:transform .4s ease, opacity .3s ease; border-radius:2px; }
+.timeline .timeline-content a::after { content:"↗"; font-size:.6em; position:absolute; right:-0.18em; top:-0.75em; opacity:0; transform:translate(55%,8px) scale(.88) rotate(-8deg); transition:transform .38s cubic-bezier(.4,.8,.3,1), opacity .22s ease; pointer-events:none; filter:drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
+.timeline .timeline-content a:hover::before,
+.timeline .timeline-content a:focus-visible::before { transform:scaleX(1); opacity:1; }
+.timeline .timeline-content a:hover::after,
+.timeline .timeline-content a:focus-visible::after { transform:translate(55%,0) scale(1) rotate(0); opacity:1; }
+.timeline .timeline-content a:focus-visible { outline:2px solid var(--primary-color); outline-offset:2px; }
 @media (max-width:768px){ .hero-title { font-size:2.5rem; } .hero-subtitle { font-size:1.2rem; } .snapshot-grid { flex-direction:column; gap:2rem; } .profile-column { padding-right:0; border-right:none; border-bottom:1px solid var(--color-border); padding-bottom:2rem; } .tech-stack { justify-content:center; } .social-links { justify-content:center; } .now-items { padding-top:1rem; } .timeline::before { left:0; } .timeline-content { width:calc(100% - 30px); margin-left:30px!important; } .timeline-content::before { left:-25px!important; } }
