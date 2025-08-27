@@ -2,7 +2,7 @@
 layout: post
 title: "How I Got My First Contribution for an Open Source Project"
 date: 2025-08-25
-categories: Open-Source
+categories: Contribution
 ---
 
 ### 📌 Introduction
