@@ -204,6 +204,49 @@
                     }
                 });
             });
+
+            // Image lightbox for post pages
+            (function(){
+                var postContent = document.querySelector('.post-content');
+                if(!postContent) return; // only on post pages
+
+                var overlay = document.createElement('div');
+                overlay.className = 'post-lightbox';
+                overlay.setAttribute('role','dialog');
+                overlay.setAttribute('aria-modal','true');
+                overlay.setAttribute('aria-label','Image viewer');
+                var fullImg = document.createElement('img');
+                overlay.appendChild(fullImg);
+                document.body.appendChild(overlay);
+
+                function openLightbox(src, alt){
+                    fullImg.src = src;
+                    fullImg.alt = alt || '';
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeLightbox(){
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    fullImg.src = '';
+                }
+                overlay.addEventListener('click', closeLightbox);
+                document.addEventListener('keydown', function(e){
+                    if(e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
+                });
+
+                postContent.addEventListener('click', function(e){
+                    var t = e.target;
+                    if(!(t && t.tagName === 'IMG')) return;
+                    // prefer linked href if wrapped in anchor, else use image src
+                    var link = t.closest ? t.closest('a') : null;
+                    var candidate = (link && link.getAttribute('href')) ? link.getAttribute('href') : (t.currentSrc || t.src);
+                    if(candidate){
+                        e.preventDefault();
+                        openLightbox(candidate, t.alt);
+                    }
+                });
+            })();
         });
     </script>
 </body>
