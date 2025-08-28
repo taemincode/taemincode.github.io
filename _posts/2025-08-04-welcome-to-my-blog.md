@@ -2,7 +2,7 @@
 layout: post
 title: "Welcome to My Blog"
 date: 2025-08-04
-categories: general
+categories: General
 ---
 
 ### Hello world!

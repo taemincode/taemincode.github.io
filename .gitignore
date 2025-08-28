@@ -1,50 +1,39 @@
-# Ignore build, cache, and dependency folders
-_site/
-Tex/
-texts/
-vendor/bundle/
-.sass-cache/
-.cache/
-node_modules/
-__pycache__/
-# macOS system files
-.DS_Store
-# Jekyll
+## Build output
 _site/
 .jekyll-cache/
+
+## Ruby/Bundler
 .bundle/
 vendor/
+vendor/bundle/
 
-# Python
+## Node
+node_modules/
+
+## Python
 __pycache__/
 *.py[cod]
-...
 
-# Flask
-instance/
-.webassets-cache
-
-# Environment
+## Environments
 .env
 .venv/
-...
 
-# IDEs
+## IDEs/Editors
 .vscode/
 .idea/
-...
 
-# OS files
+## OS/macOS
 .DS_Store
-...
 
-# Logs
+## Logs/Temp
 *.log
-
-# Temp files
 *.tmp
 *.temp
 
-# Node
-node_modules/
-...
+## Misc (local working dirs)
+Tex/
+texts/
+.sass-cache/
+.cache/
+instance/
+.webassets-cache
