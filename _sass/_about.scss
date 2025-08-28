@@ -54,19 +54,41 @@
 .now-content h4 { margin:0; font-size:1.1rem; font-weight:600; color:var(--color-text); }
 .now-content p { margin:.25rem 0 0; color:var(--color-text-faint); }
 .section-title { text-align:center; font-size:2rem; margin-bottom:2rem; color:var(--color-text); }
-.timeline-section { padding:4rem 2rem; background-color:var(--color-bg-alt); }
+.timeline-section { padding:3rem 2rem; background-color:var(--color-bg-alt); }
 .timeline { max-width:800px; margin:0 auto; position:relative; }
-.timeline-section, .timeline, .timeline-item, .timeline-content { cursor:default; user-select:none; -webkit-user-select:none; }
-.timeline::before { content:''; position:absolute; width:2px; background:var(--primary-color); top:0; bottom:0; left:50%; transform:translateX(-50%); }
-.timeline-item { margin:2rem 0; position:relative; }
-.timeline-content { background:var(--color-surface); padding:1.5rem; border-radius:var(--border-radius); box-shadow:0 4px 16px -6px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03); width:calc(50% - 30px); position:relative; transition: box-shadow .45s ease, transform .45s ease; overflow:hidden; }
-.timeline-content::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 80% 20%, rgba(59,130,246,0.22), transparent 70%); opacity:0; transition:opacity .6s ease; pointer-events:none; }
+/* Center rail with subtle gradient + glow */
+.timeline::before { content:''; position:absolute; width:3px; top:0; bottom:0; left:50%; transform:translateX(-50%);
+  background:linear-gradient(180deg, transparent 0%, var(--primary-color) 35%, var(--primary-color) 65%, transparent 100%);
+  opacity:.85; filter:none; box-shadow:0 0 0 1px rgba(59,130,246,0.08), inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+.timeline-item { margin:1.25rem 0; position:relative; }
+/* Horizontal connector from center rail to node */
+.timeline-item::after { content:''; position:absolute; height:2px; top:50%; transform:translateY(-50%); background:linear-gradient(90deg, rgba(59,130,246,0.0), rgba(59,130,246,0.35)); }
+.timeline-item:nth-child(odd)::after { left:50%; width:30px; }
+.timeline-item:nth-child(even)::after { left:calc(50% - 30px); width:30px; transform:translateY(-50%) scaleX(-1); }
+
+/* Cards */
+.timeline-content { background:var(--color-surface); padding:1rem 1rem .9rem; border-radius:var(--border-radius);
+  box-shadow:0 4px 16px -6px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03);
+  width:calc(50% - 30px); position:relative; transition: box-shadow .45s ease, transform .45s ease; overflow:hidden; }
+.timeline-content::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 80% 20%, rgba(59,130,246,0.18), transparent 70%); opacity:0; transition:opacity .6s ease; pointer-events:none; }
 .timeline-content:hover { transform:translateY(-4px); box-shadow:0 14px 34px -14px rgba(0,0,0,0.75), 0 0 0 1px rgba(59,130,246,0.25), 0 6px 20px -6px rgba(59,130,246,0.35); }
 .timeline-content:hover::after { opacity:1; }
 .timeline-item:nth-child(odd) .timeline-content { margin-left:auto; }
-.timeline-content::before { content:''; position:absolute; width:20px; height:20px; background:var(--primary-color); border-radius:50%; top:50%; transform:translateY(-50%); }
+
+/* Node (ringed dot) */
+.timeline-content::before { content:''; position:absolute; width:14px; height:14px; border-radius:50%; top:50%; transform:translateY(-50%);
+  background:var(--color-surface); border:3px solid var(--primary-color);
+  box-shadow:0 0 0 4px var(--color-bg-alt), 0 0 0 1px rgba(255,255,255,0.04), 0 0 12px rgba(59,130,246,0.28);
+  transition: box-shadow .35s ease, transform .35s ease; }
+.timeline-content:hover::before { box-shadow:0 0 0 4px var(--color-bg-alt), 0 0 0 1px rgba(59,130,246,0.25), 0 0 18px rgba(59,130,246,0.45); transform:translateY(-50%) scale(1.05); }
 .timeline-item:nth-child(odd) .timeline-content::before { left:-40px; }
 .timeline-item:nth-child(even) .timeline-content::before { right:-40px; }
+
+/* Date pill and text */
+.timeline-content h3 { margin:0 0 .4rem; font-size:.9rem; text-transform:uppercase; letter-spacing:.08em; font-weight:700; color:var(--color-text);
+  display:inline-block; padding:.28rem .6rem; border-radius:999px; background:var(--color-surface-alt); border:1px solid var(--color-border); }
+.timeline-content p { margin:0; color:var(--color-text-soft); }
 .story-section { padding:4rem 2rem; }
 .story-content { max-width:800px; margin:0 auto; }
 .story-text { line-height:1.75; font-size:1.05rem; }
@@ -91,4 +113,19 @@
 .timeline .timeline-content a:hover::after,
 .timeline .timeline-content a:focus-visible::after { transform:translate(55%,0) scale(1) rotate(0); opacity:1; }
 .timeline .timeline-content a:focus-visible { outline:2px solid var(--primary-color); outline-offset:2px; }
-@media (max-width:768px){ .hero-title { font-size:2.5rem; } .hero-subtitle { font-size:1.2rem; } .snapshot-grid { flex-direction:column; gap:2rem; } .profile-column { padding-right:0; border-right:none; border-bottom:1px solid var(--color-border); padding-bottom:2rem; } .tech-stack { justify-content:center; } .social-links { justify-content:center; } .now-items { padding-top:1rem; } .timeline::before { left:0; } .timeline-content { width:calc(100% - 30px); margin-left:30px!important; } .timeline-content::before { left:-25px!important; } }
+@media (max-width:768px){
+  .hero-title { font-size:2.5rem; }
+  .hero-subtitle { font-size:1.2rem; }
+  .snapshot-grid { flex-direction:column; gap:2rem; }
+  .profile-column { padding-right:0; border-right:none; border-bottom:1px solid var(--color-border); padding-bottom:2rem; }
+  .tech-stack { justify-content:center; }
+  .social-links { justify-content:center; }
+  .now-items { padding-top:1rem; }
+
+  /* Timeline becomes single-rail left aligned */
+  .timeline::before { left:0; }
+  .timeline-item { margin:1rem 0; }
+  .timeline-item::after { left:0; width:25px; transform:translateY(-50%); background:linear-gradient(90deg, rgba(59,130,246,0.0), rgba(59,130,246,0.3)); }
+  .timeline-content { width:calc(100% - 30px); margin-left:30px!important; }
+  .timeline-content::before { left:-25px!important; right:auto!important; }
+}
