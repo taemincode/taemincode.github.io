@@ -10,7 +10,7 @@ This is first blog post. I've been thinking about writing blogs for months now, 
 
 ### What to Expect
 
-- Updates about my software development journey
+- Updates about my machine learning journey
 - Project showcases
 - Personal experiences and learnings
 
