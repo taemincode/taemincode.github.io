@@ -1,5 +1,8 @@
 /* Blog listing (light + dark aware) */
-.blog-hero { min-height:40vh; background:var(--color-bg-alt); display:flex; align-items:center; justify-content:center; padding:6rem 2rem 4rem; text-align:center; }
+.blog-hero { min-height:40vh; background:var(--color-bg-alt); display:flex; align-items:center; justify-content:center; padding:6rem 2rem 4rem; text-align:center; position:relative; overflow:hidden; }
+.blog-hero::before { content:''; position:absolute; width:80vmax; height:80vmax; left:50%; top:40%; transform:translate(-50%,-50%); pointer-events:none; background:
+  radial-gradient(closest-side, rgba(59,130,246,0.12), rgba(59,130,246,0.0) 65%);
+  filter:blur(2px); }
 .blog-hero-content { max-width:800px; }
 .blog-emoji { font-size:3rem; margin-bottom:1rem; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.3)); cursor:default; user-select:none; -webkit-user-select:none; transition:text-shadow .45s ease, color .4s ease, transform .45s ease; }
 .blog-hero-title { font-size:clamp(2.5rem,5vw,3.5rem); color:var(--color-text); margin-bottom:1rem; letter-spacing:.5px; cursor:default; user-select:none; -webkit-user-select:none; transition:text-shadow .45s ease, color .4s ease; }
@@ -15,7 +18,7 @@
 .blog-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2.25rem; padding:0 1rem; }
 .featured-post { grid-column:1 / -1; }
 .featured-post .blog-title { font-size:1.85rem; }
-.blog-card { background:var(--color-surface); border-radius:1.1rem; box-shadow:0 6px 22px -8px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03); transition:transform .45s cubic-bezier(.4,.2,.2,1), box-shadow .45s ease, background .4s ease; overflow:hidden; position:relative; }
+.blog-card { background:var(--color-surface); border-radius:1.1rem; box-shadow:0 6px 22px -8px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03); transition:transform .45s cubic-bezier(.4,.2,.2,1), box-shadow .45s ease, background .4s ease; overflow:hidden; position:relative; will-change: transform, opacity; }
 .blog-card::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 75% 15%, rgba(59,130,246,0.18), transparent 70%); opacity:0; transition:opacity .6s ease; }
 .blog-card:hover { transform:translateY(-6px); box-shadow:0 16px 34px -14px rgba(0,0,0,0.75), 0 0 0 1px rgba(59,130,246,0.25); }
 .blog-card:hover::before { opacity:1; }

@@ -21,7 +21,7 @@ description: Taemin Park's blog posts about programming, technology, and persona
                 <!-- Featured Post -->
                 {% assign featured_post = site.posts.first %}
                 {% if featured_post %}
-                <article class="blog-card featured-post" data-aos="fade-up" data-aos-delay="0" data-href="{{ featured_post.url }}" tabindex="0" role="link" aria-label="Open post: {{ featured_post.title }}">
+                <article class="blog-card featured-post" data-aos="fade-up" data-aos-delay="100" data-aos-duration="650" data-aos-anchor-placement="top-bottom" data-href="{{ featured_post.url }}" tabindex="0" role="link" aria-label="Open post: {{ featured_post.title }}">
                     <div class="blog-card-content">
                         <time class="blog-date">{{ featured_post.date | date: "%B %d, %Y" }}</time>
                         <h2 class="blog-title">{{ featured_post.title }}</h2>
@@ -42,7 +42,7 @@ description: Taemin Park's blog posts about programming, technology, and persona
 
                 <!-- Regular Posts -->
                 {% for post in site.posts offset:1 %}
-                <article class="blog-card" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}" data-href="{{ post.url }}" tabindex="0" role="link" aria-label="Open post: {{ post.title }}">
+                <article class="blog-card" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="{{ forloop.index0 | modulo: 6 | times: 120 }}" data-href="{{ post.url }}" tabindex="0" role="link" aria-label="Open post: {{ post.title }}">
                     <div class="blog-card-content">
                         <time class="blog-date">{{ post.date | date: "%B %d, %Y" }}</time>
                         <h2 class="blog-title">{{ post.title }}</h2>
@@ -82,23 +82,17 @@ description: Taemin Park's blog posts about programming, technology, and persona
                             card.style.cursor = 'pointer';
                         });
 
-                        // Apply AOS only to cards in the initial viewport
-                        const cards = document.querySelectorAll('.blog-card');
-                        cards.forEach(card => {
-                            const rect = card.getBoundingClientRect();
-                            if (
-                                rect.top >= 0 &&
-                                rect.left >= 0 &&
-                                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                            ) {
-                                // Card is in the viewport, keep AOS
-                            } else {
-                                // Card is outside the viewport, remove AOS attributes
-                                card.removeAttribute('data-aos');
-                                card.removeAttribute('data-aos-delay');
-                            }
-                        });
+                        // Respect reduced motion preferences by disabling AOS
+                        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                        if (prefersReduced) {
+                            document.querySelectorAll('[data-aos]').forEach(el => {
+                                el.removeAttribute('data-aos');
+                                el.removeAttribute('data-aos-delay');
+                                el.removeAttribute('data-aos-duration');
+                                el.removeAttribute('data-aos-easing');
+                                el.removeAttribute('data-aos-anchor-placement');
+                            });
+                        }
                     });
                 </script>
         </main>

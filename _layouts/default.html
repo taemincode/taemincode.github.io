@@ -108,11 +108,17 @@
             window.addEventListener("scroll", handleScroll);
             handleScroll();
 
-            // Initialize AOS
+            // Initialize AOS (disabled on mobile/touch and reduced motion)
             AOS.init({
                 duration: 600,
                 once: true,
-                offset: 120
+                offset: 120,
+                disable: function(){
+                    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    const isTouchOrCoarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+                    const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
+                    return prefersReduced || isTouchOrCoarse || isSmallScreen;
+                }
             });
 
             // Initialize Typed.js
