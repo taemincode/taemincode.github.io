@@ -78,12 +78,18 @@
 @media (max-width:768px){
 	.post-hero { padding:7.2rem 1rem 3rem; }
 	.post-container { padding:2rem 1rem; }
-	.post-content { padding:1.5rem; }
+	/* tighten top spacing inside the post card on mobile */
+	.post-content { padding:.75rem 1rem 1.25rem; }
+	/* avoid large initial jump caused by first element margins */
+	.post-content > :first-child { margin-top:1rem; }
 	.markdown { font-size:1rem; }
 	.markdown h1 { font-size:2rem; }
 	.markdown h2 { font-size:1.75rem; }
 	.markdown h3 { font-size:1.4rem; }
 	.post-nav { flex-direction:column; gap:1rem; }
+	/* show Next post first on mobile */
+	.post-nav-link.next { order:0; }
+	.post-nav-link.prev { order:1; }
 	.post-nav-link { text-align:center!important; width:100%; margin:0; border-radius:1rem; }
 	.post-footer { padding:0 1rem; }
 }
