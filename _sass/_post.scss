@@ -2,8 +2,11 @@
 .post-hero { padding:8rem 2rem 4rem; background-color:var(--color-bg-alt); text-align:center; }
 .post-hero-content { max-width:800px; margin:0 auto; }
 .post-title { font-size:clamp(2rem,5vw,3rem); color:var(--color-text); margin-bottom:1.5rem; line-height:1.2; }
-.post-metadata { display:flex; align-items:center; justify-content:center; gap:1rem; color:var(--secondary-color); }
-.post-date { font-size:1.1rem; }
+.post-metadata { display:flex; align-items:center; justify-content:center; gap:1.25rem; color:var(--secondary-color); flex-wrap:wrap; }
+.post-meta-item { display:flex; align-items:center; gap:.45rem; font-style:italic; color:var(--secondary-color); }
+.post-meta-item i { opacity:.9; }
+.post-date { font-size:1.05rem; font-style:normal; color:var(--secondary-color); }
+.post-edited { font-size:1.05rem; font-style:normal; color:var(--secondary-color); }
 .post-categories { display:flex; gap:.5rem; }
 .post-category { background-color:rgba(0,123,255,0.1); color:var(--primary-color); padding:.25rem 1rem; border-radius:1rem; font-size:.9rem; }
 .post-container { max-width:1000px; margin:0 auto; padding:2rem 2rem; }
