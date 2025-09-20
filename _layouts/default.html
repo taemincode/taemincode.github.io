@@ -171,7 +171,7 @@
                 applyThemeUI(document.documentElement.getAttribute('data-theme'));
             }
 
-            // Add copy buttons to code blocks
+            // Add copy buttons to code blocks (Font Awesome icons)
             const codeBlocks = document.querySelectorAll('.markdown pre');
             codeBlocks.forEach((pre, index) => {
                 if(pre.querySelector('.code-copy-btn')) return; // idempotent
@@ -179,7 +179,7 @@
                 btn.type = 'button';
                 btn.className = 'code-copy-btn';
                 btn.setAttribute('aria-label', 'Copy code to clipboard');
-                btn.innerHTML = '<span class="copy-icon" aria-hidden="true">📋</span>';
+                btn.innerHTML = '<i class="fa-regular fa-copy copy-icon" aria-hidden="true"></i>';
                 pre.appendChild(btn);
                 const code = pre.querySelector('code');
         btn.addEventListener('click', async () => {
@@ -187,18 +187,18 @@
                     try {
                         await navigator.clipboard.writeText(text);
                         btn.classList.add('copied');
-            btn.innerHTML = '<span class="copy-icon" aria-hidden="true">✓</span>';
+            btn.innerHTML = '<i class="fa-solid fa-check copy-icon" aria-hidden="true"></i>';
                         btn.setAttribute('aria-label','Copied!');
             setTimeout(() => {
                             btn.classList.remove('copied');
-                            btn.innerHTML = '<span class="copy-icon" aria-hidden="true">📋</span>';
+                            btn.innerHTML = '<i class="fa-regular fa-copy copy-icon" aria-hidden="true"></i>';
                             btn.setAttribute('aria-label','Copy code to clipboard');
-            }, 3000); // extended cool time
+            }, 800);
                     } catch(err) {
-                        btn.innerHTML = '<span class="copy-icon" aria-hidden="true">⚠️</span>';
+                        btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation copy-icon" aria-hidden="true"></i>';
                         btn.setAttribute('aria-label','Copy failed');
                         setTimeout(() => {
-                            btn.innerHTML = '<span class="copy-icon" aria-hidden="true">📋</span>';
+                            btn.innerHTML = '<i class="fa-regular fa-copy copy-icon" aria-hidden="true"></i>';
                             btn.setAttribute('aria-label','Copy code to clipboard');
                         }, 2000);
                     }

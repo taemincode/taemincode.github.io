@@ -14,9 +14,12 @@
   --color-text-soft: #444444;
   --color-text-faint: #666666;
   --color-border: #e0e0e0;
-  --color-code-bg: #f5f7fa;
-  --color-code-border: #e2e8f0;
+  /* Code background (GitHub light) */
+  --color-code-bg: #f6f8fa;
+  --color-code-border: #d0d7de; /* GitHub-like border */
   --color-code-accent: #007bff;
+  /* Code block bg (match GitHub light) */
+  --color-codeblock-bg: #f6f8fa;
 
   /* Legacy variable aliases (kept for existing rules) */
   --dark-color: var(--color-text);

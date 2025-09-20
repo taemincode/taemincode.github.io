@@ -5,16 +5,16 @@ date: 2025-08-06
 categories: ML
 ---
 
-### 📌 Introduction
+## 📌 Introduction
 Linear regression is the process of finding a line in a graph that best fits the data. It is a type of `supervised learning`, meaning it uses labeled data (datasets that already include the correct answers). It's one of the first things that people learn when starting their machine learning journey.
 
-### 🧠 The Big Idea
+## 🧠 The Big Idea
 ![Linear regression example](/assets/images/posts/2025/linear-regression/linear_regression.png)<br>
 Just as I mentioned above, you only have to think of linear regression as fitting the best line to the data! You probably know that the equation of a line is:<br>
 $y = wx + b$<br>
 In this equation, $w$ is the slope (how steep the line is), and $b$ is the intercept (where the line crosses the y-axis). So to fit the line, you would have to change the $w$ and $b$ values.
 
-### 📊 What does It Actually Do?
+## 📊 What does It Actually Do?
 By fitting a line which is close to all data, we would be able to predict the $y$ values of any input $x$. Let's use house prices as an example 🏠 (it's one of the most common examples).
 ![House price prediction](/assets/images/posts/2025/linear-regression/house_price_prediction.png)
 In this graph, the white dots represent the data (e.g., a 180 m² house costing 500k), and by linear regression, we can find the blue line that best fits the data. Since we have this line, we can now predict house prices by finding the corresponding values of the line. For example, let's say that we want to predict the price of a 200 m² house. Because the equation of the line is:<br>
@@ -27,7 +27,7 @@ The predicted price of this house would be:<br>
 $\hat{y} = 2300 \times 200 + 100,000 = 560,000$<br>
 And voila! We've just used linear regression to predict house prices 😄
 
-### 🔍 How Does It Learn?
+## 🔍 How Does It Learn?
 You now might be curious about how we actually find the best fitting line. And that's exactly what I'm going to tell you.<br>
 Finding the best fitting line is the same as finding the lowest `cost`. And the cost is measured by a `cost function`, which measures the performance (cost) of a model. There are many cost functions used for many cases, but I will use `Mean Squared Error (MSE)` (which is the default for most regression problems) to explain how linear regression learns.<br>
 This is the formula for Mean Squared Error:<br>
@@ -44,7 +44,7 @@ $b = b - \alpha \dfrac{\partial J}{\partial b}$<br>
 Here, $\dfrac{\partial J}{\partial w}$ and $\dfrac{\partial J}{\partial b}$ are the `gradients`. The gradients allow us to take the steepest step. $\alpha$ (alpha) is called the `learning rate`. You could think of this as the 'size' of the steps. If the learning rate is too small, linear regression learns slower, as the steps are small. However, if the learning rate is too big, it could diverge and never be able to minimize the cost. The image below visualizes what happens when the learning rate is too small or big:
 ![Learning rate comparison](/assets/images/posts/2025/linear-regression/learning_rate_comparison.png)
 
-### 🛠️ Building It From Scratch
+## 🛠️ Building It From Scratch
 Now that you know how linear regression learns, let's build it from scratch!<br>
 We'll start by generating some sample data:
 ```python
@@ -121,10 +121,10 @@ Output:<br>
 ![Linear regression from scratch plot](/assets/images/posts/2025/linear-regression/linear_regression_from_scratch_plot.png)<br>
 🎉 We've just built a working linear regression model without using any machine learning libraries! (just math and python)🎉
 
-### 📚 Linear vs. Other Models
+## 📚 Linear vs. Other Models
 Linear regression is simply fitting a line to the data. So it works best when the data is linear. However, what if the data isn't linear? In that case, other models (such as polynomial regression) work better. The image below shows when linear regression works well and doesn't work well:
 ![Linear vs polynomial](/assets/images/posts/2025/linear-regression/linear_vs_polynomial.png)<br>
 
-### ✅ Summary
+## ✅ Summary
 In this blog post, we've looked at how linear regression works, when we use it, and the core concepts behind it. It's a great starting point in machine learning as gradient descent and cost functions are actually very important in many machine learning models.<br>
 In the next blog post, we'll explore logistic regression, which is another important model in machine learning. See you then!

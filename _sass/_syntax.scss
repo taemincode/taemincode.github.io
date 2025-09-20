@@ -1,0 +1,67 @@
+/* Rouge syntax highlighting theme (GitHub-like, light/dark aware) */
+
+/* Token color variables */
+:root {
+  --syn-comment: #6e7781;
+  --syn-keyword: #cf222e;
+  --syn-string:  #116329;
+  --syn-function:#8250df;
+  --syn-number:  #0550ae;
+  --syn-type:    #953800;
+  --syn-attr:    #0a3069;
+  --syn-operator:#24292f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --syn-comment: #8b949e;
+    --syn-keyword: #ff7b72;
+    --syn-string:  #7ee787;
+    --syn-function:#d2a8ff;
+    --syn-number:  #79c0ff;
+    --syn-type:    #ffa657;
+    --syn-attr:    #79c0ff;
+    --syn-operator:#c9d1d9;
+  }
+}
+
+:root[data-theme="dark"] {
+  --syn-comment: #8b949e;
+  --syn-keyword: #ff7b72;
+  --syn-string:  #7ee787;
+  --syn-function:#d2a8ff;
+  --syn-number:  #79c0ff;
+  --syn-type:    #ffa657;
+  --syn-attr:    #79c0ff;
+  --syn-operator:#c9d1d9;
+}
+
+/* Map Rouge token classes to variables */
+.markdown .highlight,
+.markdown .highlighter-rouge {
+  /* Comments */
+  .c, .cm, .cp, .c1, .cs { color: var(--syn-comment); font-style: italic; }
+  /* Errors */
+  .err { color:#f85149; text-decoration: underline; }
+  /* Keywords */
+  .k, .kc, .kd, .kn, .kp, .kr, .kt { color: var(--syn-keyword); }
+  /* Operators / punctuation */
+  .o, .ow, .p { color: var(--syn-operator); }
+  /* Numbers */
+  .m, .mb, .mf, .mh, .mi, .il, .mo { color: var(--syn-number); }
+  /* Strings */
+  .s, .sa, .sb, .sc, .dl, .sd, .s1, .s2, .se, .sh, .si, .sx, .sr, .ss { color: var(--syn-string); }
+  /* Names */
+  .na { color: var(--syn-attr); }
+  .nf, .fm { color: var(--syn-function); }
+  .nb, .bp { color: var(--syn-operator); }
+  .nc, .nn, .no, .ne, .nt { color: var(--syn-type); }
+
+  /* Diffs */
+  .gd { color:#82071e; background:#ffebe9; }
+  .gi { color:#116329; background:#dafbe1; }
+}
+
+/* Ensure the wrapper doesn't change background; our pre handles that */
+.markdown .highlight { background: transparent; }
+
