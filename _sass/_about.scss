@@ -20,10 +20,42 @@
 .hero-subtitle { font-size:1.5rem; color:var(--primary-color); height:2em; }
 /* Arrow cursor for subtitle / typed text */
 .hero-subtitle, #typed-text { cursor:default; user-select:none; -webkit-user-select:none; }
+/* Hero scroll cue */
+.hero-scroll {
+  position:absolute;
+  bottom:2rem;
+  left:50%;
+  transform:translate(-50%, 0);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:3rem;
+  height:3rem;
+  border-radius:999px;
+  border:1px solid var(--primary-color);
+  color:var(--primary-color);
+  font-size:1.25rem;
+  transition:transform .3s ease, box-shadow .3s ease, color .3s ease, background .3s ease, border-color .3s ease;
+}
+.hero-scroll:hover,
+.hero-scroll:focus {
+  transform:translate(-50%, -6px);
+  color:var(--color-bg);
+  background:var(--primary-color);
+  border-color:var(--primary-color);
+  box-shadow:0 12px 30px -12px rgba(59,130,246,0.65);
+}
+.hero-scroll:focus {
+  outline:2px solid var(--primary-color);
+  outline-offset:4px;
+}
 /* Typed.js caret */
 .typed-cursor { color:var(--primary-color); opacity:.9; animation: blink 1s step-start infinite; }
 @keyframes blink { 50% { opacity:0; } }
-.about-snapshot { padding:2rem 1rem; }
+.about-snapshot {
+  padding:2rem 1rem;
+  scroll-margin-top:90px;
+}
 .snapshot-container { max-width:1200px; margin:0 auto; }
 .snapshot-card { background:var(--color-surface-alt); border-radius:1rem; box-shadow:0 6px 22px -8px rgba(0,0,0,0.55); padding:2rem; position:relative; overflow:hidden; transition: background .4s ease, box-shadow .4s ease, transform .4s ease; }
 .snapshot-card::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 85% 15%, rgba(59,130,246,0.18), transparent 70%); opacity:0; transition:opacity .6s ease; pointer-events:none; }
@@ -153,6 +185,8 @@
 @media (max-width:768px){
   .hero-title { font-size:2.5rem; }
   .hero-subtitle { font-size:1.2rem; }
+  .hero-scroll { bottom:1.5rem; width:2.75rem; height:2.75rem; }
+  .about-snapshot { scroll-margin-top:80px; }
   .snapshot-grid { flex-direction:column; gap:2rem; }
   .profile-column { padding-right:0; border-right:none; border-bottom:1px solid var(--color-border); padding-bottom:2rem; }
   .tech-stack { justify-content:center; }
