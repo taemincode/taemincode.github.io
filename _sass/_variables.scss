@@ -47,8 +47,9 @@
     --color-text-faint: #888888; /* secondary */
     --color-border: #2a2a2a;
     --color-code-bg: #242424;
-  --color-code-border: #30363d;
-  --color-code-accent: #3b82f6;
+    --color-code-border: #30363d;
+    --color-code-accent: #3b82f6;
+    --color-codeblock-bg: #0d1117; /* Dark code block bg */
     --dark-color: var(--color-text);
     --light-color: var(--color-bg-alt);
     --white: var(--color-surface);
@@ -72,6 +73,7 @@
   --color-code-bg: #242424;
   --color-code-border: #30363d;
   --color-code-accent: #3b82f6;
+  --color-codeblock-bg: #0d1117; /* Dark code block bg */
   --dark-color: var(--color-text);
   --light-color: var(--color-bg-alt);
   --white: var(--color-surface);
