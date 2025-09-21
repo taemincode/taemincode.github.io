@@ -114,6 +114,21 @@
 }
 .markdown pre code::before { content:none; }
 .markdown img { max-width:100%; height:auto; border-radius:0.9rem; margin:1rem 0 .5rem; box-shadow:0 6px 20px -8px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.04); transition: transform .35s ease, box-shadow .35s ease; }
+/* When a post starts with an inline image block, tighten the gap before the next section */
+.markdown > img:first-child,
+.markdown > figure:first-child,
+.markdown > p:first-child:has(> img:only-child) {
+  margin-bottom:0.35rem;
+}
+.markdown > p:first-child:has(> img:only-child) > img {
+  margin-top:0.75rem;
+  margin-bottom:0.35rem;
+}
+.markdown > img:first-child + *,
+.markdown > figure:first-child + *,
+.markdown > p:first-child:has(> img:only-child) + * {
+  margin-top: 1.5rem;
+}
 /* indicate images can be expanded */
 .markdown img { cursor: pointer; }
 .post-footer { max-width:1000px; margin:0 auto 4rem; padding:0 2rem; }
