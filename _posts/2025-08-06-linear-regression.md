@@ -87,7 +87,7 @@ for epoch in range(epochs):
         print(f"Epoch {epoch}: Loss = {loss:.4f}")
 ```
 Output:
-```bash
+```text
 Epoch 0: Loss = 34.0180
 Epoch 100: Loss = 1.0010
 Epoch 200: Loss = 0.9928
@@ -104,7 +104,7 @@ Let's see what we got for the values of $w$ (slope) and $b$ (intercept):
 print(f"Learned parameters: w = {w:.2f}, b = {b:.2f}")
 ```
 Output:
-```bash
+```text
 Learned parameters: w = 2.97, b = 4.22
 ```
 Finally, let's see how well our line fits the data:

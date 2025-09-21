@@ -132,7 +132,7 @@ acc = (y_pred == y).mean()
 print(f"Training accuracy: {acc*100:.1f}%")
 ```
 Output:
-```bash
+```text
 Epoch 0: Loss = 0.6160
 Epoch 200: Loss = 0.4145
 Epoch 400: Loss = 0.3759
