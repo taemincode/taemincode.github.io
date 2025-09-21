@@ -8,9 +8,29 @@ layout: default
         <div class="post-hero-content">
             <h1 class="post-title">{{ page.title }}</h1>
             <div class="post-metadata">
-                <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">
-                    {{ page.date | date: "%B %d, %Y" }}
-                </time>
+                <span class="post-meta-item" aria-label="Published date">
+                    <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                    <span class="label">Published</span>
+                    <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">
+                        {{ page.date | date: "%b %-d, %Y" }}
+                    </time>
+                </span>
+                {% assign edited_source = page.last_modified_at | default: page.updated | default: page.edited %}
+                {% if edited_source %}
+                {% assign published_at = page.date | date: "%s" %}
+                {% assign modified_at = edited_source | date: "%s" %}
+                {% assign published_day = page.date | date: "%Y-%m-%d" %}
+                {% assign modified_day = edited_source | date: "%Y-%m-%d" %}
+                {% if modified_at > published_at and modified_day != published_day %}
+                <span class="post-meta-item" aria-label="Updated date">
+                    <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                    <span class="label">Updated</span>
+                    <time datetime="{{ edited_source | date_to_xmlschema }}" class="post-edited">
+                        {{ edited_source | date: "%b %-d, %Y" }}
+                    </time>
+                </span>
+                {% endif %}
+                {% endif %}
                 {% if page.categories %}
                 <div class="post-categories">
                     {% for category in page.categories %}

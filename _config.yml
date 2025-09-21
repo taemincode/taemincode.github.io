@@ -3,3 +3,11 @@ description: Taemin's personal site and blogs
 baseurl: "" # important: keep this empty for user sites
 url: "https://taemincode.github.io"
 markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-last-modified-at
