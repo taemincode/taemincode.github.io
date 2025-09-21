@@ -44,7 +44,8 @@
 .markdown ul,.markdown ol { margin:1.5rem 0; padding-left:1.5rem; }
 .markdown li { margin-bottom:.5rem; color:var(--color-text-soft); }
 .markdown ul li::marker { color:var(--primary-color); }
-.markdown blockquote { margin-bottom:1.25rem; margin-top:0; padding:1rem 1.25rem 1rem 1.25rem; border-left:4px solid var(--primary-color); background:linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05)); font-style:italic; color:var(--color-text-soft); border-radius:0 .75rem .75rem 0; }
+.markdown blockquote { margin-bottom:1.25rem; margin-top:0; padding:1rem 1.25rem 1rem 1.25rem; border-left:4px solid var(--primary-color); background:linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05)); font-style:normal; color:var(--color-text-soft); border-radius:0 .75rem .75rem 0; }
+.markdown blockquote > *:not(:first-child) { font-style:italic; }
 .markdown code { background:var(--color-code-bg); padding:.22rem .45rem; border-radius:6px; font-size:.85em; color:var(--color-text); box-shadow:0 0 0 1px var(--color-code-border); font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; }
 /* Code block – GitHub-like */
 .markdown pre,

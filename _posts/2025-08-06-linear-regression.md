@@ -21,6 +21,7 @@ In this graph, the white dots represent the data (e.g., a 180 m² house costing 
 $\hat{y} = 2300x + 100,000$<br>
 
 > ℹ️ Note:
+>
 > The symbol $\hat{y}$ (y-hat) is commonly used to denote predicted values in statistics and machine learning. This helps distinguish predicted values ($\hat{y}$) from actual outcomes ($y$) in the training data.
 
 The predicted price of this house would be:<br>

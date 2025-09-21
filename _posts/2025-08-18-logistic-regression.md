@@ -26,6 +26,7 @@ Logistic regression works as follows:
 - If $\hat{y} < 0.5$, predict Class 0 (e.g., the student fails).
 
 > ℹ️ Note:
+>
 > In $\hat{y} \geq 0.5$ and $\hat{y} < 0.5$, the value $0.5$ is called the `decision boundary`. The decision boundary is usually 0.5, but it could be a different value based on the problem. For example, if we are creating a disease detection algorithm, and this algorithm will be used to flag 'potential' diseases, we could lower the decision boundary to let's say 0.3.
 
 ## 🔍 How Does It Learn?
@@ -52,6 +53,7 @@ $$
 L\big(f_{\vec w, b}(\vec x^{(i)}), y^{(i)}\big) = - \Big[ y^{(i)} \log \hat y^{(i)} + (1 - y^{(i)}) \log \big(1 - \hat y^{(i)}\big) \Big]
 $$<br><br>
 > ℹ️ Note:
+>
 > When $y^{(i)} = 1$, $\big(1-y^{(i)}\big) \log\big(1 - f_{\vec{w},b}(\vec{x}^{(i)})\big)$ cancels out, leaving us with $- y^{(i)} \log\big(f_{\vec{w},b}(\vec{x}^{(i)})\big)$; and similarly when $y^{(i)} = 0$.
 
 Finally, if we add all the individual losses to find out the cost, we get this formula (same as the one above):<br><br>
