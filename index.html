@@ -7,19 +7,91 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
     <!-- Main Content -->
     <main role="main" class="container-fluid p-0">
         <!-- Hero Section -->
-        <section class="hero" data-aos="fade-up" data-aos-delay="200">
-            <div class="hero-content">
+        <section class="hero">
+            <div class="hero-inner">
                 <div class="hero-photo">
                     <img src="static/about-photo.jpg" alt="Taemin Park" class="hero-image">
                 </div>
-                <h1 class="hero-title">Taemin Park</h1>
-                <div class="hero-subtitle">
-                    <span id="typed-text"></span>
+                <div class="hero-info">
+                    <h1 class="hero-title">Taemin Park</h1>
+                    <p class="hero-tagline">I'm interested in machine learning 😃</p>
+                    <div class="hero-social">
+                        <a class="social-github" href="https://github.com/taemincode" target="_blank" rel="noopener noreferrer" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a class="social-email" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=welcome.taemin@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a class="social-youtube" href="https://www.youtube.com/@TaeminP" target="_blank" rel="noopener noreferrer" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a class="social-discord" href="https://discord.com/users/1310135456570282048" target="_blank" rel="noopener noreferrer" title="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a class="social-chess" href="https://www.chess.com/member/vakktmn" target="_blank" rel="noopener noreferrer" title="Chess.com">
+                            <i class="fas fa-chess-pawn"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <a class="hero-scroll" href="#snapshot" aria-label="Skip to snapshot section">
-                <i class="fas fa-chevron-down" aria-hidden="true"></i>
-            </a>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="timeline-section">
+            <div class="timeline-container">
+                <div class="timeline-track">
+                    <article class="timeline-entry">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2025</span>
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                        </div>
+                        <div class="timeline-card">
+                            <h3>August 2025</h3>
+                            <p>Completed <a href="{{ site.baseurl }}/certificates/Andrew%20Ng's%20Machine%20Learning%20Specialization.pdf" target="_blank" rel="noopener">ML Specialization</a></p>
+                        </div>
+                    </article>
+                    <article class="timeline-entry">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2025</span>
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                        </div>
+                        <div class="timeline-card">
+                            <h3>August 2025</h3>
+                            <p>First Hackathon</p>
+                        </div>
+                    </article>
+                    <article class="timeline-entry">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2025</span>
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                        </div>
+                        <div class="timeline-card">
+                            <h3>May 2025</h3>
+                            <p>Started ML Specialization</p>
+                        </div>
+                    </article>
+                    <article class="timeline-entry">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2025</span>
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                        </div>
+                        <div class="timeline-card">
+                            <h3>February 2025</h3>
+                            <p>Completed <a href="{{ site.baseurl }}/certificates/CS50x.pdf" target="_blank" rel="noopener">CS50x</a></p>
+                        </div>
+                    </article>
+                    <article class="timeline-entry">
+                        <div class="timeline-marker">
+                            <span class="timeline-year">2024</span>
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                        </div>
+                        <div class="timeline-card">
+                            <h3>November 2024</h3>
+                            <p>Started CS50x</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </section>
 
         <!-- About Snapshot -->
@@ -32,7 +104,11 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                             <div class="profile-info">
                                 <div class="info-item">
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <span>Wroclaw, Poland</span>
+                                    <span>Live in Wroclaw, Poland</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-flag"></i>
+                                    <span>Born in Seoul, South Korea</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fas fa-user"></i>
@@ -42,34 +118,6 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                                     <i class="fas fa-school"></i>
                                     <span>Wroclaw International School</span>
                                 </div>
-                                <div class="info-item">
-                                    <i class="fas fa-globe"></i>
-                                    <span>English, Korean</span>
-                                </div>
-                            </div>
-                            <div class="tech-stack">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" title="Flask">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" title="C">
-                            </div>
-                            <div class="social-links">
-                                <a class="social-github" href="https://github.com/taemincode" target="_blank" rel="noopener noreferrer" title="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a class="social-email" href="https://mail.google.com/mail/?view=cm&fs=1&to=welcome.taemin@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                                <a class="social-youtube" href="https://www.youtube.com/@TaeminP" target="_blank" rel="noopener noreferrer" title="YouTube">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                                <a class="social-discord" href="https://discord.com/users/1310135456570282048" target="_blank" rel="noopener noreferrer" title="Discord">
-                                    <i class="fab fa-discord"></i>
-                                </a>
-                                <a class="social-chess" href="https://www.chess.com/member/vakktmn" target="_blank" rel="noopener noreferrer" title="Chess.com">
-                                    <i class="fas fa-chess-pawn"></i>
-                                </a>
                             </div>
                         </div>
 
@@ -87,14 +135,14 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                                     <i class="fas fa-book-open"></i>
                                     <div class="now-content">
                                         <h4>Reading</h4>
-                                        <p>Atomic Habits</p>
+                                        <p>Show your work!</p>
                                     </div>
                                 </div>
                                 <div class="now-item">
                                     <i class="fas fa-school"></i>
                                     <div class="now-content">
                                         <h4>Working on</h4>
-                                        <p>School Work</p>
+                                        <p>School assignments</p>
                                     </div>
                                 </div>
                                 <div class="now-item">
@@ -111,69 +159,4 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
             </div>
         </section>
 
-        <!-- Timeline Section -->
-        <section class="timeline-section">
-            <h2 class="section-title">My Journey</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>September 2025</h3>
-                        <p>Started DL Specialization</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>August 2025</h3>
-                        <p>Completed <a href="{{ site.baseurl }}/certificates/Andrew%20Ng's%20Machine%20Learning%20Specialization.pdf" target="_blank" rel="noopener">ML Specialization</a></p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>August 2025</h3>
-                        <p>First Hackathon</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>May 2025</h3>
-                        <p>Started ML Specialization</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>February 2025</h3>
-                        <p>Completed <a href="{{ site.baseurl }}/certificates/CS50x.pdf" target="_blank" rel="noopener">CS50x</a></p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>November 2024</h3>
-                        <p>Started CS50x</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- My Story Section -->
-        <section class="story-section">
-            <h2 class="section-title">About Me</h2>
-            <div class="story-content">
-                <div class="story-text">
-                        <p class="lead mb-4">
-                        Hi! I'm Taemin Park. I'm currently a student at <a href="https://www.wis.fem.org.pl/" target="_blank" rel="noopener">Wroclaw International School</a>. I was born in 2011 in Seoul (South Korea), and when I was 5, our family immigrated to Milan (Italy). We lived there for four years before returning to Korea, where we stayed until we finally moved to Poland when I was 13 years old.
-                    </p>
-                    
-                        <p class="lead mb-4">
-                        My programming journey began in 2024 when I took the first course of <a href="https://cs50.harvard.edu/x/2025/" target="_blank" rel="noopener">CS50x</a>, which I successfully completed in February 2025. Since then, I've been learning Machine Learning through Andrew Ng's <a href="https://www.coursera.org/specializations/machine-learning-introduction" target="_blank" rel="noopener">Machine Learning Specialization</a>, <a href="https://www.coursera.org/specializations/deep-learning" target="_blank" rel="noopener">Deep Learning Specialization</a>, and all the useful learning resources (like <a href="https://www.youtube.com/@3blue1brown" target="_blank" rel="noopener">3Blue1Brown</a> or <a href="https://www.youtube.com/@AndrejKarpathy" target="_blank" rel="noopener">Andrej Karpathy</a>'s videos). I'm also experimenting with small coding projects and participating in hackathons.
-                    </p>
-                    
-                        <p class="lead mb-4">
-                        Outside of programming, I enjoy playing chess both online and in after-school clubs (although I only enjoy it when I win my games). I'm also passionate about football, whether I'm playing with friends or watching matches (as a Korean, I support Tottenham and recently LAFC). My favorite movie is <a href="https://www.imdb.com/title/tt0120382/" target="_blank" rel="noopener">The Truman Show</a>, and I like it because of the creativity of the movie. One of my favorite books is <a href="https://en.wikipedia.org/wiki/The_Hunger_Games" target="_blank" rel="noopener">The Hunger Games</a>, which I think is very exciting to read. I also follow <a href="https://www.youtube.com/@ryan" target="_blank" rel="noopener">Ryan Trahan</a> on YouTube. His 50 States series is one of my favorite series on YouTube.
-                    </p>
-                    <p class="lead mb-4">
-                       As an ESTJ, I'm someone who enjoys structure, planning, and leading projects with a clear purpose. My favorite subject is math, and I love solving problems and learning new concepts that help me better understand the world around me (and also ML). I'm always looking for ways to grow and challenge myself, whether that's by studying, competing (I actually enjoy competing with others), or simply trying something new. Now you know more about me than my friends do!
-                    </p>
-                </div>
-            </div>
-        </section>
     </main>

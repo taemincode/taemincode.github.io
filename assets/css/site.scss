@@ -43,22 +43,22 @@
 
 	/* Timeline & cards hover/click lifts: keep base shadows (no visual change) */
 	.snapshot-card:hover, .snapshot-card:active { transform:none!important; box-shadow:0 6px 22px -8px rgba(0,0,0,0.55)!important; }
-	.timeline-content:hover, .timeline-content:active { transform:none!important; box-shadow:0 4px 16px -6px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03)!important; }
+	.timeline-card:hover, .timeline-card:active { transform:none!important; box-shadow:0 12px 32px -14px rgba(0,0,0,0.55)!important; }
 	.blog-card:hover, .blog-card:active { transform:none!important; box-shadow:0 6px 22px -8px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03)!important; }
 	.post-nav-link:hover, .post-nav-link:active { transform:none!important; box-shadow:0 2px 10px -2px rgba(0,0,0,0.45)!important; }
 	.nf-card:hover, .nf-card:active { transform:none!important; box-shadow:inherit!important; }
 	.hero-scroll:hover, .hero-scroll:active { transform:translate(-50%,0)!important; box-shadow:none!important; background:inherit!important; color:var(--primary-color)!important; border-color:var(--primary-color)!important; }
 	.snapshot-card:hover::before, .snapshot-card:active::before,
-	.timeline-content:hover::after, .timeline-content:active::after,
+	.timeline-card:hover::after, .timeline-card:active::after,
 	.blog-card:hover::before, .blog-card:active::before,
 	.post-nav-link:hover::before, .post-nav-link:active::before,
 	.nf-card:hover::before, .nf-card:active::before { opacity:0!important; }
 
 	/* Remove mobile tap highlight and focus ring on cards */
-	.blog-card, .snapshot-card, .timeline-content, .post-nav-link {
+	.blog-card, .snapshot-card, .timeline-card, .post-nav-link {
 		-webkit-tap-highlight-color: transparent;
 	}
-	.blog-card:focus, .snapshot-card:focus, .timeline-content:focus, .post-nav-link:focus { outline:none!important; }
+	.blog-card:focus, .snapshot-card:focus, .timeline-card:focus, .post-nav-link:focus { outline:none!important; }
 
 	/* Code copy button hover lift */
 	.markdown pre .code-copy-btn:hover, .markdown pre .code-copy-btn:active { transform:none!important; box-shadow:0 2px 5px -2px rgba(0,0,0,0.55)!important; }
@@ -66,10 +66,8 @@
 	/* Remove all decorative link underlines and arrows on mobile */
 	.markdown a::before,
 	.markdown a::after,
-	.story-text a[href^="http"]::before,
-	.story-text a[href^="http"]::after,
-	.timeline .timeline-content a::before,
-	.timeline .timeline-content a::after,
+	.timeline-card a::before,
+	.timeline-card a::after,
 	.blog-read-more::after,
 	.blog-read-more:hover::after,
 	.blog-read-more:active::after {
