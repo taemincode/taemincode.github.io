@@ -1,5 +1,5 @@
 /* Footer */
-.site-footer { background-color:var(--color-bg-alt); border-top:1px solid var(--color-border); padding:2.75rem 0 2.5rem; margin-top:auto; position:relative; }
+.site-footer { background-color:#f2f3f5; border-top:1px solid #e2e3e5; padding:2.75rem 0 2.5rem; margin-top:auto; position:relative; }
 .site-footer::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.25), rgba(255,255,255,0)); opacity:.25; }
 .footer-content { max-width:1200px; margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center; gap:2rem; }
 .footer-name { font-size:.9rem; color:var(--color-text-faint); font-weight:500; letter-spacing:.5px; }
