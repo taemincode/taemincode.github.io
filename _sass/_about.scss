@@ -317,13 +317,13 @@
     flex-direction:column;
     align-items:center;
     text-align:center;
-    gap:1.75rem;
-    padding:2.5rem 1.75rem;
+    gap:1rem;
+    padding:2.5rem 1.75rem 1rem;
   }
-  .hero-photo { width:200px; height:200px; }
+  .hero-photo { width:250px; height:250px; }
   .hero-info { align-items:center; text-align:center; }
   .hero-title { font-size:2.5rem; }
-  .hero-tagline { font-size:1.05rem; max-width:32ch; }
+  .hero-tagline { font-size:1.05rem; max-width:32ch; margin: 0; }
   .hero-social { justify-content:center; }
   .about-snapshot { scroll-margin-top:80px; }
   .snapshot-grid { flex-direction:column; gap:2rem; }
@@ -331,10 +331,10 @@
   .tech-stack { justify-content:center; }
   .social-links { justify-content:center; }
   .now-items { padding-top:1rem; }
-  .timeline-section { padding:3rem 1.5rem; }
+  .timeline-section { padding:1rem 1.5rem 1.5rem; }
   .timeline-track {
     padding-left:0;
-    margin-top:2rem;
+    margin-top:0rem;
     gap:1.4rem;
   }
   .timeline-track::before {
