@@ -3,7 +3,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:6rem 2rem 3.5rem;
+  padding:4rem 2rem 0rem;
   background-color:var(--color-bg-alt);
   position:relative;
   overflow:hidden;
@@ -48,8 +48,6 @@
   margin:0;
   color:var(--color-text);
   transition:color .3s ease;
-  cursor:default;
-  user-select:none;
 }
 .hero-tagline {
   font-size:1.2rem;
@@ -93,9 +91,28 @@
   outline-offset:3px;
 }
 .about-snapshot {
-  padding:2rem 1rem;
+  padding:2rem 1rem 3rem;
   scroll-margin-top:90px;
   background-color:var(--color-bg-alt);
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+  border-bottom-color:var(--color-border);
+}
+.snapshot-header {
+  text-align:center;
+  margin:0 auto 1.5rem;
+  max-width:640px;
+}
+.snapshot-title {
+  font-size:clamp(1.9rem, 3vw, 2.4rem);
+  color:var(--color-text);
+  margin:0 0 .75rem;
+}
+.snapshot-subtitle {
+  color:var(--color-text-soft);
+  font-size:1.05rem;
+  line-height:1.6;
+  margin:0;
 }
 .snapshot-container { max-width:1200px; margin:0 auto; }
 .snapshot-card { background:var(--color-surface-alt); border-radius:1rem; box-shadow:0 6px 22px -8px rgba(0,0,0,0.55); padding:2rem; position:relative; overflow:hidden; transition: background .4s ease, box-shadow .4s ease, transform .4s ease; }
@@ -133,11 +150,14 @@
   padding: 0rem 2rem 2rem;
   background-color:var(--color-bg);
   scroll-margin-top:90px;
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+  border-bottom-color:var(--color-border);
 }
 .timeline-container { max-width:960px; margin:0 auto; }
 .timeline-track {
   position:relative;
-  margin-top:2.5rem;
+  margin-top:0rem;
   display:flex;
   flex-direction:column;
   padding-left:0.5rem;
@@ -212,7 +232,8 @@
   line-height:1.6;
 }
 /* Timeline link styling */
-.timeline-card a {
+.timeline-card a,
+.blog-preview-footer a {
   position:relative;
   display:inline-block;
   color:var(--primary-color);
@@ -220,7 +241,8 @@
   padding-right:0;
   transition:color .25s ease;
 }
-.timeline-card a::before {
+.timeline-card a::before,
+.blog-preview-footer a::before {
   content:"";
   position:absolute;
   left:0;
@@ -234,7 +256,8 @@
   transition:transform .4s ease, opacity .3s ease;
   border-radius:2px;
 }
-.timeline-card a::after {
+.timeline-card a::after,
+.blog-preview-footer a::after {
   content:"↗";
   font-size:.6em;
   position:absolute;
@@ -247,10 +270,15 @@
   filter:drop-shadow(0 1px 2px rgba(0,0,0,.25));
 }
 .timeline-card a:hover::before,
-.timeline-card a:focus-visible::before { transform:scaleX(1); opacity:1; }
+.blog-preview-footer a:hover::before,
+.timeline-card a:focus-visible::before,
+.blog-preview-footer a:focus-visible::before { transform:scaleX(1); opacity:1; }
 .timeline-card a:hover::after,
-.timeline-card a:focus-visible::after { transform:translate(55%,0) scale(1) rotate(0); opacity:1; }
-.timeline-card a:focus-visible { outline:2px solid var(--primary-color); outline-offset:2px; }
+.blog-preview-footer a:hover::after,
+.timeline-card a:focus-visible::after,
+.blog-preview-footer a:focus-visible::after { transform:translate(55%,0) scale(1) rotate(0); opacity:1; }
+.timeline-card a:focus-visible,
+.blog-preview-footer a:focus-visible { outline:2px solid var(--primary-color); outline-offset:2px; }
 /* Dark-mode tuning for timeline */
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]) .timeline-track::before {

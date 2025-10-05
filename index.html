@@ -9,7 +9,7 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-inner">
-                <div class="hero-photo">
+                <div class="hero-photo" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
                     <img src="static/about-photo.jpg" alt="Taemin Park" class="hero-image">
                 </div>
                 <div class="hero-info">
@@ -97,6 +97,10 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
         <!-- About Snapshot -->
         <section id="snapshot" class="about-snapshot">
             <div class="snapshot-container">
+                <header class="snapshot-header">
+                    <h2 class="snapshot-title">Snapshot</h2>
+                    <p class="snapshot-subtitle">Where I'm from, what I'm up to, and what I'm currently interested in.</p>
+                </header>
                 <div class="snapshot-card">
                     <div class="snapshot-grid">
                         <!-- Left Column: Profile Info -->
@@ -158,5 +162,39 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                 </div>
             </div>
         </section>
+
+        <!-- Blog Preview -->
+        {% if site.posts and site.posts != empty %}
+        <section class="blog-preview">
+            <div class="blog-preview-container">
+                <header class="blog-preview-header">
+                    <h2 class="blog-preview-title">Latest from the blog</h2>
+                    <p class="blog-preview-subtitle">Two of my most recent blog posts.</p>
+                </header>
+                <div class="blog-preview-grid">
+                    {% for post in site.posts limit:2 %}
+                    <article class="blog-card blog-preview-card">
+                        <div class="blog-card-content">
+                            <time class="blog-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+                            <h3 class="blog-title">{{ post.title }}</h3>
+                            {% if post.tags %}
+                            <div class="blog-tags">
+                                {% for tag in post.tags %}
+                                <span class="blog-tag">#{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% if post.excerpt %}
+                            <p class="blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 32 }}</p>
+                            {% endif %}
+                            <a class="blog-read-more" href="{{ post.url | relative_url }}">Read more →</a>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+                <p class="blog-preview-footer">To find out more, visit the <a href="{{ '/blogs' | relative_url }}">blog page</a>.</p>
+            </div>
+        </section>
+        {% endif %}
 
     </main>
