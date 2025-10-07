@@ -9,7 +9,7 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-inner">
-                <div class="hero-photo" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+                <div class="hero-photo">
                     <img src="static/about-photo.jpg" alt="Taemin Park" class="hero-image">
                 </div>
                 <div class="hero-info">
@@ -19,8 +19,8 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                         <a class="social-github" href="https://github.com/taemincode" target="_blank" rel="noopener noreferrer" title="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a class="social-email" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=welcome.taemin@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
-                            <i class="fas fa-envelope"></i>
+                        <a class="social-x" href="https://x.com/vakktmn" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
                         </a>
                         <a class="social-youtube" href="https://www.youtube.com/@TaeminP" target="_blank" rel="noopener noreferrer" title="YouTube">
                             <i class="fab fa-youtube"></i>
@@ -28,8 +28,8 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                         <a class="social-discord" href="https://discord.com/users/1310135456570282048" target="_blank" rel="noopener noreferrer" title="Discord">
                             <i class="fab fa-discord"></i>
                         </a>
-                        <a class="social-chess" href="https://www.chess.com/member/vakktmn" target="_blank" rel="noopener noreferrer" title="Chess.com">
-                            <i class="fas fa-chess-pawn"></i>
+                        <a class="social-email" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=welcome.taemin@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
+                            <i class="fas fa-envelope"></i>
                         </a>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                         </div>
                         <div class="timeline-card">
                             <h3>August 2025</h3>
-                            <p>Completed <a href="{{ site.baseurl }}/certificates/Andrew%20Ng's%20Machine%20Learning%20Specialization.pdf" target="_blank" rel="noopener">ML Specialization</a></p>
+                            <p>I've completed the <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/XYZ" target="_blank" rel="noopener">Machine Learning Specialization</a> by Andrew Ng, who is one of the most renowned experts in the field. This course taught me the fundamentals of machine learning. You can find my <a href="{{ site.baseurl }}/certificates/Andrew%20Ng's%20Machine%20Learning%20Specialization.pdf" target="_blank" rel="noopener">certificate here</a>.</p>
                         </div>
                     </article>
                     <article class="timeline-entry">
@@ -57,17 +57,7 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                         </div>
                         <div class="timeline-card">
                             <h3>August 2025</h3>
-                            <p>First Hackathon</p>
-                        </div>
-                    </article>
-                    <article class="timeline-entry">
-                        <div class="timeline-marker">
-                            <span class="timeline-year">2025</span>
-                            <span class="timeline-dot" aria-hidden="true"></span>
-                        </div>
-                        <div class="timeline-card">
-                            <h3>May 2025</h3>
-                            <p>Started ML Specialization</p>
+                            <p>I participated in my first hackathon. It was a fun experience meeting people online and spending a weekend working on a project together. <a href="https://www.youtube.com/watch?v=TDo4Q7uSMaE" target="_blank" rel="noopener">Our team's project</a> was about turning moods into music playlists. I even got to upload a <a href="https://www.youtube.com/shorts/JjUGuGoRDos" target="_blank" rel="noopener">YouTube shorts video</a> for the most viral award 😬</p>
                         </div>
                     </article>
                     <article class="timeline-entry">
@@ -77,17 +67,7 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                         </div>
                         <div class="timeline-card">
                             <h3>February 2025</h3>
-                            <p>Completed <a href="{{ site.baseurl }}/certificates/CS50x.pdf" target="_blank" rel="noopener">CS50x</a></p>
-                        </div>
-                    </article>
-                    <article class="timeline-entry">
-                        <div class="timeline-marker">
-                            <span class="timeline-year">2024</span>
-                            <span class="timeline-dot" aria-hidden="true"></span>
-                        </div>
-                        <div class="timeline-card">
-                            <h3>November 2024</h3>
-                            <p>Started CS50x</p>
+                            <p>I started my programming journey by taking <a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener">CS50x</a>, which I believe is one of the best introductory courses for computer science. I created a chess website as my <a href="https://www.youtube.com/watch?v=BfFKZ4jtHRA" target="_blank" rel="noopener">final project</a>. This is my <a href="{{ site.baseurl }}/certificates/CS50x.pdf" target="_blank" rel="noopener">certificate for CS50x</a>.</p>
                         </div>
                     </article>
                 </div>
@@ -169,26 +149,37 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
             <div class="blog-preview-container">
                 <header class="blog-preview-header">
                     <h2 class="blog-preview-title">Latest from the blog</h2>
-                    <p class="blog-preview-subtitle">Two of my most recent blog posts.</p>
+                    <p class="blog-preview-subtitle">Three of my most recent blog posts.</p>
                 </header>
                 <div class="blog-preview-grid">
-                    {% for post in site.posts limit:2 %}
+                    {% for post in site.posts limit:3 %}
+                    {% assign preview_cover = post.thumbnail | default: post.cover_image | default: post.image | default: post.featured_image %}
+                    {% if preview_cover == nil or preview_cover == '' %}
+                    {% assign preview_segments = post.content | split: 'src="' %}
+                    {% if preview_segments.size > 1 %}
+                    {% assign preview_cover = preview_segments[1] | split: '"' | first %}
+                    {% endif %}
+                    {% endif %}
+                    {% assign preview_category = post.categories | first | default: post.category %}
                     <article class="blog-card blog-preview-card">
-                        <div class="blog-card-content">
-                            <time class="blog-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-                            <h3 class="blog-title">{{ post.title }}</h3>
-                            {% if post.tags %}
-                            <div class="blog-tags">
-                                {% for tag in post.tags %}
-                                <span class="blog-tag">#{{ tag }}</span>
-                                {% endfor %}
+                        <a class="blog-card-link" href="{{ post.url | relative_url }}" aria-label="Read blog post: {{ post.title }}">
+                            <div class="blog-card-media">
+                                {% if preview_cover %}
+                                <img src="{{ preview_cover | relative_url }}" alt="{{ post.title }} cover" class="blog-card-image">
+                                {% else %}
+                                <div class="blog-card-media-placeholder" aria-hidden="true"></div>
+                                {% endif %}
                             </div>
-                            {% endif %}
-                            {% if post.excerpt %}
-                            <p class="blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 32 }}</p>
-                            {% endif %}
-                            <a class="blog-read-more" href="{{ post.url | relative_url }}">Read more →</a>
-                        </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    {% if preview_category %}
+                                    <span class="blog-card-category">{{ preview_category }}</span>
+                                    {% endif %}
+                                    <time class="blog-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+                                </div>
+                                <h3 class="blog-title">{{ post.title }}</h3>
+                            </div>
+                        </a>
                     </article>
                     {% endfor %}
                 </div>
