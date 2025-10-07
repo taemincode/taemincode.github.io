@@ -1,6 +1,6 @@
 /* Footer */
-.site-footer { background-color:#f2f3f5; border-top:1px solid #e2e3e5; padding:2rem 0 1.75rem; margin-top:auto; position:relative; }
-.site-footer::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.25), rgba(255,255,255,0)); opacity:.25; }
+.site-footer { background-color:#ffffff; border-top:1px solid #e5e7eb; padding:2rem 0 1.75rem; margin-top:auto; position:relative; }
+.site-footer::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:rgba(15,23,42,0.05); opacity:1; }
 .footer-content { max-width:1200px; margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center; gap:2rem; }
 .footer-name { font-size:.9rem; color:var(--color-text-faint); font-weight:500; letter-spacing:.5px; }
 .footer-social { display:flex; gap:1rem; }
@@ -8,3 +8,17 @@
 .footer-social a:hover { color:var(--primary-color); transform:translateY(-3px); text-shadow:0 4px 18px rgba(59,130,246,0.5); }
 .social-icon { width:20px; height:20px; fill:currentColor; }
 @media (max-width:768px){ .footer-content { padding:0 1rem; flex-direction:column; gap:.5rem; text-align:center; } .footer-name { font-size:.8rem; } .social-icon { width:18px; height:18px; } }
+
+:root[data-theme="dark"] .site-footer { background-color:#111111; border-top-color:#2a2a2a; }
+:root[data-theme="dark"] .site-footer::before { background:rgba(255,255,255,0.08); opacity:1; }
+:root[data-theme="dark"] .footer-name { color:rgba(226,232,240,0.75); }
+:root[data-theme="dark"] .footer-social a { color:rgba(203,213,225,0.7); }
+:root[data-theme="dark"] .footer-social a:hover { color:var(--primary-color); text-shadow:0 6px 20px rgba(59,130,246,0.65); }
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .site-footer { background-color:#111111; border-top-color:#2a2a2a; }
+  :root:not([data-theme="light"]) .site-footer::before { background:rgba(255,255,255,0.08); opacity:1; }
+  :root:not([data-theme="light"]) .footer-name { color:rgba(226,232,240,0.75); }
+  :root:not([data-theme="light"]) .footer-social a { color:rgba(203,213,225,0.7); }
+  :root:not([data-theme="light"]) .footer-social a:hover { color:var(--primary-color); text-shadow:0 6px 20px rgba(59,130,246,0.65); }
+}
