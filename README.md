@@ -1,122 +1,122 @@
 # Taemin Park — Personal Site & Blog
 
-Source for https://taemincode.github.io built with Jekyll, SCSS, MathJax, and Manim visuals.
+Source for https://taemincode.github.io — a Jekyll-powered personal site with a long-form homepage, blog, and Manim-generated visuals.
 
-## Highlights
+**Live site:** https://taemincode.github.io
 
-- Clean, responsive layout (Bootstrap 5, SCSS partials)
-- Dark mode toggle with theme persistence
-- MathJax for LaTeX math (`$...$` / `$$...$$`)
-- Copy-to-clipboard buttons on code blocks
-- Manim-generated images/animations for ML/Math posts
-- RSS feed and SEO plugin ready
+## Features
 
-## Tech
+- **Landing page sections** – `index.html` renders a hero, timeline, “Snapshot” profile card, work-in-progress/“Now” board, and social links styled by `_sass/_about.scss`.
+- **Blog listing & previews** – `blogs.html` builds an animated card grid (AOS) while the homepage pulls the three latest posts, auto-detecting cover art from front matter or the first `<img>`.
+- **Post UX** – `_layouts/post.html` shows published/updated metadata (via `jekyll-last-modified-at`), categories, copy-to-clipboard buttons, MathJax, Rouge styling, and a JS lightbox for in-article images.
+- **Global theming** – SCSS design tokens in `_sass/_variables.scss` drive light/dark themes; the navbar toggle persists preference to `localStorage` and respects system defaults.
+- **Accessibility & motion** – Reduced-motion visitors skip AOS and hover flair; keyboard focus states, ARIA labels, and responsive typography are wired throughout.
+- **404 easter egg** – `404.html` includes an accessible “launch the rocket” animation with optional Typed.js heading reveal.
+- **Visual assets** – Manim scenes under `manim/` render to `media/`; curated PNGs live in `assets/images/posts/` and hero art in `static/`.
 
-- Jekyll 4.x, Kramdown
-- SCSS via Jekyll pipeline (`assets/css/site.scss` + `_sass/*`)
-- Bootstrap, AOS, Font Awesome (CDN)
-- MathJax v3
-- GitHub Pages hosting
+## Tech Stack
 
-## Repository layout
+- Jekyll 4.3.x, Kramdown/rouge markdown & highlighting
+- Plugins: `jekyll-feed`, `jekyll-seo-tag`, `jekyll-last-modified-at`
+- Front-end: SCSS partial pipeline, Bootstrap 5, Font Awesome, AOS, MathJax
+- Tooling: Ruby/Bundler for site, Python + Manim for animations
+
+## Directory Overview
 
 ```
-├── _config.yml              # Site config (url, baseurl, markdown)
-├── _layouts/
-│   ├── default.html         # Global head, navbar, footer, scripts
-│   └── post.html            # Post wrapper (prev/next nav)
-├── _posts/                  # Blog posts (YYYY-MM-DD-title.md)
+├── index.html / blogs.html          # Landing + blog index pages
+├── 404.html                         # Interactive not-found page
+├── _config.yml                      # Site metadata & plugin config
+├── _layouts/                        # Layouts (default, post)
+├── _posts/                          # Markdown posts (YYYY-MM-DD-title.md)
+├── _sass/                           # SCSS partials (variables, base, blog, post, ...)
 ├── assets/
-│   ├── css/site.scss        # SCSS entry (imports from _sass)
-│   └── images/              # Images used by the site/posts
-├── _sass/                   # SCSS partials (base, nav, blog, post, …)
-├── manim/                   # Manim Python scripts (scenes)
-├── media/                   # Manim render outputs (images/videos)
-├── index.html, blogs.html   # Home and blog index
-├── Gemfile                  # Ruby deps (jekyll, seo-tag, feed)
-└── vendor/                  # Bundler dir (if vendored)
+│   ├── css/site.scss                # SCSS entry point (imports partials)
+│   └── images/posts/<year>/...      # Post imagery checked into the repo
+├── certificates/                    # PDF certificates linked from timeline
+├── static/                          # Static hero/about assets
+├── manim/                           # Python scenes that generate blog graphics
+├── media/                           # Manim output dump (images/videos, ignored by posts)
+├── _site/                           # Jekyll build output (do not edit; auto-generated)
+├── Gemfile / Gemfile.lock           # Ruby dependencies
+└── README.md                        # This doc
 ```
 
-Note: `_site/` is Jekyll’s build output and shouldn’t be edited by hand.
+## Local Development
 
-## Local development (macOS)
-
-Prereqs: Ruby (>= 3.x recommended) and Bundler.
-
-1) Install gems
+Prerequisites: Ruby (≥ 3.x recommended), Bundler, and optionally a Python environment for Manim.
 
 ```bash
 bundle install
-```
-
-2) Run the server (with live reload)
-
-```bash
 bundle exec jekyll serve --livereload
+# Visit http://127.0.0.1:4000
 ```
 
-Visit http://127.0.0.1:4000
-
-## Writing posts
-
-1) Create `_posts/YYYY-MM-DD-title.md` with front matter:
-
-```yaml
----
-layout: post
-title: "Your Title"
-date: 2025-03-16
-categories: [ml]
-description: Optional SEO summary
----
-```
-
-2) Use Markdown. MathJax is available:
-
-- Inline: `$a^2 + b^2 = c^2$`
-- Display: `$$\int_a^b f(x)\,dx$$`
-
-3) Images: place under `assets/images/…` or `assets/images/posts/…` and reference with `{{ site.baseurl }}` when needed:
-
-```markdown
-![Alt text]({{ site.baseurl }}/assets/images/posts/example.png)
-```
-
-## Manim: generating visuals
-
-Install system deps and Manim (recommend a Python venv):
+Build the static site (useful for deployment previews):
 
 ```bash
-brew install cairo pkg-config pango ffmpeg
-python -m venv .venv && source .venv/bin/activate
-pip install manim
+bundle exec jekyll build
 ```
 
-Render scenes from `manim/` (examples):
+## Writing Posts
 
-```bash
-# Linear Regression still frame (PNG)
-manim -pqh manim/linear_regression_scene.py LinearRegression --format=png
+1. Create `_posts/YYYY-MM-DD-title.md` with front matter:
 
-# Logistic Regression still frame (PNG)
-manim -pqh manim/logistic_regression.py LogisticRegression --format=png
-```
+   ```yaml
+   ---
+   layout: post
+   title: "Your Title"
+   date: 2025-03-16
+   categories: [ml]
+   description: Optional SEO summary
+   last_modified_at: 2025-03-20 # optional, uses git history if omitted
+   thumbnail: /assets/images/posts/2025/example/cover.png # optional
+   ---
+   ```
 
-Outputs are written under `media/` (e.g., `media/images/linear_regression_scene/`). Move or reference the generated files from your posts.
+2. Write Markdown content. MathJax is enabled for LaTeX:
+   - Inline: `$a^2 + b^2 = c^2$`
+   - Display: `$$\int_a^b f(x)\,dx$$`
 
-## SEO and feeds
+3. Images:
+   - Store permanent assets under `assets/images/posts/<year>/<slug>/`
+   - Reference with `![Alt]({{ site.baseurl }}/assets/images/posts/2025/example/plot.png)`
+   - Post layout wraps images with a lightbox; clicking opens a full-size view.
 
-The Gemfile includes `jekyll-seo-tag` and `jekyll-feed`.
+4. Optional metadata:
+   - `last_modified_at`, `updated`, or `edited` triggers the “Updated” badge.
+   - `thumbnail`, `cover_image`, `image`, or `featured_image` feed the blog cards; otherwise the first `<img>` in the post is used.
 
-- To enable full SEO tags, add `{% seo %}` inside `<head>` of `_layouts/default.html`.
-- The feed will be available at `/feed.xml` when built.
+## Visual Assets & Manim
 
-## Deployment
+- Python scripts in `manim/` generate graphics referenced throughout machine-learning posts.
+- Suggested workflow (macOS):
 
-- Hosted at https://taemincode.github.io
-- `baseurl` is empty for a user site; keep it that way unless you serve under a subpath.
-- GitHub Pages can build from the default branch. If building locally, commit only sources (not `_site/`).
+  ```bash
+  brew install cairo pkg-config pango ffmpeg
+  python -m venv .venv && source .venv/bin/activate
+  pip install manim
+
+  # Example renders
+  manim -pqh manim/linear_regression_scene.py LinearRegression --format=png
+  manim -pqh manim/logistic_regression.py LogisticRegression --format=png
+  ```
+
+- Outputs land in `media/images/<scene>/` or `media/videos/<scene>/`; copy finished assets into `assets/images/posts/...` when ready to publish.
+
+## Front-End Behavior Cheatsheet
+
+- Theme toggle updates `data-theme` on `<html>` and mirrors system dark-mode unless overridden.
+- AOS animations auto-disable on touch devices or when `prefers-reduced-motion` is set.
+- Code blocks get a copy button (`.code-copy-btn`) injected by `_layouts/default.html`.
+- Navbar gains a “scrolled” class after 50px to adjust shadows.
+- The 404 rocket listens for click/keyboard events and can be tuned via the `CONFIG` object (exposed helpers: `setRocketExitOffset`, `setRocketExitMode`).
+
+## Deployment Notes
+
+- Hosted at https://taemincode.github.io (`baseurl` left empty).
+- GitHub Pages can build the site directly; commit only source files (never `_site/`).
+- The RSS feed (`jekyll-feed`) and SEO tags (`jekyll-seo-tag`) activate automatically when layouts include `{% seo %}` (head already prepared).
 
 ## License
 

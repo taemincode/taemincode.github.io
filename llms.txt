@@ -1,0 +1,103 @@
+LLM GUIDANCE NOTES
+==================
+
+Repository: Taemin Park — Personal Site & Blog (https://taemincode.github.io)
+Purpose: Provide strict guardrails for LLM edits and responses.
+
+Response Checklist
+------------------
+1. **Follow repository tone** – educational, positive, concise. Avoid first-person unless writing blog content.
+2. **Summaries** – describe what changed, reference file paths, note tests or manual verification (if skipped, explain why).
+3. **Cite files** – always mention exact files and important line numbers when explaining changes.
+4. **Never edit `_site/`** – this directory is build output.
+5. **Respect liquid tags** – preserve `{% ... %}` and `{{ ... }}` syntax; do not convert to JSX, Vue, etc.
+6. **Keep ASCII** – introduce UTF-8 only when existing content already uses it (e.g., emoji in posts).
+
+Key Files & Roles
+-----------------
+- `index.html` – Home page sections (hero, timeline, snapshot, now, blog preview). Uses Bootstrap grid classes plus custom SCSS hooks. Any new section must reuse existing typography classes defined in `_sass/_about.scss`.
+- `blogs.html` – Full blog listing; cards rely on `.blog-card` styles and AOS attributes. For new filters or sort options, update the loop over `site.posts` and adjust `_sass/_blog.scss`.
+- `_layouts/default.html` – Global wrapper: head tags, navbar, footer, MathJax, Bootstrap, AOS, theme toggle, copy buttons, lightbox JS. Changes here affect every page—double-check accessibility attributes.
+- `_layouts/post.html` – Post layout with publish/updated logic, categories, previous/next nav. Honor Liquid conditionals when altering metadata blocks.
+- `_sass/_variables.scss` – Design tokens. Add new variables here before using raw hex codes. Apply both light and dark theme values.
+- `_sass/_about.scss`, `_blog.scss`, `_footer.scss`, `_post.scss`, `_nav.scss` – Section-specific styles. Keep selectors scoped (e.g., `.hero`, `.blog-card`) and rely on variables.
+- `assets/css/site.scss` – SCSS entry point. Import new partials here; keep alphabetical order by topic when adding.
+- `_posts/` – Markdown with YAML front matter. Filenames are `YYYY-MM-DD-slug.md`. Do not change dates unless adjusting publish time intentionally.
+- `manim/` – Source of generated images/animations. Update Python scenes when refreshing assets; never hand-edit renders in `media/`.
+- `README.md` – Contributor docs. Update when workflows or dependencies change.
+
+Theming & Styling Rules
+-----------------------
+- Use CSS custom properties from `_variables.scss`: `--color-bg`, `--color-text`, `--primary-color`, etc. If a new semantic color is needed, add both light and dark definitions and document usage.
+- For responsive tweaks, reuse breakpoints already present (`max-width: 992px`, `768px`, `576px`). Keep mobile-first adjustments consistent across partials.
+- Avoid inline styles unless necessary for dynamic Liquid output; prefer adding classes and styling in SCSS.
+- When touching `_sass/_about.scss`, note that hero, snapshot, timeline, and “now” modules share spacing conventions. Mirror existing transitions and animation reductions (see mobile/touch overrides in `site.scss`).
+- Dark mode logic: selectors include both `@media (prefers-color-scheme: dark)` and `[data-theme="dark"]`. Update both blocks when changing a component.
+
+Liquid & Markdown Conventions
+-----------------------------
+- Use `{{ site.baseurl }}` when creating absolute asset URLs from Markdown (e.g., `{{ site.baseurl }}/assets/images/...`).
+- Front matter keys currently recognized:
+  - `layout`, `title`, `date`, `categories`, `tags`, `description`, `thumbnail`, `cover_image`, `image`, `featured_image`, `last_modified_at`, `updated`, `edited`.
+  - Additional keys must be consumed by layouts before adding widely.
+- Category names in front matter should be lowercase or PascalCase without spaces (e.g., `[ML, Notes]`).
+- When embedding HTML inside Markdown posts, wrap with blank lines to avoid parser quirks.
+- MathJax inline: `$...$`. Block equations: `$$ ... $$`. Escaping underscores may be required (`\\_`) when writing plain text.
+
+JavaScript Specifics
+--------------------
+- `default.html` includes:
+  - Theme toggle code manipulating `localStorage` and `<html data-theme>`.
+  - On-scroll navbar class toggling; maintain the `handleScroll` threshold (50px) unless UX change is intentional.
+  - AOS initialization with custom `disable` logic (prefers-reduced-motion, small screens, touch/coarse pointers). Respect this when extending animations.
+  - Code-copy enhancement for `.markdown pre`: maintain `code-copy-btn` structure and accessible labels.
+  - Image lightbox limited to descendants of `.post-content`; only intercept `<img>` clicks when you need lightbox behavior.
+- `404.html` script:
+  - Provides `window.ROCKET_CONFIG`, `window.setRocketExitOffset`, `window.setRocketExitMode`. Adjust rocket flight through these helpers. Keep reduced-motion fallback intact.
+
+Content Creation Rules
+----------------------
+- Blog posts:
+  - Write introductions with emoji headings (e.g., `## 📌 Introduction`) if consistent with current style.
+  - Include at least one image or diagram when referencing data/visuals. Place supporting images in `assets/images/posts/<year>/<slug>/`.
+  - For tutorials, code blocks should include language hints (```` ```python ````). `rouge` handles highlighting.
+  - Add `last_modified_at` when editing existing posts to surface “Updated” badge.
+  - Use callouts with blockquotes and `ℹ️`/`⚠️` emoji for tips/warnings as seen in existing posts.
+- Landing page content:
+  - Timeline entries follow the markup in `index.html`: `.timeline-entry` with `.timeline-marker` (year/dot) and `.timeline-card` content. Keep chronological order descending.
+  - The “Now” section items use `.now-item` with `<i class="fas ...">`. Choose icons available in Font Awesome 6.5.2.
+
+Accessibility & UX
+------------------
+- Maintain `aria-label`, `aria-pressed`, `role`, `tabindex`, and keyboard handlers already present.
+- Any new interactive element must support keyboard activation (Enter/Space) and respond to reduced-motion preferences where animations are introduced.
+- Focus states should be visible. Use `outline` with `var(--primary-color)` as seen in existing components.
+- When linking out, set `target="_blank"` and `rel="noopener noreferrer"` consistently (see hero social links example).
+
+Development Workflow
+--------------------
+- Ruby environment:
+  ```
+  bundle install
+  bundle exec jekyll serve --livereload  # localhost:4000
+  bundle exec jekyll build               # outputs to _site/
+  ```
+- Node tooling is not used; avoid introducing npm unless coordinated.
+- Manim assets: install dependencies (`brew install cairo pkg-config pango ffmpeg`, create Python venv, `pip install manim`). Render with `manim -pqh <file> <SceneName> --format=png`. Move curated output into `assets/images/posts/...`.
+
+Do / Don’t
+----------
+- **Do** reuse existing SCSS mixins and patterns; ensure both themes stay legible.
+- **Do** add inline comments sparingly when logic is non-obvious (e.g., Liquid condition for post updates).
+- **Don’t** rename SCSS classes without updating every template that references them.
+- **Don’t** depend on external JS libraries beyond existing CDNs unless added to `default.html` head/body with integrity attributes.
+- **Don’t** commit large binaries (videos) unless needed for posts; host heavies on YouTube and embed responsibly.
+
+Reference Docs
+--------------
+- README.md – contributor workflow, post authoring guide, Manim instructions.
+- `_layouts/default.html` & `_layouts/post.html` – inspect before touching global behavior.
+- `_sass/_variables.scss` – check when introducing new colors/spacing.
+- Existing posts in `_posts/` – copy style conventions.
+
+Keep this file current when processes or conventions change.
