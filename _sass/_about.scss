@@ -124,20 +124,6 @@
 .profile-info { margin-bottom:2rem; }
 .info-item { display:flex; align-items:center; margin-bottom:1.5rem; font-size:1.1rem; }
 .info-item i { width:1.5rem; margin-right:1rem; color:var(--primary-color); font-size:1.25rem; }
-.social-links { display:flex; gap:1rem; position:relative; pointer-events:auto; }
-.social-links a { cursor:pointer; }
-.social-links a { color:var(--color-text-faint); font-size:1.5rem; transition:color .3s ease, transform .3s ease, text-shadow .3s ease; text-decoration:none; }
-.social-links a:hover { transform:translateY(-3px) scale(1.07); text-decoration:none; }
-/* Brand-specific hover colors */
-.social-links a.social-github:hover { color:#000000; text-shadow:0 4px 18px rgba(0,0,0,0.45); }
-@media (prefers-color-scheme: dark){
-	:root:not([data-theme="light"]) .social-links a.social-github:hover { color:#ffffff; text-shadow:0 4px 18px rgba(255,255,255,0.45); }
-}
-:root[data-theme="dark"] .social-links a.social-github:hover { color:#ffffff; text-shadow:0 4px 18px rgba(255,255,255,0.45); }
-.social-links a.social-email:hover { color:#5865F2; text-shadow:0 4px 18px rgba(88,101,242,0.55); }
-.social-links a.social-youtube:hover { color:#ff0000; text-shadow:0 4px 20px rgba(255,0,0,0.55); }
-.social-links a.social-discord:hover { color:#5865F2; text-shadow:0 4px 18px rgba(88,101,242,0.55); }
-.social-links a.social-x:hover { color:#1da1f2; text-shadow:0 4px 18px rgba(29,161,242,0.55); } /* X (Twitter) blue */
 .now-column { flex:1; }
 .now-items { display:flex; flex-direction:column; gap:1.5rem; }
 .now-item { display:flex; align-items:flex-start; gap:1rem; }
@@ -328,8 +314,6 @@
   .about-snapshot { scroll-margin-top:80px; }
   .snapshot-grid { flex-direction:column; gap:2rem; }
   .profile-column { padding-right:0; border-right:none; border-bottom:1px solid var(--color-border); padding-bottom:2rem; }
-  .tech-stack { justify-content:center; }
-  .social-links { justify-content:center; }
   .now-items { padding-top:1rem; }
   .timeline-section { padding:1rem 1.5rem 1.5rem; }
   .timeline-track {

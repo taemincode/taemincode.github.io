@@ -46,16 +46,21 @@ permalink: /404.html
     if(typedStarted) return; typedStarted = true;
     const anchor = document.getElementById('rocket-typed-anchor');
     if(!anchor) return;
-    const phrase = '(and also Rocket) ';
-    function fallback(){ anchor.textContent = phrase; }
-    let tries = 0;
-    (function waitLib(){
-      if(window.Typed){
-        try {
-          new window.Typed('#rocket-typed-anchor', { strings:[phrase], typeSpeed:45, backSpeed:0, showCursor:false });
-        } catch(e){ fallback(); }
-      } else if(tries < 40){ tries++; setTimeout(waitLib,100); } else { fallback(); }
-    })();
+    const phrase = '(and also rocket)';
+    const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReduce){
+      anchor.textContent = phrase;
+      return;
+    }
+    let index = 0;
+    function typeNext(){
+      if(index <= phrase.length){
+        anchor.textContent = phrase.slice(0, index);
+        index += 1;
+        setTimeout(typeNext, 55);
+      }
+    }
+    typeNext();
   }
 
   rocket.style.cursor='pointer';
