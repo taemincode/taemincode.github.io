@@ -1,12 +1,9 @@
 /* Blog listing (light + dark aware) */
-.blog-hero { min-height:40vh; background:var(--color-bg-alt); display:flex; align-items:center; justify-content:center; padding:6rem 2rem 4rem; text-align:center; position:relative; overflow:hidden; }
-.blog-hero::before { content:''; position:absolute; width:80vmax; height:80vmax; left:50%; top:40%; transform:translate(-50%,-50%); pointer-events:none; background:
-  radial-gradient(closest-side, rgba(59,130,246,0.12), rgba(59,130,246,0.0) 65%);
-  filter:blur(2px); }
+.blog-hero { min-height:40vh; background:var(--color-bg-alt); display:flex; align-items:center; justify-content:center; padding:6rem 2rem 4rem; text-align:center; position:relative; }
 .blog-hero-content { max-width:800px; }
 .blog-emoji { font-size:3rem; margin-bottom:1rem; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.3)); cursor:default; user-select:none; -webkit-user-select:none; transition:text-shadow .45s ease, color .4s ease, transform .45s ease; }
-.blog-hero-title { font-size:clamp(2.5rem,5vw,3.5rem); color:var(--color-text); margin-bottom:1rem; letter-spacing:.5px; cursor:default; user-select:none; -webkit-user-select:none; transition:text-shadow .45s ease, color .4s ease; }
-.blog-hero-subtitle { font-size:clamp(1.05rem,2vw,1.25rem); color:var(--color-text-faint); max-width:620px; margin:0.5rem auto 0; line-height:1.5; cursor:default; user-select:none; -webkit-user-select:none; }
+.blog-hero-title { font-size:clamp(2.5rem,5vw,3.5rem); color:var(--color-text); margin-bottom:1rem; letter-spacing:.5px; transition:text-shadow .45s ease, color .4s ease; }
+.blog-hero-subtitle { font-size:clamp(1.05rem,2vw,1.25rem); color:var(--color-text-faint); max-width:620px; margin:0.5rem auto 0; line-height:1.5; }
 /* Dark mode only glow (emoji + title) */
 @media (prefers-color-scheme: dark){
 	:root:not([data-theme="light"]) .blog-hero-title:hover { color:var(--primary-color); text-shadow:0 0 6px rgba(59,130,246,0.7), 0 0 14px rgba(59,130,246,0.4); }
@@ -29,7 +26,6 @@
 .blog-card-category + .blog-date::before { content:'•'; color:rgba(148,163,184,0.9); margin-right:.35rem; }
 .blog-date { display:inline-flex; align-items:center; font-weight:500; letter-spacing:.08px; color:var(--color-text-faint); text-transform:none; }
 .blog-title { font-size:1.35rem; color:var(--color-text); margin:0; line-height:1.35; font-weight:700; }
-.blog-excerpt { color:var(--color-text-soft); font-size:.98rem; line-height:1.55; margin:0; flex:1 1 auto; }
 @media (max-width:768px){
   .blog-grid { grid-template-columns:1fr; }
   .blog-card { border-radius:1.2rem; }
