@@ -78,15 +78,21 @@
   cursor:pointer;
   text-decoration:none;
 }
-.hero-social a:hover,
+@media (hover: hover) and (pointer: fine) {
+  .hero-social a:hover {
+    transform:translateY(-4px);
+    background:var(--primary-color);
+    color:var(--color-bg);
+    box-shadow:0 16px 32px -16px rgba(59,130,246,0.55);
+    text-decoration:none;
+  }
+}
 .hero-social a:focus-visible {
   transform:translateY(-4px);
   background:var(--primary-color);
   color:var(--color-bg);
   box-shadow:0 16px 32px -16px rgba(59,130,246,0.55);
   text-decoration:none;
-}
-.hero-social a:focus-visible {
   outline:2px solid var(--primary-color);
   outline-offset:3px;
 }
@@ -313,8 +319,7 @@
   .hero-social { justify-content:center; }
   .about-snapshot { scroll-margin-top:80px; }
   .snapshot-grid { flex-direction:column; gap:2rem; }
-  .profile-column { padding-right:0; border-right:none; border-bottom:1px solid var(--color-border); padding-bottom:2rem; }
-  .now-items { padding-top:1rem; }
+  .profile-column { padding-right:0; border-right:none; border-bottom:1px solid var(--color-border); }
   .timeline-section { padding:1rem 1.5rem 1.5rem; }
   .timeline-track {
     padding-left:0;
