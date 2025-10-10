@@ -27,7 +27,8 @@
 .blog-date { display:inline-flex; align-items:center; font-weight:500; letter-spacing:.08px; color:var(--color-text-faint); text-transform:none; }
 .blog-title { font-size:1.35rem; color:var(--color-text); margin:0; line-height:1.35; font-weight:700; }
 @media (max-width:768px){
-  .blog-grid { grid-template-columns:1fr; }
+  .blog-posts { padding:1rem 1.35rem 1rem; }
+  .blog-grid { grid-template-columns:1fr; padding:0; gap:1.6rem; }
   .blog-card { border-radius:1.2rem; }
   .blog-card-content { padding:1.4rem 1.5rem 1.5rem; }
   .blog-title { font-size:1.25rem; }
