@@ -96,6 +96,12 @@
   outline:2px solid var(--primary-color);
   outline-offset:3px;
 }
+.hero-email-message {
+  display:block;
+  margin-top:0.5rem;
+  color:var(--color-text-soft);
+  font-size:1rem;
+}
 .about-snapshot {
   padding:2rem 1rem 3rem;
   scroll-margin-top:90px;

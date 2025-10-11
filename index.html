@@ -28,10 +28,11 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                         <a class="social-discord" href="https://discord.com/users/1310135456570282048" target="_blank" rel="noopener noreferrer" title="Discord">
                             <i class="fab fa-discord"></i>
                         </a>
-                        <a class="social-email" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=welcome.taemin@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
+                        <a class="social-email" href="#hero-email-message" title="Email" role="button" aria-controls="hero-email-message" aria-expanded="false" aria-pressed="false">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
+                    <span id="hero-email-message" class="hero-email-message" role="status" aria-live="polite" hidden></span>
                 </div>
             </div>
         </section>
@@ -57,7 +58,7 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                         </div>
                         <div class="timeline-card">
                             <h3>August 2025</h3>
-                            <p>I participated in my first hackathon. It was a fun experience meeting people online and spending a weekend working on a project together. <a href="https://www.youtube.com/watch?v=TDo4Q7uSMaE" target="_blank" rel="noopener">Our team's project</a> was about turning moods into music playlists. I even got to upload a <a href="https://www.youtube.com/shorts/JjUGuGoRDos" target="_blank" rel="noopener">YouTube shorts video</a> for the most viral award...</p>
+                            <p>I participated in my first hackathon. It was a fun experience meeting people online and spending a weekend working on a project together. <a href="https://www.youtube.com/watch?v=TDo4Q7uSMaE" target="_blank" rel="noopener">Our team's project</a> was about turning moods into music playlists. I even got to upload a <a href="https://www.youtube.com/shorts/JjUGuGoRDos" target="_blank" rel="noopener">YouTube shorts video</a> for the most viral award... But it was all worth it since we were able to get 1st place for most viral project and 2nd place for best overall hack!</p>
                         </div>
                     </article>
                     <article class="timeline-entry">
@@ -189,3 +190,38 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
         {% endif %}
 
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function handleHeroEmailMessage() {
+            var emailLink = document.querySelector('.hero .social-email');
+            var message = document.getElementById('hero-email-message');
+
+            if (!emailLink || !message) {
+                return;
+            }
+
+            var contactText = 'welcome.taemin@gmail.com — feel free to contact me!';
+            var toggleMessage = function (event) {
+                event.preventDefault();
+                var isHidden = message.hidden;
+
+                if (isHidden) {
+                    message.textContent = contactText;
+                    message.hidden = false;
+                    emailLink.setAttribute('aria-expanded', 'true');
+                    emailLink.setAttribute('aria-pressed', 'true');
+                } else {
+                    message.textContent = '';
+                    message.hidden = true;
+                    emailLink.setAttribute('aria-expanded', 'false');
+                    emailLink.setAttribute('aria-pressed', 'false');
+                }
+            };
+
+            emailLink.addEventListener('click', toggleMessage);
+            emailLink.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    toggleMessage(event);
+                }
+            });
+        });
+    </script>
