@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <title>{% if page.title %}{{ page.title }} - {% endif %}Taemin Park</title>
+    <script>
+        (function() {
+            var root = document.documentElement;
+            var key = 'theme';
+            try {
+                var stored = localStorage.getItem(key);
+                if (stored === 'dark' || stored === 'light') {
+                    root.setAttribute('data-theme', stored);
+                    return;
+                }
+            } catch (e) {}
+            if (!root.getAttribute('data-theme')) {
+                var prefersDark = false;
+                try {
+                    prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                } catch (err) {}
+                root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+            }
+        })();
+    </script>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -40,7 +60,7 @@
         <div class="container-fluid justify-content-center">
             <ul class="navbar-nav d-flex flex-row">
                 <li class="nav-item">
-                    <a class="nav-link nav-brand" href="{{ site.baseurl }}/index.html" aria-label="Go to home page">Home</a>
+                    <a class="nav-link nav-brand" href="{{ site.baseurl }}/index.html" aria-label="Go to home page">Taemin Park</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ site.baseurl }}/blogs.html" aria-label="Go to blog page">Blog</a>

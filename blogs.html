@@ -27,7 +27,7 @@ description: Taemin Park's blog posts about programming, technology, and persona
                 {% endif %}
                 {% endif %}
                 {% assign post_category = post.categories | first | default: post.category %}
-                <article class="blog-card" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="{{ forloop.index0 | modulo: 6 | times: 120 }}" data-href="{{ post.url }}" tabindex="0" role="link" aria-label="Open post: {{ post.title }}">
+                <article class="blog-card" data-aos="fade-up" data-aos-offset="120" data-aos-duration="500" data-aos-easing="ease-out-cubic" data-aos-once="true" data-aos-anchor-placement="top-bottom" data-href="{{ post.url }}" tabindex="0" role="link" aria-label="Open post: {{ post.title }}">
                     <div class="blog-card-media">
                         {% if post_cover %}
                         <img src="{{ post_cover | relative_url }}" alt="{{ post.title }} cover" class="blog-card-image">
@@ -51,7 +51,55 @@ description: Taemin Park's blog posts about programming, technology, and persona
                 <script>
                     // Whole-card clickable behavior with keyboard accessibility
                     document.addEventListener('DOMContentLoaded', function(){
-                        document.querySelectorAll('.blog-card[data-href]').forEach(card => {
+                        const blogCards = document.querySelectorAll('.blog-card[data-href]');
+                        const cardsWithAOS = Array.from(document.querySelectorAll('.blog-card[data-aos]'));
+                        const originalAOSData = new Map();
+                        const scheduledTransformCleanup = new WeakSet();
+
+                        const scheduleTransformCleanup = (card) => {
+                            if (!(card instanceof HTMLElement) || scheduledTransformCleanup.has(card)) return;
+                            scheduledTransformCleanup.add(card);
+
+                            const clearInlineTransform = () => {
+                                card.style.removeProperty('transform');
+                                scheduledTransformCleanup.delete(card);
+                            };
+
+                            const handleMouseLeave = () => {
+                                card.removeEventListener('mouseleave', handleMouseLeave);
+                                clearInlineTransform();
+                            };
+
+                            const completeCleanup = () => {
+                                if (card.matches(':hover')) {
+                                    card.addEventListener('mouseleave', handleMouseLeave, { once: true });
+                                    return;
+                                }
+                                clearInlineTransform();
+                            };
+
+                            const duration = Number(card.getAttribute('data-aos-duration')) || 600;
+                            setTimeout(completeCleanup, duration + 120);
+                        };
+
+                        const removeAOSAttributes = (el) => {
+                            el.removeAttribute('data-aos');
+                            el.removeAttribute('data-aos-delay');
+                            el.removeAttribute('data-aos-duration');
+                            el.removeAttribute('data-aos-easing');
+                            el.removeAttribute('data-aos-offset');
+                            el.removeAttribute('data-aos-once');
+                            el.removeAttribute('data-aos-anchor-placement');
+                            el.style.removeProperty('transform');
+                        };
+
+                        cardsWithAOS.forEach(card => {
+                            const attributeNames = Array.from(card.getAttributeNames()).filter(name => name.startsWith('data-aos'));
+                            const storedAttributes = attributeNames.map(name => [name, card.getAttribute(name)]);
+                            originalAOSData.set(card, storedAttributes);
+                        });
+
+                        blogCards.forEach(card => {
                             const url = card.getAttribute('data-href');
                             if(!url) return;
                             card.addEventListener('click', e => {
@@ -68,17 +116,81 @@ description: Taemin Park's blog posts about programming, technology, and persona
                             card.style.cursor = 'pointer';
                         });
 
-                        // Respect reduced motion preferences by disabling AOS
-                        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                        if (prefersReduced) {
-                            document.querySelectorAll('[data-aos]').forEach(el => {
-                                el.removeAttribute('data-aos');
-                                el.removeAttribute('data-aos-delay');
-                                el.removeAttribute('data-aos-duration');
-                                el.removeAttribute('data-aos-easing');
-                                el.removeAttribute('data-aos-anchor-placement');
+                        // Respect reduced motion preferences and mobile/touch users by disabling AOS
+                        const prefersReducedQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+                        const disableForInputQuery = window.matchMedia('(hover: none), (pointer: coarse)');
+                        const disableForSizeQuery = window.matchMedia('(max-width: 768px)');
+
+                        const triggerAllAnimations = () => {
+                            cardsWithAOS.forEach(card => {
+                                if (!card.hasAttribute('data-aos')) return;
+                                card.classList.remove('aos-animate');
+                                void card.offsetWidth;
+                                card.classList.add('aos-animate');
+                                scheduleTransformCleanup(card);
                             });
-                        }
+                        };
+
+                        let loadHandlerRegistered = false;
+                        const scheduleAnimationTrigger = () => {
+                            if (document.readyState === 'complete') {
+                                requestAnimationFrame(triggerAllAnimations);
+                                return;
+                            }
+                            if (loadHandlerRegistered) return;
+                            loadHandlerRegistered = true;
+                            window.addEventListener('load', () => requestAnimationFrame(triggerAllAnimations), { once: true });
+                        };
+
+                        const restoreAOSAttributes = (card) => {
+                            const storedAttributes = originalAOSData.get(card);
+                            if (!storedAttributes) return;
+                            storedAttributes.forEach(([name, value]) => {
+                                if (value !== null && value !== undefined) {
+                                    card.setAttribute(name, value);
+                                }
+                            });
+                        };
+
+                        const shouldDisableAnimations = () =>
+                            prefersReducedQuery.matches || disableForInputQuery.matches || disableForSizeQuery.matches;
+
+                        const applyAOSState = () => {
+                            if (shouldDisableAnimations()) {
+                                cardsWithAOS.forEach(removeAOSAttributes);
+                                return;
+                            }
+                            cardsWithAOS.forEach(card => {
+                                if (!card.hasAttribute('data-aos')) {
+                                    restoreAOSAttributes(card);
+                                }
+                            });
+                            scheduleAnimationTrigger();
+                        };
+
+                        applyAOSState();
+
+                        document.addEventListener('aos:in', ({ detail }) => {
+                            const target = detail instanceof HTMLElement ? detail : null;
+                            if (!target || !target.classList.contains('blog-card')) return;
+                            scheduleTransformCleanup(target);
+                        });
+
+                        const registerMediaListener = (query) => {
+                            if (typeof query.addEventListener === 'function') {
+                                query.addEventListener('change', applyAOSState);
+                            } else if (typeof query.addListener === 'function') {
+                                query.addListener(applyAOSState);
+                            }
+                        };
+
+                        [prefersReducedQuery, disableForInputQuery, disableForSizeQuery].forEach(registerMediaListener);
+
+                        cardsWithAOS.forEach(card => {
+                            if (card.classList.contains('aos-animate')) {
+                                scheduleTransformCleanup(card);
+                            }
+                        });
                     });
                 </script>
         </main>
