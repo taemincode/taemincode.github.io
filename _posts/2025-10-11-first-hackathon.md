@@ -4,9 +4,8 @@ title: "First Hackathon"
 date: 2025-10-11
 categories: Hackathon
 thumbnail: /assets/images/posts/2025/first-hackathon/thumbnail.png
+inspired_by: Wassily Kandinsky
 ---
-
-![Hackathon website screenshot](/assets/images/posts/2025/first-hackathon/project_screenshot.png)
 
 ## 📌 Introduction
 This summer (summer of 2025), I had a long two months break, and thought that I wanted to do something new and exciting. That's what made me want to participate in my first hackathon. Although I was nervous before the start of the hackathon, overall, it was a fun and interesting experience.
@@ -38,9 +37,9 @@ The hackathon was hosted in the US, and the submission time was Sunday 12 PM EDT
 ## 🏆 Results
 Although the results were supposed to come out in two weeks, it actually took two months! It was so late that I actually forgot that the results would come out.<br>
 Here are the awards that we got:<br>
-🥈 2nd place for Best Overall Hack<br>
-🥉 3rd place for Most Business Potential<br>
-🥇 1st place for Most Viral Project<br>
+🥈 Best Overall Hack - 2nd<br>
+🥉 Most Business Potential - 3rd<br>
+🥇 Most Viral Project - 1st<br>
 Although I was kind of expecting to get the `Most Viral Project` award since I was able to look up other teams' posts on social media, I wasn't expecting to get `Best Overall Hack` and `Most Business Potential`! I was especially proud of the `Best Overall Hack` award.
 
 ## 💭 Looking Back

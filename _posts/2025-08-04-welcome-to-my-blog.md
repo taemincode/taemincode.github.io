@@ -4,6 +4,7 @@ title: "Welcome to My Blog"
 date: 2025-08-04
 categories: General
 thumbnail: /assets/images/posts/2025/welcome/thumbnail.png
+inspired_by: Vincent van Gogh
 ---
 
 ## 👋 Hello world!

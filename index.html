@@ -58,7 +58,7 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                         </div>
                         <div class="timeline-card">
                             <h3>August 2025</h3>
-                            <p>I participated in my first hackathon. It was a fun experience meeting people online and spending a weekend working on a project together. <a href="https://www.youtube.com/watch?v=TDo4Q7uSMaE" target="_blank" rel="noopener">Our team's project</a> was about turning moods into music playlists. I even got to upload a <a href="https://www.youtube.com/shorts/JjUGuGoRDos" target="_blank" rel="noopener">YouTube shorts video</a> for the most viral award... But it was all worth it since we were able to get 1st place for most viral project and 2nd place for best overall hack!</p>
+                            <p>I participated in my first hackathon. It was a fun experience meeting people online and spending a weekend working on a project together. You can check out more about my first hackathon in <a href="{{ '/hackathon/2025/10/11/first-hackathon.html' | relative_url }}">this blog post</a>.</p>
                         </div>
                     </article>
                     <article class="timeline-entry">
@@ -162,11 +162,15 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                     {% endif %}
                     {% endif %}
                     {% assign preview_category = post.categories | first | default: post.category %}
+                    {% assign preview_inspiration = post.inspired_by | default: post.artist_inspiration %}
                     <article class="blog-card blog-preview-card">
                         <a class="blog-card-link" href="{{ post.url | relative_url }}" aria-label="Read blog post: {{ post.title }}">
                             <div class="blog-card-media">
                                 {% if preview_cover %}
                                 <img src="{{ preview_cover | relative_url }}" alt="{{ post.title }} cover" class="blog-card-image">
+                                {% if preview_inspiration %}
+                                <div class="blog-card-inspiration">Inspired by {{ preview_inspiration }}</div>
+                                {% endif %}
                                 {% else %}
                                 <div class="blog-card-media-placeholder" aria-hidden="true"></div>
                                 {% endif %}
