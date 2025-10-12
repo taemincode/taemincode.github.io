@@ -4,6 +4,7 @@ title: "My First Contribution"
 date: 2025-08-25
 categories: Contribution
 thumbnail: /assets/images/posts/2025/first-contribution/thumbnail.png
+inspired_by: Claude Monet
 ---
 ![Pull request screenshot](/assets/images/posts/2025/first-contribution/pull_request.png)
 ## 📌 Introduction

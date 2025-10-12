@@ -3,6 +3,8 @@ layout: post
 title: "Logistic Regression"
 date: 2025-08-18
 categories: ML
+thumbnail: /assets/images/posts/2025/logistic-regression/thumbnail.png
+inspired_by: Edvard Munch
 ---
 
 ## 📌 Introduction

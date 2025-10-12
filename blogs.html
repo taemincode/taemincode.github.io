@@ -27,10 +27,14 @@ description: Taemin Park's blog posts about programming, technology, and persona
                 {% endif %}
                 {% endif %}
                 {% assign post_category = post.categories | first | default: post.category %}
+                {% assign post_inspiration = post.inspired_by | default: post.artist_inspiration %}
                 <article class="blog-card" data-aos="fade-up" data-aos-offset="120" data-aos-duration="500" data-aos-easing="ease-out-cubic" data-aos-once="true" data-aos-anchor-placement="top-bottom" data-href="{{ post.url }}" tabindex="0" role="link" aria-label="Open post: {{ post.title }}">
                     <div class="blog-card-media">
                         {% if post_cover %}
                         <img src="{{ post_cover | relative_url }}" alt="{{ post.title }} cover" class="blog-card-image">
+                        {% if post_inspiration %}
+                        <div class="blog-card-inspiration">Inspired by {{ post_inspiration }}</div>
+                        {% endif %}
                         {% else %}
                         <div class="blog-card-media-placeholder" aria-hidden="true"></div>
                         {% endif %}

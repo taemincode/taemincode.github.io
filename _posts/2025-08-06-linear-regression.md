@@ -3,6 +3,8 @@ layout: post
 title: "Linear Regression"
 date: 2025-08-06
 categories: ML
+thumbnail: /assets/images/posts/2025/linear-regression/thumbnail.png
+inspired_by: Kazimir Malevich
 ---
 
 ## 📌 Introduction
