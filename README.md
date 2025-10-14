@@ -70,7 +70,7 @@ bundle exec jekyll build
    categories: [ml]
    description: Optional SEO summary
    last_modified_at: 2025-03-20 # optional, uses git history if omitted
-   thumbnail: /assets/images/posts/2025/example/cover.png # optional
+   thumbnail: /assets/images/posts/2025/example/cover.webp # optional
    ---
    ```
 
@@ -80,7 +80,7 @@ bundle exec jekyll build
 
 3. Images:
    - Store permanent assets under `assets/images/posts/<year>/<slug>/`
-   - Reference with `![Alt]({{ site.baseurl }}/assets/images/posts/2025/example/plot.png)`
+   - Reference with `![Alt]({{ site.baseurl }}/assets/images/posts/2025/example/plot.webp)`
    - Post layout wraps images with a lightbox; clicking opens a full-size view.
 
 4. Optional metadata:

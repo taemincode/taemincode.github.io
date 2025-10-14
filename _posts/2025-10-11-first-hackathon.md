@@ -3,7 +3,7 @@ layout: post
 title: "First Hackathon"
 date: 2025-10-11
 categories: Hackathon
-thumbnail: /assets/images/posts/2025/first-hackathon/thumbnail.png
+thumbnail: /assets/images/posts/2025/first-hackathon/thumbnail.webp
 inspired_by: Wassily Kandinsky
 ---
 
@@ -13,7 +13,7 @@ This summer (summer of 2025), I had a long two months break, and thought that I 
 ## 🌱 Beginning
 I should first tell you how I got to find out the event, how I formed a team, and how our team brainstormed together before the start of the hackathon.
 I wanted to join a hackathon that was designed for my age group (high school), since I didn't want to compete with adults. After some research, I found a <a href="https://hackathons.hackclub.com" target="_blank" rel="noopener">website</a> that showed all the upcoming high school hackathon events, and I chose to participate in a hackathon called <a href="https://hackwiththebeat.com" target="_blank" rel="noopener">*Hack with the Beat*</a>.
-![Hackathon website screenshot](/assets/images/posts/2025/first-hackathon/hackathon_website.png)
+![Hackathon website screenshot](/assets/images/posts/2025/first-hackathon/hackathon_website.webp)
 This hackathon was a music-themed hackathon and encouraged the participants to create projects linked to music. Since the schedule fit well for me, and it seemed to be a good hackathon (based on the website and the Discord server), I chose to give it a try.<br>
 I wasn't brave enough to join a hackathon by myself, so I chose to form a group. Forming the group was pretty easy as there was a place in the Discord server where we could find teammates and join groups. I was able to form a group with three other people. We divided our main roles (I was in charge of ML and backend), and our team started to brainstorm our ideas. We had lots of different ideas such as a music visualizer and a weather-based playlist, but we chose to stick with a mood playlist generator, which was to create a website that created playlists based on the user's feelings.
 
