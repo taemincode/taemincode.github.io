@@ -10,7 +10,13 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
         <section class="hero">
             <div class="hero-inner">
                 <div class="hero-photo">
-                    <img src="static/about-photo.jpg" alt="Taemin Park" class="hero-image">
+                    {% include responsive-image.html
+                        src="static/about-photo.webp"
+                        alt="Taemin Park"
+                        class="hero-image"
+                        loading="eager"
+                        sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 360px"
+                    %}
                 </div>
                 <div class="hero-info">
                     <h1 class="hero-title">Taemin Park</h1>
@@ -167,7 +173,13 @@ description: Personal website of Taemin Park, showcasing his projects, blog post
                         <a class="blog-card-link" href="{{ post.url | relative_url }}" aria-label="Read blog post: {{ post.title }}">
                             <div class="blog-card-media">
                                 {% if preview_cover %}
-                                <img src="{{ preview_cover | relative_url }}" alt="{{ post.title }} cover" class="blog-card-image">
+                                {% capture preview_alt %}{{ post.title }} cover{% endcapture %}
+                                {% include responsive-image.html
+                                    src=preview_cover
+                                    alt=preview_alt
+                                    class="blog-card-image"
+                                    sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 360px"
+                                %}
                                 {% if preview_inspiration %}
                                 <div class="blog-card-inspiration">Inspired by {{ preview_inspiration }}</div>
                                 {% endif %}

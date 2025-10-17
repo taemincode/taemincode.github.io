@@ -3,7 +3,7 @@ layout: post
 title: "Logistic Regression"
 date: 2025-08-18
 categories: ML
-thumbnail: /assets/images/posts/2025/logistic-regression/thumbnail.png
+thumbnail: /assets/images/posts/2025/logistic-regression/thumbnail.webp
 inspired_by: Edvard Munch
 ---
 
@@ -11,7 +11,11 @@ inspired_by: Edvard Munch
 Previously, we've learned that [linear regression](/ml/2025/08/06/linear-regression.html) was fitting the best line through data. Logistic regression fits an S-shaped curve (sigmoid function) to the data. Logistic regression is also a type of `supervised learning` (has labeled data), and while linear regression is a regression model which predicts continuous values for its output, logistic regression is a classification model (although it's called logistic 'regression'), which can only have two possible outputs: 0 and 1. This model is used to find out yes or no questions. Such as spam detection (is this a spam or not?), medical diagnosis (does this person have a disease or not?), and fraud detection (is this a fraudulent transaction or not?).
 
 ## 🧠 The Big Idea
-![Logistic regression example](/assets/images/posts/2025/logistic-regression/logistic_regression.png)
+{% include responsive-image.html
+    src="/assets/images/posts/2025/logistic-regression/logistic_regression.webp"
+    alt="Logistic regression example"
+%}
+
 Instead of predicting continuous values like linear regression, logistic regression predicts probabilities. As I mentioned above, you predict the probabilities through the S-shaped curve, also called the sigmoid function or the logistic function. The equation for the sigmoid function is:<br>
 $\sigma(z) = \frac{1}{1 + e^{-z}}$<br>
 where<br>
@@ -33,7 +37,11 @@ Logistic regression works as follows:
 
 ## 🔍 How Does It Learn?
 We've learned that we need cost functions in order to use gradient descent to find the best fitting graph in the data (this is explained in the [previous blog](/ml/2025/08/06/linear-regression.html)). However, if we use the same cost function as linear regression (MSE) for logistic regression, we get a cost function as below:
-![MSE in linear vs logistic regression](/assets/images/posts/2025/logistic-regression/mse.png)
+{% include responsive-image.html
+    src="/assets/images/posts/2025/logistic-regression/mse.webp"
+    alt="MSE in linear vs logistic regression"
+%}
+
 As you could see, while the cost function plot for linear regression is a smooth convex, the cost function plot for logistic regression is a wiggly non-convex. This makes it hard to reach the global minimum since there are many local minima where gradient descent can get stuck. Instead, we use a different cost function: Binary Cross-Entropy (also called Log Loss)! This is the formula of binary cross-entropy:<br><br>
 $$
 J(w, b) = -\frac{1}{m} \sum_{i=1}^{m} \Big[ y^{(i)} \log\big(\hat{y}^{(i)}\big) + \big(1 - y^{(i)}\big) \log\big(1 - \hat{y}^{(i)}\big) \Big]
@@ -49,7 +57,11 @@ L\left(f_{\vec{w},b}\left(\vec{x}^{(i)}\right),\, y^{(i)}\right) =
 \end{cases}
 $$<br><br>
 This is the plot for $-\log\left(f\right)$ and $-\log\left(1 - f\right)$:
-![Log plot](/assets/images/posts/2025/logistic-regression/log_plot.png)
+{% include responsive-image.html
+    src="/assets/images/posts/2025/logistic-regression/log_plot.webp"
+    alt="Log loss curves for logistic regression"
+%}
+
 As you can see, in $-\log\left(f\right)$, as the value of $f$ get's closer to 0, the loss increases. That's why we use this function if $y^{(i)} = 1$ (because we want to have high loss when our prediction is far from the actual ground truth). Similarly, we use $-\log\left(1 - f\right)$ if $y^{(i)} = 0$ because we want to have low loss when the prediction is close to 0 and have high loss when it's close to 1. The formula for calculating a single loss can be writen in a more compact form like this:<br><br>
 $$
 L\big(f_{\vec w, b}(\vec x^{(i)}), y^{(i)}\big) = - \Big[ y^{(i)} \log \hat y^{(i)} + (1 - y^{(i)}) \log \big(1 - \hat y^{(i)}\big) \Big]
@@ -171,12 +183,19 @@ plt.legend()
 plt.show()
 ```
 Output:<br>
-![Gradient descent plot](/assets/images/posts/2025/logistic-regression/logistic_regression_from_scratch_plot.png)<br>
+{% include responsive-image.html
+    src="/assets/images/posts/2025/logistic-regression/logistic_regression_from_scratch_plot.webp"
+    alt="Logistic regression gradient descent plot"
+%}
+
 There you go! We've just built logistic regression from scratch!
 
 ## 📚 Logistic vs. Other Models
 I hope that now you can confidently explain the difference: logistic regression predicts probabilities (classification), while linear regression predicts continuous values (regression). However, like linear regression, logistic regression is the simplest form of classification models, so it could struggle with non-linear boundaries (e.g., data that is not linearly separable).
-![Logistic regression vs other](/assets/images/posts/2025/logistic-regression/logistic_vs_other.png)
+{% include responsive-image.html
+    src="/assets/images/posts/2025/logistic-regression/logistic_vs_other.webp"
+    alt="Logistic regression versus other models"
+%}
 
 ## ✅ Summary
 In this blog post, we've learned that logistic regression predicts probabilities and classifies based on a threshold. We've also learned that logistic regression uses the sigmoid function, binary cross-entropy, and gradient descent to learn. By learning this model, I believe that you now have a solid foundation for classification problems! See you in the next blog post 😊

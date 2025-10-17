@@ -15,8 +15,8 @@ Response Checklist
 
 Key Files & Roles
 -----------------
-- `index.html` – Home page sections (hero, timeline, snapshot, now, blog preview). Uses Bootstrap grid classes plus custom SCSS hooks. Any new section must reuse existing typography classes defined in `_sass/_about.scss`.
-- `blogs.html` – Full blog listing; cards rely on `.blog-card` styles and AOS attributes. For new filters or sort options, update the loop over `site.posts` and adjust `_sass/_blog.scss`.
+- `index.html` – Home page sections (hero with email reveal toggle, timeline, snapshot, now, blog preview). Uses Bootstrap grid classes plus custom SCSS hooks; keep the `.hero-email-message` behavior intact. Any new section must reuse existing typography classes defined in `_sass/_about.scss`.
+- `blogs.html` – Full blog listing; cards rely on `.blog-card` styles, AOS attributes, and a helper script that wires `data-href` for keyboard activation. For new filters or sort options, update the loop over `site.posts`, keep the `blog-card-inspiration` overlay fed by `inspired_by`, and adjust `_sass/_blog.scss`.
 - `_layouts/default.html` – Global wrapper: head tags, navbar, footer, MathJax, Bootstrap, AOS, theme toggle, copy buttons, lightbox JS. Changes here affect every page—double-check accessibility attributes.
 - `_layouts/post.html` – Post layout with publish/updated logic, categories, previous/next nav. Honor Liquid conditionals when altering metadata blocks.
 - `_sass/_variables.scss` – Design tokens. Add new variables here before using raw hex codes. Apply both light and dark theme values.
@@ -38,7 +38,8 @@ Liquid & Markdown Conventions
 -----------------------------
 - Use `{{ site.baseurl }}` when creating absolute asset URLs from Markdown (e.g., `{{ site.baseurl }}/assets/images/...`).
 - Front matter keys currently recognized:
-  - `layout`, `title`, `date`, `categories`, `tags`, `description`, `thumbnail`, `cover_image`, `image`, `featured_image`, `last_modified_at`, `updated`, `edited`.
+  - `layout`, `title`, `date`, `categories`, `tags`, `description`, `thumbnail`, `cover_image`, `image`, `featured_image`, `inspired_by`, `artist_inspiration`, `last_modified_at`, `updated`, `edited`.
+  - Use `inspired_by` (or `artist_inspiration`) to populate the “Inspired by …” ribbon on listing cards; keep values short.
   - Additional keys must be consumed by layouts before adding widely.
 - Category names in front matter should be lowercase or PascalCase without spaces (e.g., `[ML, Notes]`).
 - When embedding HTML inside Markdown posts, wrap with blank lines to avoid parser quirks.
@@ -52,6 +53,8 @@ JavaScript Specifics
   - AOS initialization with custom `disable` logic (prefers-reduced-motion, small screens, touch/coarse pointers). Respect this when extending animations.
   - Code-copy enhancement for `.markdown pre`: maintain `code-copy-btn` structure and accessible labels.
   - Image lightbox limited to descendants of `.post-content`; only intercept `<img>` clicks when you need lightbox behavior.
+- `index.html` hero email button toggles `aria-expanded`/`aria-pressed` and reveals `#hero-email-message`; keep the keyboard handlers and message span synced with the icon list.
+- `blogs.html` attaches listeners to `.blog-card[data-href]` so cards respond to click or Enter/Space, replays AOS animations, and clears inline transforms; keep data attributes and script logic aligned.
 - `404.html` script:
   - Provides `window.ROCKET_CONFIG`, `window.setRocketExitOffset`, `window.setRocketExitMode`. Adjust rocket flight through these helpers. Keep reduced-motion fallback intact.
 
@@ -60,12 +63,16 @@ Content Creation Rules
 - Blog posts:
   - Write introductions with emoji headings (e.g., `## 📌 Introduction`) if consistent with current style.
   - Include at least one image or diagram when referencing data/visuals. Place supporting images in `assets/images/posts/<year>/<slug>/`.
+  - Generate responsive image sets: export WebP derivatives at multiple widths (e.g., `thumbnail.webp`, `thumbnail-480w.webp`) and wire them via `<picture>` or `srcset` so listings and posts pick the right size. Keep a fallback format only when required by the template.
+  - Always ship `alt`, `width`, `height`, and `loading="lazy"` on inline images to preserve accessibility and layout stability.
   - For tutorials, code blocks should include language hints (```` ```python ````). `rouge` handles highlighting.
   - Add `last_modified_at` when editing existing posts to surface “Updated” badge.
+  - Populate `inspired_by` (or `artist_inspiration`) to credit artwork on listing cards; omit when not applicable.
   - Use callouts with blockquotes and `ℹ️`/`⚠️` emoji for tips/warnings as seen in existing posts.
 - Landing page content:
   - Timeline entries follow the markup in `index.html`: `.timeline-entry` with `.timeline-marker` (year/dot) and `.timeline-card` content. Keep chronological order descending.
   - The “Now” section items use `.now-item` with `<i class="fas ...">`. Choose icons available in Font Awesome 6.5.2.
+  - The hero email icon reveals a contact message via `.hero-email-message`; preserve `role`, `aria-expanded`, and `aria-pressed` when modifying the social list.
 
 Accessibility & UX
 ------------------
@@ -73,6 +80,7 @@ Accessibility & UX
 - Any new interactive element must support keyboard activation (Enter/Space) and respond to reduced-motion preferences where animations are introduced.
 - Focus states should be visible. Use `outline` with `var(--primary-color)` as seen in existing components.
 - When linking out, set `target="_blank"` and `rel="noopener noreferrer"` consistently (see hero social links example).
+- `.blog-card` elements depend on `role="link"`, `tabindex="0"`, and JS listeners; keep accessibility attributes in sync with card markup.
 
 Development Workflow
 --------------------

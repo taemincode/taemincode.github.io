@@ -6,8 +6,8 @@ Source for https://taemincode.github.io — a Jekyll-powered personal site with 
 
 ## Features
 
-- **Landing page sections** – `index.html` renders a hero, timeline, “Snapshot” profile card, work-in-progress/“Now” board, and social links styled by `_sass/_about.scss`.
-- **Blog listing & previews** – `blogs.html` builds an animated card grid (AOS) while the homepage pulls the three latest posts, auto-detecting cover art from front matter or the first `<img>`.
+- **Landing page sections** – `index.html` renders a hero (with email reveal toggle), timeline, “Snapshot” profile card, work-in-progress/“Now” board, social links, and blog preview cards styled by `_sass/_about.scss`.
+- **Blog listing & previews** – `blogs.html` builds an animated card grid (AOS) with full-card keyboard activation and an “Inspired by …” ribbon when `inspired_by` front matter is present; the homepage pulls the three latest posts, auto-detecting cover art from front matter or the first `<img>`.
 - **Post UX** – `_layouts/post.html` shows published/updated metadata (via `jekyll-last-modified-at`), categories, copy-to-clipboard buttons, MathJax, Rouge styling, and a JS lightbox for in-article images.
 - **Global theming** – SCSS design tokens in `_sass/_variables.scss` drive light/dark themes; the navbar toggle persists preference to `localStorage` and respects system defaults.
 - **Accessibility & motion** – Reduced-motion visitors skip AOS and hover flair; keyboard focus states, ARIA labels, and responsive typography are wired throughout.
@@ -69,8 +69,9 @@ bundle exec jekyll build
    date: 2025-03-16
    categories: [ml]
    description: Optional SEO summary
+   inspired_by: Claude Monet # optional overlay credit for cards
    last_modified_at: 2025-03-20 # optional, uses git history if omitted
-   thumbnail: /assets/images/posts/2025/example/cover.png # optional
+   thumbnail: /assets/images/posts/2025/example/cover.webp # optional
    ---
    ```
 
@@ -80,12 +81,13 @@ bundle exec jekyll build
 
 3. Images:
    - Store permanent assets under `assets/images/posts/<year>/<slug>/`
-   - Reference with `![Alt]({{ site.baseurl }}/assets/images/posts/2025/example/plot.png)`
+   - Reference with `![Alt]({{ site.baseurl }}/assets/images/posts/2025/example/plot.webp)`
    - Post layout wraps images with a lightbox; clicking opens a full-size view.
 
 4. Optional metadata:
    - `last_modified_at`, `updated`, or `edited` triggers the “Updated” badge.
    - `thumbnail`, `cover_image`, `image`, or `featured_image` feed the blog cards; otherwise the first `<img>` in the post is used.
+   - `inspired_by` (or `artist_inspiration`) prints the “Inspired by …” ribbon on listing cards; leave unset if not needed.
 
 ## Visual Assets & Manim
 
@@ -108,7 +110,9 @@ bundle exec jekyll build
 
 - Theme toggle updates `data-theme` on `<html>` and mirrors system dark-mode unless overridden.
 - AOS animations auto-disable on touch devices or when `prefers-reduced-motion` is set.
+- Hero email icon toggles `aria-expanded`/`aria-pressed` to reveal `#hero-email-message`; preserve markup when editing the social list.
 - Code blocks get a copy button (`.code-copy-btn`) injected by `_layouts/default.html`.
+- Blog cards (`blogs.html`) rely on `data-href` plus JS to open on click/Enter and replay AOS animations; maintain `role="link"` and `tabindex="0"`.
 - Navbar gains a “scrolled” class after 50px to adjust shadows.
 - The 404 rocket listens for click/keyboard events and can be tuned via the `CONFIG` object (exposed helpers: `setRocketExitOffset`, `setRocketExitMode`).
 
