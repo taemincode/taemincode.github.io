@@ -1,0 +1,50 @@
+{% assign raw_src = include.src | to_s | strip %}
+{% assign alt_text = include.alt | default: '' %}
+{% assign css_class = include.class | default: '' %}
+{% assign loading_mode = include.loading | default: 'lazy' %}
+{% assign decoding_mode = include.decoding | default: 'async' %}
+{% assign sizes_attr = include.sizes | default: '(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 960px' %}
+{% assign width_attr = include.width %}
+{% assign height_attr = include.height %}
+
+{% if raw_src == '' %}
+    {%- comment -%}No image source provided.{%- endcomment -%}
+{% elsif raw_src contains '://' %}
+<img src="{{ raw_src }}" alt="{{ alt_text }}" {% if css_class != '' %}class="{{ css_class }}"{% endif %} loading="{{ loading_mode }}" decoding="{{ decoding_mode }}" {% if width_attr %}width="{{ width_attr }}"{% endif %}{% if height_attr %} height="{{ height_attr }}"{% endif %}>
+{% else %}
+    {% assign normalized_src = raw_src %}
+    {% assign first_char = normalized_src | slice: 0, 1 %}
+    {% unless first_char == '/' %}
+        {% assign normalized_src = '/' | append: normalized_src %}
+    {% endunless %}
+    {% assign baseurl = site.baseurl | default: '' %}
+    {% assign baseurl_size = baseurl | size %}
+    {% if baseurl_size > 0 %}
+        {% assign prefix = normalized_src | slice: 0, baseurl_size %}
+        {% if prefix == baseurl %}
+            {% assign normalized_src = normalized_src | slice: baseurl_size, normalized_src | size %}
+            {% assign first_char = normalized_src | slice: 0, 1 %}
+            {% unless first_char == '/' %}
+                {% assign normalized_src = '/' | append: normalized_src %}
+            {% endunless %}
+        {% endif %}
+    {% endif %}
+    {% assign ext = normalized_src | split: '.' | last %}
+    {% assign ext_with_dot = '.' | append: ext %}
+    {% assign base_path = normalized_src | replace: ext_with_dot, '' %}
+    {% assign candidate_sizes = '320|480|640|768|1024|1366|1600|1920|2560|3200' | split: '|' %}
+    {% assign srcset_entries = '' %}
+    {% for size in candidate_sizes %}
+        {% assign variant_path = base_path | append: '-' | append: size | append: 'w' | append: ext_with_dot %}
+        {% assign variant_file = site.static_files | where: 'path', variant_path | first %}
+        {% if variant_file %}
+            {% assign variant_entry = variant_path | relative_url | append: ' ' | append: size | append: 'w' %}
+            {% if srcset_entries == '' %}
+                {% assign srcset_entries = variant_entry %}
+            {% else %}
+                {% assign srcset_entries = srcset_entries | append: ', ' | append: variant_entry %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    <img src="{{ normalized_src | relative_url }}" {% if srcset_entries != '' %}srcset="{{ srcset_entries }}" sizes="{{ sizes_attr }}"{% endif %} alt="{{ alt_text }}" {% if css_class != '' %}class="{{ css_class }}"{% endif %} loading="{{ loading_mode }}" decoding="{{ decoding_mode }}" {% if width_attr %}width="{{ width_attr }}"{% endif %}{% if height_attr %} height="{{ height_attr }}"{% endif %}>
+{% endif %}
