@@ -63,6 +63,8 @@ Content Creation Rules
 - Blog posts:
   - Write introductions with emoji headings (e.g., `## 📌 Introduction`) if consistent with current style.
   - Include at least one image or diagram when referencing data/visuals. Place supporting images in `assets/images/posts/<year>/<slug>/`.
+  - Generate responsive image sets: export WebP derivatives at multiple widths (e.g., `thumbnail.webp`, `thumbnail-480w.webp`) and wire them via `<picture>` or `srcset` so listings and posts pick the right size. Keep a fallback format only when required by the template.
+  - Always ship `alt`, `width`, `height`, and `loading="lazy"` on inline images to preserve accessibility and layout stability.
   - For tutorials, code blocks should include language hints (```` ```python ````). `rouge` handles highlighting.
   - Add `last_modified_at` when editing existing posts to surface “Updated” badge.
   - Populate `inspired_by` (or `artist_inspiration`) to credit artwork on listing cards; omit when not applicable.
