@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="gGxJsILgTJzhbUSuvifYFiA7fxLaLl60oKYE12auiVc">
-    {% seo %}
+    {% seo title=false %}
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <!-- Structured data to make Google show 'Taemin Park' as the site name -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Taemin Park",
+    "alternateName": "taemincode",
+    "url": "https://taemincode.github.io/",
+    "description": "I'm a student interested in machine learning!"
+    }
+    </script>
     <script>
         (function() {
             var root = document.documentElement;

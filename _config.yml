@@ -1,7 +1,8 @@
-title: Taemin Park
-description: Personal site and blog by Taemin Park
-baseurl: "" # important: keep this empty for user sites
+title: "Taemin Park"
+name: "Taemin Park"
+description: "I'm a student interested in machine learning!"
 url: "https://taemincode.github.io"
+baseurl: "" # keep this empty for user sites
 markdown: kramdown
 highlighter: rouge
 kramdown:
