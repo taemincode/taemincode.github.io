@@ -2,6 +2,7 @@
 layout: post
 title: "First Hackathon"
 date: 2025-10-11
+last_modified_at: 2025-10-17
 categories: Hackathon
 thumbnail: /assets/images/posts/2025/first-hackathon/thumbnail.webp
 inspired_by: Wassily Kandinsky
