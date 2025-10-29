@@ -2,6 +2,7 @@
 layout: post
 title: "Logistic Regression"
 date: 2025-08-18
+last_modified_at: 2025-10-29
 categories: ML
 thumbnail: /assets/images/posts/2025/logistic-regression/thumbnail.webp
 inspired_by: Edvard Munch
@@ -42,13 +43,13 @@ We've learned that we need cost functions in order to use gradient descent to fi
     alt="MSE in linear vs logistic regression"
 %}
 
-As you could see, while the cost function plot for linear regression is a smooth convex, the cost function plot for logistic regression is a wiggly non-convex. This makes it hard to reach the global minimum since there are many local minima where gradient descent can get stuck. Instead, we use a different cost function: Binary Cross-Entropy (also called Log Loss)! This is the formula of binary cross-entropy:<br><br>
+As you could see, while the cost function plot for linear regression is a smooth convex, the cost function plot for logistic regression is a wiggly non-convex. This makes it hard to reach the global minimum since there are many local minima where gradient descent can get stuck. Instead, we use a different cost function: binary cross-entropy (also called Log Loss)! This is the formula of binary cross-entropy:<br><br>
 $$
 J(w, b) = -\frac{1}{m} \sum_{i=1}^{m} \Big[ y^{(i)} \log\big(\hat{y}^{(i)}\big) + \big(1 - y^{(i)}\big) \log\big(1 - \hat{y}^{(i)}\big) \Big]
 $$
 <br><br>
 It looks very complicated, right? Let's dive in to the specific details so that you will eventually understand what's happening in this formula.<br>
-First, you have to understand the difference between a `cost` and a `loss`. The main difference is that loss is for only one example and cost is for all the examples (the sum of all the loss). The formula for binary cross entropy derives from this formula for calculating a single loss:<br><br>
+First, you have to understand the difference between a `cost` and a `loss`. The main difference is that loss is for only one example and cost is for all the examples (the sum of all the loss). The formula for binary cross-entropy derives from this formula for calculating a single loss:<br><br>
 $$
 L\left(f_{\vec{w},b}\left(\vec{x}^{(i)}\right),\, y^{(i)}\right) =
 \begin{cases}
@@ -77,116 +78,133 @@ $$ <br><br>
 Since we have the cost function, we can now use gradient descent to minimize the cost (I'm thinking about writing a blog post about explaining the details of gradient descent - like backpropagation - in the future) and find the best fitting S-shaped curve.
 
 ## 🛠️ Building It From Scratch
-Let's build a logistic regression model for a simple binary task where it predicts if a student passes (1) or fails (0) a test based on hours spent studying.<br>
-We'll create data so that studying more hours will increase the probability of passing:
+Now, I'll show you how to build logistic regression from scratch.
+> ℹ️ Note:
+>
+> The following code includes some other concepts, such as standardization and preventing overflow, which we haven't covered in this blog post. However, I hope you would get some general sense of how it is implemented in code.
+
+Let's first load the dataset and shape it so that it would be easier to handle:
 ```python
 import numpy as np
+from sklearn.datasets import load_breast_cancer
+from sklearn.preprocessing import StandardScaler
 
-# Reproducibility
-np.random.seed(0)
+data = load_breast_cancer()
+X = data.data   # shape: (569, 30)
+y = data.target # shape: (569,)
 
-# Toy data: hours studied between 0 and 10
-n = 200
-X = np.random.uniform(0, 10, size=(n, 1))
+# Standardize features (mean=0, std=1)
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
 
-# True (hidden) relationship used to generate labels
-# pass_prob = sigmoid(w_true * hours + b_true)
-w_true = 0.8
-b_true = -4.0
-
+X = X.T             # shape: (30, 569)
+y = y.reshape(-1)   # shape: (569,)
+```
+Now that the data is ready, let's define the logistic regression model:
+```python
 def sigmoid(z):
-    return 1 / (1 + np.exp(-z))
+    z = np.clip(z, -500, 500)  # prevent overflow
+    return 1 / (1 + np.exp(- z))
 
-pass_prob = sigmoid(w_true * X + b_true)
+def initialize_parameters(dim):
+    w = np.zeros((dim, 1))
+    b = 0.0
 
-# Sample pass/fail labels from the probability
-y = (np.random.rand(n, 1) < pass_prob).astype(np.float64)
-```
-Now, let's define the model, the cost function, and computing the gradients:
-```python
-def predict_proba(X, w, b):
-    return 1 / (1 + np.exp(-(w * X + b)))
+    return w, b
 
-def compute_loss(X, y, w, b, eps=1e-12):
-    p = predict_proba(X, w, b)
+def propagate(w, b, X, y):
+    m = X.shape[1]
+    
+    # Forward propagation
+    Z = np.dot(w.T, X) + b
+    A = sigmoid(Z)
+
+    # Clip A to prevent log(0)
+    A = np.clip(A, 1e-10, 1 - 1e-10)
+
     # Binary cross-entropy
-    return -np.mean(y * np.log(p + eps) + (1 - y) * np.log(1 - p + eps))
+    cost = - (1 / m) * np.sum(y * np.log(A) + (1 - y) * np.log(1 - A))
 
-def compute_gradients(X, y, w, b):
-    n = len(X)
-    p = predict_proba(X, w, b)
-    error = p - y
-    dw = (1 / n) * np.sum(error * X)
-    db = (1 / n) * np.sum(error)
-    return dw, db
+    # Backward propagation
+    dZ = A - y
+    dw = (1 / m) * np.dot(X, dZ.T)
+    db = (1 / m) * np.sum(dZ)
+
+    grads = {
+        "dw": dw,
+        "db": db
+    }
+
+    return grads, cost
+
+def optimize(w, b, X, y, num_iterations=5000, learning_rate=0.5):
+    for iteration in range(num_iterations):
+        # Propagation
+        grads, cost = propagate(w, b, X, y)
+    
+        # Retrieve gradients
+        dw = grads["dw"]
+        db = grads["db"]
+
+        # Update parameters (gradient descent)
+        w = w - learning_rate * dw
+        b = b - learning_rate * db
+        
+        # Print cost every 1000 iterations
+        if iteration % 1000 == 0:
+            print(f"Iteration={iteration}: cost={cost}")
+
+    parameters = {
+        "w": w,
+        "b": b
+    }
+
+    return parameters
+
+def predict(w, b, X):
+    A = sigmoid(np.dot(w.T, X) + b)
+    # 1 if A > 0.5, 0 if A <= 0.5
+    y_pred = (A > 0.5).astype(int)
+    return y_pred
+
+def model(X, y, num_iterations=5000, learning_rate=0.5):
+    w, b = initialize_parameters(X.shape[0])
+    parameters = optimize(w, b, X, y, num_iterations, learning_rate)
+
+    w = parameters["w"]
+    b = parameters["b"]
+
+    y_pred = predict(w, b, X)
+
+    # Print accuracy
+    print("Accuracy: {} %".format(100 - np.mean(np.abs(y_pred - y)) * 100))
+
+    d = {"y_pred": y_pred, 
+         "w" : w, 
+         "b" : b,
+         "learning_rate" : learning_rate,
+         "num_iterations": num_iterations}
+
+    return d
 ```
-Let's now train the model with gradient descent:
+Now's the fun part, let's run the model!
 ```python
-# Initialize parameters
-w = 0.0
-b = 0.0
-
-learning_rate = 0.1
-epochs = 2000
-
-for epoch in range(epochs):
-    dw, db = compute_gradients(X, y, w, b)
-    w -= learning_rate * dw
-    b -= learning_rate * db
-
-    if epoch % 200 == 0:
-        loss = compute_loss(X, y, w, b)
-        print(f"Epoch {epoch}: Loss = {loss:.4f}")
-
-# Learned parameters
-print(f"Learned parameters: w = {w:.2f}, b = {b:.2f}")
-
-# Accuracy at 0.5 threshold
-probs = predict_proba(X, w, b)
-y_pred = (probs >= 0.5).astype(np.float64)
-acc = (y_pred == y).mean()
-print(f"Training accuracy: {acc*100:.1f}%")
+logistic_regression_model = model(X, y, num_iterations=10000, learning_rate=0.1)
 ```
 Output:
-```text
-Epoch 0: Loss = 0.6160
-Epoch 200: Loss = 0.4145
-Epoch 400: Loss = 0.3759
-Epoch 600: Loss = 0.3630
-Epoch 800: Loss = 0.3574
-Epoch 1000: Loss = 0.3547
-Epoch 1200: Loss = 0.3533
-Epoch 1400: Loss = 0.3525
-Epoch 1600: Loss = 0.3520
-Epoch 1800: Loss = 0.3518
-Learned parameters: w = 0.88, b = -4.30
-Training accuracy: 85.5%
+```bash
+Iteration=0: cost=0.6931471805599453
+Iteration=1000: cost=0.060577603724407784
+Iteration=2000: cost=0.05464065759612664
+Iteration=3000: cost=0.05197827952420055
+Iteration=4000: cost=0.050354290732159204
+Iteration=5000: cost=0.0491906287855795
+Iteration=6000: cost=0.0482773149756525
+Iteration=7000: cost=0.04752096083469107
+Iteration=8000: cost=0.04687285954869561
+Iteration=9000: cost=0.04630445974594589
+Accuracy: 98.76977152899825 %
 ```
-Now let's plot the learned sigmoid curve:
-```python
-import matplotlib.pyplot as plt
-
-# Sort for a smooth curve
-idx = np.argsort(X[:, 0])
-X_sorted = X[idx]
-probs_sorted = predict_proba(X_sorted, w, b)
-
-# Jitter y for visualization
-jitter = (np.random.rand(len(y), 1) - 0.5) * 0.05
-
-plt.scatter(X, y + jitter, label="Data (pass=1, fail=0)", alpha=0.6)
-plt.plot(X_sorted, probs_sorted, label="Learned probability (sigmoid)")
-plt.xlabel("Hours studied")
-plt.ylabel("P(pass | hours)")
-plt.title("Logistic Regression from Scratch")
-plt.legend()
-plt.show()
-```
-Output:<br>
-{% include responsive-image.html
-    src="/assets/images/posts/2025/logistic-regression/logistic_regression_from_scratch_plot.webp"
-    alt="Logistic regression gradient descent plot"
-%}
 
 There you go! We've just built logistic regression from scratch!
 

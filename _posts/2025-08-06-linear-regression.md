@@ -2,6 +2,7 @@
 layout: post
 title: "Linear Regression"
 date: 2025-08-06
+last_modified_at: 2025-10-17
 categories: ML
 thumbnail: /assets/images/posts/2025/linear-regression/thumbnail.webp
 inspired_by: Kazimir Malevich
@@ -50,7 +51,7 @@ The cost increases if the difference between the predictions ($\hat{y}$) and the
 %}
 
 We now know that we can use the cost function to evaluate the performance of the model. Now it's time for me to tell you about `gradient descent`, which is a method that allows us to minimize the cost (and eventually allow us to find the best parameters - such as the slope and the intercept of our line).<br>
-Suppose you're on a hill ⛰️, and say you have to go down the hill as quickly (efficiently) as possible because you really have to use the bathroom 🚽.  However, there's a problem: it's super cloudy ☁️, and you can only see things that are close to you. You'll probably take the steepest step, right? Because you'll want to go down quickly. You will repeat the process until you reach the lowest part of the hill. What you’ve just done is similar to what gradient descent does: it takes the steepest step to minimize the cost.<br>
+Suppose you're on a hill, and say you have to go down the hill as quickly (efficiently) as possible because you really have to use the bathroom.  However, there's a problem: it's super cloudy, and you can only see things that are close to you. You'll probably take the steepest step, right? Because you'll want to go down quickly. You will repeat the process until you reach the lowest part of the hill. What you’ve just done is similar to what gradient descent does: it takes the steepest step to minimize the cost.<br>
 This is the gradient descent formula for linear regression:<br>
 repeat {<br>
 $w = w - \alpha \dfrac{\partial J}{\partial w}$<br>
