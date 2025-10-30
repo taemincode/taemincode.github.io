@@ -156,7 +156,7 @@
 /* Lightbox overlay for post images */
 .post-lightbox { position:fixed; inset:0; padding:2rem; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.85); opacity:0; visibility:hidden; transition:opacity .25s ease, visibility .25s ease; z-index:2000; }
 .post-lightbox.active { opacity:1; visibility:visible; }
-.post-lightbox img { max-width:min(96vw, 1200px); max-height:90vh; border-radius:.75rem; box-shadow:0 10px 40px rgba(0,0,0,0.6); }
+.post-lightbox img { max-width:clamp(0px,96vw,1200px); max-height:90vh; border-radius:.75rem; box-shadow:0 10px 40px rgba(0,0,0,0.6); }
 @media (max-width:992px){
 	.post-container { padding:clamp(2.2rem,6vw,3rem) clamp(1.25rem,5vw,2.25rem) 0rem; }
 	.post-content { padding:clamp(1.75rem,5vw,2.25rem) clamp(1.25rem,5vw,2.25rem); }

@@ -1,10 +1,12 @@
 ---
 layout: post
 title: "Welcome to My Blog"
+description: "The first post of my personal blog where I will share my machine learning journey."
 date: 2025-08-04
 last_modified_at: 2025-10-14
 categories: General
 thumbnail: /assets/images/posts/2025/welcome/thumbnail.webp
+image: /assets/images/posts/2025/welcome/thumbnail.webp
 inspired_by: Vincent van Gogh
 ---
 
