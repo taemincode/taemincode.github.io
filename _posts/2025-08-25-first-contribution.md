@@ -1,15 +1,17 @@
 ---
 layout: post
 title: "My First Contribution"
+description: "Sharing how I made my first open source contribution to Hugging Face Transformers by translating docs and navigating the review process."
 date: 2025-08-25
 last_modified_at: 2025-10-17
 categories: Contribution
 thumbnail: /assets/images/posts/2025/first-contribution/thumbnail.webp
+image: /assets/images/posts/2025/first-contribution/thumbnail.webp
 inspired_by: Claude Monet
 ---
 {% include responsive-image.html
     src="/assets/images/posts/2025/first-contribution/pull_request.webp"
-    alt="Pull request screenshot"
+    alt="Screenshot of my first Hugging Face Transformers pull request"
 %}
 
 ## 📌 Introduction
@@ -25,7 +27,7 @@ One day, I was just randomly thinking that it would be very cool to contribute t
 Since it was my first time, I struggled a bit in understanding how the translation for the documents worked. And it was more confusing because all the files in the toctree (which is a file that shows all the documents that are translated) were labeled as `in translation` (I thought that it meant that all the files were being translated by other people). So, I decided to ask about it, and I was able to clarify it with the help of the technical writer of this library.  
 {% include responsive-image.html
     src="/assets/images/posts/2025/first-contribution/discussion.webp"
-    alt="Translation discussion thread"
+    alt="GitHub conversation clarifying the Korean translation workflow"
 %}
 
 Now I understood how it worked, and it was time for the actual translation. I picked a file that was labeled as `in translation` (which actually meant that it was not translated yet; the file I chose was `text-to-speech.md`), and started translating it manually. However, it was only after opening the PR with my translated document that I realized that there was a translation guide explicitly made for Korean translations, which mentioned that our job wasn't to manually translate one by one, but use LLMs such as ChatGPT or Claude to first translate it, and then review if it flows naturally. Obviously, my manually translated document was declined, and I had to start it again. The new file that I chose was `gpt2.md`, and I started translating this time 'with LLMs'. After completing the tranlation (it only took like 20 minutes), I wrote the PR based on the template that was given. And after several days, my PR got reviewed by a couple of people and got <a href="https://github.com/huggingface/transformers/pull/39808" target="_blank" rel="noopener">merged</a>!

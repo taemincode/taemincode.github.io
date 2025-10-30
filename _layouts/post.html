@@ -47,6 +47,38 @@ layout: default
             {{ content }}
         </div>
     </article>
+    {% assign modified_source = page.last_modified_at | default: page.updated | default: page.edited | default: page.date %}
+    {% assign article_image = page.image | default: page.featured_image | default: page.thumbnail %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page.url | absolute_url }}"
+        },
+        "headline": {{ page.title | default: site.title | jsonify }},
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "dateModified": "{{ modified_source | date_to_xmlschema }}",
+        "author": {
+            "@type": "Person",
+            "name": {{ site.name | default: site.title | jsonify }}
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": {{ site.name | default: site.title | jsonify }}
+        }{% if page.description %},
+        "description": {{ page.description | jsonify }}{% endif %}{% if article_image %},
+        "image": [
+            {{ article_image | absolute_url | jsonify }}
+        ]{% endif %}{% if page.categories and page.categories != empty %},
+        "articleSection": [
+            {% for category in page.categories %}
+            {{ category | jsonify }}{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+        ]{% endif %}
+    }
+    </script>
 
     <div class="post-footer">
         <div class="post-nav">

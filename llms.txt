@@ -15,15 +15,19 @@ Response Checklist
 
 Key Files & Roles
 -----------------
-- `index.html` – Home page sections (hero with email reveal toggle, timeline, snapshot, now, blog preview). Uses Bootstrap grid classes plus custom SCSS hooks; keep the `.hero-email-message` behavior intact. Any new section must reuse existing typography classes defined in `_sass/_about.scss`.
-- `blogs.html` – Full blog listing; cards rely on `.blog-card` styles, AOS attributes, and a helper script that wires `data-href` for keyboard activation. For new filters or sort options, update the loop over `site.posts`, keep the `blog-card-inspiration` overlay fed by `inspired_by`, and adjust `_sass/_blog.scss`.
+- `index.html` – Home page sections (hero with email reveal toggle, timeline, snapshot, now, blog preview). Uses Bootstrap grid classes plus custom SCSS hooks; keep the `.hero-email-message` behavior intact and the blog preview fallback that grabs the first inline `<img>` when front matter art is missing. Any new section must reuse existing typography classes defined in `_sass/_about.scss`.
+- `blogs.html` – Full blog listing; cards rely on `.blog-card` styles, AOS attributes, and a helper script that wires `data-href`, restores stored AOS attributes, and clears inline transforms. For new filters or sort options, update the loop over `site.posts`, keep the `blog-card-inspiration` overlay fed by `inspired_by`, and adjust `_sass/_blog.scss`. The template mirrors the homepage logic to fall back to the first inline `<img>` when no cover image is set.
 - `_layouts/default.html` – Global wrapper: head tags, navbar, footer, MathJax, Bootstrap, AOS, theme toggle, copy buttons, lightbox JS. Changes here affect every page—double-check accessibility attributes.
 - `_layouts/post.html` – Post layout with publish/updated logic, categories, previous/next nav. Honor Liquid conditionals when altering metadata blocks.
 - `_sass/_variables.scss` – Design tokens. Add new variables here before using raw hex codes. Apply both light and dark theme values.
 - `_sass/_about.scss`, `_blog.scss`, `_footer.scss`, `_post.scss`, `_nav.scss` – Section-specific styles. Keep selectors scoped (e.g., `.hero`, `.blog-card`) and rely on variables.
-- `assets/css/site.scss` – SCSS entry point. Import new partials here; keep alphabetical order by topic when adding.
+- `assets/css/site.scss` – SCSS entry point plus the mobile/touch override block that neutralizes hover-only flourishes. Import new partials here; keep alphabetical order by topic when adding and mirror the override rules when introducing new hover effects.
+- `_includes/responsive-image.html` – Centralized helper that builds `srcset` entries by looking for `*-<width>w` siblings in `site.static_files`. Always pass descriptive `alt`; provide `width`/`height` when the intrinsic size is known.
 - `_posts/` – Markdown with YAML front matter. Filenames are `YYYY-MM-DD-slug.md`. Do not change dates unless adjusting publish time intentionally.
+- `assets/images/posts/<year>/<slug>/` – Source of WebP derivatives for posts. Keep filenames aligned with the responsive include suffix pattern (`thumbnail.webp`, `thumbnail-480w.webp`, etc.).
+- `static/` – Fixed hero/snapshot assets with pre-generated responsive widths (`about-photo-*.webp`). Update the whole set together to preserve `srcset`.
 - `manim/` – Source of generated images/animations. Update Python scenes when refreshing assets; never hand-edit renders in `media/`.
+- `certificates/` – PDF proofs linked from timeline cards in `index.html`; replace files in place to avoid breaking URLs.
 - `README.md` – Contributor docs. Update when workflows or dependencies change.
 
 Theming & Styling Rules
@@ -37,6 +41,7 @@ Theming & Styling Rules
 Liquid & Markdown Conventions
 -----------------------------
 - Use `{{ site.baseurl }}` when creating absolute asset URLs from Markdown (e.g., `{{ site.baseurl }}/assets/images/...`).
+- Prefer `{% include responsive-image.html %}` for inline images; it builds `srcset` automatically when companion `*-<width>w` files exist. Pass `loading`, `width`, or `height` only when you need to override the defaults.
 - Front matter keys currently recognized:
   - `layout`, `title`, `date`, `categories`, `tags`, `description`, `thumbnail`, `cover_image`, `image`, `featured_image`, `inspired_by`, `artist_inspiration`, `last_modified_at`, `updated`, `edited`.
   - Use `inspired_by` (or `artist_inspiration`) to populate the “Inspired by …” ribbon on listing cards; keep values short.
@@ -54,7 +59,7 @@ JavaScript Specifics
   - Code-copy enhancement for `.markdown pre`: maintain `code-copy-btn` structure and accessible labels.
   - Image lightbox limited to descendants of `.post-content`; only intercept `<img>` clicks when you need lightbox behavior.
 - `index.html` hero email button toggles `aria-expanded`/`aria-pressed` and reveals `#hero-email-message`; keep the keyboard handlers and message span synced with the icon list.
-- `blogs.html` attaches listeners to `.blog-card[data-href]` so cards respond to click or Enter/Space, replays AOS animations, and clears inline transforms; keep data attributes and script logic aligned.
+- `blogs.html` attaches listeners to `.blog-card[data-href]` so cards respond to click or Enter/Space, replays AOS animations, and clears inline transforms; it also caches/restores AOS attributes when reduced motion disables animations. Keep data attributes and script logic aligned.
 - `404.html` script:
   - Provides `window.ROCKET_CONFIG`, `window.setRocketExitOffset`, `window.setRocketExitMode`. Adjust rocket flight through these helpers. Keep reduced-motion fallback intact.
 
@@ -62,9 +67,9 @@ Content Creation Rules
 ----------------------
 - Blog posts:
   - Write introductions with emoji headings (e.g., `## 📌 Introduction`) if consistent with current style.
-  - Include at least one image or diagram when referencing data/visuals. Place supporting images in `assets/images/posts/<year>/<slug>/`.
-  - Generate responsive image sets: export WebP derivatives at multiple widths (e.g., `thumbnail.webp`, `thumbnail-480w.webp`) and wire them via `<picture>` or `srcset` so listings and posts pick the right size. Keep a fallback format only when required by the template.
-  - Always ship `alt`, `width`, `height`, and `loading="lazy"` on inline images to preserve accessibility and layout stability.
+  - Include at least one image or diagram when referencing data/visuals. Place supporting images in `assets/images/posts/<year>/<slug>/` alongside the `*-<width>w.webp` variants that power `responsive-image.html`.
+  - Generate responsive image sets as WebP derivatives (e.g., `thumbnail.webp`, `thumbnail-480w.webp`, `thumbnail-768w.webp`). The include wires `srcset` automatically; keep a fallback format only when required by the template.
+  - Always ship meaningful `alt` text. `responsive-image.html` defaults to `loading="lazy"`; add `width`/`height` attributes when you know the intrinsic dimensions to minimize layout shift.
   - For tutorials, code blocks should include language hints (```` ```python ````). `rouge` handles highlighting.
   - Add `last_modified_at` when editing existing posts to surface “Updated” badge.
   - Populate `inspired_by` (or `artist_inspiration`) to credit artwork on listing cards; omit when not applicable.
@@ -90,6 +95,7 @@ Development Workflow
   bundle exec jekyll serve --livereload  # localhost:4000
   bundle exec jekyll build               # outputs to _site/
   ```
+- Jekyll plugins currently enabled: `jekyll-feed`, `jekyll-seo-tag`, `jekyll-last-modified-at`, `jekyll-sitemap`. Update `_config.yml` and the README in tandem if you add or remove one.
 - Node tooling is not used; avoid introducing npm unless coordinated.
 - Manim assets: install dependencies (`brew install cairo pkg-config pango ffmpeg`, create Python venv, `pip install manim`). Render with `manim -pqh <file> <SceneName> --format=png`. Move curated output into `assets/images/posts/...`.
 
@@ -100,6 +106,7 @@ Do / Don’t
 - **Don’t** rename SCSS classes without updating every template that references them.
 - **Don’t** depend on external JS libraries beyond existing CDNs unless added to `default.html` head/body with integrity attributes.
 - **Don’t** commit large binaries (videos) unless needed for posts; host heavies on YouTube and embed responsibly.
+- **Don’t** hand-edit files inside `vendor/bundle/`; regenerate via Bundler when dependency updates are required.
 
 Reference Docs
 --------------

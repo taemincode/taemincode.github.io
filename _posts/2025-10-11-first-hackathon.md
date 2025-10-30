@@ -1,10 +1,12 @@
 ---
 layout: post
 title: "First Hackathon"
+description: "A behind-the-scenes recap of my first high school hackathon, from team formation and building a mood-based playlist app to the awards ceremony."
 date: 2025-10-11
 last_modified_at: 2025-10-17
 categories: Hackathon
 thumbnail: /assets/images/posts/2025/first-hackathon/thumbnail.webp
+image: /assets/images/posts/2025/first-hackathon/thumbnail.webp
 inspired_by: Wassily Kandinsky
 ---
 
@@ -16,7 +18,7 @@ I should first tell you how I got to find out the event, how I formed a team, an
 I wanted to join a hackathon that was designed for my age group (high school), since I didn't want to compete with adults. After some research, I found a <a href="https://hackathons.hackclub.com" target="_blank" rel="noopener">website</a> that showed all the upcoming high school hackathon events, and I chose to participate in a hackathon called <a href="https://hackwiththebeat.com" target="_blank" rel="noopener">*Hack with the Beat*</a>.
 {% include responsive-image.html
     src="/assets/images/posts/2025/first-hackathon/hackathon_website.webp"
-    alt="Hack with the Beat hackathon website screenshot"
+    alt="Homepage screenshot of the Hack with the Beat high school hackathon website"
 %}
 
 This hackathon was a music-themed hackathon and encouraged the participants to create projects linked to music. Since the schedule fit well for me, and it seemed to be a good hackathon (based on the website and the Discord server), I chose to give it a try.<br>
