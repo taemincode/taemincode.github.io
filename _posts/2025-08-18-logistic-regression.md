@@ -11,7 +11,7 @@ inspired_by: Edvard Munch
 ---
 
 ## 📌 Introduction
-Previously, we've learned that [linear regression]({{ site.baseurl }}/2025/08/06/linear-regression.html) was fitting the best line through data. Logistic regression fits an S-shaped curve (sigmoid function) to the data. Logistic regression is also a type of `supervised learning` (has labeled data), and while linear regression is a regression model which predicts continuous values for its output, logistic regression is a classification model (although it's called logistic 'regression'), which can only have two possible outputs: 0 and 1. This model is used to find out yes or no questions. Such as spam detection (is this a spam or not?), medical diagnosis (does this person have a disease or not?), and fraud detection (is this a fraudulent transaction or not?).
+Previously, we've learned that [linear regression]({{ site.baseurl }}/ml/2025/08/06/linear-regression.html) was fitting the best line through data. Logistic regression fits an S-shaped curve (sigmoid function) to the data. Logistic regression is also a type of `supervised learning` (has labeled data), and while linear regression is a regression model which predicts continuous values for its output, logistic regression is a classification model (although it's called logistic 'regression'), which can only have two possible outputs: 0 and 1. This model is used to find out yes or no questions. Such as spam detection (is this a spam or not?), medical diagnosis (does this person have a disease or not?), and fraud detection (is this a fraudulent transaction or not?).
 ## 🧠 The Big Idea
 {% include responsive-image.html
     src="/assets/images/posts/2025/logistic-regression/logistic_regression.webp"
@@ -84,7 +84,7 @@ Now, I'll show you how to build logistic regression from scratch.
 >
 > The following code includes some other concepts, such as standardization and preventing overflow, which we haven't covered in this blog post. However, I hope you would get some general sense of how it is implemented in code.
 
-Let's first load the dataset and shape it so that it would be easier to handle:
+Where going to use a real-life dataset: the breast cancer dataset. Let's first load the dataset and shape it so that it would be easier to handle:
 ```python
 import numpy as np
 from sklearn.datasets import load_breast_cancer
@@ -98,13 +98,13 @@ y = data.target # shape: (569,)
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
 
-X = X.T             # shape: (30, 569)
-y = y.reshape(-1)   # shape: (569,)
+X = X.T           # shape: (30, 569)
+y = y.reshape(-1) # shape: (569,)
 ```
 Now that the data is ready, let's define the logistic regression model:
 ```python
 def sigmoid(z):
-    z = np.clip(z, -500, 500)  # prevent overflow
+    z = np.clip(z, -500, 500) # prevent overflow
     return 1 / (1 + np.exp(- z))
 
 def initialize_parameters(dim):

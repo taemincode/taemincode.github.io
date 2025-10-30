@@ -3,7 +3,7 @@ layout: post
 title: "Linear Regression"
 description: "Understand linear regression from intuition to gradient descent and build a scratch Python implementation tailored for machine learning newcomers."
 date: 2025-08-06
-last_modified_at: 2025-10-17
+last_modified_at: 2025-10-30
 categories: ML
 thumbnail: /assets/images/posts/2025/linear-regression/thumbnail.webp
 image: /assets/images/posts/2025/linear-regression/thumbnail.webp
@@ -67,84 +67,115 @@ Here, $\dfrac{\partial J}{\partial w}$ and $\dfrac{\partial J}{\partial b}$ are 
 
 ## 🛠️ Building It From Scratch
 Now that you know how linear regression learns, let's build it from scratch!<br>
-We'll start by generating some sample data:
+We will use the diabetes dataset from scikit-learn. Let's start off by loading the data:
 ```python
+from sklearn.datasets import load_diabetes
+from sklearn.preprocessing import StandardScaler
 import numpy as np
 
-# Fake dataset: y = 4 + 3x + noise
-np.random.seed(0)
-X = 2 * np.random.rand(100, 1)
-y = 4 + 3 * X + np.random.randn(100, 1)
+data = load_diabetes()
+X = data.data   # shape: (442, 10)
+y = data.target # shape: (442,)
+
+# Standardize features (mean=0, std=1)
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+X = X.T           # shape: (10, 442)
+y = y.reshape(-1) # shape: (442,)
 ```
-Our goal is to find the best value for $w$ and $b$. At first, we can just set them to zero:
+Let's now build the linear regression model:
 ```python
-w = 0.0
-b = 0.0
+def initialize_parameters(dim):
+    w = np.zeros((dim, 1))
+    b = 0.0
+
+    return w, b
+
+def propagate(w, b, X, y):
+    m = X.shape[1]
+
+    # Forward propagation
+    Z = np.dot(w.T, X) + b
+    y_hat = Z
+
+    # Mean squared error (we use 1/2 to simplify gradients)
+    cost = (1 / (2* m)) * np.sum((y - y_hat) ** 2)
+
+    # Backward propagation
+    dZ = y_hat - y
+    dw = (1 / m) * np.dot(X, dZ.T)
+    db = (1 / m) * np.sum(dZ)
+
+    grads = {
+        "dw": dw,
+        "db": db
+    }
+
+    return grads, cost
+
+def optimize(w, b, X, y, num_iterations=5000, learning_rate=0.01):
+    for iteration in range(num_iterations):
+        # Propagation
+        grads, cost = propagate(w, b, X, y)
+    
+        # Retrieve gradients
+        dw = grads["dw"]
+        db = grads["db"]
+
+        # Update parameters (gradient descent)
+        w = w - learning_rate * dw
+        b = b - learning_rate * db
+        
+        # Print cost every 1000 iterations
+        if iteration % 1000 == 0:
+            print(f"Iteration={iteration}: cost={cost:.6f}")
+
+    parameters = {
+        "w": w,
+        "b": b
+    }
+
+    return parameters, cost
+
+def predict(w, b, X):
+    y_pred = np.dot(w.T, X) + b
+    return y_pred
+
+def model(X, y, num_iterations=5000, learning_rate=0.01):
+    w, b = initialize_parameters(X.shape[0])
+    parameters, cost = optimize(w, b, X, y, num_iterations, learning_rate)
+
+    w = parameters["w"]
+    b = parameters["b"]
+
+    y_pred = predict(w, b, X)
+
+    # Print accuracy
+    print("Mean Squared Error: {:.6f}".format(cost * 2))
+
+    d = {"y_pred": y_pred, 
+         "w" : w, 
+         "b" : b,
+         "learning_rate" : learning_rate,
+         "num_iterations": num_iterations}
+
+    return d
 ```
-Now, let's define the cost function. We'll use Mean Squared Error (MSE):
-```python
-def compute_loss(X, y, w, b):
-    y_pred = w * X + b
-    return np.mean((y - y_pred) ** 2)
+Time to train the model!
 ```
-We'll now use gradient descent to minimize the cost:
-```python
-learning_rate = 0.05
-epochs = 1000 # number of iterations
-n = len(X)
-
-for epoch in range(epochs):
-    y_pred = w * X + b
-    error = y_pred - y
-
-    dw = (2/n) * np.sum(error * X)
-    db = (2/n) * np.sum(error)
-
-    w -= learning_rate * dw
-    b -= learning_rate * db
-
-    if epoch % 100 == 0:
-        loss = compute_loss(X, y, w, b)
-        print(f"Epoch {epoch}: Loss = {loss:.4f}")
+linear_regression_model = model(X, y)
 ```
 Output:
-```text
-Epoch 0: Loss = 34.0180
-Epoch 100: Loss = 1.0010
-Epoch 200: Loss = 0.9928
-Epoch 300: Loss = 0.9925
-Epoch 400: Loss = 0.9924
-Epoch 500: Loss = 0.9924
-Epoch 600: Loss = 0.9924
-Epoch 700: Loss = 0.9924
-Epoch 800: Loss = 0.9924
-Epoch 900: Loss = 0.9924
+```bash
+Iteration=0: cost=14537.240950
+Iteration=1000: cost=1439.357018
+Iteration=2000: cost=1437.811167
+Iteration=3000: cost=1436.547908
+Iteration=4000: cost=1435.491481
+Mean Squared Error: 2869.207583
 ```
-Let's see what we got for the values of $w$ (slope) and $b$ (intercept):
-```python
-print(f"Learned parameters: w = {w:.2f}, b = {b:.2f}")
-```
-Output:
-```text
-Learned parameters: w = 2.97, b = 4.22
-```
-Finally, let's see how well our line fits the data:
-```python
-import matplotlib.pyplot as plt
-
-plt.scatter(X, y, label='Data')
-plt.plot(X, w * X + b, color='red', label='Best Fit Line')
-plt.legend()
-plt.title("Linear Regression from Scratch")
-plt.show()
-```
-Output:<br>
-{% include responsive-image.html
-    src="/assets/images/posts/2025/linear-regression/linear_regression_from_scratch_plot.webp"
-    alt="Scatterplot with learned regression line from the scratch-built model"
-%}
-
-🎉 We've just built a working linear regression model without using any machine learning libraries! (just math and python)🎉
+With this dataset, MSE of about 2900 with linear regression is considered successful — meaning that we've just built a working linear regression model!
 
 ## 📚 Linear vs. Other Models
 Linear regression is simply fitting a line to the data. So it works best when the data is linear. However, what if the data isn't linear? In that case, other models (such as polynomial regression) work better. The image below shows when linear regression works well and doesn't work well:
@@ -153,8 +184,8 @@ Linear regression is simply fitting a line to the data. So it works best when th
     alt="Side-by-side comparison of linear and polynomial regression fits on curved datasets"
 %}
 
-If you want to explore what comes next, the [scikit-learn linear models guide](https://scikit-learn.org/stable/modules/linear_model.html){:target="_blank" rel="noopener noreferrer"} is a fantastic deep dive into production-ready tooling.
+If you want to explore what comes next, the [scikit-learn linear models guide](https://scikit-learn.org/stable/modules/linear_model.html){:target="_blank" rel="noopener noreferrer"} is a great place to start with.
 
 ## ✅ Summary
 In this blog post, we've looked at how linear regression works, when we use it, and the core concepts behind it. It's a great starting point in machine learning as gradient descent and cost functions are actually very important in many machine learning models.<br>
-In the next blog post, we'll explore logistic regression, which is another important model in machine learning. See you then! And if you're ready right now, check out [Logistic Regression]({{ site.baseurl }}/2025/08/18/logistic-regression.html) to see how these ideas extend to classification tasks.
+In the next blog post, we'll explore [logistic regression]({{ site.baseurl }}/ml/2025/08/18/logistic-regression.html), which is another important model in machine learning. See you then!
