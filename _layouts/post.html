@@ -22,7 +22,7 @@ layout: default
                 {% assign published_day = page.date | date: "%Y-%m-%d" %}
                 {% assign modified_day = edited_source | date: "%Y-%m-%d" %}
                 {% if modified_at > published_at and modified_day != published_day %}
-                <span class="post-meta-item" aria-label="Updated date">
+                <span class="post-meta-item post-meta-item--updated" aria-label="Updated date">
                     <i class="fa-regular fa-clock" aria-hidden="true"></i>
                     <span class="label">Updated</span>
                     <time datetime="{{ edited_source | date_to_xmlschema }}" class="post-edited">

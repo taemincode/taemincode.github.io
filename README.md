@@ -7,17 +7,18 @@ Source for https://taemincode.github.io — a Jekyll-powered personal site with 
 ## Features
 
 - **Landing page sections** – `index.html` renders a hero (with email reveal toggle), timeline, “Snapshot” profile card, work-in-progress/“Now” board, social links, and blog preview cards styled by `_sass/_about.scss`.
-- **Blog listing & previews** – `blogs.html` builds an animated card grid (AOS) with full-card keyboard activation and an “Inspired by …” ribbon when `inspired_by` front matter is present; the homepage pulls the three latest posts, auto-detecting cover art from front matter or the first `<img>`.
+- **Blog listing & previews** – `blogs.html` builds an animated card grid (AOS) with full-card keyboard activation and an “Inspired by …” ribbon when `inspired_by` front matter is present; the homepage pulls the three latest posts, auto-detecting cover art from front matter or the first `<img>`, and the script disables animations for touch/reduced-motion users.
 - **Post UX** – `_layouts/post.html` shows published/updated metadata (via `jekyll-last-modified-at`), categories, copy-to-clipboard buttons, MathJax, Rouge styling, and a JS lightbox for in-article images.
 - **Global theming** – SCSS design tokens in `_sass/_variables.scss` drive light/dark themes; the navbar toggle persists preference to `localStorage` and respects system defaults.
+- **SEO & discovery** – `jekyll-seo-tag` renders structured metadata while `jekyll-sitemap` and `jekyll-feed` keep search engines and readers up to date automatically.
 - **Accessibility & motion** – Reduced-motion visitors skip AOS and hover flair; keyboard focus states, ARIA labels, and responsive typography are wired throughout.
 - **404 easter egg** – `404.html` includes an accessible “launch the rocket” animation with optional Typed.js heading reveal.
-- **Visual assets** – Manim scenes under `manim/` render to `media/`; curated PNGs live in `assets/images/posts/` and hero art in `static/`.
+- **Visual assets** – Manim scenes under `manim/` render to `media/`; responsive WebP imagery for posts lives in `assets/images/posts/` and hero art in `static/`.
 
 ## Tech Stack
 
 - Jekyll 4.3.x, Kramdown/rouge markdown & highlighting
-- Plugins: `jekyll-feed`, `jekyll-seo-tag`, `jekyll-last-modified-at`
+- Plugins: `jekyll-feed`, `jekyll-seo-tag`, `jekyll-last-modified-at`, `jekyll-sitemap`
 - Front-end: SCSS partial pipeline, Bootstrap 5, Font Awesome, AOS, MathJax
 - Tooling: Ruby/Bundler for site, Python + Manim for animations
 
@@ -28,11 +29,12 @@ Source for https://taemincode.github.io — a Jekyll-powered personal site with 
 ├── 404.html                         # Interactive not-found page
 ├── _config.yml                      # Site metadata & plugin config
 ├── _layouts/                        # Layouts (default, post)
+├── _includes/                       # Shared snippets (e.g., responsive image helper)
 ├── _posts/                          # Markdown posts (YYYY-MM-DD-title.md)
 ├── _sass/                           # SCSS partials (variables, base, blog, post, ...)
 ├── assets/
 │   ├── css/site.scss                # SCSS entry point (imports partials)
-│   └── images/posts/<year>/...      # Post imagery checked into the repo
+│   └── images/posts/<year>/...      # Post imagery (WebP + responsive widths)
 ├── certificates/                    # PDF certificates linked from timeline
 ├── static/                          # Static hero/about assets
 ├── manim/                           # Python scenes that generate blog graphics
@@ -81,6 +83,7 @@ bundle exec jekyll build
 
 3. Images:
    - Store permanent assets under `assets/images/posts/<year>/<slug>/`
+   - Prefer WebP (supply `*-<width>w.webp` variants for responsive loading)
    - Reference with `![Alt]({{ site.baseurl }}/assets/images/posts/2025/example/plot.webp)`
    - Post layout wraps images with a lightbox; clicking opens a full-size view.
 
