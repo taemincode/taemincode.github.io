@@ -143,6 +143,47 @@
 .markdown table thead th { border-bottom:2px solid var(--color-border); }
 .markdown hr { margin:2.5rem 0; border:none; border-top:1px solid var(--color-border); opacity:.5; }
 .markdown figcaption { font-size:.95rem; color:var(--secondary-color); margin:.5rem 0 0; text-align:center; }
+.markdown details { margin:0 0 1rem; }
+.markdown details > summary {
+  list-style:none;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:.3rem;
+  color:var(--primary-color);
+  font-weight:600;
+  font-size:1.1rem;
+  line-height:1.35;
+  text-decoration:none;
+  transition:color .2s ease;
+}
+.markdown details > summary::-webkit-details-marker { display:none; }
+.markdown details > summary::marker { content:""; }
+.markdown details > summary::after {
+  content:"▾";
+  font-size:.9em;
+  line-height:1;
+  transform:rotate(0deg);
+  transition:transform .2s ease;
+}
+.markdown details[open] > summary::after { transform:rotate(180deg); }
+.markdown details > summary:focus-visible {
+  outline:2px solid var(--primary-color);
+  outline-offset:3px;
+  border-radius:4px;
+}
+.markdown details > .ka-disclosure__body {
+  margin-top:.6rem;
+  padding-inline-start:.95rem;
+  border-inline-start:4px solid var(--color-border);
+}
+.markdown details > .ka-disclosure__body > :first-child { margin-top:0; }
+.markdown details > .ka-disclosure__body > :last-child { margin-bottom:0; }
+.markdown details > *:not(summary):not(.ka-disclosure__body) {
+  margin-top:.6rem;
+  padding-inline-start:.95rem;
+  border-inline-start:4px solid var(--color-border);
+}
 .post-footer { max-width:1000px; margin:1.5rem auto 3rem; padding:0 clamp(1.5rem,4.5vw,3rem); }
 .post-nav { display:flex; justify-content:space-between; gap:2.5rem; }
 .post-nav-link { flex:1; padding:1.5rem; background:var(--color-surface); border-radius:1rem; box-shadow:0 2px 10px -2px rgba(0,0,0,0.45); text-decoration:none; transition:transform .3s ease, box-shadow .3s ease, background .3s ease; position:relative; overflow:hidden; }
