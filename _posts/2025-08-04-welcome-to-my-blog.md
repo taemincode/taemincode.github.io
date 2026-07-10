@@ -10,10 +10,10 @@ image: /assets/images/posts/2025/welcome/thumbnail.webp
 inspired_by: Vincent van Gogh
 ---
 
-## 👋 Hello world!
+## Hello world!
 This is first blog post. I've been thinking about writing blogs for months now, and I'm glad to finally start my blogging journey 😄
 
-## 🔭 What to Expect
+## What to Expect
 
 - Updates about my machine learning journey
 - Project showcases

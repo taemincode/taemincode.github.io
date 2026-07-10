@@ -10,10 +10,10 @@ image: /assets/images/posts/2025/linear-regression/thumbnail.webp
 inspired_by: Kazimir Malevich
 ---
 
-## 📌 Introduction
+## Introduction
 Linear regression is the process of finding a line in a graph that best fits the data. It is a type of `supervised learning`, meaning it uses labeled data (datasets that already include the correct answers). It's one of the first things that people learn when starting their machine learning journey.
 
-## 🧠 The Big Idea
+## The Big Idea
 {% include responsive-image.html
     src="/assets/images/posts/2025/linear-regression/linear_regression.webp"
     alt="Scatterplot of sample data with blue best-fit line representing linear regression"
@@ -23,7 +23,7 @@ Just as I mentioned above, you only have to think of linear regression as fittin
 $y = wx + b$<br>
 In this equation, $w$ is the slope (how steep the line is), and $b$ is the intercept (where the line crosses the y-axis). So to fit the line, you would have to change the $w$ and $b$ values.
 
-## 📊 What does It Actually Do?
+## What does It Actually Do?
 By fitting a line which is close to all data, we would be able to predict the $y$ values of any input $x$. Let's use house prices as an example 🏠 (it's one of the most common examples).
 {% include responsive-image.html
     src="/assets/images/posts/2025/linear-regression/house_price_prediction.webp"
@@ -41,7 +41,7 @@ The predicted price of this house would be:<br>
 $\hat{y} = 2300 \times 200 + 100,000 = 560,000$<br>
 And voila! We've just used linear regression to predict house prices 😄
 
-## 🔍 How Does It Learn?
+## How Does It Learn?
 You now might be curious about how we actually find the best fitting line. And that's exactly what I'm going to tell you.<br>
 Finding the best fitting line is the same as finding the lowest `cost`. And the cost is measured by a `cost function`, which measures the performance (cost) of a model. There are many cost functions used for many cases, but I will use `Mean Squared Error (MSE)` (which is the default for most regression problems) to explain how linear regression learns.<br>
 This is the formula for Mean Squared Error:<br>
@@ -65,7 +65,7 @@ Here, $\dfrac{\partial J}{\partial w}$ and $\dfrac{\partial J}{\partial b}$ are 
     alt="Line chart comparing convergence for small, optimal, and large learning rates"
 %}
 
-## 🛠️ Building It From Scratch
+## Building It From Scratch
 Now that you know how linear regression learns, let's build it from scratch!<br>
 We will use the diabetes dataset from scikit-learn. Let's start off by loading the data:
 ```python
@@ -177,7 +177,7 @@ Mean Squared Error: 2869.207583
 ```
 With this dataset, MSE of about 2900 with linear regression is considered successful — meaning that we've just built a working linear regression model!
 
-## 📚 Linear vs. Other Models
+## Linear vs. Other Models
 Linear regression is simply fitting a line to the data. So it works best when the data is linear. However, what if the data isn't linear? In that case, other models (such as polynomial regression) work better. The image below shows when linear regression works well and doesn't work well:
 {% include responsive-image.html
     src="/assets/images/posts/2025/linear-regression/linear_vs_polynomial.webp"
@@ -186,6 +186,6 @@ Linear regression is simply fitting a line to the data. So it works best when th
 
 If you want to explore what comes next, the [scikit-learn linear models guide](https://scikit-learn.org/stable/modules/linear_model.html){:target="_blank" rel="noopener noreferrer"} is a great place to start with.
 
-## ✅ Summary
+## Summary
 In this blog post, we've looked at how linear regression works, when we use it, and the core concepts behind it. It's a great starting point in machine learning as gradient descent and cost functions are actually very important in many machine learning models.<br>
 In the next blog post, we'll explore [logistic regression]({{ site.baseurl }}/ml/2025/08/18/logistic-regression.html), which is another important model in machine learning. See you then!
