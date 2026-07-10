@@ -10,9 +10,9 @@ image: /assets/images/posts/2025/logistic-regression/thumbnail.webp
 inspired_by: Edvard Munch
 ---
 
-## 📌 Introduction
+## Introduction
 Previously, we've learned that [linear regression]({{ site.baseurl }}/ml/2025/08/06/linear-regression.html) was fitting the best line through data. Logistic regression fits an S-shaped curve (sigmoid function) to the data. Logistic regression is also a type of `supervised learning` (has labeled data), and while linear regression is a regression model which predicts continuous values for its output, logistic regression is a classification model (although it's called logistic 'regression'), which can only have two possible outputs: 0 and 1. This model is used to find out yes or no questions. Such as spam detection (is this a spam or not?), medical diagnosis (does this person have a disease or not?), and fraud detection (is this a fraudulent transaction or not?).
-## 🧠 The Big Idea
+## The Big Idea
 {% include responsive-image.html
     src="/assets/images/posts/2025/logistic-regression/logistic_regression.webp"
     alt="Sigmoid curve separating two classes in a logistic regression scatterplot"
@@ -24,7 +24,7 @@ where<br>
 $z = wx + b$<br>
 From the graph above, we could notice that as the input value $x$ increases, the predicted probability increases as well. Through the sigmoid function, we could separate data.
 
-## 🧩 How It Works
+## How It Works
 Logistic regression works as follows:
 1. Take input features: in this example, let's create an algorithm that predicts if a student will pass their test based on study hours. 
 2. Compute the weighted sum: $z = w x + b$ (similar to linear regression).
@@ -37,7 +37,7 @@ Logistic regression works as follows:
 >
 > In $\hat{y} \geq 0.5$ and $\hat{y} < 0.5$, the value $0.5$ is called the `decision boundary`. The decision boundary is usually 0.5, but it could be a different value based on the problem. For example, if we are creating a disease detection algorithm, and this algorithm will be used to flag 'potential' diseases, we could lower the decision boundary to let's say 0.3.
 
-## 🔍 How Does It Learn?
+## How Does It Learn?
 We've learned that we need cost functions in order to use gradient descent to find the best fitting graph in the data (this is explained in the [previous blog]({{ site.baseurl }}/2025/08/06/linear-regression.html)). However, if we use the same cost function as linear regression (MSE) for logistic regression, we get a cost function as below:
 {% include responsive-image.html
     src="/assets/images/posts/2025/logistic-regression/mse.webp"
@@ -78,7 +78,7 @@ J(w, b) = -\frac{1}{m} \sum_{i=1}^{m} \Big[ y^{(i)} \log\big(\hat{y}^{(i)}\big) 
 $$ <br><br>
 Since we have the cost function, we can now use gradient descent to minimize the cost (I'm thinking about writing a blog post about explaining the details of gradient descent - like backpropagation - in the future) and find the best fitting S-shaped curve.
 
-## 🛠️ Building It From Scratch
+## Building It From Scratch
 Now, I'll show you how to build logistic regression from scratch.
 > ℹ️ Note:
 >
@@ -209,12 +209,12 @@ Accuracy: 98.76977152899825 %
 
 There you go! We've just built logistic regression from scratch!
 
-## 📚 Logistic vs. Other Models
+## Logistic vs. Other Models
 I hope that now you can confidently explain the difference: logistic regression predicts probabilities (classification), while linear regression predicts continuous values (regression). However, like linear regression, logistic regression is the simplest form of classification models, so it could struggle with non-linear boundaries (e.g., data that is not linearly separable).
 {% include responsive-image.html
     src="/assets/images/posts/2025/logistic-regression/logistic_vs_other.webp"
     alt="Decision boundary comparison between logistic regression and non-linear models"
 %}
 
-## ✅ Summary
+## Summary
 In this blog post, we've learned that logistic regression predicts probabilities and classifies based on a threshold. We've also learned that logistic regression uses the sigmoid function, binary cross-entropy, and gradient descent to learn. By learning this model, I believe that you now have a solid foundation for classification problems! See you in the next blog post 😊
