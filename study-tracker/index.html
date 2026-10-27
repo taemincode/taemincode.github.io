@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#16263b">
+  <meta name="description" content="A personal Korean mathematics study tracker — 378 lessons, daily checklist, and progress calendar.">
+  <title>Math Momentum — Study Tracker</title>
+  <style>
+  :root{--ink:#14233b;--muted:#718197;--line:#e6eaf0;--paper:#f5f7fb;--white:#fff;--green:#13866e;--green-soft:#dff6eb;--algebra:#7460ca;--calc:#148977;--orange:#ec9557;--shadow:0 15px 45px rgba(31,44,62,.055)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.5}
+  button{font:inherit;cursor:pointer}
+  button:focus-visible,input:focus-visible{outline:3px solid #dfa55a;outline-offset:3px}
+  .container{width:min(1180px,calc(100% - 36px));margin:auto}
+  .hero{background:radial-gradient(circle at 86% 10%,#25566d 0%,transparent 36%),radial-gradient(circle at 19% 96%,#294c69 0%,transparent 44%),#14243a;color:#fff;position:relative;overflow:hidden;padding:29px 0 36px}
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.03em;font-size:18px}
+  .logo{width:37px;height:37px;display:grid;place-items:center;border-radius:12px;background:#e8f8ef;color:#123f40;font-size:19px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:10px;font-weight:800;color:#94e1ca}
+  h1{font-size:clamp(30px,5vw,48px);letter-spacing:-.055em;line-height:1.12;margin:12px 0}
+  .intro{max-width:590px;font-size:15px;color:#bfd0de;margin:0 0 27px}
+  .hero-main{padding:42px 0 8px}
+  .hero-tags{display:flex;gap:9px;flex-wrap:wrap}
+  .hero-tag{border:1px solid #517085;border-radius:999px;color:#deedf4;padding:6px 11px;font-size:12px}
+  .hero-tag b{color:#fff}
+  .ghost{background:transparent;border:1px solid rgba(255,255,255,.28);border-radius:10px;color:white;padding:9px 12px;font-size:12px;font-weight:650}
+  .ghost:hover{background:#ffffff16}
+  .dashboard{margin-top:-24px;position:relative;z-index:2;padding-bottom:38px}
+  .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:17px}
+  .stat{background:white;border:1px solid var(--line);padding:20px 21px;border-radius:18px;box-shadow:var(--shadow)}
+  .stat-label{font-size:12px;color:var(--muted);font-weight:650}
+  .stat-number{font-size:27px;font-weight:830;letter-spacing:-.05em;margin:5px 0 2px}
+  .stat-foot{font-size:11px;color:var(--muted)}
+  .main-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:17px;align-items:start}
+  .panel{border:1px solid var(--line);border-radius:20px;background:var(--white);box-shadow:var(--shadow);padding:21px;min-width:0}
+  .panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+  h2{margin:0;letter-spacing:-.035em;font-size:19px}
+  .tiny{font-size:12px;color:var(--muted)}
+  .navs{display:flex;align-items:center;gap:6px}
+  .nav-btn{width:34px;height:34px;border:1px solid var(--line);background:#fff;border-radius:10px;color:var(--ink);font-size:19px}
+  .nav-btn:hover{background:#f5f7f9}
+  .week-head,.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}
+  .week-head{margin-bottom:7px}
+  .week-head span{text-align:center;font-size:11px;color:#92a0b1;font-weight:700;padding:5px 0}
+  .cal-day{min-width:0;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid #e8edf1;background:#fafbfd;border-radius:12px;position:relative;color:var(--ink);transition:transform .12s,background .12s}
+  .cal-day:hover{transform:translateY(-2px)}
+  .cal-day .num{font-size:15px;font-weight:750}
+  .cal-day .marker{width:5px;height:5px;border-radius:50%;background:#a5b4c3}
+  .cal-day.done{background:linear-gradient(140deg,#129477,#0b705b);color:white;border-color:#13866e}
+  .cal-day.done .marker{background:#d8f9e7}
+  .cal-day.partial{background:linear-gradient(145deg,#ecfaf5 60%,#9cdbc5 60%);border-color:#9cdbc5}
+  .cal-day.partial .marker{background:#129477}
+  .cal-day.off{background:repeating-linear-gradient(-45deg,#f1f3f6,#f1f3f6 5px,#e9edf1 5px,#e9edf1 10px);color:#a0aab5}
+  .cal-day.off .marker{background:transparent}
+  .cal-day.buffer{background:#f2edfb;color:#7a5bae;border-color:#e4d7fb}
+  .cal-day.buffer .marker{background:#9d7fd2}
+  .cal-day.today:after{content:"";position:absolute;inset:3px;border:2px solid var(--orange);border-radius:9px;pointer-events:none}
+  .cal-day.selected{outline:3px solid #f3be80;outline-offset:2px}
+  .cal-spacer{min-width:0}
+  .legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:17px;font-size:11px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .swatch{width:9px;height:9px;border-radius:3px;background:#e8edf1}
+  .swatch.done{background:var(--green)}.swatch.partial{background:#91cfb7}.swatch.buffer{background:#c6b1e8}.swatch.off{background:#d7dde3}
+  .focus-date{font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:#728398;font-weight:750}
+  .focus-title{font-size:25px;font-weight:820;letter-spacing:-.04em;margin:7px 0}
+  .daily-head{display:flex;justify-content:space-between;gap:10px;align-items:start}
+  .time-pill{padding:6px 10px;border-radius:999px;background:#eef4fb;color:#416283;font-size:11px;font-weight:800;white-space:nowrap}
+  .tasks{display:grid;gap:10px;margin:18px 0}
+  .task{padding:15px;border:1px solid var(--line);border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .task.complete{background:#f0fbf6;border-color:#ace1c9}
+  .course{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:800}
+  .dot{width:8px;height:8px;background:var(--algebra);border-radius:50%}
+  .dot.calc{background:var(--calc)}
+  .task-range{font-size:15px;font-weight:800;margin:4px 0 0 17px}
+  .task-desc{margin:3px 0 0 17px;font-size:11px;color:var(--muted)}
+  .check-btn{border:1px solid #cdd7e1;background:white;border-radius:10px;padding:9px 11px;min-width:94px;font-size:12px;font-weight:800;color:#486174;white-space:nowrap}
+  .check-btn.checked{background:var(--green);border-color:var(--green);color:#fff}
+  .check-btn:hover{filter:brightness(.96)}
+  .complete-day{width:100%;padding:12px 13px;border:0;background:#173a4b;color:#fff;border-radius:11px;font-weight:800;font-size:13px}
+  .complete-day:hover{background:#255768}
+  .empty-day{border:1px dashed #d5dce7;border-radius:13px;padding:24px;text-align:center;color:var(--muted);font-size:14px;margin:18px 0}
+  .empty-emoji{font-size:26px;display:block;margin-bottom:8px}
+  .progress-head{display:flex;justify-content:space-between;margin-top:20px;font-size:12px;color:#5c6a80;font-weight:750}
+  .bar{height:9px;background:#edf0f5;border-radius:40px;overflow:hidden;margin-top:7px}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,#35af91,#147b65);transition:width .2s}
+  .fill.alg{background:linear-gradient(90deg,#a592ec,#7460ca)}
+  .course-progress{margin:14px 0}
+  .course-progress .progress-head{margin-top:0}
+  .section-title{font-size:12px;font-weight:850;text-transform:uppercase;color:#8a99aa;letter-spacing:.1em;margin:22px 0 10px}
+  .agenda{display:grid;gap:6px;max-height:550px;overflow:auto;padding-right:4px}
+  .agenda-item{width:100%;display:flex;align-items:center;gap:11px;border:1px solid #e9edf2;background:#fff;border-radius:12px;padding:11px;text-align:left;color:var(--ink)}
+  .agenda-item:hover{background:#f6f9fa}
+  .agenda-item.selected{border-color:#77b69f;background:#f3fbf7}
+  .agenda-item.done{background:#e9f9f1}
+  .agenda-item.off{opacity:.56}
+  .agenda-date{min-width:55px;font-size:12px;font-weight:820}
+  .agenda-task{font-size:11px;color:#617187;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .agenda-check{font-size:16px;color:var(--green);min-width:17px;text-align:center}
+  .bottom{display:flex;gap:14px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:18px;padding:18px 20px;background:#ecf1f5;border-radius:16px}
+  .bottom-copy{font-size:12px;max-width:740px;color:#536477}
+  .bottom-buttons{display:flex;gap:8px;flex-wrap:wrap}
+  .secondary{border:1px solid #cad6df;border-radius:10px;background:white;color:#294b61;padding:9px 12px;font-weight:750;font-size:12px}
+  .secondary:hover{background:#f6f8f8}
+  .footer{font-size:11px;color:#9aa6b7;text-align:center;margin:24px 0}
+  .links a{color:#5379a0;text-decoration:none}
+  .links a:hover{text-decoration:underline}
+  #toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);background:#153948;color:#fff;padding:11px 17px;border-radius:12px;opacity:0;pointer-events:none;transition:all .2s;z-index:99;font-size:13px;box-shadow:0 12px 30px #0f253f33}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  @media(max-width:900px){.main-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:510px){.container{width:calc(100% - 24px)}.hero{padding-top:17px}.hero-main{padding-top:35px}.stats{gap:8px}.stat{padding:13px}.stat-number{font-size:23px}.stat-label{font-size:11px}.panel{padding:15px}.week-head,.cal-grid{gap:4px}.cal-day{border-radius:9px}.cal-day .num{font-size:13px}.cal-day.today:after{inset:2px;border-radius:7px}.legend{gap:9px}.topbar .ghost{font-size:11px;padding:8px 9px}.hero-tag{font-size:11px}.agenda{max-height:400px}.task-range{font-size:13px}.check-btn{min-width:82px}.bottom{padding:15px}}
+  </style>
+</head>
+<body>
+<header class="hero">
+ <div class="container">
+  <div class="topbar">
+   <div class="brand"><span class="logo" aria-hidden="true">∑</span> Math Momentum</div>
+   <button class="ghost" id="todayButton" type="button">↗ Jump to today</button>
+  </div>
+  <div class="hero-main">
+   <div class="eyebrow">Your personal study dashboard</div>
+   <h1>One lesson at a time.<br>One day closer.</h1>
+   <p class="intro">Track every 대수 and 미적분 1 lesson, build your streak, and turn the calendar green. Your progress is saved automatically in this browser.</p>
+   <div class="hero-tags">
+    <span class="hero-tag">📘 <b>대수</b> · deadline Dec 31</span>
+    <span class="hero-tag">📗 <b>미적분 1</b> · deadline Jan 27</span>
+    <span class="hero-tag">✏️ 20 min practice / lesson</span>
+   </div>
+  </div>
+ </div>
+</header>
+<main class="container dashboard">
+ <section class="stats" aria-label="Overall statistics">
+  <div class="stat"><div class="stat-label">Lessons completed</div><div class="stat-number" id="lessonsStat">0 / 378</div><div class="stat-foot">Across both courses</div></div>
+  <div class="stat"><div class="stat-label">Study days completed</div><div class="stat-number" id="daysStat">0 / 82</div><div class="stat-foot">Full days checked off</div></div>
+  <div class="stat"><div class="stat-label">Study day streak</div><div class="stat-number" id="streakStat">0 days</div><div class="stat-foot">Consecutive scheduled days</div></div>
+  <div class="stat"><div class="stat-label">Remaining lessons</div><div class="stat-number" id="remainingStat">378</div><div class="stat-foot">Finish strong 💪</div></div>
+ </section>
+ <div class="main-grid">
+  <div>
+   <section class="panel">
+    <div class="panel-heading">
+      <div><h2 id="monthTitle">October 2026</h2><div class="tiny" id="monthSubtitle">Pick a day to see its lessons</div></div>
+      <div class="navs"><button class="nav-btn" id="prevMonth" aria-label="Previous month" type="button">‹</button><button class="nav-btn" id="nextMonth" aria-label="Next month" type="button">›</button></div>
+    </div>
+    <div class="week-head" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+    <div class="cal-grid" id="calendar" aria-label="Study calendar"></div>
+    <div class="legend"><span><i class="swatch done"></i> Completed</span><span><i class="swatch partial"></i> Partial</span><span><i class="swatch"></i> Planned</span><span><i class="swatch buffer"></i> Buffer</span><span><i class="swatch off"></i> Unavailable</span></div>
+   </section>
+   <section class="panel" style="margin-top:17px">
+    <div class="panel-heading"><h2>This month's checklist</h2><div class="tiny" id="monthlyProgress"></div></div>
+    <div class="agenda" id="agenda"></div>
+   </section>
+  </div>
+  <div>
+   <section class="panel">
+    <div class="focus-date" id="focusDate">TUESDAY, OCT 27</div>
+    <div class="daily-head"><div><div class="focus-title" id="focusTitle">Today's mission</div><div class="tiny">① first pass · ② second pass · ③ third pass</div></div><span class="time-pill" id="timePill">3h 57m</span></div>
+    <div id="tasks" class="tasks"></div>
+    <button class="complete-day" id="completeDay" type="button">✓ Mark entire day complete</button>
+    <div class="section-title">Course progress</div>
+    <div class="course-progress"><div class="progress-head"><span>📘 대수 · passes ② + ③</span><span id="algCount">0 / 138</span></div><div class="bar"><div class="fill alg" id="algBar"></div></div></div>
+    <div class="course-progress"><div class="progress-head"><span>📗 미적분 1 · remaining passes</span><span id="calcCount">0 / 240</span></div><div class="bar"><div class="fill" id="calcBar"></div></div></div>
+    <p class="tiny" style="margin-top:20px">Times include the planned lecture durations plus 20 minutes of independent practice for each lesson. Your October 28 workload is treated as a weekday.</p>
+   </section>
+   <section class="panel" style="margin-top:17px">
+    <div class="section-title" style="margin-top:0">Upcoming milestones</div>
+    <div style="display:grid;gap:11px;font-size:13px">
+     <div style="display:flex;justify-content:space-between;gap:10px"><span>미적분 1 ① finished</span><b>Dec 22</b></div>
+     <div style="display:flex;justify-content:space-between;gap:10px"><span>대수 ③ finished</span><b>Dec 24</b></div>
+     <div style="display:flex;justify-content:space-between;gap:10px"><span>미적분 1 ② finished</span><b>Jan 6</b></div>
+     <div style="display:flex;justify-content:space-between;gap:10px"><span>미적분 1 ③ finished</span><b>Jan 25</b></div>
+     <div class="tiny" style="padding-top:7px;border-top:1px solid var(--line)">Buffer days: Dec 30, Jan 26–27. School trip: Nov 3–7. MUN: Nov 28–30.</div>
+    </div>
+   </section>
+  </div>
+ </div>
+ <aside class="bottom">
+  <div class="bottom-copy"><strong>Saved automatically on this device.</strong> Ticking a lesson stores it in this browser, and it will still be checked when you reopen the site. Clearing browser storage or using another device won't preserve these checks. Export a backup occasionally to keep them safe.</div>
+  <div class="bottom-buttons">
+   <button class="secondary" id="exportButton" type="button">↓ Export backup</button>
+   <button class="secondary" id="importButton" type="button">↑ Restore backup</button>
+   <input id="importFile" type="file" accept=".json,application/json" style="display:none" aria-label="Select saved progress file">
+  </div>
+ </aside>
+ <div class="footer">Made for focused studying · <span class="links"><a href="https://www.megastudy.net/teacher_v2/chr/lecture_detailview.asp?CHR_CD=54647&amp;MAKE_FLG=1&amp;tec_cd=woojinmath" target="_blank" rel="noopener noreferrer">미적분 1 lectures</a> · <a href="https://www.megastudy.net/teacher_v2/chr/lecture_detailview.asp?CHR_CD=54079&amp;tec_cd=woojinmath" target="_blank" rel="noopener noreferrer">대수 lectures</a></span></div>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<script id="schedule-data" type="text/plain">
+2026-10-27|② 1–3|① 16|3h 57m
+2026-10-28|② 4–5|① 17|4h 19m
+2026-10-29|② 6|① 18–19|3h 31m
+2026-10-30|② 7–8|① 20|3h 33m
+2026-10-31|② 9–12|① 21–22|8h 48m
+2026-11-01|② 13–15|① 23–25|8h 20m
+2026-11-02|② 16–18|—|3h 08m
+2026-11-03|—|School trip|OFF
+2026-11-04|—|School trip|OFF
+2026-11-05|—|School trip|OFF
+2026-11-06|—|School trip|OFF
+2026-11-07|—|School trip|OFF
+2026-11-08|② 19–23|① 26–27|8h 21m
+2026-11-09|② 24|① 28–29|4h 05m
+2026-11-10|② 25–26|① 30|3h 50m
+2026-11-11|② 27–28|① 31|3h 50m
+2026-11-12|② 29|① 32–33|3h 49m
+2026-11-13|② 30–31|① 34|3h 57m
+2026-11-14|② 32–35|① 35–36|8h 30m
+2026-11-15|② 36–40|① 37–38|8h 48m
+2026-11-16|② 41|① 39–40|4h 20m
+2026-11-17|② 42–43|① 41|3h 35m
+2026-11-18|② 44–45|① 42|4h 06m
+2026-11-19|② 46–47|① 43|3h 42m
+2026-11-20|② 48–49|① 44|3h 33m
+2026-11-21|② 50–53|① 45–46|7h 56m
+2026-11-22|② 54–58|① 47–48|8h 21m
+2026-11-23|② 59–60|① 49|3h 31m
+2026-11-24|② 61–62|① 50|3h 31m
+2026-11-25|② 63–64|① 51|3h 56m
+2026-11-26|② 65–66|—|2h 48m
+2026-11-27|② 67–68|① 52|3h 40m
+2026-11-28|—|MUN|OFF
+2026-11-29|—|MUN|OFF
+2026-11-30|—|MUN|OFF
+2026-12-01|② 69 + ③ 1–2|① 53|4h 01m
+2026-12-02|③ 3–4|① 54|3h 37m
+2026-12-03|③ 5–6|① 55|3h 54m
+2026-12-04|③ 7|① 56–57|3h 53m
+2026-12-05|③ 8–11|① 58–59|8h 09m
+2026-12-06|③ 12–15|① 60–61|8h 34m
+2026-12-07|③ 16–17|① 62|3h 04m
+2026-12-08|③ 18–19|① 63|4h 39m
+2026-12-09|③ 20–21|① 64–65|3h 52m
+2026-12-10|③ 22–23|① 66|4h 16m
+2026-12-11|③ 24–25|① 67|4h 27m
+2026-12-12|③ 26–29|① 68–69|7h 50m
+2026-12-13|③ 30–33|① 70–71|7h 50m
+2026-12-14|③ 34–35|① 72|4h 27m
+2026-12-15|③ 36|① 73–75|4h 02m
+2026-12-16|③ 37–39|—|3h 35m
+2026-12-17|③ 40|① 76–77|4h 02m
+2026-12-18|③ 41–42|① 78|4h 17m
+2026-12-19|③ 43–46|① 79–81|8h 14m
+2026-12-20|③ 47–50|① 82–83|8h 03m
+2026-12-21|③ 51–55|① 84|7h 34m
+2026-12-22|③ 56–60|① 85 + ② 1|8h 36m
+2026-12-23|③ 61–64|② 2–5|8h 14m
+2026-12-24|③ 65–69|② 6–8|9h 10m
+2026-12-25|—|② 9–16|7h 59m
+2026-12-26|—|② 17–23|8h 50m
+2026-12-27|—|② 24–30|8h 44m
+2026-12-28|—|② 31–37|8h 34m
+2026-12-29|—|② 38–43|8h 34m
+2026-12-30|—|Catch-up / free|BUFFER
+2026-12-31|—|② 44–50|8h 26m
+2027-01-01|—|② 51–56|8h 11m
+2027-01-02|—|② 57–62|7h 36m
+2027-01-03|—|② 63–68|8h 18m
+2027-01-04|—|② 69–76|9h 08m
+2027-01-05|—|② 77–83|8h 53m
+2027-01-06|—|② 84–85 + ③ 1–6|8h 35m
+2027-01-07|—|③ 7–9|3h 51m
+2027-01-08|—|③ 10–13|3h 50m
+2027-01-09|—|③ 14–21|9h 02m
+2027-01-10|—|③ 22–27|7h 52m
+2027-01-11|—|③ 28–30|3h 40m
+2027-01-12|—|③ 31–33|3h 36m
+2027-01-13|—|③ 34–36|3h 55m
+2027-01-14|—|③ 37–39|4h 05m
+2027-01-15|—|③ 40–42|3h 46m
+2027-01-16|—|③ 43–49|9h 00m
+2027-01-17|—|③ 50–55|8h 10m
+2027-01-18|—|③ 56–58|3h 45m
+2027-01-19|—|③ 59–61|3h 41m
+2027-01-20|—|③ 62–64|4h 07m
+2027-01-21|—|③ 65–66|2h 46m
+2027-01-22|—|③ 67–69|3h 59m
+2027-01-23|—|③ 70–76|7h 56m
+2027-01-24|—|③ 77–83|8h 53m
+2027-01-25|—|③ 84–85|3h 38m
+2027-01-26|—|Catch-up / free|BUFFER
+2027-01-27|—|Catch-up / free|BUFFER
+</script>
+<script>
+(function(){
+  "use strict";
+  var STORE="math-momentum-v1-2026";
+  var raw=document.getElementById("schedule-data").textContent.trim().split(/\r?\n/);
+  var items=raw.map(function(line){
+    var a=line.split("|");
+    return {date:a[0],alg:a[1],calc:a[2],time:a[3],tasks:a[3]==="OFF"||a[3]==="BUFFER"?[]:[].concat(a[1]!=="—"?[{kind:"alg",title:"대수",range:a[1]}]:[]).concat(a[2]!=="—"?[{kind:"calc",title:"미적분 1",range:a[2]}]:[])};
+  });
+  var byDate={};items.forEach(function(item){byDate[item.date]=item});
+  var months=[{y:2026,m:10},{y:2026,m:11},{y:2026,m:12},{y:2027,m:1}];
+  var todayObj=new Date();
+  function pad(n){return String(n).padStart(2,"0")}
+  function iso(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+  var today=iso(todayObj);
+  var monthIndex=months.findIndex(function(m){return m.y===todayObj.getFullYear()&&m.m===todayObj.getMonth()+1});
+  if(monthIndex===-1)monthIndex=today<"2026-10-01"?0:3;
+  var selected=byDate[today]?today:items.find(function(r){return +r.date.slice(5,7)===months[monthIndex].m&&r.date.slice(0,4)===String(months[monthIndex].y)}).date;
+  function load(){
+    try {var v=JSON.parse(localStorage.getItem(STORE)||"{}");return v&&typeof v==="object"?v:{}}catch(e){return {}}
+  }
+  var progress=load(),toastTimer;
+  function save(){
+    try{localStorage.setItem(STORE,JSON.stringify(progress));return true}
+    catch(e){notify("Could not save in this browser. Export a backup instead.");return false}
+  }
+  function notify(s){var el=document.getElementById("toast");el.textContent=s;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove("show")},2600)}
+  function key(item,kind){return item.date+":"+kind}
+  function taskComplete(item,kind){return progress[key(item,kind)]===true}
+  function doneCount(item){return item.tasks.filter(function(t){return taskComplete(item,t.kind)}).length}
+  function dayComplete(item){return item.tasks.length>0&&doneCount(item)===item.tasks.length}
+  function lessonCount(s){var n=0,re=/[①②③]\s*(\d+)(?:[–-](\d+))?/g,match;while((match=re.exec(s))!==null){n+=(match[2]?Number(match[2])-Number(match[1])+1:1)}return n}
+  function prettyDate(s,opts){var n=s.split("-").map(Number);return new Date(n[0],n[1]-1,n[2]).toLocaleDateString("en-US",opts)}
+  function selectedItem(){return byDate[selected]}
+  function setMonth(i){
+    monthIndex=Math.min(3,Math.max(0,i));
+    var m=months[monthIndex];
+    if(!(selected.slice(0,4)===String(m.y)&&+selected.slice(5,7)===m.m)){
+      var first=items.find(function(v){return v.date.slice(0,4)===String(m.y)&&Number(v.date.slice(5,7))===m.m&&v.tasks.length>0});
+      selected=first?first.date:items[0].date;
+    }
+    render();
+  }
+  function renderCalendar(){
+    var m=months[monthIndex],days=new Date(m.y,m.m,0).getDate(),start=(new Date(m.y,m.m-1,1).getDay()+6)%7;
+    document.getElementById("monthTitle").textContent=new Date(m.y,m.m-1,1).toLocaleDateString("en-US",{month:"long",year:"numeric"});
+    var completed=items.filter(function(d){return d.date.slice(0,7)===String(m.y)+"-"+pad(m.m)&&dayComplete(d)}).length;
+    var planned=items.filter(function(d){return d.date.slice(0,7)===String(m.y)+"-"+pad(m.m)&&d.tasks.length>0}).length;
+    document.getElementById("monthSubtitle").textContent=completed+" of "+planned+" study days complete";
+    var result="";
+    for(var i=0;i<start;i++)result+='<span class="cal-spacer"></span>';
+    for(var day=1;day<=days;day++){
+      var date=m.y+"-"+pad(m.m)+"-"+pad(day),r=byDate[date],cl="";
+      if(r){
+        if(r.time==="OFF")cl="off";else if(r.time==="BUFFER")cl="buffer";
+        else if(dayComplete(r))cl="done";else if(doneCount(r)>0)cl="partial";
+      }
+      if(date===selected)cl+=" selected";
+      if(date===today)cl+=" today";
+      var status=!r?"No plan":r.time==="OFF"?"Unavailable":r.time==="BUFFER"?"Buffer day":dayComplete(r)?"Completed":doneCount(r)>0?"Partially complete":"Planned";
+      result+='<button type="button" class="cal-day '+cl+'" data-day="'+date+'" aria-pressed="'+(date===selected)+'" aria-label="'+prettyDate(date,{month:"long",day:"numeric"})+': '+status+'"><span class="num">'+day+'</span><span class="marker" aria-hidden="true"></span></button>';
+    }
+    document.getElementById("calendar").innerHTML=result;
+    document.querySelectorAll("[data-day]").forEach(function(b){b.addEventListener("click",function(){if(byDate[b.dataset.day]){selected=b.dataset.day;render()}else notify("No lessons are scheduled for this date.")})});
+    document.getElementById("prevMonth").disabled=monthIndex===0;
+    document.getElementById("nextMonth").disabled=monthIndex===3;
+  }
+  function renderFocus(){
+    var r=selectedItem();
+    document.getElementById("focusDate").textContent=prettyDate(r.date,{weekday:"long",month:"short",day:"numeric",year:"numeric"});
+    document.getElementById("focusTitle").textContent=r.date===today?"Today's mission":"Daily mission";
+    document.getElementById("timePill").textContent=r.time==="OFF"?"No study":r.time==="BUFFER"?"Flex day":"~ "+r.time;
+    var taskEl=document.getElementById("tasks"),btn=document.getElementById("completeDay");
+    if(r.tasks.length===0){
+      var label=r.time==="OFF"?r.calc:"Catch-up / free";
+      taskEl.innerHTML='<div class="empty-day"><span class="empty-emoji">'+(r.time==="OFF"?"🌿":"✨")+'</span><strong>'+label+'</strong><div style="margin-top:5px">No required lectures today. Enjoy the break.</div></div>';
+      btn.hidden=true;return;
+    }
+    btn.hidden=false;
+    var html="";
+    r.tasks.forEach(function(t){
+      var checked=taskComplete(r,t.kind);
+      var parts=lessonCount(t.range);
+      html+='<div class="task '+(checked?"complete":"")+'"><div><div class="course"><span class="dot '+(t.kind==="calc"?"calc":"")+'"></span>'+t.title+'</div><div class="task-range">'+t.range+'</div><div class="task-desc">'+parts+' lesson'+(parts===1?"":"s")+' · '+parts*20+' min independent study</div></div><button type="button" data-task="'+t.kind+'" class="check-btn '+(checked?"checked":"")+'" aria-pressed="'+checked+'">'+(checked?"✓ Done":"Mark done")+'</button></div>';
+    });
+    taskEl.innerHTML=html;
+    taskEl.querySelectorAll("[data-task]").forEach(function(b){b.addEventListener("click",function(){var k=key(r,b.dataset.task);progress[k]=!progress[k];save();render();if(dayComplete(r))notify("Amazing! Another green day 🌱")})});
+    btn.textContent=dayComplete(r)?"↶ Unmark entire day":"✓ Mark entire day complete";
+    btn.onclick=function(){var makeDone=!dayComplete(r);r.tasks.forEach(function(t){progress[key(r,t.kind)]=makeDone});save();render();notify(makeDone?"Day completed. Keep going!":"Day marked incomplete.")};
+  }
+  function renderAgenda(){
+    var m=months[monthIndex],monthPrefix=m.y+"-"+pad(m.m)+"-";
+    var list=items.filter(function(r){return r.date.indexOf(monthPrefix)===0}),total=list.filter(function(r){return r.tasks.length>0}).length,
+      checked=list.filter(dayComplete).length;
+    document.getElementById("monthlyProgress").textContent=checked+" / "+total+" complete";
+    var html="";
+    list.forEach(function(r){
+      var done=dayComplete(r),isOff=r.time==="OFF",isBuffer=r.time==="BUFFER",status=isOff||isBuffer?r.calc:r.alg!=="—"&&r.calc!=="—"?"대수 "+r.alg+"  ·  미적분 "+r.calc:r.alg!=="—"?"대수 "+r.alg:"미적분 "+r.calc;
+      html+='<button type="button" data-open="'+r.date+'" class="agenda-item '+(done?"done ":"")+(isOff?"off ":"")+(r.date===selected?"selected":"")+'"><span class="agenda-date">'+prettyDate(r.date,{month:"short",day:"numeric"})+'</span><span class="agenda-task">'+status+'</span><span class="agenda-check">'+(done?"✓":r.tasks.length&&doneCount(r)>0?"◐":isBuffer?"◇":"")+'</span></button>';
+    });
+    var el=document.getElementById("agenda");el.innerHTML=html;
+    el.querySelectorAll("[data-open]").forEach(function(b){b.addEventListener("click",function(){selected=b.dataset.open;render();document.getElementById("focusDate").scrollIntoView({behavior:"smooth",block:"nearest"})})});
+  }
+  function streak(){
+    var eligible=items.filter(function(r){return r.tasks.length>0&&r.date<=today}),n=0;
+    for(var i=eligible.length-1;i>=0;i--){if(dayComplete(eligible[i]))n++;else if(i===eligible.length-1)continue;else break}
+    return n;
+  }
+  function renderStats(){
+    var alg=0,calc=0,days=0;
+    items.forEach(function(r){
+      if(dayComplete(r))days++;
+      r.tasks.forEach(function(t){if(taskComplete(r,t.kind)){if(t.kind==="alg")alg+=lessonCount(t.range);else calc+=lessonCount(t.range)}})
+    });
+    var total=alg+calc;
+    document.getElementById("lessonsStat").textContent=total+" / 378";
+    document.getElementById("daysStat").textContent=days+" / 82";
+    document.getElementById("streakStat").textContent=streak()+" days";
+    document.getElementById("remainingStat").textContent=378-total;
+    document.getElementById("algCount").textContent=alg+" / 138";
+    document.getElementById("calcCount").textContent=calc+" / 240";
+    document.getElementById("algBar").style.width=(alg/138*100)+"%";
+    document.getElementById("calcBar").style.width=(calc/240*100)+"%";
+  }
+  function render(){renderCalendar();renderFocus();renderAgenda();renderStats()}
+  document.getElementById("prevMonth").addEventListener("click",function(){setMonth(monthIndex-1)});
+  document.getElementById("nextMonth").addEventListener("click",function(){setMonth(monthIndex+1)});
+  document.getElementById("todayButton").addEventListener("click",function(){if(byDate[today]){selected=today;var d=today.split("-").map(Number);monthIndex=months.findIndex(function(m){return m.y===d[0]&&m.m===d[1]});render();document.getElementById("calendar").scrollIntoView({behavior:"smooth",block:"start"})}else notify("Today's date is outside the study plan.")});
+  document.getElementById("exportButton").addEventListener("click",function(){
+    var blob=new Blob([JSON.stringify({app:"Math Momentum",version:1,exported:new Date().toISOString(),progress:progress},null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="math-momentum-backup-"+today+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},1000);notify("Backup exported!")
+  });
+  document.getElementById("importButton").addEventListener("click",function(){document.getElementById("importFile").click()});
+  document.getElementById("importFile").addEventListener("change",function(event){
+    var f=event.target.files[0];if(!f)return;
+    var reader=new FileReader();
+    reader.onload=function(){try{
+      var data=JSON.parse(reader.result);
+      if(data.version!==1||!data.progress||typeof data.progress!=="object"||Array.isArray(data.progress))throw new Error("invalid");
+      var clean={};
+      Object.keys(data.progress).forEach(function(k){var parts=k.split(":"),r=byDate[parts[0]];if(r&&(parts[1]==="alg"||parts[1]==="calc")&&r.tasks.some(function(t){return t.kind===parts[1]})&&data.progress[k]===true)clean[k]=true});
+      if(!confirm("Restore "+Object.keys(clean).length+" completed tasks from this backup? This replaces your current checkmarks."))return;
+      progress=clean;save();render();notify("Backup restored!");
+    }catch(e){notify("That isn't a valid Math Momentum backup.")}event.target.value=""};
+    reader.readAsText(f);
+  });
+  window.addEventListener("storage",function(e){if(e.key===STORE){progress=load();render()}});
+  render();
+})();
+</script>
+</body>
+</html>
